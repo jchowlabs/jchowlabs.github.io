@@ -9,12 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-## Education
-------
-* M.S., Computer Science, UC Berkeley (2023)
-* B.S., Computer Science, Cal Poly Pomona (2005)
-
-
 ## Professional Experience
 ------
 
@@ -56,6 +50,15 @@ Serviced 100+ national accounts (end-to-end) with focus on security and forensic
 ### ![Beckman Coulter](/images/beckman_coulter_logo.jpeg){: .align-left width="50px"} Staff Applications Developer (Apr 2009 - Jun 2011)
 ------
 Developed, tested and deployed security, business logic and third-party integrations for Oracle E-Business Suite (EBS), Oracle Transportation Management System (TMS) and Oracle Warehouse Management System (WMS) modules.
+
+
+## Education
+------
+* M.S., Computer Science, UC Berkeley (2023)
+* B.S., Computer Science, Cal Poly Pomona (2005)
+
+### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S., Computer Science (2023)
+### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="50px"} B.S., Computer Science (2010)
 
 
 ## Certifications
