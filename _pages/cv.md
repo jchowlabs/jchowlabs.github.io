@@ -9,13 +9,13 @@ redirect_from:
 
 {% include base_path %}
 
-## Education
+# Education
 ------
-### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S. in Computer Science emphasis Cybersecurity
-### ![Cal Poly Pomona](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} B.S. in Computer Science and Information Systems
+* ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S. in Computer Science emphasis Cybersecurity
+* ![Cal Poly Pomona](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} B.S. in Computer Science and Information Systems
 
 
-## Work experience
+# Work experience
 ------
 
 ### ![Profile Icon](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
