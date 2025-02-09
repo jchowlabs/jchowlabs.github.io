@@ -11,21 +11,21 @@ redirect_from:
 
 ## Education
 ------
-* M.S. in Computer Science and Cybersecurity, UC Berkeley
-* B.S. in Computer Science and Information Systems, CalPoly Pomona
+### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S. in Computer Science emphasis Cybersecurity
+### ![Cal Poly Pomona](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} B.S. in Computer Science and Information Systems
 
 
-##Work experience
+## Work experience
 ------
 
 ### ![Profile Icon](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
 ------
-Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
+:   Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
 ### ![Profile Icon](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student (Jan 2022 - Dec 2023) 
 ------
-Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
+:   Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
 
 
 ### ![Profile Icon](/images/truu_logo.jpeg){: .align-left width="50px"} Principle Product Manager (Apr 2018 - Dec 2021)
