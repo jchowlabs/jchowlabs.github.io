@@ -13,6 +13,8 @@ redirect_from:
 ------
 ### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S. in Computer Science emphasis Cybersecurity
 ### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="50px"} B.S. in Computer Science and Information Systems
+
+
 ------
 
 
@@ -20,6 +22,7 @@ redirect_from:
 ------
 
 ### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
+Jan 2024 - Jan 2025
 :   Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
