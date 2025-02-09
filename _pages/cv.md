@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: ""
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -18,47 +18,41 @@ Education
 Work experience
 ======
 
-![Profile Icon](/images/profile.png){: .align-left width="35px"} **Field CTO - TruU, Inc.**
+![Profile Icon](/images/truu_logo.jpeg){: .align-left width="35px"} ### **Field CTO** 
 ------
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
-Graduate Student, UC Berkeley 
+![Profile Icon](/images/uc_berkeley_logo.jpeg){: .align-left width="35px"} ### **Graduate Student** 
 ------
 Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
 
 
+![Profile Icon](/images/truu_logo.jpeg){: .align-left width="35px"} ### **Principle Product Manager**
+------
+Employee #8 hired to innovate, launch and extend TruU's Passwordless Identity Platform. The offering includes an Administration Console, iOS/Android mobile app, Windows/MacOS credential provider, over a dozen third-party integrations and multiple behavioral biometric and anomaly detection machine learning models.
 
-* **Field CTO**
-  * TruU, Inc.
-  * January 2024 - Present
 
-* **Graduate Student**
-  * UC Berkeley
-  * January 2022 - December 2023
+![Profile Icon](/images/centrify_logo.jpeg){: .align-left width="35px"} ### **Senior Manager, Product Marketing**
+------
+Led Centrify to the #1 leadership position in Gartner's 2018 "Critical Capabilities for Access Management Worldwide" report (company first). Originated new collateral including Buyer's Guide, SSO eBook, product documentation, demo videos, certification program, and content for re-branded website.
 
-* **Principle Product Manager**
-  * TruU, Inc.
-  * April 2018 - December 2021
 
-* **Senior Manager, Product Marketing**
-  * Centrify Corporation
-  * August 2017 - April 2018
+![Profile Icon](/images/centrify_logo.jpeg){: .align-left width="35px"} ### **Lead Solutions Architect**
+------
+Owned the success of Centrify's most complex and at risk customer deployments, while also surpassing annual quotas with highest proof-of-concept to sale conversation ratio in the company. Awarded sole Sales Achievement Award by CEO, SVP Technical Services and SVP of World-Wide Sales.
 
-* **Lead Solutions Architect**
-  * Centrify Corporation
-  * May 2016 - August 2017
 
-* **Senior Consultant, Cybersecurity Advisory**
-  * EY, LLP
-  * August 2014 - March 2016
+![Profile Icon](/images/ey_logo.jpeg){: .align-left width="35px"} ### **Senior Consultant, Cybersecurity Advisory**
+------
+Engagement lead for multiple cyber risk programs (Fortune 100 size companies) with 20+ global team members. Implemented IAM solution for major financial institution and program managed multiple system implementations for major insurance provider.
 
-* **Senior Associate, IT Advisory**
-  * BDO USA, LLP
-  * June 2011 - July 2014
 
-* **Staff Applications Developer**
-  * Beckman Coulter Diagnostics
-  * April 2019 - June 2011
+![Profile Icon](/images/bdo_logo.jpeg){: .align-left width="35px"} ### **Senior Associate, IT Advisory**
+------
+Serviced 100+ national accounts (end-to-end) with focus on security and forensics audits, ERP implementations and third-party attestations for small-to-medium size companies in all major industries.
 
-  
+
+![Profile Icon](/images/beckman_coulter_logo.jpeg){: .align-left width="35px"} ### **Staff Applications Developer**
+------
+Developed, tested and deployed security, business logic and third-party integrations for Oracle E-Business Suite (EBS), Oracle Transportation Management System (TMS) and Oracle Warehouse Management System (WMS) modules.
