@@ -9,24 +9,22 @@ redirect_from:
 
 {% include base_path %}
 
-# Education
+## Education
 ------
-### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S. in Computer Science emphasis Cybersecurity
-### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="50px"} B.S. in Computer Science and Information Systems
+* Masters in Computer Science, UC Berkeley
+* Bachelors in Computer Science, CalPoly Pomona
 
 
-------
-
-
-# Professional Experience
+## Professional Experience
 ------
 
-### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
-Jan 2024 - Jan 2025
-:   Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
+### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer
+(Jan 2024 - Jan 2025)
+Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
-### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student (Jan 2022 - Dec 2023) 
+### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student 
+(Jan 2022 - Dec 2023) 
 :   Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
 
 
