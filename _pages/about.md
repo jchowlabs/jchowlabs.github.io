@@ -11,8 +11,6 @@ redirect_from:
 
 
 ## Education
-------
-
 🎓 Masters, Computer Science
 :     UC Berkeley
 
