@@ -1,22 +1,23 @@
 ---
 permalink: /
-title: "JCHOWLABS"
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-======
-
-👋 Hey! I'm Jason Chow and am an Applied Research Scientist, Engineer and Product Manager in the field of Cybersecurity. My focus areas include applications of crytography and machine learning, with 
+👋 Hey! I'm Jason Chow and I'm an Applied Research Scientist in the field of Cybersecurity. My focus areas include applications of cryptography and machine learning with passion areas spanning homomorphic encryption, zero-knowledge proofs, quantum computing, generative adversarial neural networks, large language models and everything. In my professional career, I've focused largely in the identity security space, starting with single sign-on, multi-factor authentication and conditional access, with progression to password-less and threat detection technologies. This website will document my work in this space, as well as side passion projects.
 
 
-Interests
+## Education
 ------
 
-* 🎓 Masters in Computer Science, UC Berkeley
-* 🎓 Bachelors in Computer Science, Cal Poly Pomona
+🎓 Masters, Computer Science
+:   UC Berkeley
+
+🎓 Bachelors, Computer Science
+:   CalPoly Pomona
 
 
 Interests
