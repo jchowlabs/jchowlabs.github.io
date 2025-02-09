@@ -22,12 +22,12 @@ repository               : "jchowlabs/jchowlabs.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Jason CHow"
-  pronouns         : # example: "she/her"  
+  avatar           : "jchow_profile.png"
+  name             : "Jason Chow"
+  pronouns         : # example: "he/him"  
   bio              : "Applied Research Scientist"
   location         : "San Francisco, CA"
-  employer         : "Jchowlabs"
+  employer         : # "Jchowlabs"
   uri              : # URL
   email            : "jchow@jchowlabs.com" 
 
@@ -50,7 +50,7 @@ author:
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # "bsky.app" # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -59,7 +59,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : "jkchow" # Username
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
