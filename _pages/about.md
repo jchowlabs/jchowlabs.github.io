@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-👋 Hey! I'm Jason Chow and I'm an Applied Research Scientist in the field of Cybersecurity. My focus areas include applications of cryptography and machine learning with passion areas spanning homomorphic encryption, zero-knowledge proofs, quantum computing, generative adversarial neural networks, large language models and everything. In my professional career, I've focused largely in the identity security space, starting with single sign-on, multi-factor authentication and conditional access, with progression to password-less and threat detection technologies. This website will document my work in this space, as well as side passion projects.
+👋 My name is Jason Chow and I'm an Applied Research Scientist in the field of Cybersecurity. I focus on applications of crytography and machine learning with interest areas in homomorphic encryption, zero-knowledge proofs, adversarial neural networks, large language models and everything in between. My professional career spans roles in engineering, product management and product marketing concentrated in the identity security space. This website documents some of my work, as well as passion projects. 
 
 
 ## Education
@@ -20,7 +20,10 @@ redirect_from:
 
 Interests
 ------
-* Zero-Knowledge Proofs
-* Generative Adversarial Networks
-* Cybersecurity
+* Identity Verification
+* Verifiable Credentials
+* Anomaly Detection
+* Signal Processing
+* Emerging Technologies
+
 
