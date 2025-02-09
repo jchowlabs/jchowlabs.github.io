@@ -11,54 +11,41 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. in Computer Science and Cybersecurity, UC Berkeley
+* B.S. in Computer Science and Information Systems, CalPoly Pomona
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Field CTO
+  * TruU, Inc.
+  * January 2024 - Present
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Graduate Student
+  * UC Berkeley
+  * January 2022 - December 2023
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Principle Product Manager
+  * TruU, Inc.
+  * April 2018 - December 2021
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+* Senior Manager, Product Marketing
+  * Centrify Corporation
+  * August 2017 - April 2018
+
+* Lead Solutions Architect
+  * Centrify Corporation
+  * May 2016 - August 2017
+
+* Senior Consultant, Cybersecurity Advisory
+  * EY, LLP
+  * August 2014 - March 2016
+
+* Senior Associate, IT Advisory
+  * BDO USA, LLP
+  * June 2011 - July 2014
+
+* Staff Applications Developer
+  * Beckman Coulter Diagnostics
+  * April 2019 - June 2011
+
   
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
