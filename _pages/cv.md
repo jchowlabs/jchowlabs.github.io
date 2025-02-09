@@ -14,8 +14,21 @@ Education
 * M.S. in Computer Science and Cybersecurity, UC Berkeley
 * B.S. in Computer Science and Information Systems, CalPoly Pomona
 
+
 Work experience
 ======
+
+Field CTO - TruU, Inc. 
+------
+Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
+
+
+Graduate Student, UC Berkeley 
+------
+Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
+
+
+
 * **Field CTO**
   * TruU, Inc.
   * January 2024 - Present
