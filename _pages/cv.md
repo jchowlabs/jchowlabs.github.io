@@ -54,17 +54,17 @@ Developed, tested and deployed security, business logic and third-party integrat
 
 ## Education
 ------
-* M.S., Computer Science, UC Berkeley (2023)
-* B.S., Computer Science, Cal Poly Pomona (2005)
 
-### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} M.S., Computer Science (2023)
-### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="50px"} B.S., Computer Science (2010)
+### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="30px"} M.S., Computer Science
+### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="30px"} B.S., Computer Science 
 
 
 ## Certifications
 ------
-* Leadership Principles, Harvard University (2021)
-* Product Management, Cornell University (2021)
-* Advanced Computer Security, Stanford University (2020)
-* Certified Information Systems Security Practictioner, ISC2 (2015)
-* Scrum Master, Scrum Alliance (2014)
+
+### ![Harvard](/images/harvard_business_school_logo.jpeg){: .align-left width="30px"} Leadership Principles (2021)
+### ![Cornell](/images/cornell_logo.jpeg){: .align-left width="30px"} Product Management (2021)
+### ![Stanford](/images/stanford_logo.jpeg){: .align-left width="30px"} Advanced Computer Security (2020)
+### ![ISC2](/images/isc2.jpeg){: .align-left width="30px"} Certified Information Systems Security Practictioner (2015)
+### ![Scrum Alliance](/images/scrum_alliance_logo.jpeg){: .align-left width="30px"} Scrum Master (2014)
+
