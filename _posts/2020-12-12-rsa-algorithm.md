@@ -1,11 +1,10 @@
 ---
 title: 'About RSA Algorithm'
-date: 2012-08-14
-permalink: /posts/2012/08/blog-post-1/
+date: 2020-12-12
+permalink: /posts/2020/12/about-rsa-algorithm/
 tags:
   - cool posts
   - category1
-  - category2
 ---
 
 In this blog post, I'l walkthrough the RSA Algorithm, including history, how the algorithms have evolved, vulnerabilities, how encryption and decryption works and more. 
