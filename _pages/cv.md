@@ -11,18 +11,20 @@ redirect_from:
 
 ## Education
 ------
-* Masters of Science in Computer Science, UC Berkeley
-* Bachelors of Science in Computer Science, CalPoly Pomona
+* M.S., Computer Science, UC Berkeley (2023)
+* B.S., Computer Science, Cal Poly Pomona (2005)
 
 
 ## Professional Experience
 ------
 
 ### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
+------
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
 ### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student (Jan 2022 - Dec 2023) 
+------
 Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
 
 
@@ -58,8 +60,8 @@ Developed, tested and deployed security, business logic and third-party integrat
 
 ## Certifications
 ------
-* Leadership Principles, Harvard University
-* Product Management, Cornell University
-* Advanced Computer Security, Stanford University
-* Certified Information Systems Security Practictioner, ISC2
-* Scrum Master, Scrum Alliance
+* Leadership Principles, Harvard University (2021)
+* Product Management, Cornell University (2021)
+* Advanced Computer Security, Stanford University (2020)
+* Certified Information Systems Security Practictioner, ISC2 (2015)
+* Scrum Master, Scrum Alliance (2014)
