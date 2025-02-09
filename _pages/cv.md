@@ -16,35 +16,35 @@ Education
 
 Work experience
 ======
-* Field CTO
+* **Field CTO**
   * TruU, Inc.
   * January 2024 - Present
 
-* Graduate Student
+* **Graduate Student**
   * UC Berkeley
   * January 2022 - December 2023
 
-* Principle Product Manager
+* **Principle Product Manager**
   * TruU, Inc.
   * April 2018 - December 2021
 
-* Senior Manager, Product Marketing
+* **Senior Manager, Product Marketing**
   * Centrify Corporation
   * August 2017 - April 2018
 
-* Lead Solutions Architect
+* **Lead Solutions Architect**
   * Centrify Corporation
   * May 2016 - August 2017
 
-* Senior Consultant, Cybersecurity Advisory
+* **Senior Consultant, Cybersecurity Advisory**
   * EY, LLP
   * August 2014 - March 2016
 
-* Senior Associate, IT Advisory
+* **Senior Associate, IT Advisory**
   * BDO USA, LLP
   * June 2011 - July 2014
 
-* Staff Applications Developer
+* **Staff Applications Developer**
   * Beckman Coulter Diagnostics
   * April 2019 - June 2011
 
