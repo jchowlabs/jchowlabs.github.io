@@ -11,22 +11,19 @@ redirect_from:
 
 ## Education
 ------
-* Masters in Computer Science, UC Berkeley
-* Bachelors in Computer Science, CalPoly Pomona
+* Masters of Science in Computer Science, UC Berkeley
+* Bachelors of Science in Computer Science, CalPoly Pomona
 
 
 ## Professional Experience
 ------
 
-### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} 
-:   Field Technology Officer
-:   (Jan 2024 - Jan 2025)
+### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
 
-### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student 
-(Jan 2022 - Dec 2023) 
-:   Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
+### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="50px"} Graduate Student (Jan 2022 - Dec 2023) 
+Graduate student focused on applied crytography and machine learning. Research areas include homomorphic encryption, multi-party computation, Zero-Knowledge Proofs, differential privacy and generative adversarial neural networks. 
 
 
 ### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Principle Product Manager (Apr 2018 - Dec 2021)
@@ -57,3 +54,12 @@ Serviced 100+ national accounts (end-to-end) with focus on security and forensic
 ### ![Beckman Coulter](/images/beckman_coulter_logo.jpeg){: .align-left width="50px"} Staff Applications Developer (Apr 2009 - Jun 2011)
 ------
 Developed, tested and deployed security, business logic and third-party integrations for Oracle E-Business Suite (EBS), Oracle Transportation Management System (TMS) and Oracle Warehouse Management System (WMS) modules.
+
+
+## Certifications
+------
+* Leadership Principles, Harvard University
+* Product Management, Cornell University
+* Advanced Computer Security, Stanford University
+* Certified Information Systems Security Practictioner, ISC2
+* Scrum Master, Scrum Alliance
