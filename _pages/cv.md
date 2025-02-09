@@ -55,8 +55,8 @@ Developed, tested and deployed security, business logic and third-party integrat
 ## Education
 ------
 
-#### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="30px"} M.S., Computer Science
-#### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="30px"} B.S., Computer Science 
+#### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="30px"} M.S., Computer Science (emphasis Cybersecurity)
+#### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="30px"} B.S., Computer Science and Information Systems 
 
 
 ## Certifications
