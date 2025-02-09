@@ -14,10 +14,10 @@ redirect_from:
 ------
 
 🎓 Masters, Computer Science
-:   UC Berkeley
+:     UC Berkeley
 
 🎓 Bachelors, Computer Science
-:   CalPoly Pomona
+:     CalPoly Pomona
 
 
 Interests
