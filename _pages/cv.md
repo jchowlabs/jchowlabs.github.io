@@ -18,7 +18,7 @@ Education
 Work experience
 ======
 
-![Profile Icon](/images/profile.png){: .align-left width="75px"} 
+![Profile Icon](/images/profile.png){: .align-left width="50px"} 
 Field CTO - TruU, Inc. 
 ------
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
