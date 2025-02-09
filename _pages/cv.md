@@ -38,7 +38,7 @@ Employee #8 hired to innovate, launch and extend TruU's Passwordless Identity Pl
 Led Centrify to the #1 leadership position in Gartner's 2018 "Critical Capabilities for Access Management Worldwide" report (company first). Originated new collateral including Buyer's Guide, SSO eBook, product documentation, demo videos, certification program, and content for re-branded website.
 
 
-### ![Centrify](/images/centrify_logo.jpeg){: .align-left width="50px"} Lead Solutions Architect (Mar 2016 _ Aug 2017)
+### ![Centrify](/images/centrify_logo.jpeg){: .align-left width="50px"} Lead Solutions Architect (Mar 2016 - Aug 2017)
 ------
 Owned the success of Centrify's most complex and at risk customer deployments, while also surpassing annual quotas with highest proof-of-concept to sale conversation ratio in the company. Awarded sole Sales Achievement Award by CEO, SVP Technical Services and SVP of World-Wide Sales.
 
