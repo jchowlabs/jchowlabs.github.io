@@ -11,7 +11,7 @@ redirect_from:
 
 
 ## Interest Areas:
------
+
 * 🆔 Identity Verification
 * 🪪 Verifiable Credentials
 * 🎭 Deepfake Detection
@@ -20,8 +20,3 @@ redirect_from:
 * ᯤ Signal Sharing / Processing
 * 🔐 Privacy Engineering
 * 📝 Identity Standards
-
-
-
-
-
