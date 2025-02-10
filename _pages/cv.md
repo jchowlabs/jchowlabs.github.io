@@ -12,8 +12,14 @@ redirect_from:
 ## Professional Experience
 ------
 
+## Definition Lists
+
+Definition List Title
+:   Definition list division.
+
 ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} 
 ### Field Technology Officer 
+TruU, Inc. 
 :   TruU, Inc. 
 :   Jan 2024 - Jan 2025
 ------
