@@ -1,6 +1,6 @@
 ---
-title: "Research Article"
-excerpt: "Research Article.<br/><img src='/images/500x300.png'>"
+title: "Research Article One"
+excerpt: "Research Article One.<br/><img src='/images/500x300.png'>"
 collection: research
 ---
 
