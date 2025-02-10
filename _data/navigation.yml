@@ -17,6 +17,9 @@ main:
   - title: "Projects"
     url: /projects/
 
+  - title: "Resources"
+    url: /resources/
+
   - title: "Teaching"
     url: /teaching/    
     

@@ -222,6 +222,9 @@ collections:
   research:
     output: true
     permalink: /:collection/:path/
+  resources:
+    output: true
+    permalink: /:collection/:path/
   teaching:
     output: true
     permalink: /:collection/:path/
@@ -278,6 +281,15 @@ defaults:
   - scope:
       path: ""
       type: research
+    values:
+      layout: single
+      author_profile: true
+      share: false
+      comment: false
+    # _resources
+  - scope:
+      path: ""
+      type: resources
     values:
       layout: single
       author_profile: true
