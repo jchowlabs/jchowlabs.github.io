@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: ""
+title: "Home"
 author_profile: true
 redirect_from: 
 ---
@@ -17,4 +17,4 @@ redirect_from:
 * 😈 Insider Threat Detection
 * 🔏 Passwordless Authentication
 * ᯤ Signal Sharing / Processing
-* 📝 Identity Standards
+* 📝 Standards Development
