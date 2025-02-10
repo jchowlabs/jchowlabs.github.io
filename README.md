@@ -1,3 +1,3 @@
 # Academic Pages
 
-See more info at https://academicpages.github.io. 
+This website was built using Academic Pages: https://academicpages.github.io. 
