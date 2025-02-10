@@ -12,7 +12,8 @@ redirect_from:
 ## Professional Experience
 ------
 
-### ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} Field Technology Officer (Jan 2024 - Jan 2025)
+![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} 
+### Field Technology Officer (Jan 2024 - Jan 2025)
 ------
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
