@@ -14,8 +14,8 @@ main:
   - title: "Blog"
     url: /blog/
 
-  - title: "Talks"
-    url: /talks/    
+  - title: "Research"
+    url: /research/    
 
   - title: "Teaching"
     url: /teaching/    
