@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: ""
-permalink: /cv/
+permalink: linkedin/in/jkchow
 author_profile: true
 redirect_from:
   - /resume
@@ -57,12 +57,6 @@ Developed, tested and deployed security, business logic and third-party integrat
 
 #### ![UC Berkeley](/images/uc_berkeley_logo.jpeg){: .align-left width="30px"} M.S., Computer Science (emphasis Cybersecurity)
 #### ![Cal Poly Pomona](/images/cal_poly_pomona_logo.jpeg){: .align-left width="30px"} B.S., Computer Science and Information Systems 
-
-UC Berkeley
-:   Masters, Computer Science (emphasis Cybersecurity)
-
-Cal Poly Pomona
-:   Bachelors, Computer Science & Information Systems
 
 
 ## Certifications
