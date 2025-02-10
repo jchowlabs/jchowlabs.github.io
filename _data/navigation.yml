@@ -8,20 +8,18 @@ main:
   #- title: "Publications"
   #  url: /publications/
 
-  - title: "Projects"
-    url: /projects/
-
   - title: "Blog"
     url: /blog/
 
   - title: "Research"
     url: /research/    
 
+  - title: "Projects"
+    url: /projects/
+
   - title: "Teaching"
     url: /teaching/    
     
   - title: "CV"
     url: /cv/
-    
-  #- title: "Guide"
-  #  url: /markdown/
+  
