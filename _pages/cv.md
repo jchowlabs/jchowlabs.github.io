@@ -12,16 +12,11 @@ redirect_from:
 ## Professional Experience
 ------
 
-## Definition Lists
-
-Definition List Title
-:   Definition list division.
-
 ![TruU](/images/truu_logo.jpeg){: .align-left width="50px"} 
 ### Field Technology Officer 
-TruU, Inc. 
-:   TruU, Inc. 
-:   Jan 2024 - Jan 2025
+TruU, Inc. * Full-time
+January 2024 - January 2025
+San Francisco, CA
 ------
 Technical lead responsible for overall customer success, and delivering solutions that include a reverse facial recognition system for ID verification ("TruFace"), an on-device behavioral biometric sensor for session control and token renewal ("TruKey") and support for the Shared Signals Framework (SSF).
 
