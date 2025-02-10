@@ -7,10 +7,12 @@ redirect_from:
   - /about.html
 ---
 
-👋 I'm Jason Chow, an Applied Research Scientist in the field of Cybersecurity. I focus on applications of 🔐 cryptography and 🤖 machine learning with specialization in identity security and threat detection domain. This site features some of my professional work, ongoing research and a few personal projects in the field. 
+👋 I'm Jason Chow, an Applied Research Scientist in the field of Cybersecurity. I focus on applications of 🔐 cryptography and 🤖 machine learning with specialization in the identity security and threat detection domains. 
+
+This site features some of my professional work, ongoing research and a few personal projects in the field. 
 
 
-## Interest Areas:
+## Interest Areas
 
 * 🆔 Identity Verification
 * 🪪 Verifiable Credentials
