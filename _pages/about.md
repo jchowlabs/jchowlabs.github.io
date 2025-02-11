@@ -24,7 +24,7 @@ redirect_from:
 * 🎣 Anatomy of a phishing attack
 * 🚗 Build your own self-driving car 
 * 🔎 Deep-dive on CRYSTALS-Kyber (PQ)
-* 💰 Open Bounty - Pricing security vulnerabilities
+* 💰 Pricing security vulnerabilities
 * 🧪 Techniques for poisoning training data
 * 🤖 Bypassing CAPTCHA
 * 👫 When Alice meets Bob
