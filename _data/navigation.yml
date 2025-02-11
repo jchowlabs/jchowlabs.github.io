@@ -20,8 +20,8 @@ main:
   - title: "Resources"
     url: /resources/
 
-  - title: "Teaching"
-    url: /teaching/    
+  #- title: "Teaching"
+  #  url: /teaching/    
     
   - title: "CV"
     url: /cv/
