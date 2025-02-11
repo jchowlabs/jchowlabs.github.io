@@ -11,6 +11,9 @@ main:
   - title: "Primitives"
     url: /primitives/
 
+  - title: "Decompositions"
+    url: /decompositions/
+
   - title: "Blog"
     url: /blog/
 
