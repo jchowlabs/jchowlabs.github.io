@@ -17,13 +17,13 @@ main:
   - title: "Blog"
     url: /blog/
 
-  - title: "Research"
-    url: /research/    
+  #- title: "Research"
+  #  url: /research/    
 
   - title: "Projects"
     url: /projects/
 
-  title: "Resources"
+  - title: "Resources"
     url: /resources/
 
   #- title: "Teaching"
