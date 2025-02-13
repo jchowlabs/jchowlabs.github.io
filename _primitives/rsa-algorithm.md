@@ -4,7 +4,7 @@ excerpt: ""
 collection: primitives
 ---
 
-### ![Self-Driving-Car](/images/rsa-algorithm.png){: .align-center}
+### ![RSA Algorithm](/images/rsa-algorithm.png){: .align-center}
 
 Introduction
 The RSA algorithm is one of the most widely used cryptographic systems for secure communication. Named after its inventors, Ron Rivest, Adi Shamir, and Leonard Adleman, RSA is a public-key encryption system that enables secure data transmission over the internet. It plays a fundamental role in securing online transactions, digital signatures, and various authentication mechanisms.
