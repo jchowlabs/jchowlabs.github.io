@@ -6,5 +6,7 @@ redirect_from:
 ---
 
 ## Resources
- * [Liquid syntax guide](https://shopify.github.io/liquid/tags/control-flow/)
- * [MathJax Documentation](https://docs.mathjax.org/en/latest/)
+ * [Visualize SHA-256](https://sha256algorithm.com/)
+ * [SSL Pulse](https://www.ssllabs.com/ssl-pulse/)
+ * [Demo WebAuthN](https://webauthn.me/)
+ 
