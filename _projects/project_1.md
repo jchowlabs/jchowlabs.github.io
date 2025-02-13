@@ -1,7 +1,10 @@
 ---
-title: "Project 1"
-excerpt: "Project 1.<br/><img src='/images/500x300.png'>"
+title: "DIY: Self-Driving Car"
+excerpt: ""
 collection: projects
 ---
 
-Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. Project 1. 
+<img src='/images/self-driving-car.png'>
+
+In this article, we're going to walk through how to create your own self-driving car for the purpose of learning concepts like computer vision works. 
+
