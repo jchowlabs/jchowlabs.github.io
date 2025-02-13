@@ -5,29 +5,17 @@
 # prevent it from being included in the site.
 
 main:
-  #- title: "Publications"
-  #  url: /publications/
-
   - title: "Primitives"
     url: /primitives/
 
-  #- title: "Decompositions"
-  #  url: /decompositions/
-
   - title: "Blog"
     url: /blog/
-
-  #- title: "Research"
-  #  url: /research/    
 
   - title: "Projects"
     url: /projects/
 
   - title: "Resources"
     url: /resources/
-
-  #- title: "Teaching"
-  #  url: /teaching/    
     
   - title: "CV"
     url: https://www.linkedin.com/in/jkchow
