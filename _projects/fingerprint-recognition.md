@@ -1,9 +1,9 @@
 ---
-title: "DIY: Fingerprint Recognition"
+title: "Fingerprint Recognition System"
 excerpt: ""
 collection: projects
 ---
 
-<img src='/images/500x300.png'>
+### ![Self-Driving-Car](/images/self-driving-car.png){: .align-center}
 
-Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. Project 2. 
+In this article, we're going to walk through how to create your own self-driving car for the purpose of learning concepts like computer vision works. 

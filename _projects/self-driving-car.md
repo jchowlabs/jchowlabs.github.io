@@ -1,10 +1,8 @@
 ---
-title: "DIY: Self-Driving Car"
+title: "Self-Driving Car"
 excerpt: ""
 collection: projects
 ---
-
-<img src='/images/self-driving-car.png'>
 
 ### ![Self-Driving-Car](/images/self-driving-car.png){: .align-center}
 
