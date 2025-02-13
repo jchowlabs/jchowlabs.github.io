@@ -16,8 +16,7 @@ redirect_from:
 * 🎭 Deepfake Detection
 * 😈 Insider Threat Detection
 * 🔏 Passwordless Authentication
-* ᯤ Signal Processing / Sharing
-* 📝 Standards Development
+* ✨ Emerging Technology
 
 ## Coming Soon
 
