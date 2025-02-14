@@ -4,7 +4,7 @@ excerpt: ""
 collection: projects
 ---
 
-### ![Self-Driving-Car](/images/self-driving-car.png){: .align-center}
+### ![Self-Driving-Car](/images/facial-recognition-system.png){: .align-center}
 
 ### Building your own facial recognition system
 

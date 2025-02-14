@@ -4,7 +4,7 @@ excerpt: ""
 collection: projects
 ---
 
-### ![Self-Driving-Car](/images/self-driving-car.png){: .align-center}
+### ![Self-Driving-Car](/images/fingerprint-recognition-system.png){: .align-center}
 
 ### Building Your Own Fingerprint Recognition System with Raspberry Pi
 
