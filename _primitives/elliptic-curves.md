@@ -36,6 +36,7 @@ y
  =x 
 3
  +ax+b
+
 where 
 𝑎
 a and 
