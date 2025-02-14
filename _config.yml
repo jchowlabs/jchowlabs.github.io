@@ -231,14 +231,11 @@ collections:
   teaching:
     output: true
     permalink: /:collection/:path/
-  blog:
-    output: true
-    permalink: /:collection/:path/
 
 
 # These settings control how pages and collections are included in the site
 defaults:
-  # _blog
+  # _posts
   - scope:
       path: ""
       type: posts
