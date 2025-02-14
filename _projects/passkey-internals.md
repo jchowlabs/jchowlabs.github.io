@@ -33,7 +33,7 @@ Passkeys can be stored on a device or synchronized across multiple devices via a
 
 2. Preventing Credential Reuse: Each key pair is unique to a website, preventing reuse.
 
-3. 4. Enhancing Usability: Users authenticate with biometrics, a PIN, or a security key, making the process seamless.
+3. Enhancing Usability: Users authenticate with biometrics, a PIN, or a security key, making the process seamless.
 
 4. Reducing MFA Fatigue: Since passkeys inherently provide strong authentication, they eliminate the need for cumbersome MFA codes.
 
