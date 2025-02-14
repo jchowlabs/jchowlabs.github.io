@@ -15,7 +15,7 @@ redirect_from:
 * 🪪 Verifiable Credentials
 * 🎭 Deepfake Detection
 * 😈 Insider Threat Detection
-* 🔏 Passwordless Authentication
+* 🔏 Tamper Proofing
 * ✨ Emerging Technology
 
 ## Coming Soon
@@ -26,4 +26,3 @@ redirect_from:
 * 💰 Pricing security vulnerabilities
 * 🧪 Techniques for poisoning training data
 * 🤖 Bypassing CAPTCHA
-* 👫 When Alice meets Bob
