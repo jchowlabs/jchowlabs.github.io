@@ -1,10 +1,9 @@
 ---
-title: 'Anatomy of a phishing attack'
-date: 2012-08-14
-permalink: /posts/2012/08/anatomy-of-phishing-attack/
-tags:
-  - phishing
+title: "Anatomy of a Phishing Attack"
+excerpt: ""
+collection: posts
 ---
+
 
 ### ![Phishing Attack](/images/phishing-attack.png){: .align-center}
 
