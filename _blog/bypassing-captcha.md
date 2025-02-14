@@ -4,9 +4,9 @@ excerpt: ""
 collection: blog
 ---
 
-### ![CAPTCHA](/images/bypassing-captcha.jpg){: .align-center}
+### ![CAPTCHA](/images/bypassing-captcha.png){: .align-center}
 
-### Using Machine Learning and Computer Vision to Bypass CAPTCHA Challenges
+### Bypassing CAPTCHA with Machine Learning
 CAPTCHAs are designed to differentiate between human users and automated systems by presenting challenges that are difficult for traditional algorithms to solve. However, modern machine learning techniques, particularly those utilizing computer vision, have demonstrated significant success in overcoming CAPTCHA mechanisms.
 
 #### Step 1: Data Collection and Preprocessing
