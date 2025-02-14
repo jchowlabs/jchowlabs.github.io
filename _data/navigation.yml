@@ -8,8 +8,8 @@ main:
   - title: "Primitives"
     url: /primitives/
 
-  - title: "Blog"
-    url: /year-archive/
+  - title: "Posts"
+    url: /posts/
 
   - title: "Projects"
     url: /projects/
