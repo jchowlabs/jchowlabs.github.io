@@ -1,7 +1,7 @@
 ---
 title: 'Anatomy of a Phishing Attack'
 date: 2020-12-12
-permalink: /posts/2020/12/anatomy-of-phishing-attack
+permalink: /blog/anatomy-of-phishing-attack
 tags:
   - Cryptography
 ---
