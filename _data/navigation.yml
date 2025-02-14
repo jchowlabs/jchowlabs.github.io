@@ -9,7 +9,7 @@ main:
     url: /primitives/
 
   - title: "Blog"
-    url: /blog/
+    url: /posts/
 
   - title: "Projects"
     url: /projects/
