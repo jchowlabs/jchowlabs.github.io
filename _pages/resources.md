@@ -6,7 +6,7 @@ redirect_from:
 ---
 
 ## Resources
- * [Visualize SHA-256](https://sha256algorithm.com/)
+ * [Visualizing the SHA-256 Algorithm](https://sha256algorithm.com/)
  * [SSL Pulse](https://www.ssllabs.com/ssl-pulse/)
- * [Demo WebAuthN](https://webauthn.me/)
+ * [Interactive WebAuthN Demo](https://webauthn.me/)
  
