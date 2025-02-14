@@ -231,7 +231,7 @@ collections:
   teaching:
     output: true
     permalink: /:collection/:path/
-  posts:
+  blog:
     output: true
     permalink: /:collection/:path/
 
@@ -299,10 +299,10 @@ defaults:
       author_profile: true
       share: false
       comment: false
-  # _decompositions
+  # _blog
   - scope:
       path: ""
-      type: decompositions
+      type: blog
     values:
       layout: single
       author_profile: true
