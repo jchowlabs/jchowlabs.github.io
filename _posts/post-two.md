@@ -1,7 +1,7 @@
 ---
 title: 'Post Two'
 date: 2021-12-12
-permalink: /blog/post-two
+permalink: /posts/post-two
 tags:
   - Cryptography
 ---
