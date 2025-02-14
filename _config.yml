@@ -245,10 +245,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
+      share: false
+      comment: false
   # _pages
   - scope:
       path: ""
