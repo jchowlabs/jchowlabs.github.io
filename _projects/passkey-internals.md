@@ -43,7 +43,7 @@ Developers can integrate passkeys using the WebAuthn API. Here’s a basic examp
 
 1. Registering a Passkey
 
-```python
+```javascript
 const createCredential = async () => {
     const credential = await navigator.credentials.create({
         publicKey: {
@@ -64,7 +64,7 @@ const createCredential = async () => {
 
 2. Authenticating with a Passkey
 
-```python
+```javascript
 const getCredential = async () => {
     const credential = await navigator.credentials.get({
         publicKey: {
