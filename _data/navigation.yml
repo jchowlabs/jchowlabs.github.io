@@ -6,17 +6,17 @@
 
 main:
   - title: "Primitives"
-    url: /primitives/
+  #  url: /primitives/
 
   - title: "Blog"
-    url: /blog/
+  #  url: /blog/
 
   - title: "Projects"
-    url: /projects/
+  #  url: /projects/
 
   - title: "Resources"
-    url: /resources/
+  #  url: /resources/
     
-  - title: "CV"
-    url: https://www.linkedin.com/in/jkchow
+  #- title: "CV"
+  #  url: https://www.linkedin.com/in/jkchow
   
