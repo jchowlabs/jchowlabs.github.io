@@ -7,7 +7,7 @@ redirect_from:
 
 # About Me
 
-👋 I'm Jason Chow, an Applied Research Scientist in the field of Cybersecurity. I focus on applications of cryptography and machine learning with specialization in the identity security domain. This website features a blend of my professional work, on-going research and a few personal projects.
+👋 I'm Jason Chow, an Applied Research Scientist focused on applications of cryptography and machine learning in the field of Cybersecurity. I specialize in bridging the latest and greatest in academic research and industry advancements with practical solutions to real-world problems. I'm a former Field CTO and Principle Product Manager with over 15 years of experience building and deploying security solutions to market. This website features a blend of my professional work, on-going research and a few personal projects.  
 
 ## Interest Areas
 
@@ -20,10 +20,9 @@ redirect_from:
 ## Coming Soon
 
 * 🎣 Anatomy of a Phishing Attack
-* 🥸 Build, Break, Improve - Biometric Systems
-* 🔎 Deep-dive - Membership Inference Attack
-* 💰 Pricing Security Vulnerabilities
-* 🧪 Techniques for Poisoning Training Data
+* 🥸 Breaking Biometric Systems
+* 🔑 Deep Dive on Passkeys
 * 🤖 Using Bots to Bypass CAPTCHA
-
-
+* 🔎 Membership Inference Attack
+* 💰 Pricing Security Vulnerabilities
+* 🧪 Poisoning Training Data
