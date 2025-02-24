@@ -14,7 +14,7 @@ redirect_from:
 * 🆔 Identity Verification
 * 🪪 Verifiable Credentials
 * 🎭 Deepfake Detection
-* 🔏 Tamper Proofing
+* 🔒 Privacy Engineering
 * ✨ Emerging Technologies
 
 ## Coming Soon
