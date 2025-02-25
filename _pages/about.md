@@ -19,19 +19,12 @@ redirect_from:
 
 ## Coming Soon
 
-* Biometric Recognition Primer
-* Deep Dive on Presentation Attacks
-* Anatomy of Injection Attacks
-* Membership Inference Attack
-* BOTS Bypassing CAPTCHA 
-* Phishing Attacks - Step by Step
-* Passkey Internals 
-
-* 🎣 Anatomy of a Phishing Attack
-* 🥸 Breaking Biometric Systems
-* 🔑 Deep Dive on Passkeys
-* 🤖 Using Bots to Bypass CAPTCHA
-* 🔎 Membership Inference Attack
+* 📚 Biometric Recognition Primer
+* 🥸 Deep Dive on Presentation Attacks
+* 💉 Anatomy of Injection Attacks
+* 🔍 Membership Inference Attack
+* 🤖 BOTS Bypassing CAPTCHA 
+* 🎣 Phishing Attacks (Step-by-Step)
+* 🔑 Passkey Internals
 * 💰 Pricing Security Vulnerabilities
 * 🧪 Poisoning Training Data
-
