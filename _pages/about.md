@@ -11,24 +11,8 @@ redirect_from:
 
 ## Interest Areas
 
-Identity Verification, Verifiable Credentials, Selective Disclosure, Deepfake Detection / Prevention, Privacy Engineering, Emerging Technologies, Zero-Knowledge Proofs, Biometric Recognition Systems, Tamper Proofing.
-
-## Interest Areas
-
-* 🆔 Identity Verification
-* 🪪 Verifiable Credentials
-* 🎭 Deepfake Detection
-* 🔒 Privacy Engineering
-* ✨ Emerging Technologies
+🆔 Identity Verification, 🪪 Verifiable Credentials, 🎭 Deepfake Detection, 🔒 Privacy Engineering, ᯤ Signal Processing, ⚛ Quantum Computing, ✨ Emerging Technologies
 
 ## Coming Soon
 
-* 📚 Biometric Recognition Primer
-* 🥸 Deep Dive on Presentation Attacks
-* 💉 Anatomy of Injection Attacks
-* 🔍 Membership Inference Attack
-* 🤖 BOTS Bypassing CAPTCHA 
-* 🎣 Phishing Attacks (Step-by-Step)
-* 🔑 Passkey Internals
-* 💰 Pricing Security Vulnerabilities
-* 🧪 Poisoning Training Data
+📚 Primer: Biometric Recognition (Face, Finger, Voice), 🥸 Deep Dive on Presentation Attacks, 💉 Anatomy of Injection Attacks, 🔍 Not What You Signed Up For - The Membership Inference Attack , 🤖 Using Bots To Bypass CAPTCHA, 🎣 Phishing Attacks (Step-by-Step), 🔑 WebAuthN Internals, 💰 Pricing Security Vulnerabilities, 🧪 Fighting Back - Poisoning Training Data, ⚛ Quantum vs. Classical Crytographic Algorithms.
