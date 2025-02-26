@@ -11,8 +11,9 @@ redirect_from:
 
 ## Interest Areas
 
-Deepfake Detection, Verifiable Credentials, Privacy Engineering
+🆔 Identity Verification, 🪪 Verifiable Credentials, 🎭 Deepfake Detection, 🔒 Privacy Engineering, ᯤ Signal Processing, ⚛ Quantum Computing, ✨ Emerging Technologies
+
 
 ## Coming Soon
 
-Primer: Biometric Recognition Systems (Face, Hand, Voice), Deep Dive on DeepFake Presentation Attacks, Anatomy of Injection Attacks, Membership Inference Attack, Bypassing CAPTCHA, Phishing Attack (Step-by-Step), Implement Passkeys from Scratch, Pricing Security Vulnerabilities, Poisoning Training Data
+📚 Primer: Biometric Recognition (Face, Finger, Voice), 🥸 Deep Dive on Presentation Attacks, 💉 Anatomy of Injection Attacks, 🔍 Not What You Signed Up For - The Membership Inference Attack , 🤖 Using Bots To Bypass CAPTCHA, 🎣 Phishing Attacks (Step-by-Step), 🔑 WebAuthN Internals, 💰 Pricing Security Vulnerabilities, 🧪 Fighting Back - Poisoning Training Data, ⚛ Quantum vs. Classical Crytographic Algorithms.
