@@ -8,6 +8,9 @@ main:
   - title: "Primitives"
   #  url: /primitives/
 
+  - title: "Research"
+  #  url: /research/
+
   - title: "Blog"
   #  url: /blog/
 
@@ -16,7 +19,7 @@ main:
 
   - title: "Resources"
   #  url: /resources/
+
+  - title: "Advisory"
+  #  url: /advisory/
     
-  #- title: "CV"
-  #  url: https://www.linkedin.com/in/jkchow
-  
