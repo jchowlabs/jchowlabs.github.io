@@ -23,7 +23,7 @@ redirect_from:
 * 🥸 Anatomy of Presentation Attacks
 * 💉 Deep Dive on Injection Attacks
 * 🔍 The Membership Inference Attack
-* ≈ Internals: Homomorphic Biometric System
+* ≈ A Fully Homomorphic Biometric System
 * 🤖 Training Bots To Bypass CAPTCHA
 * 😏 Countering Persuasive LLMs
 * 🧪 Theory: Gain-of-Function Malware
