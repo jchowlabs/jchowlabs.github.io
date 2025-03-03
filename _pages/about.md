@@ -11,21 +11,20 @@ redirect_from:
 
 ## Interest Areas
 
+* 🔐 Privacy Preserving AI
 * 🎭 Deepfake Detection
 * 🪪 Verifiable Credentials
 * 👜 Digital Wallets
-* 🔐 Privacy Engineering
-* ⚛️ Quantum Computing
 * ✨ Emerging Technologies
 
 ## Coming Soon
 
 * 📚 Primer: Biometric Recognition Systems
-* 🥸 Detecting Presentation Attacks
-* 💉 Anatomy of Injection Attacks
+* 🥸 Anatomy of Presentation Attacks
+* 💉 Deep Dive on Injection Attacks
 * 🔍 The Membership Inference Attack
-* 🤖 Using Bots To Bypass CAPTCHA
-* 🔐 Applied Homomorphic Encryption
-* 😏 Persuasive LLMs - Good, Bad, Ugly
+* 🔐 Biometric Recognition under Homomorphism 
+* 🤖 Training Bots To Bypass CAPTCHA
+* 😏 Countering Persuasive LLMs
 * 🧪 Gain-of-Function Malware
 
