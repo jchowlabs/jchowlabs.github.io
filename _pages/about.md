@@ -17,4 +17,13 @@ redirect_from:
 * 👜 Digital Wallets
 * ✨ Emerging Technologies
 
+## Coming Soon
 
+* 📚 Primer: Biometric Recognition Systems
+* 🥸 Anatomy of Presentation Attacks
+* 💉 Deep Dive on Injection Attacks
+* 🔍 The Membership Inference Attack
+* ≈ A Fully Homomorphic Biometric System
+* 🤖 Training Bots To Bypass CAPTCHA
+* 😏 Countering Persuasive LLMs
+* 🧪 Theory: Gain-of-Function Malware
