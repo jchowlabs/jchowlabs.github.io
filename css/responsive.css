@@ -1,0 +1,221 @@
+/* Responsive styles */
+
+/* Large desktop screens (1200px+) */
+@media screen and (min-width: 1200px) {
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    header {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    footer {
+        max-width: 1200px;
+        margin: 40px auto 0;
+    }
+}
+
+/* Medium desktop and laptop screens (992px-1199px) */
+@media screen and (max-width: 1199px) {
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Tablets and smaller laptops (768px-991px) */
+@media screen and (max-width: 991px) {
+    header {
+        padding: 15px 4%;
+    }
+    
+    .brand {
+        margin-left: calc(9.5% - 2%);
+    }
+    
+    main {
+        padding: 30px 4%;
+    }
+    
+    .profile-pic {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .article-thumb, .post-thumb, .project-thumb {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Large mobile to small tablet (576px-767px) */
+@media screen and (max-width: 767px) {
+    header {
+        padding: 15px 3%;
+    }
+    
+    .brand {
+        margin-left: calc(3.25% - 1.5%);
+    }
+    
+    main {
+        flex-direction: column;
+        padding: 20px 3%;
+    }
+    
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .left-section {
+        margin-bottom: 30px;
+        padding-right: 0;
+    }
+    
+    .info-row {
+        flex-direction: column;
+    }
+    
+    .interests {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .article-content, .post-content, .project-content {
+        flex-direction: column;
+    }
+    
+    .article-thumb, .post-thumb, .project-thumb {
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Mobile phones (up to 575px) */
+@media screen and (max-width: 575px) {
+    header {
+        padding: 12px 4%;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .brand {
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .left-section h3 {
+        font-size: 1.6rem;
+    }
+    
+    .left-section p {
+        font-size: 1.1rem;
+    }
+    
+    .right-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .right-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    main {
+        padding: 20px 4%;
+    }
+    
+    .section-divider {
+        margin: 25px 0;
+    }
+    
+    footer {
+        padding: 15px 4%;
+        margin-top: 30px;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile devices (up to 375px) */
+@media screen and (max-width: 375px) {
+    nav ul li {
+        margin: 0 8px;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .article-thumb, .post-thumb, .project-thumb {
+        max-width: 160px;
+    }
+    
+    .left-section h3 {
+        font-size: 1.4rem;
+    }
+    
+    .left-section p {
+        font-size: 1rem;
+    }
+    
+    .right-section p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    header {
+        display: flex;
+        border-bottom: 1pt solid #ddd;
+    }
+    
+    .brand {
+        margin-left: 0;
+    }
+    
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    footer {
+        border-top: 1pt solid #ddd;
+    }
+}
