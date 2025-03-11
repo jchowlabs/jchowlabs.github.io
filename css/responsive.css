@@ -108,6 +108,19 @@
     .article-text, .post-text, .project-text {
         width: 100%;
     }
+
+    .booking-options {
+        flex-direction: column;
+    }
+    
+    .booking-type:first-child {
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .calendly-inline-widget {
+        height: 580px !important;
+    }
 }
 
 /* Mobile phones (up to 575px) */

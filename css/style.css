@@ -435,3 +435,85 @@ footer p {
     color: #666;
     font-size: 0.95rem;
 }
+
+
+/* Consulting page styles */
+.consulting-intro {
+    margin-bottom: 30px;
+}
+
+.services-list {
+    margin: 15px 0 15px 25px;
+}
+
+.services-list li {
+    margin-bottom: 10px;
+}
+
+.booking-section {
+    margin: 30px 0;
+}
+
+.booking-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.booking-options {
+    display: flex;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.booking-type {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.booking-type:first-child {
+    border-right: 1px solid #f0f0f0;
+}
+
+.booking-type h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.booking-type p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.booking-type.active {
+    background-color: #f8f8f8;
+    border-bottom: 3px solid #007bff;
+}
+
+.calendly-container {
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.calendly-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 5px;
+    max-width: 600px; /* Limit the maximum width */
+    width: 90%; /* Take up 90% of the container width up to max-width */
+}
+
+/* Make sure the Calendly widget is responsive */
+.calendly-inline-widget {
+    width: 100%;
+    margin: 0;
+    height: 500px !important; /* Reduce height */
+}
