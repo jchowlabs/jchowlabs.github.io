@@ -56,6 +56,10 @@
     header {
         padding: 15px 3%;
     }
+
+    .contact-links {
+        display: none;
+      }
     
     .brand {
         margin-left: calc(3.25% - 1.5%);
