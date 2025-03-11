@@ -138,6 +138,14 @@ main {
     text-decoration: underline;
 }
 
+.contact-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 4px;
+    display: inline-block;
+}
+
 /* Right section styling */
 .right-section h2 {
     margin-bottom: 20px;
