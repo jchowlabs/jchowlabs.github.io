@@ -40,7 +40,7 @@
         height: 160px;
     }
     
-    .article-thumb, .post-thumb, .project-thumb {
+    .article-thumb, .project-thumb {
         width: 120px;
         height: 120px;
         object-fit: cover;
@@ -53,6 +53,10 @@
     }
 
     .contact-links {
+        display: none;
+    }
+    
+    .profile-pic, .left-section h3, .left-section p {
         display: none;
     }
     
@@ -71,7 +75,7 @@
     }
     
     .left-section {
-        margin-bottom: 30px;
+        margin-bottom: 0;
         padding-right: 0;
     }
     
@@ -84,12 +88,12 @@
         margin-bottom: 20px;
     }
     
-    .article-content, .post-content, .project-content {
+    .article-content, .project-content {
         flex-direction: column;
         align-items: flex-start;
     }
     
-    .article-thumb, .post-thumb, .project-thumb {
+    .article-thumb, .project-thumb {
         width: 100%;
         height: auto;
         max-width: 100%;
@@ -98,7 +102,7 @@
         object-fit: contain;
     }
     
-    .article-text, .post-text, .project-text {
+    .article-text, .project-text {
         width: 100%;
     }
 
@@ -166,7 +170,7 @@
         margin: 25px 0;
     }
     
-    .article-thumb, .post-thumb, .project-thumb {
+    .article-thumb, .project-thumb {
         max-width: 100%;
         height: auto;
         aspect-ratio: auto;
@@ -174,7 +178,7 @@
         display: block;
     }
     
-    .article-content, .post-content, .project-content {
+    .article-content, .project-content {
         align-items: flex-start;
     }
     
