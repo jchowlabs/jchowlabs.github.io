@@ -248,3 +248,19 @@
         border-top: 1pt solid #ddd;
     }
 }
+
+
+@media screen and (max-width: 575px) {
+    /* Existing styles */
+    
+    
+    .lab-icon {
+        font-size: 20px;
+        min-width: 25px;
+    }
+    
+    /* Option 3 adjustments */
+    .lab-tags {
+        margin-top: 2px;
+    }
+}

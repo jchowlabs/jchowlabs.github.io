@@ -217,6 +217,83 @@ main {
     color: #007bff;
 }
 
+
+.labs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lab-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lab-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lab-icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    font-size: 0.85rem;
+}
+
+.lab-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+}
+
+.lab-link:hover {
+    color: #007bff;
+}
+
+.lab-domain {
+    font-family: 'Consolas', 'Monaco', monospace;
+    letter-spacing: 0.3px;
+}
+
+.lab-tld {
+    color: #007bff;
+    font-weight: 700;
+}
+
+.lab-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 36px;
+}
+
+.lab-tag {
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.lab-tag:hover {
+    background-color: #e5e5e5;
+}
+
 .articles-list {
     list-style-type: none;
     padding: 0;
