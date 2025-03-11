@@ -82,6 +82,24 @@ main {
     border: 3px solid #f0f0f0;
 }
 
+.brand {
+    font-size: 1.5rem;
+    color: #333;
+    margin-left: calc(9% - 2.5%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-logo {
+    height: 24px;
+    width: auto;
+}
+
+.brand strong {
+    font-weight: 700;
+}
+
 .left-section h3 {
     margin-bottom: 5px;
     text-align: center;
