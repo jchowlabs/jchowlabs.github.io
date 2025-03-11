@@ -1,6 +1,3 @@
-/* Responsive styles */
-
-/* Large desktop screens (1200px+) */
 @media screen and (min-width: 1200px) {
     main {
         max-width: 1200px;
@@ -18,7 +15,6 @@
     }
 }
 
-/* Medium desktop and laptop screens (992px-1199px) */
 @media screen and (max-width: 1199px) {
     .profile-pic {
         width: 180px;
@@ -26,7 +22,6 @@
     }
 }
 
-/* Tablets and smaller laptops (768px-991px) */
 @media screen and (max-width: 991px) {
     header {
         padding: 15px 4%;
@@ -52,7 +47,6 @@
     }
 }
 
-/* Large mobile to small tablet (576px-767px) */
 @media screen and (max-width: 767px) {
     header {
         padding: 15px 3%;
@@ -90,7 +84,6 @@
         margin-bottom: 20px;
     }
     
-    /* Improved article layout for small screens */
     .article-content, .post-content, .project-content {
         flex-direction: column;
         align-items: flex-start;
@@ -123,7 +116,6 @@
     }
 }
 
-/* Mobile phones (up to 575px) */
 @media screen and (max-width: 575px) {
     header {
         padding: 12px 4%;
@@ -174,7 +166,6 @@
         margin: 25px 0;
     }
     
-    /* Further improved thumbnails for very small screens */
     .article-thumb, .post-thumb, .project-thumb {
         max-width: 100%;
         height: auto;
@@ -197,7 +188,6 @@
     }
 }
 
-/* Very small mobile devices (up to 375px) */
 @media screen and (max-width: 375px) {
     nav ul li {
         margin: 0 8px;
@@ -221,7 +211,6 @@
     }
 }
 
-/* Print styles */
 @media print {
     header {
         display: flex;

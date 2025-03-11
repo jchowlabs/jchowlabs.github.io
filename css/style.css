@@ -1,4 +1,3 @@
-/* General styling */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,6 @@ body {
     line-height: 1.6;
 }
 
-/* Header styling */
 header {
     background-color: #fff;
     padding: 20px 5%;
@@ -57,7 +55,6 @@ nav ul li a:hover {
     color: #007bff;
 }
 
-/* Main content layout */
 main {
     display: flex;
     flex-wrap: wrap;
@@ -76,7 +73,6 @@ main {
     flex: 0 0 67%;
 }
 
-/* Profile styling */
 .profile-pic {
     width: 200px;
     height: 200px;
@@ -115,7 +111,6 @@ main {
     margin-bottom: 8px;
 }
 
-/* Contact links styling */
 .contact-links {
     list-style-type: none;
     padding: 0;
@@ -146,7 +141,6 @@ main {
     display: inline-block;
 }
 
-/* Right section styling */
 .right-section h2 {
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -161,7 +155,6 @@ main {
     margin-bottom: 15px;
 }
 
-/* Section divider */
 .section-divider {
     height: 2px;
     background-color: #f0f0f0;
@@ -169,7 +162,6 @@ main {
     width: 100%;
 }
 
-/* Info row (for index.html) */
 .info-row {
     display: flex;
     margin-top: 20px;
@@ -195,7 +187,6 @@ main {
     margin-bottom: 8px;
 }
 
-/* Education section specific styling */
 .education {
     margin-left: 5px;
 }
@@ -216,7 +207,16 @@ main {
     margin-bottom: 1em;
 }
 
-/* Articles styling */
+.education .degree a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.education .degree a:hover {
+    color: #007bff;
+}
+
 .articles-list {
     list-style-type: none;
     padding: 0;
@@ -264,86 +264,6 @@ main {
     margin: 0;
 }
 
-.article-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: all 0.3s ease;
-}
-
-.article-link .article-content {
-    padding: 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.article-link:hover .article-content {
-    background-color: #f8f8f8;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.article-link:active .article-content {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure the h3 title is still clickable */
-.article-item h3 {
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 5;
-}
-
-/* Posts styling */
-.posts-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.post-item {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.post-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.post-item h3 {
-    color: #333;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-.post-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.post-thumb {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
-}
-
-.post-text {
-    flex: 1;
-}
-
-.post-details {
-    color: #444;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* Projects styling */
 .projects-list {
     list-style-type: none;
     padding: 0;
@@ -415,14 +335,12 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure the h3 title is still clickable */
 .project-item h3, .article-item h3 {
     margin-bottom: 10px;
     position: relative;
     z-index: 5;
 }
 
-/* Footer styling */
 footer {
     width: 100%;
     padding: 20px 5%;
@@ -436,8 +354,6 @@ footer p {
     font-size: 0.95rem;
 }
 
-
-/* Consulting page styles */
 .consulting-intro {
     margin-bottom: 30px;
 }
@@ -507,13 +423,87 @@ footer p {
     overflow: hidden;
     margin: 0 auto;
     padding: 5px;
-    max-width: 600px; /* Limit the maximum width */
-    width: 90%; /* Take up 90% of the container width up to max-width */
+    max-width: 600px;
+    width: 90%;
 }
 
-/* Make sure the Calendly widget is responsive */
 .calendly-inline-widget {
     width: 100%;
     margin: 0;
-    height: 500px !important; /* Reduce height */
+    height: 500px !important;
 }
+
+.meeting-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: center;
+}
+
+.meeting-description {
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.code-container {
+    margin: 20px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    background-color: #f8f8f8;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e8e8e8;
+    padding: 8px 15px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.language-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.copy-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.copy-button:hover {
+    background-color: #e0e0e0;
+}
+
+.copy-button:active {
+    transform: scale(0.97);
+}
+
+pre.code-block {
+    padding: 15px;
+    margin: 0;
+    overflow-x: auto;
+    background-color: #f8f8f8;
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 2;
+}
+
+code {
+    color: #333;
+}
+
+.keyword { color: #0000ff; }
+.string { color: #a31515; }
+.comment { color: #008000; }
+.number { color: #098658; }
+.operator { color: #000000; }
