@@ -55,8 +55,10 @@
     .contact-links {
         display: none;
     }
-    
-    .profile-pic, .left-section h3, .left-section p {
+
+    body:not(.home-page) .profile-pic, 
+    body:not(.home-page) .left-section h3, 
+    body:not(.home-page) .left-section p {
         display: none;
     }
     
@@ -75,8 +77,16 @@
     }
     
     .left-section {
-        margin-bottom: 0;
         padding-right: 0;
+    }
+    
+    body:not(.home-page) .left-section {
+        margin-bottom: 0;
+    }
+    
+    body.home-page .left-section {
+        margin-bottom: 30px;
+        text-align: center;
     }
     
     .info-row {
@@ -190,6 +200,15 @@
     footer p {
         font-size: 0.9rem;
     }
+    
+    .lab-icon {
+        font-size: 20px;
+        min-width: 25px;
+    }
+    
+    .lab-tags {
+        margin-top: 2px;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -246,21 +265,5 @@
     
     footer {
         border-top: 1pt solid #ddd;
-    }
-}
-
-
-@media screen and (max-width: 575px) {
-    /* Existing styles */
-    
-    
-    .lab-icon {
-        font-size: 20px;
-        min-width: 25px;
-    }
-    
-    /* Option 3 adjustments */
-    .lab-tags {
-        margin-top: 2px;
     }
 }
