@@ -81,11 +81,6 @@ main {
     gap: 8px;
 }
 
-.brand-logo {
-    height: 24px;
-    width: auto;
-}
-
 .brand strong {
     font-weight: 700;
 }
