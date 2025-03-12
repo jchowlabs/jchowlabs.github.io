@@ -85,6 +85,15 @@ main {
     font-weight: 700;
 }
 
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-link:hover {
+    color: inherit;
+}
+
 .left-section h3 {
     margin-bottom: 5px;
     text-align: center;
