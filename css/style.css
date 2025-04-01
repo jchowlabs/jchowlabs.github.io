@@ -1,3 +1,6 @@
+/*--------------------------------------------------------------
+# Base Styles
+--------------------------------------------------------------*/
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +14,9 @@ body {
     line-height: 1.6;
 }
 
+/*--------------------------------------------------------------
+# Header & Navigation
+--------------------------------------------------------------*/
 header {
     background-color: #fff;
     padding: 20px 5%;
@@ -19,6 +25,28 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.brand {
+    font-size: 1.5rem;
+    color: #333;
+    margin-left: calc(9% - 2.5%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand strong {
+    font-weight: 700;
+}
+
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-link:hover {
+    color: inherit;
 }
 
 nav {
@@ -45,22 +73,31 @@ nav ul li a:hover {
     color: #007bff;
 }
 
+/*--------------------------------------------------------------
+# Main Layout
+--------------------------------------------------------------*/
 main {
     display: flex;
     flex-wrap: wrap;
     padding: 40px 5%;
 }
 
+.section-divider {
+    height: 2px;
+    background-color: #f0f0f0;
+    margin: 30px 0;
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Left Section / Profile
+--------------------------------------------------------------*/
 .left-section {
     flex: 0 0 33%;
     padding-right: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.right-section {
-    flex: 0 0 67%;
 }
 
 .profile-pic {
@@ -70,28 +107,6 @@ main {
     object-fit: cover;
     margin-bottom: 20px;
     border: 3px solid #f0f0f0;
-}
-
-.brand {
-    font-size: 1.5rem;
-    color: #333;
-    margin-left: calc(9% - 2.5%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.brand strong {
-    font-weight: 700;
-}
-
-.brand-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.brand-link:hover {
-    color: inherit;
 }
 
 .left-section h3 {
@@ -123,6 +138,9 @@ main {
     margin-bottom: 8px;
 }
 
+/*--------------------------------------------------------------
+# Contact Links
+--------------------------------------------------------------*/
 .contact-links {
     list-style-type: none;
     padding: 0;
@@ -153,6 +171,13 @@ main {
     display: inline-block;
 }
 
+/*--------------------------------------------------------------
+# Right Section / Content
+--------------------------------------------------------------*/
+.right-section {
+    flex: 0 0 67%;
+}
+
 .right-section h2 {
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -167,13 +192,9 @@ main {
     margin-bottom: 15px;
 }
 
-.section-divider {
-    height: 2px;
-    background-color: #f0f0f0;
-    margin: 30px 0;
-    width: 100%;
-}
-
+/*--------------------------------------------------------------
+# Info Rows (Interests & Education)
+--------------------------------------------------------------*/
 .info-row {
     display: flex;
     margin-top: 20px;
@@ -229,7 +250,9 @@ main {
     color: #007bff;
 }
 
-
+/*--------------------------------------------------------------
+# Labs Section
+--------------------------------------------------------------*/
 .labs-list {
     display: flex;
     flex-direction: column;
@@ -308,6 +331,9 @@ main {
     background-color: #e5e5e5;
 }
 
+/*--------------------------------------------------------------
+# Articles List
+--------------------------------------------------------------*/
 .articles-list {
     list-style-type: none;
     padding: 0;
@@ -355,6 +381,9 @@ main {
     margin: 0;
 }
 
+/*--------------------------------------------------------------
+# Projects List
+--------------------------------------------------------------*/
 .projects-list {
     list-style-type: none;
     padding: 0;
@@ -402,6 +431,9 @@ main {
     margin: 0;
 }
 
+/*--------------------------------------------------------------
+# Item Links (Projects & Articles)
+--------------------------------------------------------------*/
 .project-link, .article-link {
     text-decoration: none;
     color: inherit;
@@ -432,6 +464,9 @@ main {
     z-index: 5;
 }
 
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
 footer {
     width: 100%;
     padding: 20px 5%;
@@ -445,6 +480,9 @@ footer p {
     font-size: 0.95rem;
 }
 
+/*--------------------------------------------------------------
+# Consulting Page
+--------------------------------------------------------------*/
 .consulting-intro {
     margin-bottom: 30px;
 }
@@ -537,6 +575,9 @@ footer p {
     text-align: center;
 }
 
+/*--------------------------------------------------------------
+# Code Blocks
+--------------------------------------------------------------*/
 .code-container {
     margin: 20px 0;
     border-radius: 6px;
@@ -578,6 +619,11 @@ footer p {
     transform: scale(0.97);
 }
 
+.copied {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
 pre.code-block {
     padding: 15px;
     margin: 0;
@@ -593,8 +639,166 @@ code {
     color: #333;
 }
 
+/* Syntax highlighting */
 .keyword { color: #0000ff; }
 .string { color: #a31515; }
 .comment { color: #008000; }
 .number { color: #098658; }
 .operator { color: #000000; }
+
+/*--------------------------------------------------------------
+# Article Content Styles
+--------------------------------------------------------------*/
+.article-content-section {
+    max-width: 100%;
+}
+
+.article-header {
+    margin-bottom: 25px;
+}
+
+.article-header h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.article-category {
+    color: #007bff;
+}
+
+.article-hero {
+    margin-bottom: 30px;
+}
+
+.article-hero-img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.article-intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+.article-body {
+    line-height: 1.7;
+}
+
+.article-body h2 {
+    margin: 35px 0 18px;
+    font-size: 1.6rem;
+    color: #222;
+    border-bottom: none;
+}
+
+.article-body h3 {
+    margin: 30px 0 15px;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.article-body p {
+    margin-bottom: 20px;
+}
+
+.article-list {
+    margin-bottom: 25px;
+    padding-left: 25px;
+}
+
+.article-list li {
+    margin-bottom: 8px;
+}
+
+ol.article-list {
+    list-style-type: decimal;
+}
+
+ol.article-list li::marker {
+    color: #555;
+    font-weight: 500;
+}
+
+.image-container {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.article-img {
+    max-width: 100%;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #eaeaea;
+}
+
+.note-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #6c757d;
+    padding: 15px 20px;
+    margin: 25px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.note-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+.note-box p {
+    margin-bottom: 0;
+}
+
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 35px 0 25px;
+}
+
+.article-tag {
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    border: 1px solid #e0e0e0;
+}
+
+/*--------------------------------------------------------------
+# Media Queries
+--------------------------------------------------------------*/
+/* Responsive adjustments for articles */
+@media screen and (max-width: 767px) {
+    .article-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
