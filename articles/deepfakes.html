@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <title>jchowlabs</title>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GBHGE9LDVJ');
+</script>
+
+<body>
+    <header>
+        <div class="brand">
+            <a href="../index.html" class="brand-link">
+                <strong>jchowlabs</strong>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="consulting.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="left-section">
+            <img src="../images/jchow_profile.jpeg" alt="Profile Picture" class="profile-pic">
+            <h3>Jason Chow</h3>
+            <p>Applied Security Researcher</p>
+            <ul class="contact-links">
+                <li><img src="../images/icons/location.png" alt="Location" class="contact-icon"> <a href="https://www.google.com/maps/place/San+Francisco,+CA" target="_blank">San Francisco, CA</a></li>
+                <li><img src="../images/icons/linkedin.png" alt="Linkedin" class="contact-icon"> <a href="https://linkedin.com/in/jkchow" target="_blank">Linkedin</a></li>
+                <li><img src="../images/icons/youtube.png" alt="Youtube" class="contact-icon"> <a href="https://youtube.com/@jchowlab" target="_blank">Youtube</a></li>
+            </ul>
+        </section>
+        <section class="right-section article-content-section">
+            <div class="article-header">
+                <h1>Primer: Deepfakes</h1>
+                <div class="article-meta">
+                    <span class="article-date">April 1, 2025</span>
+                    <span class="article-read-time">10 min read</span>
+                </div>
+            </div>
+            
+            <div class="article-hero">
+                <img src="../images/header/passkey.png" alt="Passkeys Authentication" class="article-hero-img">
+                <p class="image-caption">Implementing Passkeys</p>
+            </div>
+            
+            <div class="article-body">
+                <p class="article-intro">
+                    In the evolving landscape of web security, traditional password-based authentication methods are increasingly being recognized 
+                    as vulnerable and cumbersome. WebAuthn (Web Authentication) emerges as a robust solution, offering a passwordless authentication 
+                    mechanism that enhances both security and user experience. This article delves into the workings of WebAuthn, its advantages over 
+                    traditional passwords, and provides a detailed walkthrough of implementing WebAuthn in Python.
+                </p>
+                
+                <h2>What are Passkeys and WebAuthn?</h2>
+                <p>
+                    WebAuthn is a web standard developed by the World Wide Web Consortium (W3C) in collaboration with the FIDO (Fast IDentity Online) Alliance. 
+                    It facilitates secure user authentication across web applications by leveraging public-key cryptography. Unlike traditional password systems, 
+                    WebAuthn enables users to authenticate using biometric data (such as fingerprints or facial recognition), hardware security keys, or 
+                    device-specific PINs. This approach significantly reduces the risks associated with password theft, phishing, and replay attacks.
+                </p>
+                
+                <p>
+                    Value Proposition Over Passwords:
+                </p>
+                
+                <ul class="article-list">
+                    <li>Cannot be phished</li>
+                    <li>Cannot be leaked in data breaches</li>
+                    <li>Are synchronized across your devices</li>
+                    <li>Never leave your device during authentication</li>
+                </ul>
+                
+                <h2>Registration and Authentication Flows</h2>
+                
+                <p>
+                    The WebAuthn process involvecs two main flows: <b>(1) Registration</b> and <b>(2) Authentication</b>. 
+                </p>
+
+                <h3>Registration:</h3>
+                
+                <ol class="article-list">
+                    <li><b>Initiation:</b> The user accesses the web application and opts to register a new authenticator.</li>
+                    <li><b>Challenge Generation:</b> The server generates a unique, random challenge and sends it to the client along with information about acceptable authenticator types and supported cryptographic algorithms.</li>
+                    <li><b>Credential Creation:</b> The authenticator signs the generated public key along with the challenge and returns this attestation to the server.</li>
+                    <li><b>Attestation:</b> The authenticator signs the generated public key along with the challenge and returns this attestation to the server.</li>
+                    <li><b>Verification & Storage:</b> The server verifies the attestation’s validity and, upon successful verification, stores the public key associated with the user’s account for future authentication attempts.</li>
+                </ol>
+
+                <h3>Authentication:</h3>
+                
+                <ol class="article-list">
+                    <li><b>Initiation:</b> The user attempts to log in to the web application.</li>
+                    <li><b>Challenge Generation:</b> The server issues a new random challenge and sends it to the client.</li>
+                    <li><b>Assertion:</b> The client’s authenticator signs the challenge using the previously generated private key.</li>
+                    <li><b>Response:</b> The signed assertion is sent back to the server.</li>
+                    <li><b>Verification:</b> The server verifies the signature using the stored public key.</li>
+                    <li><b>Access Grant:</b> Upon successful verification, the server grants access to the user. </li>
+                </ol>
+
+                <h2>Implementing WebAuthn in Python</h2>
+
+                <p>To implement WebAuthn in a Python application, you can utilize libraries such as py_webauthn, developed by Duo Security, which 
+                    provides tools to handle WebAuthn operations. The following sections outline the implementation of both registration and authentication processes. ￼
+                </p>
+                
+                <h3>Registration Implementation</h3>
+
+                 <p> 1.	Generate Registration Options
+                    Begin by generating the registration options, including a random challenge and specifying the relying party (your application) information.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="language-label">Python</span>
+                        <button class="copy-button">Copy</button>
+                    </div>
+                    <pre class="code-block"><code>from webauthn import generate_registration_options
+import os
+import base64
+                
+challenge = base64.urlsafe_b64encode(os.urandom(32)).decode('utf-8')
+registration_options = generate_registration_options(
+        rp_name='Your Application Name',
+        rp_id='yourapp.com',
+        user_id='user123',
+        user_name='user@example.com',
+        challenge=challenge
+    )</code></pre>
+</div>
+                        
+                <p>2.	Send Options to Client
+                Transmit the registration_options to the client-side, where the WebAuthn API will prompt the user to create new credentials using their authenticator.
+                </p>
+
+                <p>
+                    3.	Handle Registration Response
+                Upon receiving the response from the client, verify the attestation and store the public key.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="language-label">Python</span>
+                        <button class="copy-button">Copy</button>
+                    </div>
+                    <pre class="code-block"><code>from webauthn import verify_registration_response
+
+# 'response' is the object received from the client
+verification = verify_registration_response(
+        credential=response,
+        expected_challenge=challenge,
+        expected_rp_id='yourapp.com',
+        expected_origin='https://yourapp.com'
+)
+                        
+if verification.verified:
+# Store verification.credential_public_key for future authentication
+        pass</code></pre>
+</div>
+
+                <h2>Security Benefits from the Ground Up</h2>
+
+                <p>
+                    By offloading the private key generation and storage to a secure enclave and ensuring all signatures are fresh (via the challenge), WebAuthn builds a rock-solid authentication model with:
+                </p>    
+
+                <ol class="article-list">
+                    <li>No reusable secrets (unlike passwords).</li>
+                    <li>No phishable credentials (credentials are bound to the RP).</li>
+                    <li>Hardware-level protection (for platform or roaming authenticators).</li>
+                </ol>
+                
+                <h2>Final Thoughts</h2>
+                
+                <p>
+                    Implementing WebAuthn in Python brings strong, modern security practices to your web application. While the protocol may seem complex at first, its underlying principles — asymmetric cryptography, challenge-response verification, and strict origin binding — create a future-proof authentication system that vastly outperforms passwords.
+                </p>
+
+                <p></p>
+                    In this article, we’ve:
+                </p>
+
+                <ol class="article-list">
+                    <li>Explored what WebAuthn is and why it matters.</li>
+                    <li>Broken down the registration and authentication flows.</li>
+                    <li>Implemented a working example in Python.</li>
+                    <li>Demystified the cryptographic primitives at play.</li>
+                </ol>
+
+                <h2>Conclusion</h2>
+                
+                <p>
+                    Passkeys represent a significant advancement in authentication technology. By leveraging the security of public key cryptography and the 
+                    convenience of biometric authentication, they offer a compelling alternative to traditional passwords. As more platforms and services adopt passkeys, 
+                    we can look forward to a future with fewer data breaches and a more streamlined user experience.
+                </p>
+                
+                <div class="article-tags">
+                    <span class="article-tag">Authentication</span>
+                    <span class="article-tag">Security</span>
+                    <span class="article-tag">WebAuthn</span>
+                    <span class="article-tag">Biometrics</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© jchowlabs 2025</p>
+    </footer>
+
+    <script>
+        // Script to handle code copy functionality
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.closest('.code-container').querySelector('code');
+                // Clean up the text with proper indentation before copying
+                const codeText = codeBlock.textContent.trim();
+                navigator.clipboard.writeText(codeText);
+                
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    </script>
