@@ -1,3 +1,6 @@
+/*--------------------------------------------------------------
+# Large Desktops (1200px and above)
+--------------------------------------------------------------*/
 @media screen and (min-width: 1200px) {
     main {
         max-width: 1200px;
@@ -15,6 +18,9 @@
     }
 }
 
+/*--------------------------------------------------------------
+# Desktops (992px to 1199px)
+--------------------------------------------------------------*/
 @media screen and (max-width: 1199px) {
     .profile-pic {
         width: 180px;
@@ -22,6 +28,9 @@
     }
 }
 
+/*--------------------------------------------------------------
+# Tablets (768px to 991px)
+--------------------------------------------------------------*/
 @media screen and (max-width: 991px) {
     header {
         padding: 15px 4%;
@@ -47,6 +56,9 @@
     }
 }
 
+/*--------------------------------------------------------------
+# Mobile Landscape (576px to 767px)
+--------------------------------------------------------------*/
 @media screen and (max-width: 767px) {
     header {
         padding: 15px 3%;
@@ -128,8 +140,20 @@
     .calendly-inline-widget {
         height: 580px !important;
     }
+    
+    /* Research labs layout */
+    .research-labs {
+        grid-template-columns: 1fr;
+    }
+    
+    .lab-card {
+        padding: 20px;
+    }
 }
 
+/*--------------------------------------------------------------
+# Mobile Portrait (375px to 575px)
+--------------------------------------------------------------*/
 @media screen and (max-width: 575px) {
     header {
         padding: 12px 4%;
@@ -211,6 +235,9 @@
     }
 }
 
+/*--------------------------------------------------------------
+# Small Mobile (Below 375px)
+--------------------------------------------------------------*/
 @media screen and (max-width: 375px) {
     nav ul li {
         margin: 0 8px;
@@ -232,8 +259,20 @@
     .right-section p {
         font-size: 0.9rem;
     }
+    
+    .lab-card-tags {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .lab-card-tag {
+        margin-bottom: 5px;
+    }
 }
 
+/*--------------------------------------------------------------
+# Print Styles
+--------------------------------------------------------------*/
 @media print {
     header {
         display: flex;
