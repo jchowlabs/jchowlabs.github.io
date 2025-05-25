@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: #fff;
+    background-color: rgb(254, 253, 253);
     color: #333;
     line-height: 1.6;
 }
@@ -255,11 +255,31 @@ main {
     background-color: #e6ffef;
 }
 
-.lab-card h3 {
-    font-size: 1.15rem; 
+.lab-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     margin-bottom: 10px;
-    color: #333;
-    font-weight: 600;
+}
+
+.lab-card-header .lab-card-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem; 
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lab-card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .lab-card p {
