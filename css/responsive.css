@@ -1,0 +1,308 @@
+/*--------------------------------------------------------------
+# Large Desktops (1200px and above)
+--------------------------------------------------------------*/
+@media screen and (min-width: 1200px) {
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    header {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    footer {
+        max-width: 1200px;
+        margin: 40px auto 0;
+    }
+}
+
+/*--------------------------------------------------------------
+# Desktops (992px to 1199px)
+--------------------------------------------------------------*/
+@media screen and (max-width: 1199px) {
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Tablets (768px to 991px)
+--------------------------------------------------------------*/
+@media screen and (max-width: 991px) {
+    header {
+        padding: 15px 4%;
+    }
+    
+    .brand {
+        margin-left: calc(9.5% - 2%);
+    }
+    
+    main {
+        padding: 30px 4%;
+    }
+    
+    .profile-pic {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .article-thumb, .project-thumb {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+    }
+}
+
+/*--------------------------------------------------------------
+# Mobile Landscape (576px to 767px)
+--------------------------------------------------------------*/
+@media screen and (max-width: 767px) {
+    header {
+        padding: 15px 3%;
+    }
+
+    .contact-links {
+        display: none;
+    }
+
+    body:not(.home-page) .profile-pic, 
+    body:not(.home-page) .left-section h3, 
+    body:not(.home-page) .left-section p {
+        display: none;
+    }
+    
+    .brand {
+        margin-left: calc(3.25% - 1.5%);
+    }
+    
+    main {
+        flex-direction: column;
+        padding: 20px 3%;
+    }
+    
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .left-section {
+        padding-right: 0;
+    }
+    
+    body:not(.home-page) .left-section {
+        margin-bottom: 0;
+    }
+    
+    body.home-page .left-section {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .info-row {
+        flex-direction: column;
+    }
+    
+    .interests {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .article-content, .project-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .article-thumb, .project-thumb {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+        margin-bottom: 15px;
+        object-fit: contain;
+    }
+    
+    .article-text, .project-text {
+        width: 100%;
+    }
+
+    .booking-options {
+        flex-direction: column;
+    }
+    
+    .booking-type:first-child {
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .calendly-inline-widget {
+        height: 580px !important;
+    }
+    
+    /* Research labs layout */
+    .research-labs {
+        grid-template-columns: 1fr;
+    }
+    
+    .lab-card {
+        padding: 20px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Mobile Portrait (375px to 575px)
+--------------------------------------------------------------*/
+@media screen and (max-width: 575px) {
+    header {
+        padding: 12px 4%;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .brand {
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .left-section h3 {
+        font-size: 1.6rem;
+    }
+    
+    .left-section p {
+        font-size: 1.1rem;
+    }
+    
+    .right-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .right-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    main {
+        padding: 20px 4%;
+    }
+    
+    .section-divider {
+        margin: 25px 0;
+    }
+    
+    .article-thumb, .project-thumb {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        display: block;
+    }
+    
+    .article-content, .project-content {
+        align-items: flex-start;
+    }
+    
+    footer {
+        padding: 15px 4%;
+        margin-top: 30px;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
+    }
+    
+    .lab-icon {
+        font-size: 20px;
+        min-width: 25px;
+    }
+    
+    .lab-tags {
+        margin-top: 2px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Small Mobile (Below 375px)
+--------------------------------------------------------------*/
+@media screen and (max-width: 375px) {
+    nav ul li {
+        margin: 0 8px;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .left-section h3 {
+        font-size: 1.4rem;
+    }
+    
+    .left-section p {
+        font-size: 1rem;
+    }
+    
+    .right-section p {
+        font-size: 0.9rem;
+    }
+    
+    .lab-card-tags {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .lab-card-tag {
+        margin-bottom: 5px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Print Styles
+--------------------------------------------------------------*/
+@media print {
+    header {
+        display: flex;
+        border-bottom: 1pt solid #ddd;
+    }
+    
+    .brand {
+        margin-left: 0;
+    }
+    
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    footer {
+        border-top: 1pt solid #ddd;
+    }
+}

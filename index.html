@@ -3,13 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>jchowlabs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body>
-    <div class="gif-container">
-        <img src="images/working.gif" alt="Working...">
-    </div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GBHGE9LDVJ');
+</script>
+
+<body class="home-page">
+    <header>
+        <div class="brand">
+            <a href="index.html" class="brand-link">
+                <strong>jchowlabs</strong>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pages/articles.html">Articles</a></li>
+                <li><a href="pages/projects.html">Projects</a></li>
+                <li><a href="pages/consulting.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="left-section">
+            <img src="images/jchow_profile.jpeg" alt="Profile Picture" class="profile-pic">
+            <h3>Jason Chow</h3>
+            <ul class="contact-links">
+                <li><img src="images/icons/location.png" alt="Location" class="contact-icon"> <a href="https://www.google.com/maps/place/San+Francisco,+CA/@37.7576713,-122.5200009,12z/data=!3m1!4b1!4m6!3m5!1s0x80859a6d00690021:0x4a501367f076adff!8m2!3d37.7749295!4d-122.4194155!16zL20vMGQ2bHA?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">San Francisco, CA</a></li>
+                <li><img src="images/icons/linkedin.png" alt="Linkedin" class="contact-icon"> <a href="https://linkedin.com/in/jkchow" target="_blank">Linkedin</a></li>
+                <li><img src="images/icons/youtube.png" alt="Youtube" class="contact-icon"> <a href="https://youtube.com/@jchowlab" target="_blank">Youtube</a></li>
+            </ul>
+        </section>
+        <section class="right-section">
+            <h2 class="no-border">whoami</h2>
+            <p>👋 I'm Jason Chow, an Applied Researcher specializing in applications of cryptography and machine learning in the field of cybersecurity. I bridge the latest in academic research and industry advancements with practical solutions to real-world problems. I'm a former Field CTO and Principle Product Manager with over 15 years of experience building and deploying B2B solutions for enterprise companies. This website features a blend of my professional work, on-going research and a few personal projects.</p>
+            <div class="section-divider"></div>
+            
+            <div class="research-labs">
+                <a href="https://jchowlabs.me" target="_blank" class="lab-card-link">
+                    <div class="lab-card">
+                        <div class="lab-card-header">
+                            <div class="lab-card-icon identity-icon">🆔</div>
+                            <h3>Identity Security</h3>
+                        </div>
+                        <p>Try traditional passwords + MFA, Passkeys, face and voice recognition (with liveness and anti-spoofing mechanisms) across desktops and mobile devices. This lab also implements a variety of identity threat detection and prevention features.</p>
+                        <div class="lab-card-tags">
+                            <span class="lab-card-tag">Passwordless</span>
+                            <span class="lab-card-tag">Facial Recognition</span>
+                            <span class="lab-card-tag">Liveness Detection</span>
+                            <span class="lab-card-tag">Anti-Spoofing</span>
+                            <span class="lab-card-tag">Threat Detection</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.jchowlabs.com" target="_blank" class="lab-card-link">
+                    <div class="lab-card">
+                        <div class="lab-card-header">
+                            <div class="lab-card-icon deepfake-icon">🎭</div>
+                            <h3>Deepfake Detection</h3>
+                        </div>
+                        <p>Create synthetic images and audio of yourself using diffusion models and generative adversarial networks (GANs). Try using these synthetic images and audio to bypass the liveness and anti-spoofing mechanisms implemented in the Identity Security lab.</p>
+                        <div class="lab-card-tags">
+                            <span class="lab-card-tag">Computer Vision</span>
+                            <span class="lab-card-tag">Media Forensics</span>
+                            <span class="lab-card-tag">Diffusion Models</span>
+                            <span class="lab-card-tag">Generative Adversarial Networks</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://www.jchowlabs.com" target="_blank" class="lab-card-link">
+                    <div class="lab-card">
+                        <div class="lab-card-header">
+                            <div class="lab-card-icon credentials-icon">🤖</div>
+                            <h3>Agentic AI</h3>
+                        </div>
+                        <p>Use an autonomous AI agent as your personal study partner. Learn virtually any topic with adaptive lesson plans that adjust to your learning style and pace. More to come!</p>
+                        <div class="lab-card-tags">
+                            <span class="lab-card-tag">Agentic AI</span>
+                            <span class="lab-card-tag">Large Language Models</span>
+                            <span class="lab-card-tag">Model Context Protocol</span>
+                            <span class="lab-card-tag">Need-To-Know Access</span>
+                            <span class="lab-card-tag">Privacy Preserving AI</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://jchowlabs.chat" target="_blank" class="lab-card-link">
+                    <div class="lab-card">
+                        <div class="lab-card-header">
+                            <div class="lab-card-icon ai-icon">💬</div>
+                            <h3>Open Bounty</h3>
+                        </div>
+                        <p>Open Bounty uses natural language processing and machine learning trained on real-world bug bounty payout data to generate instance and fair price estimates for any security vulnerability through a simple conversational interface.</p>
+                        <div class="lab-card-tags">
+                            <span class="lab-card-tag">Conversational Bot</span>
+                            <span class="lab-card-tag">Large Language Models</span>
+                            <span class="lab-card-tag">Model Context Protocol</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© jchowlabs 2025</p>
+    </footer>
 </body>
 </html>
