@@ -228,15 +228,10 @@ main {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.lab-card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-    font-size: 20px;
+.lab-card-icon .icon-svg {
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
 }
 
 .identity-icon {
