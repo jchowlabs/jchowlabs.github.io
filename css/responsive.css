@@ -29,6 +29,25 @@
 }
 
 /*--------------------------------------------------------------
+# Medium screens (768px to 1024px) - Fix sticky overlap
+--------------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+    .left-section {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    main {
+        flex-direction: column;
+    }
+    
+    .left-section, .right-section {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/*--------------------------------------------------------------
 # Tablets (768px to 991px)
 --------------------------------------------------------------*/
 @media screen and (max-width: 991px) {
@@ -42,6 +61,11 @@
     
     main {
         padding: 30px 4%;
+    }
+    
+    .left-section {
+        position: static;
+        margin-bottom: 30px;
     }
     
     .profile-pic {
@@ -90,6 +114,7 @@
     
     .left-section {
         padding-right: 0;
+        position: static;
     }
     
     body:not(.home-page) .left-section {

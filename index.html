@@ -11,13 +11,12 @@
     <title>jchowlabs</title>
 </head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GBHGE9LDVJ');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GBHGE9LDVJ');
 </script>
 
 <body class="home-page">
@@ -29,99 +28,89 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Articles</a></li>
+                <li><a href="index.html">Labs</a></li>
+                <li><a href="pages/articles.html">Articles</a></li>
+                <li><a href="pages/research.html">Research</a></li>
                 <li><a href="pages/consulting.html">Connect</a></li>
             </ul>
         </nav>
     </header>
+    
     <main>
         <section class="left-section">
             <img src="images/jchow_profile.jpeg" alt="Profile Picture" class="profile-pic">
             <h3>Jason Chow</h3>
             <ul class="contact-links">
-                <li><img src="images/icons/location.png" alt="Location" class="contact-icon"> <a href="https://www.google.com/maps/place/San+Francisco,+CA/@37.7576713,-122.5200009,12z/data=!3m1!4b1!4m6!3m5!1s0x80859a6d00690021:0x4a501367f076adff!8m2!3d37.7749295!4d-122.4194155!16zL20vMGQ2bHA?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">San Francisco, CA</a></li>
-                <li><img src="images/icons/linkedin.png" alt="Linkedin" class="contact-icon"> <a href="https://linkedin.com/in/jkchow" target="_blank">Linkedin</a></li>
-                <li><img src="images/icons/youtube.png" alt="Youtube" class="contact-icon"> <a href="https://youtube.com/@jchowlab" target="_blank">Youtube</a></li>
+                <li>
+                    <img src="images/icons/location.png" alt="Location" class="contact-icon">
+                    <a href="https://www.google.com/maps/place/San+Francisco,+CA/@37.7576713,-122.5200009,12z/data=!3m1!4b1!4m6!3m5!1s0x80859a6d00690021:0x4a501367f076adff!8m2!3d37.7749295!4d-122.4194155!16zL20vMGQ2bHA?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">San Francisco, CA</a>
+                </li>
+                <li>
+                    <img src="images/icons/linkedin.png" alt="Linkedin" class="contact-icon">
+                    <a href="https://linkedin.com/in/jkchow" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <img src="images/icons/youtube.png" alt="Youtube" class="contact-icon">
+                    <a href="https://youtube.com/@jchowlabs" target="_blank">Youtube</a>
+                </li>
             </ul>
         </section>
+        
         <section class="right-section">
-            
-            <div class="research-labs">
-                <a href="https://www.jchowlabs.me" target="_blank" class="lab-card-link">
-                    <div class="lab-card">
-                        <div class="lab-card-header">
-                            <div class="lab-card-icon identity-icon">🆔</div>
-                            <h3>Identity Security</h3>
-                        </div>
-                        <p>Try traditional passwords + MFA, Passkeys, face and voice recognition (with liveness and anti-spoofing mechanisms) across desktops and mobile devices. This lab also implements a variety of identity threat detection and prevention features.</p>
-                        <div class="lab-card-tags">
-                            <span class="lab-card-tag">Passwordless</span>
-                            <span class="lab-card-tag">Facial Recognition</span>
-                            <span class="lab-card-tag">Liveness Detection</span>
-                            <span class="lab-card-tag">Anti-Spoofing</span>
-                            <span class="lab-card-tag">Threat Detection</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://www.aftercheck.ai" target="_blank" class="lab-card-link">
-                    <div class="lab-card">
-                        <div class="lab-card-header">
-                            <div class="lab-card-icon deepfake-icon">
-                                <img src="images/icons/aftercheckai.svg" alt="AfterCheck AI" class="icon-svg">
+            <div class="featured-articles">
+                <article class="featured-article">
+                    <a href="https://www.aftercheck.ai" target="_blank" class="featured-link">
+                        <img src="images/icons/aftercheck.gif" alt="AfterCheck AI" class="featured-image">
+                        <div class="featured-content">
+                            <h2 class="featured-title">AfterCheck - Misinformation Detection</h2>
+                            <p class="featured-subtitle">AfterCheck is a browser extension that detects misinformation in ChatGPT, Claude and Perplexity responses. The extension wraps a customized version of the Open Fact Check framework, and has features that include auto-highlighting inaccurate claims and tooltips that include corrections, supporting evidence and confidence scores for ultimate transparency.</p>
+                            <div class="featured-tags">
+                                <span class="featured-tag">AI Safety</span>
+                                <span class="featured-tag">Large Language Models</span>
+                                <span class="featured-tag">Open Fact Check</span>
+                                <span class="featured-tag">Misinformation</span>
+                                <span class="featured-tag">OWASP Top 10</span>
                             </div>
-                            <h3>AfterCheck AI</h3>
                         </div>
-                        <p>Fact check LLM responses from sites like ChatGPT, Claude and Perplexity, with evidence supporting each verdict. AfterCheck is powered by Open Fact Check - a framework for evaluating factuality in large language model responses.</p>
-                        <div class="lab-card-tags">
-                            <span class="lab-card-tag">AI Safety</span>
-                            <span class="lab-card-tag">Misinformation</span>
-                            <span class="lab-card-tag">Open Fact Check</span>
-                            <span class="lab-card-tag">Large Language Models</span>
-                            <span class="lab-card-tag">OWASP Top 10</span>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </article>
 
-                <a href="https://openbounty.com" target="_blank" class="lab-card-link">
-                    <div class="lab-card">
-                        <div class="lab-card-header">
-                            <div class="lab-card-icon deepfake-icon">
-                                <img src="images/icons/openbounty.png" alt="Open Bounty" class="icon-svg">
+                <article class="featured-article">
+                    <a href="https://www.openbounty.com" class="featured-link">
+                        <img src="images/icons/openbounty.gif" alt="Open Bounty" class="featured-image">
+                        <div class="featured-content">
+                            <h2 class="featured-title">Open Bounty - Pricing Security Vulnerabilities</h2>
+                            <p class="featured-subtitle">Open Bounty makes it easy for anyone to get a price estimate for any security vulnerability. Simply enter the details into the prompt and instantly receive a data-backed estimate. All queries are anonymized and aggregated into public dashboards and APIs, giving security teams visibility into trending vulnerabilities and potential exposure in real-time.</p>
+                            <div class="featured-tags">
+                                <span class="featured-tag">Bug Bounty Programs</span>
+                                <span class="featured-tag">Pricing Engine</span>
+                                <span class="featured-tag">Machine Learning</span>
+                                <span class="featured-tag">Security Insights</span>
                             </div>
-                            <h3>Open Bounty</h3>
                         </div>
-                        <p>Open Bounty uses machine learning trained on real-world bug bounty payout data in order to generate evidence support price estimates for any security vulnerability.</p>
-                        <div class="lab-card-tags">
-                            <span class="lab-card-tag">Conversational Bot</span>
-                            <span class="lab-card-tag">Large Language Models</span>
-                            <span class="lab-card-tag">Model Context Protocol</span>
-                            <span class="lab-card-tag">Price estimator</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="https://www.jchowlabs.com" target="_blank" class="lab-card-link">
-                    <div class="lab-card">
-                        <div class="lab-card-header">
-                            <div class="lab-card-icon credentials-icon">🤖</div>
-                            <h3>Agentic AI</h3>
-                        </div>
-                        <p>Use an autonomous AI agent as your personal study partner. Learn virtually any topic with adaptive lesson plans that adjust to your learning style and pace. More to come!</p>
-                        <div class="lab-card-tags">
-                            <span class="lab-card-tag">Agentic AI</span>
-                            <span class="lab-card-tag">Large Language Models</span>
-                            <span class="lab-card-tag">Model Context Protocol</span>
-                            <span class="lab-card-tag">Need-To-Know Access</span>
-                            <span class="lab-card-tag">Privacy Preserving AI</span>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </article>
 
+                <article class="featured-article">
+                    <a href="https://www.jchowlabs.me" class="featured-link">
+                        <img src="images/icons/identitysecurity.gif" alt="Identity Security Lab" class="featured-image">
+                        <div class="featured-content">
+                            <h2 class="featured-title">Passkeys, Biometric Recognition and More</h2>
+                            <p class="featured-subtitle">Try Passkeys, facial and voice recognition (with liveness and anti-spoofing detectors) and traditional passwords + MFA across desktops and mobile devices. This lab also implements a variety of identity threat detection and prevention features. Use this lab for user experience research and security testing.</p>
+                            <div class="featured-tags">
+                                <span class="featured-tag">Passwordless</span>
+                                <span class="featured-tag">Facial Recognition</span>
+                                <span class="featured-tag">Voice Recognition</span>
+                                <span class="featured-tag">Liveness Detection</span>
+                                <span class="featured-tag">Threat Detection</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
             </div>
         </section>
     </main>
+    
     <footer>
         <p>© jchowlabs 2025</p>
     </footer>
