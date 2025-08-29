@@ -687,8 +687,8 @@ code {
     border-bottom: 3px solid #007bff;
 }
 .calendly-container {
-    padding: 10px;
-    background-color: #ffffff;
+    padding: 0;
+    background-color: transparent;
 }
 .calendly-card {
     background-color: #ffffff;
@@ -696,14 +696,13 @@ code {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     margin: 0 auto;
-    padding: 5px;
-    max-width: 600px;
-    width: 90%;
+    padding: 0;
+    width: 100%;
 }
 .calendly-inline-widget {
     width: 100%;
     margin: 0;
-    height: 500px !important;
+    height: 700px !important;
 }
 .meeting-title {
     font-size: 1.3rem;
