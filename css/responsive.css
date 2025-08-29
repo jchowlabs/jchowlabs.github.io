@@ -197,7 +197,7 @@
     }
     
     nav ul li {
-        margin: 0 10px;
+        margin: 0 3px;
     }
     
     .profile-pic {
@@ -265,7 +265,7 @@
 --------------------------------------------------------------*/
 @media screen and (max-width: 375px) {
     nav ul li {
-        margin: 0 8px;
+        margin: 0 2.4px;
     }
     
     .profile-pic {
