@@ -4,12 +4,14 @@
     box-sizing: border-box;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 body {
     background-color: rgb(254, 253, 253);
     color: #333;
     line-height: 1.6;
+    padding-top: 80px;
 }
-/* New hybrid header design */
+
 header {
     background-color: #fff;
     padding: 20px 5%;
@@ -17,7 +19,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 header::after {
     content: '';
@@ -28,6 +33,7 @@ header::after {
     height: 1px;
     background-color: #e0e0e0;
 }
+
 .brand {
     font-size: 1.35rem;
     color: #333;
@@ -35,20 +41,24 @@ header::after {
     align-items: center;
     gap: 8px;
 }
+
 .brand strong {
     font-weight: 700;
 }
+
 .brand-link {
     text-decoration: none;
     color: inherit;
 }
+
 .brand-link:hover {
     color: inherit;
 }
-/* Updated navigation for new design */
+
 nav {
     width: auto;
 }
+
 nav ul {
     list-style-type: none;
     display: flex;
@@ -56,9 +66,11 @@ nav ul {
     margin: 0;
     padding: 0;
 }
+
 nav ul li {
     margin: 0;
 }
+
 nav ul li a {
     text-decoration: none;
     color: #666;
@@ -67,19 +79,21 @@ nav ul li a {
     border-radius: 6px;
     transition: all 0.2s ease;
 }
+
 nav ul li a:hover {
     color: #333;
     background-color: #f5f5f5;
 }
+
 nav ul li a.active {
     color: #333;
     background-color: #f0f0f0;
     font-weight: 600;
 }
-/* Hide the old built-in header elements */
 .page-header {
     display: none;
 }
+
 .brand {
     font-size: 1.35rem;
     color: #333;
@@ -88,32 +102,40 @@ nav ul li a.active {
     align-items: center;
     gap: 8px;
 }
+
 .brand strong {
     font-weight: 700;
 }
+
 .brand-link {
     text-decoration: none;
     color: inherit;
 }
+
 .brand-link:hover {
     color: inherit;
 }
+
 nav {
     width: auto;
 }
+
 nav ul {
     list-style-type: none;
     display: flex;
 }
+
 nav ul li {
     margin-left: 30px;
 }
+
 nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
     transition: color 0.3s ease;
 }
+
 nav ul li a:hover {
     color: #007bff;
 }
@@ -124,12 +146,14 @@ main {
     min-height: 100vh;
     position: relative;
 }
+
 .section-divider {
     height: 2px;
     background-color: #f0f0f0;
     margin: 30px 0;
     width: 100%;
 }
+
 .left-section {
     flex: 0 0 33%;
     padding-right: 30px;
@@ -137,7 +161,7 @@ main {
     flex-direction: column;
     align-items: center;
     position: sticky;
-    top: 40px;
+    top: 100px;
     height: fit-content;
 }
 .profile-pic {
@@ -217,11 +241,13 @@ main {
     padding-bottom: 8px;
 }
 .right-section h2.no-border {
-    margin-bottom: 8px; 
+    margin-bottom: 8px;
 }
+
 .no-border {
     border-bottom: none !important;
 }
+
 .right-section p {
     margin-bottom: 8px;
 }
@@ -274,13 +300,14 @@ main {
 .lab-card-header .lab-card-icon {
     width: 40px;
     height: 40px;
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
     margin-bottom: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .lab-card-header h3 {
     margin: 0;
     font-size: 1.2rem;
@@ -372,7 +399,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    padding-left: 5px; 
+    padding-left: 5px;
     margin-left: 0;
 }
 .lab-tag {
@@ -692,24 +719,43 @@ ol.article-list li::marker {
     background-color: #4CAF50 !important;
     color: white !important;
 }
+
 pre.code-block {
     padding: 15px;
-    margin: 0;
+    margin: 20px 0;
     overflow-x: auto;
     background-color: #f8f8f8;
     font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
     font-size: 14px;
     line-height: 1.5;
     tab-size: 2;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
 }
+
 code {
     color: #333;
 }
-.keyword { color: #0000ff; }
-.string { color: #a31515; }
-.comment { color: #008000; }
-.number { color: #098658; }
-.operator { color: #000000; }
+
+.keyword { 
+    color: #0000ff; 
+}
+
+.string { 
+    color: #a31515; 
+}
+
+.comment { 
+    color: #008000; 
+}
+
+.number { 
+    color: #098658; 
+}
+
+.operator { 
+    color: #000000; 
+}
 .consulting-intro {
     margin-bottom: 30px;
 }
@@ -1009,12 +1055,21 @@ footer p {
     font-size: 0.75rem;
     color: #888;
 }
-@media screen and (max-width: 767px) {
-    .article-header h1 {
-        font-size: 1.8rem;
-    }
-    .article-meta {
-        flex-direction: column;
-        gap: 5px;
-    }
+
+.article-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.article-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.article-hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }

@@ -47,6 +47,17 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .article-container {
+        max-width: 95%;
+    }
+    
+    .article-body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 /*--------------------------------------------------------------
 # Tablets (768px to 991px)
 --------------------------------------------------------------*/
@@ -166,13 +177,21 @@
         height: 580px !important;
     }
     
-    /* Research labs layout */
     .research-labs {
         grid-template-columns: 1fr;
     }
     
     .lab-card {
         padding: 20px;
+    }
+
+    .article-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        gap: 5px;
     }
 }
 
