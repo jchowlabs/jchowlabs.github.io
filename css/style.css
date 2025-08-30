@@ -103,13 +103,6 @@ main {
     position: relative;
 }
 
-.section-divider {
-    height: 2px;
-    background-color: #f0f0f0;
-    margin: 30px 0;
-    width: 100%;
-}
-
 .left-section {
     flex: 0 0 33%;
     padding-right: 30px;
@@ -352,25 +345,6 @@ code {
     color: #333;
 }
 
-.keyword { 
-    color: #0000ff; 
-}
-
-.string { 
-    color: #a31515; 
-}
-
-.comment { 
-    color: #008000; 
-}
-
-.number { 
-    color: #098658; 
-}
-
-.operator { 
-    color: #000000; 
-}
 footer {
     width: 100%;
     padding: 20px 5%;
