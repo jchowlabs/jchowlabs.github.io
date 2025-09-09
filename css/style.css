@@ -14,7 +14,7 @@ body {
 
 header {
     background-color: #fff;
-    padding: 20px 5%;
+    padding: 20px 2rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -28,8 +28,8 @@ header::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 5%;
-    right: 5%;
+    left: 2rem;
+    right: 2rem;
     height: 1px;
     background-color: #e0e0e0;
 }
@@ -41,7 +41,7 @@ header::after {
 .brand {
     font-size: 1.35rem;
     color: #333;
-    margin-left: calc(9% - 2.5%);
+    margin-left: 0;
     display: flex;
     align-items: center;
     gap: 8px;

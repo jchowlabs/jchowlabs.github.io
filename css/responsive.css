@@ -2,14 +2,8 @@
 # Large Desktops (1200px and above)
 --------------------------------------------------------------*/
 @media screen and (min-width: 1200px) {
-    main {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
     header {
-        max-width: 1200px;
-        margin: 0 auto;
+        padding: 20px calc((100vw - 1200px) / 2 + 2rem);
     }
     
     footer {
