@@ -93,10 +93,6 @@
         padding: 15px 3%;
     }
 
-    .contact-links {
-        display: none;
-    }
-
     body:not(.home-page) .profile-pic, 
     body:not(.home-page) .left-section h3, 
     body:not(.home-page) .left-section p {
