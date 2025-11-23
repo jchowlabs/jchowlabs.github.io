@@ -1,0 +1,583 @@
+/*--------------------------------------------------------------
+# Games Page Specific Styles
+--------------------------------------------------------------*/
+
+/* Games Main Layout */
+.arcade-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+}
+
+.arcade-container {
+    width: 100%;
+}
+
+.arcade-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.arcade-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Games Grid */
+.arcade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 0;
+    max-width: 900px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Game Card */
+.arcade-game-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.arcade-game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+.arcade-game-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.arcade-game-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.arcade-game-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Modal System
+--------------------------------------------------------------*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.2s ease;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#modal-arcade-content {
+    margin-top: 20px;
+}
+
+/*--------------------------------------------------------------
+# Responsive Design for Games
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 768px) {
+    .arcade-title {
+        font-size: 2rem;
+    }
+    
+    .arcade-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .arcade-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .modal-content {
+        padding: 30px 20px;
+        width: 95%;
+    }
+    
+    .modal-close {
+        right: 15px;
+        top: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .arcade-main {
+        padding: 20px 15px;
+    }
+    
+    .arcade-game-card {
+        padding: 25px 20px;
+    }
+    
+    .arcade-game-icon {
+        font-size: 3rem;
+    }
+    
+    .arcade-game-title {
+        font-size: 1.3rem;
+    }
+}
+
+/*--------------------------------------------------------------
+# Math Quiz Game Styles
+--------------------------------------------------------------*/
+
+.math-quiz-container {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.math-quiz-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.math-quiz-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Operator Selection */
+.operator-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.operator-btn {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.operator-btn:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.operator-symbol {
+    font-size: 3rem;
+    font-weight: 300;
+    color: #007bff;
+}
+
+.operator-label {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Difficulty Selection */
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.difficulty-btn {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Easy - Green */
+.difficulty-btn[onclick*="easy"] {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+.difficulty-btn[onclick*="easy"]:hover {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.6);
+    transform: translateX(5px);
+}
+
+/* Medium - Yellow */
+.difficulty-btn[onclick*="medium"] {
+    background: rgba(234, 179, 8, 0.08);
+    border-color: rgba(234, 179, 8, 0.4);
+}
+
+.difficulty-btn[onclick*="medium"]:hover {
+    background: rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.6);
+    transform: translateX(5px);
+}
+
+/* Hard - Red */
+.difficulty-btn[onclick*="hard"] {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.difficulty-btn[onclick*="hard"]:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.6);
+    transform: translateX(5px);
+}
+
+.difficulty-btn:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+    transform: translateX(5px);
+}
+
+.difficulty-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.difficulty-range {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.back-btn {
+    margin-top: 30px;
+    background: #f5f5f5;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* Question Display */
+.question-progress {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.question-display {
+    margin: 40px 0 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.math-problem {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+/* Vertical Math Problem Layout */
+.math-problem-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    margin-right: 60px;
+}
+
+.math-number {
+    padding: 5px 10px;
+    text-align: right;
+    min-width: 200px;
+}
+
+.math-operator {
+    padding: 5px 10px;
+    text-align: right;
+    min-width: 200px;
+}
+
+.math-answer-line {
+    border-top: 3px solid #1a1a1a;
+    padding-top: 10px;
+    margin-top: 10px;
+    width: 190px;
+    margin-left: 10px;
+}
+
+.math-line {
+    margin-top: 10px;
+}
+
+/* Answer Section */
+.answer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.answer-input {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+/* Remove number input spinners */
+.answer-input::-webkit-inner-spin-button,
+.answer-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.answer-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.answer-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Inline answer input (appears below the line in math problem) */
+.answer-input-inline {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    border: none;
+    background: transparent;
+    text-align: right;
+    padding: 5px 10px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.answer-input-inline:focus {
+    outline: none;
+}
+
+/* Remove number input spinners for inline input */
+.answer-input-inline::-webkit-inner-spin-button,
+.answer-input-inline::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.answer-input-inline[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Hide browser number input icons/buttons */
+.answer-input-inline::-webkit-textfield-decoration-container {
+    display: none;
+}
+
+.answer-input-inline::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.submit-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+
+/* Results Display */
+.results-display {
+    margin: 40px 0;
+    padding: 40px;
+    background: #f8f9ff;
+    border-radius: 12px;
+}
+
+.score-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.score-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #007bff;
+    margin: 20px 0;
+}
+
+.results-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.try-again-btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #007bff;
+    color: white;
+    border: none;
+}
+
+.try-again-btn:hover {
+    background: #0056b3;
+}
+
+.close-btn {
+    background: #f5f5f5;
+    color: #666;
+    border: 2px solid #e0e0e0;
+}
+
+.close-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* Responsive Math Quiz */
+@media screen and (max-width: 480px) {
+    .math-quiz-title {
+        font-size: 1.5rem;
+    }
+    
+    .operator-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .math-problem {
+        font-size: 2rem;
+    }
+    
+    .score-number {
+        font-size: 2.5rem;
+    }
+    
+    .results-buttons {
+        flex-direction: column;
+    }
+}
