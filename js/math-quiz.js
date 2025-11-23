@@ -83,7 +83,6 @@ const MathQuiz = {
                         <span class="difficulty-range">50-100</span>
                     </button>
                 </div>
-                <button class="back-btn" onclick="MathQuiz.showOperatorSelection()">Back</button>
             </div>
         `;
         document.getElementById('modal-arcade-content').innerHTML = content;

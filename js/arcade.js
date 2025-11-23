@@ -21,12 +21,13 @@ function openModal(gameName) {
     // Get modal content element
     const modalContentEl = document.querySelector('.modal-content');
     
-    // Add special class for memory match (larger modal)
+    // Add special class for larger modals (only Memory Match needs it on open)
+    modalContentEl.classList.remove('memory-match-modal', 'typing-speed-modal');
+    
     if (gameName === 'memory-match') {
         modalContentEl.classList.add('memory-match-modal');
-    } else {
-        modalContentEl.classList.remove('memory-match-modal');
     }
+    // Note: typing-speed-modal class is added by TypingSpeed.startGame() after difficulty selection
     
     // Show modal
     modal.classList.add('active');
@@ -67,6 +68,14 @@ function loadGameContent(gameName) {
             // Initialize the Memory Match game
             if (window.MemoryMatch) {
                 MemoryMatch.init();
+            } else {
+                modalContent.innerHTML = '<p>Game failed to load</p>';
+            }
+            break;
+        case 'typing-speed':
+            // Initialize the Typing Speed game
+            if (window.TypingSpeed) {
+                TypingSpeed.init();
             } else {
                 modalContent.innerHTML = '<p>Game failed to load</p>';
             }

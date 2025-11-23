@@ -109,7 +109,7 @@
     background-color: #fff;
     border-radius: 16px;
     padding: 40px;
-    max-width: 500px;
+    max-width: 600px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
@@ -118,9 +118,14 @@
     animation: slideUp 0.3s ease;
 }
 
-/* Larger modal for Memory Match */
+/* Larger modal for Memory Match game screen */
 .modal-content.memory-match-modal {
     max-width: 600px;
+}
+
+/* Larger modal for Typing Speed game screen */
+.modal-content.typing-speed-modal {
+    max-width: 750px;
 }
 
 @keyframes slideUp {
@@ -787,3 +792,164 @@
         font-size: 2rem;
     }
 }
+
+/*--------------------------------------------------------------
+# Typing Speed Game Styles
+--------------------------------------------------------------*/
+
+.typing-game-container {
+    padding: 10px 0;
+}
+
+.typing-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.typing-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.typing-timer {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.typing-timer span {
+    color: #007bff;
+}
+
+.typing-text-container {
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    min-height: 200px;
+}
+
+.typing-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #333;
+    letter-spacing: 0.3px;
+    white-space: normal;
+    word-spacing: normal;
+}
+
+.typing-text .word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.typing-text .char {
+    position: relative;
+    display: inline;
+}
+
+.typing-text .untyped {
+    color: #999;
+}
+
+.typing-text .correct {
+    color: #000;
+}
+
+.typing-text .error {
+    color: #000;
+    background-color: rgba(255, 0, 0, 0.25);
+    border-radius: 2px;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.5rem;
+    background-color: #007bff;
+    margin-left: 1px;
+    margin-right: 1px;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.typing-input {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+/* Typing Results */
+.typing-results {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.typing-result-item {
+    text-align: center;
+}
+
+.typing-result-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.typing-result-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* Responsive Typing Speed */
+@media screen and (max-width: 768px) {
+    .typing-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .typing-text-container {
+        padding: 20px;
+    }
+    
+    .typing-results {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .typing-title {
+        font-size: 1.5rem;
+    }
+    
+    .typing-text {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .typing-text-container {
+        padding: 15px;
+        min-height: 120px;
+    }
+    
+    .typing-results {
+        gap: 20px;
+    }
+    
+    .typing-result-value {
+        font-size: 2rem;
+    }
+}
+
