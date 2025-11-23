@@ -18,6 +18,16 @@ function openModal(gameName) {
     // Load game content based on game name
     loadGameContent(gameName);
     
+    // Get modal content element
+    const modalContentEl = document.querySelector('.modal-content');
+    
+    // Add special class for memory match (larger modal)
+    if (gameName === 'memory-match') {
+        modalContentEl.classList.add('memory-match-modal');
+    } else {
+        modalContentEl.classList.remove('memory-match-modal');
+    }
+    
     // Show modal
     modal.classList.add('active');
     
@@ -49,6 +59,14 @@ function loadGameContent(gameName) {
             // Initialize the Math Quiz game
             if (window.MathQuiz) {
                 MathQuiz.init();
+            } else {
+                modalContent.innerHTML = '<p>Game failed to load</p>';
+            }
+            break;
+        case 'memory-match':
+            // Initialize the Memory Match game
+            if (window.MemoryMatch) {
+                MemoryMatch.init();
             } else {
                 modalContent.innerHTML = '<p>Game failed to load</p>';
             }
