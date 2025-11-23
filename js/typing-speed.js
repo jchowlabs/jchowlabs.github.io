@@ -110,7 +110,7 @@ const TypingSpeed = {
         const selectedSentences = [];
         const usedIndices = new Set();
         
-        while (selectedSentences.length < sentenceCount) {
+        while (selectedSentences.length < sentenceCount && usedIndices.size < templates.length) {
             const randomIndex = Math.floor(Math.random() * templates.length);
             if (!usedIndices.has(randomIndex)) {
                 usedIndices.add(randomIndex);
@@ -118,7 +118,9 @@ const TypingSpeed = {
             }
         }
         
-        return selectedSentences.join(' ');
+        // Join with single space and trim any extra whitespace
+        const generatedText = selectedSentences.join(' ').replace(/\s+/g, ' ').trim();
+        return generatedText;
     },
     
     /**
@@ -272,16 +274,12 @@ const TypingSpeed = {
         // Re-render the text display
         this.renderText();
         
-        // Check if complete - user has typed all characters
+        // Check if complete - user has typed at least as many characters as reference
         if (input.length >= this.referenceText.length) {
-            // Trim to exact length and check
-            const trimmedInput = input.substring(0, this.referenceText.length);
-            if (trimmedInput === this.referenceText) {
-                // Delay slightly to ensure last character is rendered
-                setTimeout(() => {
-                    this.finishGame();
-                }, 100);
-            }
+            // User has typed enough characters - finish the game
+            setTimeout(() => {
+                this.finishGame();
+            }, 100);
         }
     },
     

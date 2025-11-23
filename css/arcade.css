@@ -31,10 +31,10 @@
 /* Games Grid */
 .arcade-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     margin-top: 0;
-    max-width: 900px;
+    max-width: 1200px;
     margin-left: 0;
     margin-right: auto;
 }
@@ -950,6 +950,210 @@
     
     .typing-result-value {
         font-size: 2rem;
+    }
+}
+
+/*--------------------------------------------------------------
+# Word Scramble Game Styles
+--------------------------------------------------------------*/
+
+.word-scramble-container {
+    padding: 20px 0;
+}
+
+.word-scramble-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.word-scramble-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.word-scramble-progress {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.scrambled-word {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-align: center;
+    color: #007bff;
+    margin: 40px 0;
+    text-transform: uppercase;
+}
+
+.word-input-container {
+    max-width: 400px;
+    margin: 0 auto 30px;
+    transition: all 0.3s ease;
+}
+
+.word-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.word-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.word-input-container.correct-feedback {
+    animation: correctShake 0.5s ease;
+}
+
+.word-input-container.correct-feedback .word-input {
+    border-color: #28a745;
+    background-color: #d4edda;
+}
+
+.word-input-container.wrong-feedback {
+    animation: wrongShake 0.5s ease;
+}
+
+.word-input-container.wrong-feedback .word-input {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+}
+
+@keyframes correctShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: scale(1.05); }
+    75% { transform: scale(0.95); }
+}
+
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-5px); }
+}
+
+.word-scramble-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.stat-correct {
+    color: #28a745;
+}
+
+.stat-wrong {
+    color: #dc3545;
+}
+
+/* Word Scramble Results */
+.word-scramble-score {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.score-main {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.score-percentage {
+    font-size: 2rem;
+    color: #666;
+}
+
+.word-scramble-stats-results {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.stat-result-item {
+    text-align: center;
+}
+
+.stat-result-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.stat-result-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* Responsive Word Scramble */
+@media screen and (max-width: 768px) {
+    .scrambled-word {
+        font-size: 2.5rem;
+        letter-spacing: 6px;
+    }
+    
+    .word-input {
+        font-size: 1.3rem;
+    }
+    
+    .word-scramble-stats-results {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .word-scramble-title {
+        font-size: 1.5rem;
+    }
+    
+    .scrambled-word {
+        font-size: 2rem;
+        letter-spacing: 4px;
+        margin: 30px 0;
+    }
+    
+    .word-input {
+        font-size: 1.1rem;
+        padding: 12px 15px;
+    }
+    
+    .word-scramble-stats {
+        gap: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .word-scramble-stats-results {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .score-main {
+        font-size: 3rem;
+    }
+    
+    .score-percentage {
+        font-size: 1.5rem;
+    }
+    
+    .stat-result-value {
+        font-size: 1.5rem;
     }
 }
 

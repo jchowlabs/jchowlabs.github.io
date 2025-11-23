@@ -80,6 +80,14 @@ function loadGameContent(gameName) {
                 modalContent.innerHTML = '<p>Game failed to load</p>';
             }
             break;
+        case 'word-scramble':
+            // Initialize the Word Scramble game
+            if (window.WordScramble) {
+                WordScramble.init();
+            } else {
+                modalContent.innerHTML = '<p>Game failed to load</p>';
+            }
+            break;
         default:
             modalContent.innerHTML = '<p>Game not found</p>';
     }
