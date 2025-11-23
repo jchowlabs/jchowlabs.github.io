@@ -24,7 +24,17 @@ const TypingSpeed = {
                 'My friend plays with me.',
                 'A bird flies in the sky.',
                 'The child sleeps at night.',
-                'I eat lunch at noon.'
+                'I eat lunch at noon.',
+                'The rain falls on the roof.',
+                'We ride bikes on the path.',
+                'She draws pictures with chalk.',
+                'The moon glows in the dark.',
+                'They sing songs in the car.',
+                'He kicks the ball far away.',
+                'The fish swim in the pond.',
+                'I drink water when thirsty.',
+                'The wind blows through the trees.',
+                'We build castles in the sand.'
             ]
         },
         medium: {
@@ -35,7 +45,14 @@ const TypingSpeed = {
                 'The teacher explained the lesson clearly to all the students.',
                 'My neighbor always waters the garden early in the morning.',
                 'The children laughed happily as they played in the yard.',
-                'She carefully prepared dinner for her family every evening.'
+                'She carefully prepared dinner for her family every evening.',
+                'The musician practiced diligently before performing at the concert hall.',
+                'Everyone gathered together to celebrate the birthday party tonight.',
+                'The doctor recommended healthy habits to improve overall wellness.',
+                'Students studied quietly in the library while preparing for exams.',
+                'The artist painted beautiful landscapes inspired by nature scenes.',
+                'Travelers explored ancient ruins throughout the historic countryside.',
+                'The chef created delicious recipes using fresh local ingredients.'
             ]
         },
         hard: {
@@ -46,7 +63,14 @@ const TypingSpeed = {
                 'Nevertheless, the committee decided to postpone the important decision until further evidence could be gathered.',
                 'The experienced scientist carefully analyzed the experimental results before publishing her groundbreaking findings.',
                 'Although the circumstances were extremely difficult, they managed to accomplish their ambitious goals successfully.',
-                'The comprehensive report, which included detailed statistics and analysis, was submitted before the deadline.'
+                'The comprehensive report, which included detailed statistics and analysis, was submitted before the deadline.',
+                'The international conference brought together distinguished researchers from universities around the world.',
+                'Despite numerous obstacles and setbacks, the entrepreneur persevered and eventually built a thriving business.',
+                'The archaeological expedition uncovered fascinating artifacts that provided valuable insights into ancient civilizations.',
+                'Throughout history, technological advancements have fundamentally transformed how people communicate and collaborate.',
+                'The detective methodically examined all available evidence before drawing any conclusions about the case.',
+                'Environmental scientists emphasized the critical importance of sustainable practices for protecting natural resources.',
+                'The orchestra performed magnificent symphonies that captivated audiences with extraordinary musical arrangements.'
             ]
         }
     },

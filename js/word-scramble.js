@@ -11,28 +11,89 @@ const WordScramble = {
     wrongAnswers: 0,
     startTime: null,
     
-    // Comprehensive word bank
+    // Anagram-free word bank (doubled word count, no words with common anagrams)
     wordBank: {
         easy: [
-            'CAT', 'DOG', 'BOOK', 'TREE', 'STAR', 'FISH', 'BIRD', 'MOON', 'RAIN', 'SNOW',
+            'CAT', 'DOG', 'BOOK', 'TREE', 'FISH', 'BIRD', 'MOON', 'SNOW',
             'ROAD', 'PARK', 'HAND', 'FOOT', 'HEAD', 'FACE', 'DOOR', 'WIND', 'FIRE', 'LAKE',
-            'BEAR', 'DEER', 'FROG', 'SHIP', 'BIKE', 'BELL', 'BALL', 'GAME', 'CUBE', 'SONG',
+            'FROG', 'SHIP', 'BIKE', 'BELL', 'BALL', 'GAME', 'CUBE', 'SONG',
             'KING', 'QUEEN', 'GOLD', 'RING', 'BEAN', 'CORN', 'BREAD', 'MILK', 'CAKE', 'SALT',
-            'RAIN', 'CLOUD', 'LIGHT', 'SAND', 'ROCK', 'HILL', 'WAVE', 'LEAF', 'SEED', 'FARM'
+            'CLOUD', 'LIGHT', 'SAND', 'ROCK', 'HILL', 'WAVE', 'LEAF', 'SEED', 'FARM',
+            'CHAIR', 'TABLE', 'MOUSE', 'HORSE', 'SPOON', 'KNIFE', 'PLATE', 'GLASS',
+            'HOUSE', 'PHONE', 'WATCH', 'MONEY', 'CLOCK', 'BRUSH', 'TOWEL', 'PILLOW',
+            'FRUIT', 'PLANT', 'STONE', 'METAL', 'PAPER', 'VOICE', 'SMILE', 'DREAM',
+            'MAGIC', 'HAPPY', 'BRAVE', 'SMART', 'QUIET', 'FAST', 'SLOW', 'WARM',
+            'COLD', 'SWEET', 'SOUR', 'ROUND', 'SQUARE', 'BRIGHT', 'DIRTY', 'CLEAN',
+            'ROBOT', 'SPACE', 'WORLD', 'EARTH', 'WATER', 'JUICE', 'SUGAR', 'HONEY',
+            'TIGER', 'ZEBRA', 'PANDA', 'WHALE', 'SHARK', 'SNAKE', 'LIZARD', 'SPIDER',
+            'RIVER', 'SUNNY', 'RAINY', 'WINDY', 'FOGGY', 'STORM', 'BLOOM', 'GRASS',
+            'BENCH', 'FENCE', 'SWING', 'SLIDE', 'CLIMB', 'JUMP', 'DANCE', 'MARCH',
+            'LAUGH', 'SHOUT', 'WHISPER', 'SPEAK', 'THINK', 'POINT', 'GRASP', 'TOUCH',
+            'MELON', 'LEMON', 'PEACH', 'PLUM', 'GRAPE', 'BERRY', 'MANGO', 'CHERRY',
+            'PIZZA', 'PASTA', 'BACON', 'STEAK', 'SALAD', 'SOUP', 'BROTH', 'GRAVY',
+            'LAMP', 'COUCH', 'SHELF', 'FRAME', 'QUILT', 'SHEET', 'BLANKET', 'DRAPES',
+            'PENNY', 'DIME', 'NICKEL', 'DOLLAR', 'PIGGY', 'VAULT', 'CHEST', 'PURSE',
+            'TRAIN', 'PLANE', 'TRUCK', 'WAGON', 'YACHT', 'CANOE', 'FERRY', 'LINER',
+            'CROWN', 'JEWEL', 'MEDAL', 'BADGE', 'PRIZE', 'AWARD', 'TROPHY', 'BANNER',
+            'SWORD', 'SHIELD', 'ARMOR', 'HELMET', 'SPEAR', 'ARROW', 'TORCH', 'LANTERN',
+            'DUSTY', 'SHINY', 'FUZZY', 'ROUGH', 'SMOOTH', 'BUMPY', 'CRISP', 'FRESH',
+            'YOUNG', 'ELDER', 'GIANT', 'TINY', 'GRAND', 'PLAIN', 'FANCY', 'BASIC'
         ],
         medium: [
             'PLANET', 'GARDEN', 'BRIDGE', 'CASTLE', 'MOUNTAIN', 'OCEAN', 'FOREST', 'RIVER', 'ISLAND', 'DESERT',
             'FRIEND', 'FAMILY', 'SCHOOL', 'TEACHER', 'STUDENT', 'WINDOW', 'KITCHEN', 'BEDROOM', 'PICTURE', 'FLOWER',
-            'GUITAR', 'PIANO', 'TRUMPET', 'VIOLIN', 'SINGING', 'DANCING', 'READING', 'WRITING', 'PAINTING', 'COOKING',
-            'ELEPHANT', 'GIRAFFE', 'PENGUIN', 'DOLPHIN', 'BUTTERFLY', 'RAINBOW', 'THUNDER', 'LIGHTNING', 'SEASON', 'WEATHER',
-            'WINTER', 'SPRING', 'SUMMER', 'AUTUMN', 'MONDAY', 'TUESDAY', 'SUNDAY', 'MORNING', 'EVENING', 'TONIGHT'
+            'GUITAR', 'PIANO', 'TRUMPET', 'VIOLIN', 'DANCING', 'READING', 'WRITING', 'COOKING',
+            'GIRAFFE', 'PENGUIN', 'DOLPHIN', 'BUTTERFLY', 'RAINBOW', 'THUNDER', 'LIGHTNING', 'WEATHER',
+            'SPRING', 'SUMMER', 'AUTUMN', 'MONDAY', 'TUESDAY', 'SUNDAY', 'MORNING', 'EVENING', 'TONIGHT',
+            'JOURNEY', 'FREEDOM', 'PROBLEM', 'ANSWER', 'QUESTION', 'HISTORY', 'SCIENCE', 'NATURE',
+            'HOLIDAY', 'VILLAGE', 'COUNTRY', 'SOLDIER', 'CAPTAIN', 'DRAGON', 'WIZARD',
+            'CRYSTAL', 'DIAMOND', 'EMERALD', 'TOPAZ', 'SILVER', 'BRONZE', 'COPPER', 'MARBLE',
+            'BLANKET', 'CURTAIN', 'CABINET', 'CUSHION', 'BUCKET', 'BASKET', 'BOTTLE',
+            'BATTERY', 'MACHINE', 'ENGINE', 'FACTORY', 'WORKSHOP', 'BUILDING', 'STADIUM', 'AIRPORT',
+            'GROCERY', 'BAKERY', 'LIBRARY', 'GALLERY', 'THEATER', 'CONCERT', 'FESTIVAL', 'PARADE',
+            'CLIMATE', 'TORNADO', 'HURRICANE', 'VOLCANO', 'EARTHQUAKE', 'AVALANCHE', 'TSUNAMI',
+            'BICYCLE', 'SCOOTER', 'MOTORCYCLE', 'AIRPLANE', 'HELICOPTER',
+            'COMPASS', 'LANTERN', 'BACKPACK', 'COMPASS', 'ANCHOR', 'RUDDER', 'PADDLE', 'OARLOCK',
+            'BLANKET', 'HAMMOCK', 'SHELTER', 'CAMPFIRE', 'BONFIRE', 'FIREWORK', 'SPARKLER', 'CANDLE',
+            'PAINTER', 'SCULPTOR', 'MUSICIAN', 'SINGER', 'DANCER', 'JUGGLER', 'ACROBAT', 'CLOWN',
+            'HOSPITAL', 'CLINIC', 'DOCTOR', 'DENTIST', 'SURGEON', 'PHARMACY', 'BANDAGE', 'MEDICINE',
+            'MOUNTAIN', 'HILLSIDE', 'VALLEY', 'CANYON', 'PLATEAU', 'MEADOW', 'PRAIRIE', 'SAVANNA',
+            'SANDWICH', 'HOTDOG', 'BURGER', 'NOODLE', 'DUMPLING', 'TACO', 'BURRITO', 'WAFFLE',
+            'POCKET', 'ZIPPER', 'BUTTON', 'BUCKLE', 'VELCRO', 'RIBBON', 'THREAD', 'FABRIC',
+            'CHAPTER', 'NOVEL', 'POETRY', 'JOURNAL', 'DIARY', 'NOTEBOOK', 'ALBUM', 'SCRAPBOOK',
+            'HELMET', 'GOGGLES', 'GLOVES', 'MITTENS', 'SCARF', 'JACKET', 'SWEATER', 'CARDIGAN',
+            'MARKER', 'CRAYON', 'PENCIL', 'ERASER', 'RULER', 'STAPLER', 'BINDER', 'FOLDER',
+            'PRINTER', 'SCANNER', 'KEYBOARD', 'MONITOR', 'SPEAKER', 'WEBCAM', 'ROUTER', 'MODEM',
+            'PUPPET', 'DOLLHOUSE', 'BLOCKS', 'PUZZLE', 'MARBLE', 'DOMINO', 'CHECKERS', 'CHESS',
+            'BANDANA', 'BEANIE', 'FEDORA', 'BERET', 'VISOR', 'BONNET', 'TURBAN', 'TRILBY'
         ],
         hard: [
-            'BEAUTIFUL', 'WONDERFUL', 'IMPORTANT', 'DIFFERENT', 'INTERESTING', 'ADVENTURE', 'EDUCATION', 'KNOWLEDGE', 'STRENGTH', 'HAPPINESS',
+            'BEAUTIFUL', 'WONDERFUL', 'IMPORTANT', 'DIFFERENT', 'ADVENTURE', 'EDUCATION', 'KNOWLEDGE', 'STRENGTH', 'HAPPINESS',
             'CHOCOLATE', 'HAMBURGER', 'SPAGHETTI', 'SANDWICH', 'BREAKFAST', 'VEGETABLE', 'STRAWBERRY', 'PINEAPPLE', 'WATERMELON', 'BLUEBERRY',
             'COMPUTER', 'TELEPHONE', 'TELEVISION', 'REFRIGERATOR', 'MICROWAVE', 'YESTERDAY', 'TOMORROW', 'BIRTHDAY', 'CELEBRATE', 'UNDERSTAND',
-            'FANTASTIC', 'EXCELLENT', 'BRILLIANT', 'CHAMPION', 'TREASURE', 'MYSTERY', 'DICTIONARY', 'LIBRARY', 'UNIVERSE', 'BUTTERFLY',
-            'ELEPHANT', 'CROCODILE', 'KANGAROO', 'PARROT', 'PEACOCK', 'SYMPHONY', 'ORCHESTRA', 'MAGAZINE', 'NEWSPAPER', 'HOLIDAY'
+            'FANTASTIC', 'EXCELLENT', 'BRILLIANT', 'CHAMPION', 'TREASURE', 'MYSTERY', 'DICTIONARY', 'LIBRARY', 'UNIVERSE',
+            'CROCODILE', 'KANGAROO', 'PEACOCK', 'SYMPHONY', 'ORCHESTRA', 'MAGAZINE', 'NEWSPAPER', 'HOLIDAY',
+            'SKYSCRAPER', 'PLAYGROUND', 'BASKETBALL', 'VOLLEYBALL', 'BASEBALL', 'FOOTBALL', 'SWIMMING', 'GYMNASTICS',
+            'SAXOPHONE', 'TROMBONE', 'CLARINET', 'HARMONICA', 'ACCORDION', 'XYLOPHONE', 'TAMBOURINE', 'TRIANGLE',
+            'MATHEMATICS', 'GEOGRAPHY', 'CHEMISTRY', 'PHYSICS', 'BIOLOGY', 'ASTRONOMY', 'ARCHAEOLOGY', 'PSYCHOLOGY',
+            'ARCHITECTURE', 'ENGINEERING', 'TECHNOLOGY', 'PHILOSOPHY', 'LITERATURE', 'PHOTOGRAPHY', 'SCULPTURE', 'PAINTING',
+            'GOVERNMENT', 'PRESIDENT', 'PARLIAMENT', 'DEMOCRACY', 'COMMUNITY', 'NEIGHBORHOOD', 'CITIZENSHIP', 'VOLUNTEER',
+            'RESTAURANT', 'CAFETERIA', 'SUPERMARKET', 'DEPARTMENT', 'PHARMACY', 'HOSPITAL', 'UNIVERSITY', 'COLLEGE',
+            'THUNDERSTORM', 'SNOWFLAKE', 'RAINDROP', 'SUNSHINE', 'MOONLIGHT', 'STARLIGHT', 'TWILIGHT', 'MIDNIGHT',
+            'EXPEDITION', 'EXPLORATION', 'DISCOVERY', 'INVENTION', 'CREATION', 'INSPIRATION', 'IMAGINATION',
+            'QUARTERBACK', 'GOALKEEPER', 'OUTFIELDER', 'MIDFIELDER', 'GOALKEEPER', 'PITCHER', 'CATCHER', 'SHORTSTOP',
+            'MOTORCYCLE', 'SKATEBOARD', 'ROLLERBLADES', 'SCOOTER', 'HOVERBOARD', 'SEGWAY', 'UNICYCLE', 'TRICYCLE',
+            'CHANDELIER', 'FIREPLACE', 'STAIRCASE', 'BALCONY', 'ELEVATOR', 'ESCALATOR', 'DOORWAY', 'HALLWAY',
+            'SUITCASE', 'BACKPACK', 'BRIEFCASE', 'HANDBAG', 'LUGGAGE', 'DUFFEL', 'MESSENGER', 'TOTE',
+            'PEPPERONI', 'MUSHROOM', 'ANCHOVY', 'JALAPENO', 'PINEAPPLE', 'ARTICHOKE', 'SPINACH', 'BROCCOLI',
+            'BIOGRAPHY', 'AUTOBIOGRAPHY', 'ENCYCLOPEDIA', 'ANTHOLOGY', 'MANUSCRIPT', 'TEXTBOOK', 'HANDBOOK', 'GUIDEBOOK',
+            'INSTRUMENT', 'PERCUSSION', 'WOODWIND', 'STRINGED', 'KEYBOARD', 'ELECTRONIC', 'ACOUSTIC', 'SYMPHONY',
+            'CONSTELLATION', 'HEMISPHERE', 'EQUATOR', 'TROPICS', 'LATITUDE', 'LONGITUDE', 'MERIDIAN', 'TIMEZONE',
+            'SPECTACULAR', 'MAGNIFICENT', 'EXTRAORDINARY', 'REMARKABLE', 'INCREDIBLE', 'PHENOMENAL', 'OUTSTANDING', 'MARVELOUS',
+            'TRANSPORTATION', 'COMMUNICATION', 'ORGANIZATION', 'INFORMATION', 'CELEBRATION', 'DECORATION', 'PRESENTATION', 'REGISTRATION',
+            'RESPONSIBILITY', 'OPPORTUNITY', 'PERSONALITY', 'CREATIVITY', 'PRODUCTIVITY', 'FLEXIBILITY', 'SENSITIVITY', 'RELIABILITY',
+            'REFRIGERATOR', 'DISHWASHER', 'TOASTER', 'BLENDER', 'COFFEEMAKER', 'JUICER', 'GRIDDLE', 'PROCESSOR',
+            'QUARTERBACK', 'LINEBACKER', 'DEFENDER', 'STRIKER', 'FORWARD', 'MIDFIELDER', 'SWEEPER', 'WINGBACK'
         ]
     },
     
@@ -147,6 +208,7 @@ const WordScramble = {
                            autocorrect="off"
                            autocapitalize="characters"
                            spellcheck="false">
+                    <div id="correct-answer-display" class="correct-answer-display"></div>
                 </div>
             </div>
         `;
@@ -190,18 +252,26 @@ const WordScramble = {
     showFeedback(isCorrect) {
         const input = document.getElementById('word-input');
         const container = document.querySelector('.word-input-container');
+        const answerDisplay = document.getElementById('correct-answer-display');
+        const currentWord = this.words[this.currentWordIndex];
         
         // Add feedback class
         if (isCorrect) {
             container.classList.add('correct-feedback');
         } else {
             container.classList.add('wrong-feedback');
+            // Show correct answer
+            if (answerDisplay) {
+                answerDisplay.textContent = currentWord.original;
+                answerDisplay.style.display = 'block';
+            }
         }
         
         // Disable input
         input.disabled = true;
         
-        // Move to next word after delay
+        // Move to next word after delay (1.5s for wrong, 0.8s for correct)
+        const delay = isCorrect ? 800 : 1500;
         setTimeout(() => {
             this.currentWordIndex++;
             
@@ -210,7 +280,7 @@ const WordScramble = {
             } else {
                 this.showResults();
             }
-        }, 800);
+        }, delay);
     },
     
     /**
