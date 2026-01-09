@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <title>jchowlabs</title>
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GBHGE9LDVJ');
+</script>
+
+<body>
+    <header>
+        <div class="brand">
+            <a href="../index.html" class="brand-link">
+                <strong>jchowlabs</strong>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Labs</a></li>
+                <li><a href="../articles.html" class="active">Articles</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="article-content-section">
+            <div class="article-container">
+                <div class="article-hero">
+                    <!-- Placeholder for hero image -->
+                    <img src="../images/icons/aftercheck-how-it-works.gif" alt="AfterCheck" class="article-hero-img">
+                </div>
+                
+                <div class="article-header">
+                    <h1 style="font-size: 2rem;">The Origins of AfterCheck</h1>
+                </div>
+                
+                <div class="article-body">
+                    <p>AfterCheck didn't start as a fact-checking product — it started as a rating system.</p>
+                    
+                    <p>A good friend of mine and I had just built a product focused on pricing security vulnerabilities — essentially a system that rates vulnerabilities in order to derive price estimates for bug bounty programs. Coming off that work, he shared a new idea with me that bubbled up into a rating system for LLM responses across dimensions like security, bias, ethics, safety, and trust.</p>
+                    
+                    <p>I wasn't entirely sure how this would work, but the idea immediately resonated.</p>
+                    
+                    <p>It was the beginning of 2025, and I had just decided to pursue a year of entrepreneurship. We were both early users of LLMs and were running into many of the same issues everyone else was experiencing at the time — hallucinations, factual inaccuracies, biased framing, ethical concerns, and safety-related problems. To be fair, the technology was still in its infancy and evolving rapidly. At the same time, adoption of products like ChatGPT was growing exponentially, which made these issues feel more urgent and worth deeper exploration.</p>
+                    
+                    <p>Classic me, I built a prototype in a week — and it was terrible.</p>
+                    
+                    <p>Not because it didn't work, but because the output was fundamentally unhelpful. The prototype rated each LLM response across bias, ethics, safety, and trust, producing numerical scores for users to interpret. In theory, it delivered the vision. In reality, the scores were too abstract to extract meaningful value from.</p>
+                    
+                    <p>Not all was lost.</p>
+                    
+                    <p>We had a tangible prototype in hand and an idea that felt directionally correct — we just needed to step back and better understand the problem. We spoke with many people we knew who were using LLMs and expanded further through surveys and user studies to understand what they were actually struggling with. The feedback consistently converged on a single concern: <strong>factuality.</strong></p>
+                    
+                    <p>People weren't just worried about whether a response was biased or unsafe — they were struggling to tell whether it was correct. At the time, LLM outputs often sounded authoritative while containing incorrect, outdated, or unsupported claims. Identifying these issues required a skeptical eye, and verification was manual and time-consuming.</p>
+                    
+                    <p>I was already familiar with some of the solutions attempting to address the factuality problem. On one hand, the LLM providers themselves were building safety, trust, and security mechanisms directly into their platforms — largely focused on preventing harmful or unsafe outputs at the point where generation happens.</p>
+                    
+                    <p>On the other hand, a wave of third-party tools began to emerge. These were often standalone websites that required users to copy and paste LLM responses into large input boxes for evaluation. Many focused on detecting whether content was AI-generated versus human-generated, especially as concerns around deepfakes grew. I was not aware of any products tackling the problem of factuality directly, which seemed like a blue ocean opportunity.</p>
+                    
+                    <p>That led us to a more focused question:</p>
+                    
+                    <p><strong>Could we build an easy-to-use product that fact-checks LLM responses quickly and reliably — directly inside the tools people already use?</strong></p>
+                    
+                    <p>The outcome of this question became AfterCheck.</p>
+                    
+                    <h2>Product Overview</h2>
+                    <p>AfterCheck is a Chromium-based browser extension that activates automatically when a user visits the ChatGPT, Claude, or Perplexity site. The extension monitors conversations between the user and the underlying language model so it can capture both the user's question and the model's response.</p>
+                    
+                    <p>When a response is captured, AfterCheck sends the question–response pair for fact-checking, then automatically highlights inaccurate claims directly on the original LLM response. Users can hover over a highlighted claim to see additional context — including a correction, supporting evidence, and a confidence score explaining why the claim was flagged.</p>
+                    
+                    <!-- Placeholder for product demo GIF -->
+                    <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
+                        <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 75%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    
+                    <p>We chose to build AfterCheck as a browser extension because we didn't want users to leave their existing workflow. People are already working inside ChatGPT, Claude, or Perplexity. Asking them to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
+                    
+                    <h2>Architecture</h2>
+                    <p>AfterCheck is composed of two primary components:</p>
+                    <p>(1) a Chromium-based browser extension, and<br>
+                    (2) a backend fact-checking pipeline.</p>
+                    
+                    <!-- Architecture diagram -->
+                    <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
+                        <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 60%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    
+                    <p>Together, these components work to verify the factual accuracy of large language model responses in near real time, directly within the user's existing workflow.</p>
+                    
+                    <p>The browser extension is responsible for everything that happens inside the user's environment. It detects when a user is interacting with ChatGPT, Claude, or Perplexity, captures the relevant question and response, and manages all client-side behavior — from state tracking and response detection to rendering highlights and hover-over tooltips.</p>
+                    
+                    <p>Once a question–response pair is captured, it is sent to the backend fact-checking pipeline. The backend processes the response by extracting individual claims, evaluating their factual accuracy in the context of the original question, and returning structured results. These results indicate which claims may be inaccurate and include confidence scores and supporting evidence.</p>
+                    
+                    <p>When the extension receives this information, it maps the results back onto the original LLM response. Inaccurate or questionable claims are highlighted inline, and hover-over tooltips surface additional context such as corrections, confidence levels, and evidence — all without requiring the user to leave the page or change how they work.</p>
+                    
+                    <p>The following sections will dive deeper into each component.</p>
+                    
+                    <h2>Detecting and Capturing LLM Conversations</h2>
+                    <p>The first step in the AfterCheck journey is detecting when a user initiates a conversation with an LLM and capturing both the user's question and the model's response.</p>
+                    
+                    <p>At a high level, the extension implements site-specific DOM mutation observers that watch for changes on the ChatGPT, Claude, and Perplexity sites. When relevant mutations are detected, the extension uses carefully selected DOM selectors to capture the user's prompt and the corresponding LLM response. These mechanisms are designed to preserve the structure of the response while intentionally ignoring elements that are not fact-checkable, such as images, emojis and code blocks.</p>
+                    
+                    <p>In theory, the implementation is straightforward. In practice…far more complex and nuanced.</p>
+                    
+                    <h3>Platform-Specific DOM Structures</h3>
+                    <p>At first glance, the ChatGPT, Claude, and Perplexity interfaces appear simple — a clean conversational UI with an input box used to interact with an LLM. Behind the scenes, however, the DOM structures that power these interfaces are significantly more complex and differ across platforms.</p>
+                    
+                    <p>The first problem to solve is detection: reliably identifying when a user is actually having a conversation with an LLM. While this sounds straightforward, there are subtle challenges. Conversation windows may already contain historical messages, and pages often include content unrelated to the active conversation, such as navigation panels or conversation libraries.</p>
+                    
+                    <p>To handle this, the extension implements lightweight, site-specific DOM mutation observers that activate when the user is on a ChatGPT, Claude, or Perplexity site. These observers monitor for meaningful DOM changes and act as signals for when a user submits a prompt, when a response begins streaming, and when a conversation is actively progressing.</p>
+                    
+                    <p>Detection alone isn't enough. Once a conversation is identified, the extension must capture the correct content — a significantly harder problem.</p>
+                    
+                    <p>To break this down, we spent time studying the wide variety of response structures produced across LLM platforms and the underlying DOM representations behind them. The goal was to identify reliable patterns that would allow us to extract content consistently while preserving enough structure for downstream processing.</p>
+                    
+                    <p>In practice, LLM responses can take many forms, including:</p>
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>Short, dense paragraphs</li>
+                        <li>Long-form explanatory text</li>
+                        <li>Lists or nested bullet points</li>
+                        <li>Tables with multiple rows and columns</li>
+                        <li>Code blocks</li>
+                        <li>Inline formatting, emojis, images, citations, or other rich elements</li>
+                    </ul>
+                    
+                    <p>Capturing these responses correctly required more than just extracting text. The extension has to normalize content for the fact-checking pipeline — parsing out elements like emojis, images, and code blocks — while still preserving the original structure of the response so inaccurate claims can later be highlighted in the correct location.</p>
+                    
+                    <p>This ultimately led to the development of site-specific selectors and parsing mechanisms for each platform, allowing the extension to reliably detect conversations, capture responses, normalize content for fact-checking, and preserve enough structural context for accurate highlighting.</p>
+                
+                    
+                    <h3>Determining When a Response Is Complete</h3>
+                    <p>Once a conversation is detected, another critical challenge is determining when an LLM response is actually complete before the extension captures it. While this was relatively straightforward on some platforms, it proved far more difficult on others.</p>
+                    
+                    <p>If you pay close attention to how LLMs render responses, you'll notice what we refer to as completion indicators — UI elements such as copy, refresh, share, or feedback buttons. These indicators typically appear only after a response has fully finished generating, making them a useful signal for when the extension can safely treat a response as complete.</p>
+                    
+                    <p>In many cases, these indicators worked well as anchors for completion detection. However, we ran into scenarios where the extension captured responses prematurely — even though no completion indicators were visibly present on the screen.</p>
+                    
+                    <p>It turned out that on some platforms, completion indicators are injected into the DOM alongside the response but remain invisible until generation finishes. From a DOM perspective, the elements were present, but from a UI perspective, they hadn't yet transitioned into view. Relying solely on their existence led to false positives and premature capture.</p>
+                    
+                    <p>To address this, the extension combines completion indicators with additional signals, such as visibility checks and timing heuristics, to reliably determine when a response has truly finished. While standard indicators like copy and share buttons are sufficient on some platforms, others required more creative solutions to avoid premature capture.</p>
+                    
+                    <p>This approach ensures that responses are captured only once generation is complete, even in the presence of invisible UI elements or streaming delays — a small but critical detail that significantly improves reliability.</p>
+                    
+                    <h3>Preventing Duplicate Captures</h3>
+                    <p>Another major challenge is ensuring that the same LLM response is never fact-checked more than once.</p>
+                    
+                    <p>Users scroll through conversations, refresh pages, switch tabs, and revisit prior responses frequently. Without safeguards, the extension could easily re-capture and re-process content that has already been fact-checked — leading not only to redundant backend work, but also to unnecessary consumption of fact-check credits (AfterCheck monetizes with a pay-per-fact check payment model).</p>
+                    
+                    <p>To prevent this, the extension implements a deduplication mechanism based on hash comparisons. Before initiating a fact check, the extension computes a hash of the full question–response pair and compares it against hashes of responses already processed in local storage. If a matching hash is found, the capture is skipped as the core design.</p>
+                    
+                    <p>We experimented with hashing partial content — such as only the first or last few sentences — but found this approach unreliable. Many LLM responses share similar openings or conclusions, which led to collisions and false positives. Given the relatively short length of each response, computing hashes on full responses was far more reliable without significant overhead.</p>
+                    
+                    <p>This deduplication mechanism also enables reliable behavior across page refreshes and tab switches. Even if the DOM is reloaded or the user navigates away and returns, the extension can recognize responses it has already processed and avoid triggering redundant fact checks.</p>
+                    
+                    <p>One edge case we are actively working on involves long-running or historical conversations. Currently, if a user opens a lengthy conversation that has not been fact-checked before, the extension may begin fact-checking the entire visible conversation. To improve this experience, we are developing functionality that allows the extension to detect newly surfaced content and ask users for confirmation before initiating fact checks on large or previously unseen conversations.</p>
+                    
+                    <h3>Handling Tab Switching and Page Refreshes</h3>
+                    <p>Modern browsers introduce additional complexity when users switch tabs or refresh pages. Background tabs may throttle JavaScript execution, delay DOM updates, or pause observers altogether.</p>
+                    
+                    <p>The extension is designed to continue tracking DOM mutations even when the user navigates away mid-response. This ensures that responses are still captured and fact-checked correctly once generation completes — even if it happens in the background.</p>
+                    
+                    <p>Again, the deduplication logic ensures that refreshing the page does not trigger redundant fact checks for content that has already been processed.</p>
+                    
+                    <h3>User Feedback and Control During Capture</h3>
+                    <p>Once a response is detected and queued for fact-checking, the extension provides immediate visual feedback. A progress indicator and spinner let the user know that a fact check is in progress.</p>
+                    
+                    <p>Users also retain control:</p>
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>Fact-checking can be disabled entirely via a toggle</li>
+                        <li>A hold-to-cancel interaction allows users to abort a fact check they're not interested in</li>
+                    </ul>
+                    
+                    <p>These controls ensure the extension feels assistive rather than intrusive, while still operating automatically by default.</p>
+                    
+                    <h2>The Fact-Checking Pipeline</h2>
+                    <p>Once the browser extension captures a complete question–response pair, it sends that data to the backend fact-checking pipeline. While the inner workings of this pipeline are proprietary, the high-level flow can be summarized in three steps:</p>
+                    
+                    <ol style="margin-left: 20px; padding-left: 20px; margin-bottom: 20px;">
+                        <li style="margin-bottom: 15px;"><strong>Claim Extraction</strong> - LLM responses are broken down into individual claims. Each claim is treated as a discrete factual assertion rather than as part of a single block of text, since a single response may contain a mix of correct, incorrect, or ambiguous statements.</li>
+                        <li style="margin-bottom: 15px;"><strong>Factuality Evaluation</strong> - Each claim is evaluated for factual accuracy using a proprietary fact-checking pipeline. Claims are assessed in the context of the original user question, allowing for more nuanced judgments than evaluating statements in isolation.</li>
+                        <li style="margin-bottom: 20px;"><strong>Verdict Generation</strong> - For each claim, the pipeline produces a true / false verdict based on confidence scoring mechanism. Claims that fall below a defined threshold are flagged as potentially inaccurate, and include corrections and evidence to support the verdict.</li>
+                    </ol>
+                    
+                    <p>The resulting data is packaged into a structured format and returned to the browser extension. From there, the extension maps these results back onto the original LLM response, highlighting inaccurate claims and surfacing additional context through hover-over tooltips.</p>
+                    
+                    <h2>Highlighting Inaccurate Claims</h2>
+                    <p>Once the extension receives results from the backend fact-checking pipeline, it moves into one of the most visible — and technically challenging — stages of the system: highlighting inaccurate claims back in the original LLM response.</p>
+                    
+                    <p>From the user's perspective, the goal is simple. Inaccurate claims should be clearly highlighted, and hovering over a highlighted span should surface additional context — including a correction, a confidence score, and supporting evidence. Achieving this reliably across different platforms and response structures was another engineering challenge.</p>
+                    
+                    <h3>A Multi-Stage Highlighting Algorithm</h3>
+                    <p>Once fact-checking results return from the backend, the extension must determine where — and how — to apply highlights within the original LLM response. This turns out to be another engineering challenge: less precise highlighting gives the perception of a lower quality product in the eyes of the end-user.</p>
+                    
+                    <p>At a high level, highlighting is difficult because extracted claims can vary widely in how closely they resemble the original text. In some cases, a claim maps directly back to a contiguous span of text. In others, the relationship is far more indirect — spread across multiple sentences, paraphrased, or implied through context rather than explicitly stated.</p>
+                    
+                    <p>Because of this variability, the system relies on a multi-stage highlighting algorithm rather than a single matching strategy.</p>
+                    
+                    <p>The first stage attempts an exact phrase match. If an extracted claim corresponds directly to a verbatim span in the LLM response, the extension can confidently highlight that span. This is the simplest and most precise case, and when it works, it produces clean and intuitive highlights.</p>
+                    
+                    <p>However, exact matches are often the exception rather than the rule.</p>
+                    
+                    <p>LLMs frequently paraphrase information, restructure sentences, or distribute claims across multiple parts of a response. A single factual assertion may be expressed using different wording, split across sentences, or implied through surrounding context. In these cases, an exact phrase match fails.</p>
+                    
+                    <p>When that happens, the algorithm progresses to additional stages that use fuzzy matching and related alignment techniques to infer where the claim most likely originated. These stages reason about similarity rather than identity, allowing the extension to locate the best candidate region of text even when wording differs.</p>
+                    
+                    <p>The goal of the multi-stage approach is not to find any match, but to find the most semantically appropriate place to apply a highlight — minimizing false positives while ensuring that genuinely problematic claims are surfaced.</p>
+                    
+                    <p>To make this possible, the algorithm needs a structured way to reason about text boundaries and meaning. This is where the concept of atomic blocks becomes foundational.</p>
+                    
+                    <h3>Atomic Blocks: Defining Meaningful Highlight Boundaries</h3>
+                    <p>Rather than operating on raw character offsets or arbitrary DOM nodes, the extension works with atomic blocks — discrete, meaningful units of content such as sentences, list items, or table cells.</p>
+                    
+                    <p>Atomic blocks provide a semantic layer between the extracted claims and the raw DOM. They ensure that highlights are applied to coherent units of meaning rather than fragmented or misleading spans of text.</p>
+                    
+                    <p>For example, a claim like "AfterCheck is a browser extension" should map cleanly to a single sentence or list item — not be split across formatting boundaries or DOM elements. Atomic blocks make it possible to reason about text in a way that aligns with how humans read and interpret content.</p>
+                    
+                    <p>Once claims are matched against atomic blocks, the extension can apply highlights confidently, even when claims are paraphrased or distributed across complex response structures.</p>
+                    
+                    <h3>Filtering Non-Fact-Checkable Content</h3>
+                    <p>Before claims can be matched and highlighted, the extension must first determine what not to consider.</p>
+                    
+                    <p>Not all content in an LLM response is suitable for fact-checking. Some elements are inherently non-factual, ambiguous, or outside the scope of what a factuality system can reasonably evaluate. To avoid misleading or confusing highlights, the extension explicitly filters out several categories of content during capture and highlighting.</p>
+                    
+                    <p>These include:</p>
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>Code blocks, where correctness depends on execution context or intent</li>
+                        <li>Generated images or videos, which cannot be fact-checked as textual claims</li>
+                        <li>Purely decorative or UI elements, such as icons or interface controls</li>
+                    </ul>
+                    
+                    <p>By excluding these elements early, the system narrows its focus to text-based factual assertions — the type of content where fact-checking is both meaningful and actionable. This filtering also simplifies downstream processing by reducing noise and ambiguity during claim extraction and highlighting.</p>
+                    
+                    <h3>Accounting for Platform-Specific Structure</h3>
+                    <p>Even after content has been normalized into atomic blocks, structural differences across platforms still matter.</p>
+                    
+                    <p>Each supported LLM interface presents content differently, and responses often blend multiple structures within a single answer. A claim may appear as a list item, a table cell, or several sentences deep inside a dense paragraph. In some cases, the subject of a claim is introduced early, while the factual assertion appears much later and relies on implicit references.</p>
+                    
+                    <p>The highlighting algorithm must account for these structural nuances when mapping claims back to text. This requires awareness of how atomic blocks relate to one another within the broader response — for example, understanding that multiple sentences belong to the same conceptual paragraph, or that a table row represents a distinct factual unit.</p>
+                    
+                    <p>By preserving enough structural context from the original DOM, the extension can accurately place highlights in a way that feels intuitive to users, even when responses are complex or deeply nested.</p>
+                    
+                    <h3>Adapting to Constant UI Changes</h3>
+                    <p>One final challenge is that none of these platforms are static.</p>
+                    
+                    <p>The DOM structures of ChatGPT, Claude, and Perplexity evolve over time as each product iterates on its interface. New layouts are introduced, existing elements change, and response structures shift. A highlighting strategy that works perfectly today may break tomorrow if it relies too heavily on brittle assumptions.</p>
+                    
+                    <p>To remain resilient, the extension is designed to tolerate ongoing UI changes. Site-specific selectors and parsing logic are continuously updated as interfaces evolve, and the highlighting pipeline is built to fail gracefully rather than produce incorrect or misleading highlights.</p>
+                    
+                    <p>When a new LLM response is detected, any highlights from a previous response are cleared and the latest results are applied fresh. This ensures users always see highlights that correspond to the most recent interaction, even as the underlying UI changes.</p>
+                    
+                    <h3>Closing the Loop for the User</h3>
+                    <p>When all of these pieces come together, the experience feels intentionally simple.</p>
+                    
+                    <p>Inaccurate or questionable claims are highlighted directly in the LLM response. Hovering over a highlighted span reveals the correction, confidence score, and supporting evidence — all inline, contextual, and without leaving the page.</p>
+                    
+                    <p>Despite the complexity behind the scenes — from DOM mutation detection to atomic blocks to multi-stage matching — the outcome is minimal by design: a clear, intuitive way for users to see what may be wrong in an LLM response and understand why.</p>
+                    
+                    <h2>What We've Learned Along the Way</h2>
+                    <p>It's been an amazing journey evolving AfterCheck into what it is today — and even more rewarding to see how people are using it and deriving value from it every day.</p>
+                    
+                    <p>What started as an internal experiment quickly became a learning process shaped by real users. Early on, a small group of friends and family helped us iterate on the experience, pressure-test the value, and challenge our assumptions. As the product matured, we expanded feedback through broader surveys and controlled beta testing. Over time, interest began to grow organically — people weren't just curious to test AfterCheck, they wanted to use it as part of their actual workflow.</p>
+                    
+                    <p>One pattern became clear very quickly: people who rely on LLM outputs for real work cared deeply about factuality — but only if verification was effortless.</p>
+                    
+                    <p>Researchers and academic users were among the first to adopt AfterCheck in meaningful ways. Many already used LLMs for exploratory research, synthesis, or background understanding, but struggled to confidently separate sound claims from subtle inaccuracies. Inline highlights helped them quickly identify which parts of a response deserved closer scrutiny, making LLMs more useful as research aids — not because the models became perfect, but because uncertainty became visible.</p>
+                    
+                    <p>We saw similar behavior from lawyers and other knowledge-intensive professionals. When reviewing LLM-generated summaries of cases, laws, or principles, small inaccuracies or outdated references can matter a great deal. AfterCheck didn't replace expertise, but it helped surface where deeper verification was needed — especially in nuanced or high-stakes scenarios.</p>
+                    
+                    <p>Across all of these use cases, one lesson stood out: inline matters.</p>
+                    
+                    <p>Tools that required users to leave ChatGPT, Claude, or Perplexity — even when they offered similar functionality — struggled to see sustained adoption. Copying and pasting responses into separate websites added friction and broke focus. AfterCheck worked differently because it stayed in context. By surfacing factual signals directly on the response itself, verification became a natural extension of the interaction rather than an extra step. Many users described the highlights as a kind of "heat map" — an immediate visual cue for where attention was needed.</p>
+                    
+                    <h2>Closing Thoughts</h2>
+                    <p>AfterCheck didn't start as a fact-checking product. It started as a broader exploration of trust — how to evaluate LLM responses across dimensions like safety, bias, ethics, and reliability. Over time, through personal use, conversations, and surveys, that exploration converged on a simple but powerful insight: factuality is where trust breaks down most often — and where better tooling can have immediate impact.</p>
+                    
+                    <p>There's still a lot of work ahead. Improving accuracy, reliability, and scalability is an ongoing process. But one lesson has remained consistent throughout this journey: trust in AI systems doesn't come from eliminating mistakes entirely. It comes from making uncertainty visible and verification effortless.</p>
+                    
+                    <p>If your interested in trying the product, check it out <a href="https://www.aftercheck.ai" target="_blank">www.aftercheck.ai</a>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© jchowlabs</p>
+    </footer>
+    
+</body>
+</html
