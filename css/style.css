@@ -406,6 +406,10 @@ footer p {
     padding: 60px;
     box-sizing: border-box;
 }
+.oddy-image {
+    padding: 42px;
+    box-sizing: border-box;
+}
 .featured-image::after {
     content: '';
     position: absolute;
