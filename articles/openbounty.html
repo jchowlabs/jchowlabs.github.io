@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <title>jchowlabs</title>
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GBHGE9LDVJ');
+</script>
+
+<body>
+    <header>
+        <div class="brand">
+            <a href="../index.html" class="brand-link">
+                <strong>jchowlabs</strong>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Labs</a></li>
+                <li><a href="../articles.html">Articles</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../connect.html">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="article-content-section">
+            <div class="article-container">
+                <div class="article-hero">
+                    <!-- Placeholder for hero image -->
+                    <img src="../images/icons/openbounty.gif" alt="Open Bounty" class="article-hero-img" style="object-fit: contain; max-height: 500px;">
+                </div>
+                
+                <div class="article-header">
+                    <h1 style="font-size: 2rem;">Building a Pricing Engine from Scratch</h1>
+                </div>
+                
+                <div class="article-body">
+                    <p>Here's an interesting question: <strong>how would you price a security vulnerability?</strong></p>
+                    
+                    <p>That was the question a friend and fellow classmate posed to me during our graduate studies. I thought about it for a long time. The more I thought about it, the more nuanced and difficult the problem became. Pricing a vulnerability isn't just about severity — it's about context, impact, incentives, uncertainty, and many other micro factors that can significantly influence the final price.</p>
+                    
+                    <p>When the opportunity came to explore this idea as part of our capstone project, I couldn't resist building something from scratch.</p>
+                    
+                    <p>The outcome of that work became Open Bounty — a pricing engine that estimates the value of security vulnerabilities using real-world bug bounty data.</p>
+                    
+                    <h2>Why Pricing Vulnerabilities Is Hard</h2>
+                    <p>At its core, Open Bounty explores a fundamental asymmetry in security: the gap between bug hunters who discover vulnerabilities and the organizations running bug bounty programs to incentivize responsible disclosure.</p>
+                    
+                    <p>If you're unfamiliar with bug bounty programs, they exist to encourage researchers to report vulnerabilities rather than sell or exploit them. In theory, everyone benefits. In practice, pricing vulnerabilities is difficult and sometimes results in undesirable outcomes.</p>
+                    
+                    <p>From an organization's perspective, payouts must be high enough to motivate disclosure, but not so high that they create misaligned incentives or become unsustainable. From a researcher's perspective, limited transparency makes it hard to know whether a vulnerability is being fairly valued.</p>
+                    
+                    <p>The challenge is that vulnerability pricing is rarely linear. A vulnerability's value depends on far more than its severity score alone. For example:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li><strong>High severity, low impact:</strong> a serious flaw in a rarely used feature may pose limited real-world risk</li>
+                        <li><strong>Low severity, high impact:</strong> a seemingly minor issue in a critical or widely used system can be extremely valuable</li>
+                        <li><strong>Context-dependent impact:</strong> where and how a vulnerability can be exploited often matters more than the category it falls into</li>
+                        <li><strong>Organization size and resources:</strong> larger, well-funded companies often pay more than smaller organizations for similar issues</li>
+                        <li><strong>Program norms:</strong> payouts for similar vulnerabilities can vary widely across different bug bounty programs</li>
+                        <li><strong>Perceived risk:</strong> subjective assessments of potential damage can influence final payouts</li>
+                    </ul>
+                    
+                    <p>As a result, two nearly identical vulnerabilities can receive very different rewards depending on the vendor or program involved. From the outside, this can make pricing feel arbitrary, even when decisions are made in good faith.</p>
+                    
+                    <p>This complexity is what made the problem compelling. Open Bounty wasn't about finding a single "correct" price — it was about understanding the patterns hidden in historical payouts and exploring whether those patterns could be surfaced in a useful, data-driven way.</p>
+                    
+                    <h2>A Data-Driven Approach</h2>
+                    <p>Once we framed the problem, the next question became obvious: could historical bug bounty payouts provide a useful baseline for pricing vulnerabilities?</p>
+                    
+                    <p>The goal was never to build a perfect or authoritative pricing system. Instead, we wanted to ground estimates in reality — using how vulnerabilities had actually been rewarded in the past — while remaining transparent about where those numbers came from.</p>
+                    
+                    <p>Two principles guided the approach:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li><strong>Real-world data:</strong> estimates should be informed by actual bug bounty payouts, not abstract scoring systems alone</li>
+                        <li><strong>Transparency:</strong> every price estimate should be supported by examples that help users understand why a vulnerability might be valued a certain way</li>
+                    </ul>
+                    
+                    <p>With that framing, the project moved from intuition to implementation. We focused on:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>gathering publicly available bug bounty payout data</li>
+                        <li>cleaning and normalizing that data into a usable dataset</li>
+                        <li>training a model to estimate reasonable price ranges</li>
+                        <li>and building a simple interface that allowed users to explore those estimates alongside real payout examples</li>
+                    </ul>
+                    
+                    <p>At that point, Open Bounty shifted from a conceptual question into an end-to-end product experiment — one that combined data-driven pricing with explainable outputs.</p>
+                    
+                    <h2>Building the Dataset: Learning from Real Bug Bounty Payouts</h2>
+                    <p>The first concrete step was data.</p>
+                    
+                    <p>If Open Bounty was going to estimate vulnerability prices in a meaningful way, it had to be grounded in how vulnerabilities had actually been rewarded in the real world. That meant assembling a dataset of real bug bounty payouts — pulling from publicly disclosed reports, write-ups, and program disclosures across a wide range of companies, industries, and vulnerability types.</p>
+                    
+                    <p>This was also my first real exposure to building a machine-learning–driven product from scratch, and it quickly became clear that the model itself was only a small part of the work.</p>
+                    
+                    <p>The raw data was messy.</p>
+                    
+                    <p>Payouts were reported in different formats. Severity labels varied across programs. Some reports focused heavily on technical detail, while others emphasized impact. Many entries lacked important context altogether. Before any modeling could happen, the data needed to be cleaned, normalized, and made consistent enough to be usable.</p>
+                    
+                    <p>That process involved a series of deliberate tradeoffs:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>Normalizing severity levels and vulnerability categories across programs</li>
+                        <li>Ensuring the dataset was representative across industries, company sizes, and geographies</li>
+                        <li>Reconciling payout ranges, bonuses, and edge cases</li>
+                        <li>Filtering out incomplete or low-signal entries that would introduce noise</li>
+                    </ul>
+                    
+                    <p>This phase was less about achieving perfect coverage and more about building a dataset that was directionally correct. We weren't trying to model every nuance of every program — we were trying to capture broad, meaningful patterns in how vulnerabilities tend to be valued in practice.</p>
+                    
+                    <p>Working through this step was one of the most educational parts of the project. It reinforced a core lesson of applied machine learning: the quality of the output is tightly coupled to the quality — and thoughtfulness — of the data that goes in.</p>
+                    
+                    <p>With a cleaned and representative dataset in place, we could finally move on to the next question: how to turn that data into a pricing model that was both useful and explainable.</p>
+                    
+                    <h2>Turning Data into a Pricing Model</h2>
+                    <p>With a cleaned and representative dataset in place, the next challenge was deciding how to turn that data into a pricing model.</p>
+                    
+                    <p>We quickly learned that predicting a single "correct" payout was unrealistic. The variability across bug bounty programs — and across organizations themselves — was simply too high. Instead, the goal became estimating reasonable price ranges based on a small number of inputs that a researcher would typically know at the time of reporting a vulnerability.</p>
+                    
+                    <p>Those inputs were chosen deliberately. Each one reflected signals commonly used in real-world programs and contributed meaningfully to inference:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>Severity indicators</li>
+                        <li>Impact-related characteristics</li>
+                        <li>Contextual factors learned from historical payout patterns</li>
+                    </ul>
+                    
+                    <p>The model wasn't designed to replace expert judgment. Rather, it provided a data-informed baseline — a way to answer the question:</p>
+                    
+                    <p><strong>"Given similar vulnerabilities in the past, what might this be worth?"</strong></p>
+                    
+                    <p>Just as important as the estimate itself was explainability. From the beginning, we wanted every price range to be supported by real examples of bug bounty payouts that influenced the result. This made the output feel grounded in reality rather than opaque or arbitrary.</p>
+                    
+                    <h2>Designing a Simple Interface</h2>
+                    <p>Once the pricing engine worked, the next challenge was making it usable.</p>
+                    
+                    <p>The interface needed to strike a careful balance. It had to capture enough information about a vulnerability to produce a meaningful estimate, without overwhelming the user with questions. Every input field was intentional — included only if it meaningfully improved inference.</p>
+                    
+                    <p>The resulting UI was intentionally minimal. Users entered a small set of details about a vulnerability, and the system returned:</p>
+                    
+                    <ul style="margin-left: 20px; padding-left: 20px;">
+                        <li>A price estimate or range</li>
+                        <li>A small set of real bug bounty payouts used as reference points</li>
+                    </ul>
+                    
+                    <p>The interface wasn't meant to be definitive or authoritative. It was designed to be fast, intuitive, and transparent — a way to get a quick, data-backed sanity check rather than a final answer.</p>
+                    
+                    <p>Building this layer reinforced an important lesson: even the best model is ineffective if users don't understand or trust its outputs. By pairing estimates with concrete examples, Open Bounty made pricing decisions easier to reason about — not just easier to compute.</p>
+                    
+                    <h2>A Feature We Built — and Chose Not to Ship</h2>
+                    <p>As Open Bounty evolved, an interesting secondary opportunity emerged.</p>
+                    
+                    <p>Because the pricing engine was publicly accessible, we had visibility into aggregate usage patterns — what types of vulnerabilities were being queried, when activity spiked, and which categories appeared most frequently. This naturally led to the question: could this data be useful to organizations themselves?</p>
+                    
+                    <p>We experimented with building an enterprise-facing dashboard that companies could subscribe to. The idea was to provide high-level insights into whether vulnerabilities related to their products or platforms were being searched for, offering an additional signal around potential exposure or researcher interest.</p>
+                    
+                    <p>From a technical perspective, it worked reasonably well. The dashboard surfaced anonymized trends and patterns, and early prototypes demonstrated clear potential value for security teams.</p>
+                    
+                    <p>But over time, we became increasingly uncomfortable with the direction.</p>
+                    
+                    <p>Open Bounty was designed as an open, neutral pricing system — a tool meant to bring transparency to vulnerability valuation. Introducing a paid enterprise layer created the appearance of bias. Even if the system remained technically sound, monetizing access to search patterns risked undermining trust in the pricing engine itself.</p>
+                    
+                    <p>That tradeoff wasn't worth it.</p>
+                    
+                    <p>Ultimately, we decided not to ship the enterprise dashboard. Instead, we kept Open Bounty focused on a single purpose: providing a free, data-backed pricing engine available to anyone on the internet.</p>
+                    
+                    <p>That decision shaped how I think about product design to this day. Sometimes the right choice isn't about what can be built or monetized — it's about what should be built, especially when trust is central to the product's value.</p>
+                    
+                    <h2>What the Project Taught Me</h2>
+                    <p>Open Bounty ended up being one of the most educational projects I've worked on.</p>
+                    
+                    <p>It gave me the opportunity to build a machine learning–driven product completely from scratch — from framing the problem, to gathering and cleaning data, to training and refining a model, and finally building an interface that allowed people to interact with it. Seeing the entire system come together, end to end, was incredibly valuable.</p>
+                    
+                    <p>Beyond the technical aspects, the project highlighted the many nuances involved in building these systems in practice. Data is messy. Tradeoffs are constant. Modeling decisions have downstream effects on usability and trust. And the interface — often treated as an afterthought — plays a critical role in whether a model is actually useful.</p>
+                    
+                    <p>More broadly, Open Bounty reinforced a lesson that has stayed with me since: pricing, trust, and incentives are deeply intertwined. Numbers don't exist in isolation — they shape behavior. Any system that produces estimates or recommendations needs to be designed with that reality in mind.</p>
+                    
+                    <h2>Closing Thoughts</h2>
+                    <p>After shipping Open Bounty and seeing how it was used in the real world, I found myself circling back to the original question my friend had asked me: "How would you price a security vulnerability?"</p>
+                    
+                    <p>Now, I know at least one way to do it :)</p>
+
+                    <p>Get your price estimate at <a href="https://www.openbounty.com" target="_blank">www.openbounty.com</a>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© jchowlabs</p>
+    </footer>
+    
+</body>
+</html>
