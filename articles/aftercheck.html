@@ -93,7 +93,7 @@
                     
                     <!-- Placeholder for product demo GIF -->
                     <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
-                        <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 90%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
                     <p>We chose to build AfterCheck as a browser extension because it allowed us to provide value directly in the tools that our users were already using. Asking users to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
@@ -105,7 +105,7 @@
                     
                     <!-- Architecture diagram -->
                     <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
-                        <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 90%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
                     <p>These components work together to verify the factual accuracy of large language model responses in near real time, directly within the user's existing workflow.</p>
@@ -119,24 +119,28 @@
                     <p>Lets dig a little deeper into how all of this works.</p>
                     
                     <h2>Detecting and Capturing Conversations</h2>
-                    <p>The first step in the AfterCheck journey is detecting when a user initiates a conversation with an LLM, and when the LLM has finished responding to the question.</p>
+                    <p>The first step in the AfterCheck journey is detecting when a user initiates a conversation with an LLM, knowing when the LLM has finished responding to that question, then precisely capturing the question-response pair for fact checking.</p>
                     
-                    <p>At a high level, the extension implements platform specific DOM mutation observers that monitors for changes on ChatGPT, Claude, and Perplexity sites. When relevant mutations are detected, the extension uses site-specific DOM selectors to capture the user's prompt and the corresponding LLM response. The raw responses flows through a few filtering functions before it is sent to our backend for fact checking.</p>
+                    <p>At a high level, there are several established techniques for detecting activity in web applications — each with its own tradeoffs. Options range from monitoring DOM mutations, polling for state changes, or relying on event-based hooks tied to user actions or application lifecycles. Any of these could, in theory, be used to detect when a conversation is happening, determine when a response is complete, and help me capture the resulting content. In practice, each approach differs significantly in signal quality and performance overhead.</p>
                     
-                    <p>In theory, the solution approach is straightforward, but in practice, a little more complex and nuanced.</p>
+                    <p>AfterCheck builds on these techniques to reliably interoperate within ChatGPT, Claude, and Perplexity. The extension combines platform-specific signals and heuristics to identify active conversations and determine when responses are complete.</p>
                     
                     <h3>Understanding the DOM</h3>
-                    <p>ChatGPT, Claude, and Perplexity have simple, conversation-focused interfaces with a single input box for interacting with the underlying LLM. Behind the scenes, however, their DOM structures are moderately complex — and have significant differences in ways that matter for AfterCheck.</p>
+                    <p>At the user level, ChatGPT, Claude, and Perplexity have simple, conversation-focused interfaces with a single input box for interacting with the underlying LLM. Under the hood, their DOM structures are moderately complex — and differ in important ways that matter for AfterCheck.</p>
                     
-                    <p>The first challenge is detection: how do you reliably identify when a conversation is actually happening with an LLM. Seems straight forward but there is subtle nuance I learned along the way. Conversation windows may already contain historical messages, and pages often include content unrelated to the active conversation, such as navigation panels or conversation libraries.</p>
+                    <p>The first challenge is detection: how do you reliably identify when a real conversation is actually happening with an LLM?</p>
                     
-                    <p>To handle this, the extension implements lightweight, site-specific DOM mutation observers that activate when the user is on a ChatGPT, Claude, or Perplexity site. These observers monitor for meaningful DOM changes and act as signals for when a user submits a prompt, when a response begins streaming, and when a conversation is actively progressing.</p>
+                    <p>A natural assumption is you monitor the DOM and treat any mutation as signal of an in-progress conversation. This approach breaks down quickly because LLM interfaces are surprisingly noisy. Some interesting observations include page re-rendering or content re-generation due to LLMs updating their internal state. Analytics, telemetry, and general background UI components also contribute to noisy DOMs that give the illusion of activity when there is none.</p>
                     
-                    <p>Detection alone isn't enough. Once a conversation is identified, the extension must capture the correct content — a significantly harder problem.</p>
+                    <p>Why does this matter? Because reliable detection is what makes inline fact-checking possible in the first place. AfterCheck needs to capture complete question–response pairs for the fact check pipeline to work effectively. The product also operates on a pay-per-fact-check model so pre-mature or partial captures is a requirement. Admittedly, even though strong detection and capture mechanisms are in place, the extension is vulnerable to DOM changes which have happened several times during my evelopment journey.</p>
                     
-                    <p>To break this down, we spent time studying the wide variety of response structures produced across LLM platforms and the underlying DOM representations behind them. The goal was to identify reliable patterns that would allow us to extract content consistently while preserving enough structure for downstream processing.</p>
+                    <p>To solve this, the extension implements lightweight, site-specific DOM mutation observers that activate when the user is on a ChatGPT, Claude, or Perplexity site. Rather than responding to every DOM change, these observers look for specific, high-signal patterns — such as prompt submission events, response streaming behavior, and indicators that a conversation is actively progressing. Only when those signals execute in a specific sequence does the extension proceed with capture.</p>
                     
-                    <p>In practice, LLM responses can take many forms, including:</p>
+                    <p>The second challenge is capture: how do you precisely capture both the user's question and corresponding LLM response.</p>
+                    
+                    <p>To break this down, I studied a vast number of response structures produced across LLM platforms and the underlying DOM representations behind them. The goal was to identify reliable patterns that would allow us to extract content consistently while preserving enough structure for downstream processing.</p>
+                    
+                    <p>Here is high level abstraction on how responses looked like:</p>
                     <ul style="margin-left: 20px; padding-left: 20px;">
                         <li>Short, dense paragraphs</li>
                         <li>Long-form explanatory text</li>
@@ -298,7 +302,7 @@
                     
                     <p>There's still a lot of work ahead. Improving accuracy, reliability, and scalability is an ongoing process. But one lesson has remained consistent throughout this journey: trust in AI systems doesn't come from eliminating mistakes entirely. It comes from making uncertainty visible and verification effortless.</p>
                     
-                    <p>If your interested in trying the product, check it out <a href="https://www.aftercheck.ai" target="_blank">www.aftercheck.ai</a>.</p>
+                    <p>Fun fact - it took 4,500+ questions (and counting) to build and refine AfterCheck to the product it is today :)</p>
                 </div>
             </div>
         </section>
