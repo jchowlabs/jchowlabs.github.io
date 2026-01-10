@@ -154,41 +154,38 @@
                     
                     <p>This ultimately led to the development of site-specific selectors and parsing mechanisms for each platform, allowing the extension to reliably detect conversations, capture responses, normalize content for fact-checking, and preserve enough structural context for accurate highlighting.</p>
                 
-                    
                     <h3>Determining When a Response Is Complete</h3>
-                    <p>Once a conversation is detected, another critical challenge is determining when an LLM response is actually complete before the extension captures it. While this was relatively straightforward on some platforms, it proved far more difficult on others.</p>
+                    <p>Once a conversation is detected, another critical challenge was determining when an LLM response is actually complete. While this was relatively straightforward on some platforms, it proved far more difficult on others.</p>
                     
-                    <p>If you pay close attention to how LLMs render responses, you'll notice what we refer to as completion indicators — UI elements such as copy, refresh, share, or feedback buttons. These indicators typically appear only after a response has fully finished generating, making them a useful signal for when the extension can safely treat a response as complete.</p>
+                    <p>If you pay close attention to how LLMs render responses, you'll notice completion indicators — UI elements such as copy, refresh, share, or feedback buttons. These indicators typically appear only after a response has fully finished generating, making them a reliable indicators on when a response is complete.</p>
                     
-                    <p>In many cases, these indicators worked well as anchors for completion detection. However, we ran into scenarios where the extension captured responses prematurely — even though no completion indicators were visibly present on the screen.</p>
+                    <p>In many cases, these indicators worked well as anchors for completion detection. However, one random day, I encountered pre-mature captures on one of the platforms and could not understand why. When visually observing an in-progress response, I did not see any completion indicators, yet logs told me otherwise.</p>
                     
-                    <p>It turned out that on some platforms, completion indicators are injected into the DOM alongside the response but remain invisible until generation finishes. From a DOM perspective, the elements were present, but from a UI perspective, they hadn't yet transitioned into view. Relying solely on their existence led to false positives and premature capture.</p>
+                    <p>It turned out that on one of the platforms, completion indicators are injected into the DOM alongside the response but remain invisible until generation finishes. From a DOM perspective, the elements were present, but from a UI perspective, they hadn't yet transitioned into view.</p>
                     
                     <p>To address this, the extension combines completion indicators with additional signals, such as visibility checks and timing heuristics, to reliably determine when a response has truly finished. While standard indicators like copy and share buttons are sufficient on some platforms, others required more creative solutions to avoid premature capture.</p>
                     
-                    <p>This approach ensures that responses are captured only once generation is complete, even in the presence of invisible UI elements or streaming delays — a small but critical detail that significantly improves reliability.</p>
-                    
                     <h3>Preventing Duplicate Captures</h3>
-                    <p>Another major challenge is ensuring that the same LLM response is never fact-checked more than once.</p>
+                    <p>Another major challenge was ensuring that the same LLM response is never fact-checked twice.</p>
                     
-                    <p>Users scroll through conversations, refresh pages, switch tabs, and revisit prior responses frequently. Without safeguards, the extension could easily re-capture and re-process content that has already been fact-checked — leading not only to redundant backend work, but also to unnecessary consumption of fact-check credits (AfterCheck monetizes with a pay-per-fact check payment model).</p>
+                    <p>Users scroll through conversations, refresh pages, switch tabs, and revisit prior responses frequently. Without safeguards, the extension could easily re-capture and re-process content that has already been fact-checked — leading not only to redundant backend processing, but also to unnecessary consumption of fact-check credits (AfterCheck monetizes with a pay-per-fact check payment model).</p>
                     
                     <p>To prevent this, the extension implements a deduplication mechanism based on hash comparisons. Before initiating a fact check, the extension computes a hash of the full question–response pair and compares it against hashes of responses already processed in local storage. If a matching hash is found, the capture is skipped as the core design.</p>
                     
-                    <p>We experimented with hashing partial content — such as only the first or last few sentences — but found this approach unreliable. Many LLM responses share similar openings or conclusions, which led to collisions and false positives. Given the relatively short length of each response, computing hashes on full responses was far more reliable without significant overhead.</p>
+                    <p>We experimented with hashing partial content — i.e. hashing only the first or last few sentences of a response — but found this approach unreliable. Many LLM responses share similar openings or conclusions, which led to collisions and false positives. Given the relatively short length of each response, computing hashes on full responses was far more reliable without significant overhead.</p>
                     
-                    <p>This deduplication mechanism also enables reliable behavior across page refreshes and tab switches. Even if the DOM is reloaded or the user navigates away and returns, the extension can recognize responses it has already processed and avoid triggering redundant fact checks.</p>
+                    <p>This deduplication mechanism also enabled reliability across page refreshes and tab switches. Even if the DOM is reloaded or the user navigates away and returns, the extension can recognize responses it has already processed and avoid triggering redundant fact checks.</p>
                     
-                    <p>One edge case we are actively working on involves long-running or historical conversations. Currently, if a user opens a lengthy conversation that has not been fact-checked before, the extension may begin fact-checking the entire visible conversation. To improve this experience, we are developing functionality that allows the extension to detect newly surfaced content and ask users for confirmation before initiating fact checks on large or previously unseen conversations.</p>
+                    <p>One edge case we are actively working on involves long-running or historical conversations. Currently, if a user opens a lengthy conversation that has not been fact-checked before, the extension may begin fact-checking the entire visible conversation. To improve this experience, I'm adding more functionality that detect these longer spans of existing content and give the user a choice on what they want to fact check and what they want to skip.</p>
                     
-                    <h3>Handling Tab Switching and Page Refreshes</h3>
+                    <h3>Tab Switching and Page Refreshes</h3>
                     <p>Modern browsers introduce additional complexity when users switch tabs or refresh pages. Background tabs may throttle JavaScript execution, delay DOM updates, or pause observers altogether.</p>
                     
                     <p>The extension is designed to continue tracking DOM mutations even when the user navigates away mid-response. This ensures that responses are still captured and fact-checked correctly once generation completes — even if it happens in the background.</p>
                     
-                    <p>Again, the deduplication logic ensures that refreshing the page does not trigger redundant fact checks for content that has already been processed.</p>
+                    <p>Our existing deduplication logic was also helpful in ensuring page refreshes did not trigger redundant fact checks for content that had already been processed.</p>
                     
-                    <h3>User Feedback and Control During Capture</h3>
+                    <h3>User Feedback and Controls</h3>
                     <p>Once a response is detected and queued for fact-checking, the extension provides immediate visual feedback. A progress indicator and spinner let the user know that a fact check is in progress.</p>
                     
                     <p>Users also retain control:</p>
@@ -302,7 +299,7 @@
                     
                     <p>There's still a lot of work ahead. Improving accuracy, reliability, and scalability is an ongoing process. But one lesson has remained consistent throughout this journey: trust in AI systems doesn't come from eliminating mistakes entirely. It comes from making uncertainty visible and verification effortless.</p>
                     
-                    <p>Fun fact - it took 4,500+ questions (and counting) to build and refine AfterCheck to the product it is today :)</p>
+                    <p>Fun fact - it took nearly 10,000 questions (and counting) across ChatGPT, Claude and Perplexity to build and refine AfterCheck into the product it is today :)</p>
                 </div>
             </div>
         </section>
