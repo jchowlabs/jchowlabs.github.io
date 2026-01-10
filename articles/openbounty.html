@@ -37,18 +37,22 @@
         </nav>
     </header>
     
-    <main>
-        <section class="article-content-section">
-            <div class="article-container">
-                <div class="article-hero">
+    <main style="display: flex; justify-content: center;">
+        <section class="article-content-section" style="width: 100%; display: flex; justify-content: center;">
+            <div class="article-container" style="max-width: 890px; width: 100%; padding: 0 20px; box-sizing: border-box;">
+                <div class="article-hero" style="border-radius: 16px; overflow: hidden; width: 100%; margin: 0 auto;">
                     <!-- Placeholder for hero image -->
-                    <img src="../images/icons/openbounty.gif" alt="Open Bounty" class="article-hero-img" style="object-fit: contain; max-height: 500px; border-radius: 12px;">
+                    <img src="../images/icons/openbounty.gif" alt="Open Bounty" class="article-hero-img" style="object-fit: contain; max-height: 500px; width: 100%; display: block;">
                 </div>
                 
                 <a href="https://www.openbounty.com" target="_blank" style="text-decoration: none; display: block;">
                     <div style="background: #f0f7ff; border: 1px solid #2563eb; padding: 30px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);">
-                        <p style="margin: 0; font-size: 19px; color: #1a1a1a; line-height: 1.6;">
-                            <strong style="font-size: 20px;">Try it yourself:</strong> Get instant price estimates for security vulnerabilities at <span style="color: #2563eb; font-weight: 600; font-size: 19px;">www.openbounty.com</span>
+                        <p style="margin: 0; font-size: 19px; color: #1a1a1a; line-height: 1.6; display: flex; align-items: center; gap: 8px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                                <path d="M12 2L2 20h20L12 2z" fill="#FFC107" stroke="#FFC107" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M12 9v4M12 17h.01" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span><strong style="font-size: 18px;">Try it yourself:</strong> Get your free price estimate at <span style="color: #2563eb; font-weight: 600; font-size: 19px;">www.openbounty.com.</span></span>
                         </p>
                     </div>
                 </a>

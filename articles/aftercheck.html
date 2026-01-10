@@ -37,9 +37,9 @@
         </nav>
     </header>
     
-    <main>
-        <section class="article-content-section">
-            <div class="article-container">
+    <main style="display: flex; justify-content: center;">
+        <section class="article-content-section" style="width: 100%; display: flex; justify-content: center;">
+            <div class="article-container" style="max-width: 890px; width: 100%; padding: 0 20px; box-sizing: border-box;">
                 <div class="article-hero">
                     <!-- Placeholder for hero image -->
                     <img src="../images/icons/aftercheck-how-it-works.gif" alt="AfterCheck" class="article-hero-img">
@@ -47,8 +47,12 @@
                 
                 <a href="https://www.aftercheck.ai" target="_blank" style="text-decoration: none; display: block;">
                     <div style="background: #f0f7ff; border: 1px solid #2563eb; padding: 30px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);">
-                        <p style="margin: 0; font-size: 19px; color: #1a1a1a; line-height: 1.6;">
-                            <strong style="font-size: 20px;">Try it yourself:</strong> Start fact-checking LLM responses by visiting <span style="color: #2563eb; font-weight: 600; font-size: 19px;">www.aftercheck.ai</span>
+                        <p style="margin: 0; font-size: 19px; color: #1a1a1a; line-height: 1.6; display: flex; align-items: center; gap: 8px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                                <path d="M12 2L2 20h20L12 2z" fill="#FFC107" stroke="#FFC107" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M12 9v4M12 17h.01" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span><strong style="font-size: 18px;">Try it yourself:</strong> Get the AfterCheck extension by visiting <span style="color: #2563eb; font-weight: 600; font-size: 19px;">www.aftercheck.ai.</span></span>
                         </p>
                     </div>
                 </a>
@@ -93,7 +97,7 @@
                     
                     <!-- Placeholder for product demo GIF -->
                     <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
-                        <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 75%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
                     <p>We chose to build AfterCheck as a browser extension because we didn't want users to leave their existing workflow. People are already working inside ChatGPT, Claude, or Perplexity. Asking them to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
@@ -105,7 +109,7 @@
                     
                     <!-- Architecture diagram -->
                     <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
-                        <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 60%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
                     <p>Together, these components work to verify the factual accuracy of large language model responses in near real time, directly within the user's existing workflow.</p>
