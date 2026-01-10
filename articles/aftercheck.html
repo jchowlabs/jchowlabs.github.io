@@ -48,7 +48,7 @@
                 <a href="https://www.aftercheck.ai" target="_blank" style="text-decoration: none; display: block;">
                     <div style="background: #f0f7ff; border: 1px solid #2563eb; padding: 30px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);">
                         <p style="margin: 0; font-size: 19px; color: #1a1a1a; line-height: 1.6; display: flex; align-items: center; gap: 8px;">
-                            <span><strong style="font-size: 18px;">Try yourself:</strong> Get the AfterCheck extension at <span style="color: #2563eb; font-weight: 600; font-size: 19px;">www.aftercheck.ai.</span></span>
+                            <span><strong style="font-size: 17px;">Try yourself:</strong> Get the AfterCheck extension at <span style="color: #2563eb; font-weight: 600; font-size: 17px;">www.aftercheck.ai.</span></span>
                         </p>
                     </div>
                 </a>
@@ -58,36 +58,36 @@
                 </div>
                 
                 <div class="article-body">
-                    <p>AfterCheck didn't start as a fact-checking product — it started as a rating system.</p>
+                    <p>AfterCheck didn't start as a fact-checking product — it started as an LLM rating system.</p>
                     
-                    <p>A good friend of mine and I had just built a product focused on pricing security vulnerabilities — essentially a system that rates vulnerabilities in order to derive price estimates for bug bounty programs. Coming off that work, he shared a new idea with me that bubbled up into a rating system for LLM responses across dimensions like security, bias, ethics, safety, and trust.</p>
+                    <p>A friend of mine and I had just built a product focused on pricing security vulnerabilities — a system that rates security vulnerabilities in order to derive price estimates for bug bounty programs. Coming off that work, he shared a new idea with me that bubbled up to a rating system for LLM responses across dimensions like security, bias, ethics, safety, and trust.</p>
                     
-                    <p>I wasn't entirely sure how this would work, but the idea immediately resonated.</p>
+                    <p>I wasn't entirely sure how this would work, but the idea resonated.</p>
                     
-                    <p>It was the beginning of 2025, and I had just decided to pursue a year of entrepreneurship. We were both early users of LLMs and were running into many of the same issues everyone else was experiencing at the time — hallucinations, factual inaccuracies, biased framing, ethical concerns, and safety-related problems. To be fair, the technology was still in its infancy and evolving rapidly. At the same time, adoption of products like ChatGPT was growing exponentially, which made these issues feel more urgent and worth deeper exploration.</p>
+                    <p>It was the beginning of 2025, and I had just began my year of entrepreneurship. We were both early users of LLMs and encountered many of the same issues everyone else was experiencing along the way — hallucinations, factual inaccuracies, biased framing, ethical concerns, and safety-related problems. To be fair, the technology was still in its infancy and evolving rapidly. But at the same time, adoption of products like ChatGPT, Claude and Perplexity were growing exponentially, which made these issues feel more urgent and worth deeper exploration.</p>
                     
                     <p>Classic me, I built a prototype in a week — and it was terrible.</p>
                     
-                    <p>Not because it didn't work, but because the output was fundamentally unhelpful. The prototype rated each LLM response across bias, ethics, safety, and trust, producing numerical scores for users to interpret. In theory, it delivered the vision. In reality, the scores were too abstract to extract meaningful value from.</p>
+                    <p>Not because it didn't work, but because the output was fundamentally unhelpful. The prototype rated each LLM response across bias, ethics, safety, and trust, producing numerical scores for users to interpret. The prototype delivered on the requirements, but in reality, the scores were too abstract for the general user to derive any meaningful value from it.</p>
                     
                     <p>Not all was lost.</p>
                     
-                    <p>We had a tangible prototype in hand and an idea that felt directionally correct — we just needed to step back and better understand the problem. We spoke with many people we knew who were using LLMs and expanded further through surveys and user studies to understand what they were actually struggling with. The feedback consistently converged on a single concern: <strong>factuality.</strong></p>
+                    <p>We had a tangible prototype and an idea that still felt directionally correct — we just needed to refine our understanding of the problem. In classic product management fashion, we started observing how people were using LLMs and focused on nuances where the LLM output triggered some form of skepticism and more importantly, what they naturally did as a result. Patterns were emerging, which we further confirmed through broader but more focused surveys. The feedback consistently converged on a single concern: <strong>factuality.</strong></p>
                     
-                    <p>People weren't just worried about whether a response was biased or unsafe — they were struggling to tell whether it was correct. At the time, LLM outputs often sounded authoritative while containing incorrect, outdated, or unsupported claims. Identifying these issues required a skeptical eye, and verification was manual and time-consuming.</p>
+                    <p>People weren't just worried about whether a response was biased or unsafe — they were struggling to tell whether elements within it were correct. At the time, LLM outputs often sounded confident while containing incorrect, outdated, or unsupported claims. As a result, identifying these issues required constant skepticism and a tendency toward excessive, manual, and time-consuming verification.</p>
                     
-                    <p>I was already familiar with some of the solutions attempting to address the factuality problem. On one hand, the LLM providers themselves were building safety, trust, and security mechanisms directly into their platforms — largely focused on preventing harmful or unsafe outputs at the point where generation happens.</p>
+                    <p>I was already familiar with solutions attempting to address these problems. On one hand, the LLM providers themselves were building safety, trust, and security mechanisms directly into their platforms — largely focused on preventing harmful or unsafe outputs at the point where generation happens.</p>
                     
-                    <p>On the other hand, a wave of third-party tools began to emerge. These were often standalone websites that required users to copy and paste LLM responses into large input boxes for evaluation. Many focused on detecting whether content was AI-generated versus human-generated, especially as concerns around deepfakes grew. I was not aware of any products tackling the problem of factuality directly, which seemed like a blue ocean opportunity.</p>
+                    <p>On the other hand, a wave of third-party tools were also emerging. They were often simple websites with input boxes for users to paste LLM responses into. Many focused on detecting whether content was human versus AI-generated, with some specializing in deepfake detection. I was not aware of any products tackling the factuality problem head on, which seemed like a blue ocean opportunity.</p>
                     
-                    <p>That led us to a more focused question:</p>
+                    <p>All of this led us to a more focused set of questions:</p>
                     
                     <p><strong>Could we build an easy-to-use product that fact-checks LLM responses quickly and reliably — directly inside the tools people already use?</strong></p>
                     
-                    <p>The outcome of this question became AfterCheck.</p>
+                    <p>The outcome of these questions became AfterCheck.</p>
                     
                     <h2>Product Overview</h2>
-                    <p>AfterCheck is a Chromium-based browser extension that activates automatically when a user visits the ChatGPT, Claude, or Perplexity site. The extension monitors conversations between the user and the underlying language model so it can capture both the user's question and the model's response.</p>
+                    <p>AfterCheck is a Chromium-based browser extension that automatically activates when a user visits ChatGPT, Claude, or Perplexity sites. The extension monitors conversations between the user and the underlying language model so it can capture both the user's question and the model's response.</p>
                     
                     <p>When a response is captured, AfterCheck sends the question–response pair for fact-checking, then automatically highlights inaccurate claims directly on the original LLM response. Users can hover over a highlighted claim to see additional context — including a correction, supporting evidence, and a confidence score explaining why the claim was flagged.</p>
                     
@@ -96,39 +96,39 @@
                         <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
-                    <p>We chose to build AfterCheck as a browser extension because we didn't want users to leave their existing workflow. People are already working inside ChatGPT, Claude, or Perplexity. Asking them to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
+                    <p>We chose to build AfterCheck as a browser extension because it allowed us to provide value directly in the tools that our users were already using. Asking users to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
                     
                     <h2>Architecture</h2>
                     <p>AfterCheck is composed of two primary components:</p>
                     <p>(1) a Chromium-based browser extension, and<br>
-                    (2) a backend fact-checking pipeline.</p>
+                    (2) a proprietary backend fact-checking pipeline.</p>
                     
                     <!-- Architecture diagram -->
                     <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
                         <img src="../images/icons/aftercheck-diagram.png" alt="AfterCheck Architecture" style="width: 85%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
-                    <p>Together, these components work to verify the factual accuracy of large language model responses in near real time, directly within the user's existing workflow.</p>
+                    <p>These components work together to verify the factual accuracy of large language model responses in near real time, directly within the user's existing workflow.</p>
                     
                     <p>The browser extension is responsible for everything that happens inside the user's environment. It detects when a user is interacting with ChatGPT, Claude, or Perplexity, captures the relevant question and response, and manages all client-side behavior — from state tracking and response detection to rendering highlights and hover-over tooltips.</p>
                     
-                    <p>Once a question–response pair is captured, it is sent to the backend fact-checking pipeline. The backend processes the response by extracting individual claims, evaluating their factual accuracy in the context of the original question, and returning structured results. These results indicate which claims may be inaccurate and include confidence scores and supporting evidence.</p>
+                    <p>Once a question–response pair is captured, it is sent to a backend fact-checking pipeline. At a high level, the backend first extracts claims from the response, provides a true / false verdict for each claim in the context of the original question, then returns the results back to the extension.</p>
                     
-                    <p>When the extension receives this information, it maps the results back onto the original LLM response. Inaccurate or questionable claims are highlighted inline, and hover-over tooltips surface additional context such as corrections, confidence levels, and evidence — all without requiring the user to leave the page or change how they work.</p>
+                    <p>The extension parses the results, then generates a map of the original response so that inaccurate claims can be highlighted. Highlighted claims include hover-over tooltips that provide additional context such as corrections, confidence levels, and evidence — all without requiring the user to leave their conversation.</p>
                     
-                    <p>The following sections will dive deeper into each component.</p>
+                    <p>Lets dig a little deeper into how all of this works.</p>
                     
-                    <h2>Detecting and Capturing LLM Conversations</h2>
-                    <p>The first step in the AfterCheck journey is detecting when a user initiates a conversation with an LLM and capturing both the user's question and the model's response.</p>
+                    <h2>Detecting and Capturing Conversations</h2>
+                    <p>The first step in the AfterCheck journey is detecting when a user initiates a conversation with an LLM, and when the LLM has finished responding to the question.</p>
                     
-                    <p>At a high level, the extension implements site-specific DOM mutation observers that watch for changes on the ChatGPT, Claude, and Perplexity sites. When relevant mutations are detected, the extension uses carefully selected DOM selectors to capture the user's prompt and the corresponding LLM response. These mechanisms are designed to preserve the structure of the response while intentionally ignoring elements that are not fact-checkable, such as images, emojis and code blocks.</p>
+                    <p>At a high level, the extension implements platform specific DOM mutation observers that monitors for changes on ChatGPT, Claude, and Perplexity sites. When relevant mutations are detected, the extension uses site-specific DOM selectors to capture the user's prompt and the corresponding LLM response. The raw responses flows through a few filtering functions before it is sent to our backend for fact checking.</p>
                     
-                    <p>In theory, the implementation is straightforward. In practice…far more complex and nuanced.</p>
+                    <p>In theory, the solution approach is straightforward, but in practice, a little more complex and nuanced.</p>
                     
-                    <h3>Platform-Specific DOM Structures</h3>
-                    <p>At first glance, the ChatGPT, Claude, and Perplexity interfaces appear simple — a clean conversational UI with an input box used to interact with an LLM. Behind the scenes, however, the DOM structures that power these interfaces are significantly more complex and differ across platforms.</p>
+                    <h3>Understanding the DOM</h3>
+                    <p>ChatGPT, Claude, and Perplexity have simple, conversation-focused interfaces with a single input box for interacting with the underlying LLM. Behind the scenes, however, their DOM structures are moderately complex — and have significant differences in ways that matter for AfterCheck.</p>
                     
-                    <p>The first problem to solve is detection: reliably identifying when a user is actually having a conversation with an LLM. While this sounds straightforward, there are subtle challenges. Conversation windows may already contain historical messages, and pages often include content unrelated to the active conversation, such as navigation panels or conversation libraries.</p>
+                    <p>The first challenge is detection: how do you reliably identify when a conversation is actually happening with an LLM. Seems straight forward but there is subtle nuance I learned along the way. Conversation windows may already contain historical messages, and pages often include content unrelated to the active conversation, such as navigation panels or conversation libraries.</p>
                     
                     <p>To handle this, the extension implements lightweight, site-specific DOM mutation observers that activate when the user is on a ChatGPT, Claude, or Perplexity site. These observers monitor for meaningful DOM changes and act as signals for when a user submits a prompt, when a response begins streaming, and when a conversation is actively progressing.</p>
                     
