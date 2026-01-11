@@ -213,9 +213,9 @@
                     <p>From the user's perspective, the goal is simple. Inaccurate claims should be clearly highlighted, and hovering over a highlighted span should surface additional context — including a correction, a confidence score, and supporting evidence. Achieving this reliably across different platforms and response structures was another engineering challenge.</p>
                     
                     <h3>A Multi-Stage Highlighting Algorithm</h3>
-                    <p>Once fact-checking results return from the backend, the extension must determine where — and how — to apply highlights within the original LLM response. This turns out to be another engineering challenge: less precise highlighting gives the perception of a lower quality product in the eyes of the end-user.</p>
+                    <p>Once results are returned from the fact-checking pipeline, the extension must determine where — and how — to highlight inaccurate claims in the original response. This turned into a significant engineering challenge for a number of reasons.</p>
                     
-                    <p>At a high level, highlighting is difficult because extracted claims can vary widely in how closely they resemble the original text. In some cases, a claim maps directly back to a contiguous span of text. In others, the relationship is far more indirect — spread across multiple sentences, paraphrased, or implied through context rather than explicitly stated.</p>
+                    <p>At a high level, claims can vary widely in how closely they resemble the original text. In some cases, a claim maps directly back to a contiguous span of text. In others, the relationship is far more indirect — spread across multiple sentences, paraphrased, or implied through context rather than explicitly stated.</p>
                     
                     <p>Because of this variability, the system relies on a multi-stage highlighting algorithm rather than a single matching strategy.</p>
                     
