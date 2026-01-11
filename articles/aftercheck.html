@@ -60,11 +60,9 @@
                 <div class="article-body">
                     <p>AfterCheck didn't start as a fact-checking product — it started as an LLM rating system.</p>
                     
-                    <p>A friend of mine and I had just built a product focused on pricing security vulnerabilities — a system that rates security vulnerabilities in order to derive price estimates for bug bounty programs. Coming off that work, he shared a new idea with me that bubbled up to a rating system for LLM responses across dimensions like security, bias, ethics, safety, and trust.</p>
+                    <p>A friend and I had just built a product focused on pricing security vulnerabilities — a system that rates security vulnerabilities in order to derive price estimates for bug bounty programs. Coming off that work, we riffed on a new idea that bubbled up to a rating system for LLM responses across dimensions like security, bias, ethics, safety, and trust.</p>
                     
-                    <p>I wasn't entirely sure how this would work, but the idea resonated.</p>
-                    
-                    <p>It was the beginning of 2025, and I had just began my year of entrepreneurship. We were both early users of LLMs and encountered many of the same issues everyone else was experiencing along the way — hallucinations, factual inaccuracies, biased framing, ethical concerns, and safety-related problems. To be fair, the technology was still in its infancy and evolving rapidly. But at the same time, adoption of products like ChatGPT, Claude and Perplexity were growing exponentially, which made these issues feel more urgent and worth deeper exploration.</p>
+                    <p>It was the beginning of 2025, and I had just began my year of entrepreneurship. We were both early users of LLMs and encountered the same issues many others were experiencing — hallucinations, factual inaccuracies, biased framing, ethical concerns, and safety-related problems. To be fair, the technology was still in its infancy and evolving rapidly. But at the same time, adoption of products were growing exponentially, which made these issues feel more urgent and worth deeper exploration.</p>
                     
                     <p>Classic me, I built a prototype in about a week — and it was terrible.</p>
                     
@@ -96,7 +94,41 @@
                         <img src="../images/icons/aftercheck-demo.gif" alt="AfterCheck demonstration" style="width: 90%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     
-                    <p>We chose to build AfterCheck as a browser extension because it allowed us to provide value directly in the tools that our users were already using. Asking users to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
+                    <p>So how do we arrive at this solution and design that ultimately became AfterCheck?</p>
+                    
+                    <h2>Data-Driven Design</h2>
+                    <p>AfterCheck started with a little bit of wondering.</p>
+                    
+                    <p>We wanted to build something that felt genuinely useful — not just for others, but for ourselves. As frequent LLM users, we kept running into responses that sounded confident yet felt slightly off. Rather than overanalyzing the problem upfront, we took a direct approach: build small prototypes, try them in our own workflows, and see whether they actually helped.</p>
+                    
+                    <p>This put us into a natural rhythm of building, using, and refining. Early experiments helped sharpen our intuition around what felt valuable and what didn't. But personal experience alone wasn't enough. To make sure we weren't just solving a problem we personally cared about, we expanded outward and looked for broader signals.</p>
+                    
+                    <p>We ran surveys and shared early concepts with other LLM users, asking focused questions designed to understand where trust broke down in practice and what kinds of tools would meaningfully help.</p>
+                    
+                    <p>We first looked at how often users noticed factual inaccuracies in LLM responses. The data showed that inaccuracies were commonly encountered, with a non-trivial group seeing them frequently. </p>
+                    
+                    <!-- Placeholder for noticing factual inaccuracies / need to verify LLM responses -->
+                    <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
+                        <img src="../images/icons/notice-inaccuracies.png" alt="Noticing factual inaccuracies in LLM responses" style="width: 450px; max-width: 100%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    
+                    <p>We then asked users what they would find most valuable if a solution existed to address the issues they were noticing with LLMs. The signal here was clear: factuality mattered far more than any other dimension.</p>
+                    
+                    <!-- Placeholder for preference for factual correctness over abstract ratings -->
+                    <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
+                        <img src="../images/icons/value-features.png" alt="Preference for factual correctness over abstract ratings" style="width: 450px; max-width: 100%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    
+                    <p>We also explored whether users were willing to rely on an independent, third-party tool to fact-check LLM responses. The results suggested strong openness to adding a verification layer alongside existing tools — particularly when it operated directly within the user's workflow and focused solely on surfacing potential inaccuracies.</p>
+                    
+                    <!-- Placeholder for third-party tool willingness -->
+                    <div class="article-image-placeholder" style="text-align: center; margin-bottom: 30px;">
+                        <img src="../images/icons/third-party-tool.png" alt="User willingness to use third-party fact-checking tools" style="width: 450px; max-width: 100%; display: inline-block; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    
+                    <p>Taken together, these signals helped narrow our focus. Rather than evaluating entire responses or scoring trust holistically, the most immediate value came from identifying factual issues at the claim level and surfacing them inline — exactly where users were already working.</p>
+                    
+                    <p>This combination of building for ourselves and validating with real-world feedback ultimately shaped AfterCheck into what it is today. With that direction established, the next challenge was figuring out how to implement it reliably — which brings us to the system architecture and the technical decisions behind it.</p>
                     
                     <h2>Architecture</h2>
                     <p>AfterCheck consists of two main components:</p>
