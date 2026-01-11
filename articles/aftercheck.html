@@ -99,7 +99,7 @@
                     <p>We chose to build AfterCheck as a browser extension because it allowed us to provide value directly in the tools that our users were already using. Asking users to copy and paste responses into a separate website introduces friction, breaks focus, and makes verification feel optional. We saw this pattern in early fact-checking tools, and it simply didn't fit how people actually use LLMs.</p>
                     
                     <h2>Architecture</h2>
-                    <p>AfterCheck consists of two primary components:</p>
+                    <p>AfterCheck consists of two main components:</p>
                     <p>(1) a Chromium-based browser extension, and<br>
                     (2) a proprietary fact-checking pipeline.</p>
                     
@@ -140,17 +140,17 @@
                     
                     <p>To break this down, I studied a vast number of response structures produced across LLM platforms and the underlying DOM representations behind them. The goal was to identify reliable patterns that would allow us to extract content consistently while preserving enough structure for downstream processing.</p>
                     
-                    <p>Here is high level abstraction on how responses looked like:</p>
+                    <p>Here are the high level patterns:</p>
                     <ul style="margin-left: 20px; padding-left: 20px;">
                         <li>Short, dense paragraphs</li>
                         <li>Long-form explanatory text</li>
                         <li>Lists or nested bullet points</li>
                         <li>Tables with multiple rows and columns</li>
                         <li>Code blocks</li>
-                        <li>Inline formatting, emojis, images, citations, or other rich elements</li>
+                        <li>Inline formatting, emojis, images, citations, or other enhancing elements</li>
                     </ul>
                     
-                    <p>Capturing these responses correctly required more than just extracting text. The extension has to normalize content for the fact-checking pipeline — parsing out elements like emojis, images, and code blocks — while still preserving the original structure of the response so inaccurate claims can later be highlighted in the correct location.</p>
+                    <p>Capturing complete responses requires more than just extracting text. In additional to preserving the structure, we also needto normalize content for the fact-checking pipeline — parsing out elements like emojis, images, and code blocks — while still preserving the original structure of the response so inaccurate claims can later be highlighted in the correct location.</p>
                     
                     <p>This ultimately led to the development of site-specific selectors and parsing mechanisms for each platform, allowing the extension to reliably detect conversations, capture responses, normalize content for fact-checking, and preserve enough structural context for accurate highlighting.</p>
                 
@@ -174,7 +174,7 @@
                     
                     <p>We experimented with hashing partial content — i.e. hashing only the first or last few sentences of a response — but found this approach unreliable. Many LLM responses share similar openings or conclusions, which led to collisions and false positives. Given the relatively short length of each response, computing hashes on full responses was far more reliable without significant overhead.</p>
                     
-                    <p>This deduplication mechanism also enabled reliability across page refreshes and tab switches. Even if the DOM is reloaded or the user navigates away and returns, the extension can recognize responses it has already processed and avoid triggering redundant fact checks.</p>
+                    <p>This deduplication mechanism also enabled reliability across page refreshes and tab switches. Even if the DOM is reloaded or the user navigates away and returns, the extension recognizes responses it has already processed so it can avoid redundant fact checks.</p>
                     
                     <p>One edge case we are actively working on involves long-running or historical conversations. Currently, if a user opens a lengthy conversation that has not been fact-checked before, the extension may begin fact-checking the entire visible conversation. To improve this experience, I'm adding more functionality that detect these longer spans of existing content and give the user a choice on what they want to fact check and what they want to skip.</p>
                     
@@ -186,23 +186,23 @@
                     <p>Our existing deduplication logic was also helpful in ensuring page refreshes did not trigger redundant fact checks for content that had already been processed.</p>
                     
                     <h3>User Feedback and Controls</h3>
-                    <p>Once a response is detected and queued for fact-checking, the extension provides immediate visual feedback. A progress indicator and spinner let the user know that a fact check is in progress.</p>
+                    <p>Once a response is detected and queued for fact-checking, the extension implements several visual mechanisms as well controls that inform the user what is happening: </p>
                     
-                    <p>Users also retain control:</p>
                     <ul style="margin-left: 20px; padding-left: 20px;">
-                        <li>Fact-checking can be disabled entirely via a toggle</li>
-                        <li>A hold-to-cancel interaction allows users to abort a fact check they're not interested in</li>
+                        <li>A toggle with multiple visual queues include progress rings and status indicators</li>
+                        <li>An ability to cancel in-progress fact checks via holding the toggle for 3 seconds</li>
+                        <li>Toggles to globally disable fact-checking or auto-highlighting</li>
                     </ul>
                     
                     <p>These controls ensure the extension feels assistive rather than intrusive, while still operating automatically by default.</p>
                     
                     <h2>The Fact-Checking Pipeline</h2>
-                    <p>Once the browser extension captures a complete question–response pair, it sends that data to the backend fact-checking pipeline. While the inner workings of this pipeline are proprietary, the high-level flow can be summarized in three steps:</p>
+                    <p>Once the extension captures a complete question–response pair, it sends that data to the fact-checking pipeline. While the inner workings of this pipeline are proprietary, the high-level flow can be summarized in three steps:</p>
                     
                     <ol style="margin-left: 20px; padding-left: 20px; margin-bottom: 20px;">
                         <li style="margin-bottom: 15px;"><strong>Claim Extraction</strong> - LLM responses are broken down into individual claims. Each claim is treated as a discrete factual assertion rather than as part of a single block of text, since a single response may contain a mix of correct, incorrect, or ambiguous statements.</li>
-                        <li style="margin-bottom: 15px;"><strong>Factuality Evaluation</strong> - Each claim is evaluated for factual accuracy using a proprietary fact-checking pipeline. Claims are assessed in the context of the original user question, allowing for more nuanced judgments than evaluating statements in isolation.</li>
-                        <li style="margin-bottom: 20px;"><strong>Verdict Generation</strong> - For each claim, the pipeline produces a true / false verdict based on confidence scoring mechanism. Claims that fall below a defined threshold are flagged as potentially inaccurate, and include corrections and evidence to support the verdict.</li>
+                        <li style="margin-bottom: 15px;"><strong>Factuality Evaluation</strong> - Each claim is evaluated for factual accuracy using a proprietary fact-checking pipeline. Claims are assessed in the context of the  question, allowing for more nuanced judgments than evaluating statements in isolation.</li>
+                        <li style="margin-bottom: 20px;"><strong>Verdict Generation</strong> - A true or false verdict is assigned to each claim based on scoring mechanism. Claims that fall below a threshold are flagged as inaccurate while others are noted as accurate.</li>
                     </ol>
                     
                     <p>The resulting data is packaged into a structured format and returned to the browser extension. From there, the extension maps these results back onto the original LLM response, highlighting inaccurate claims and surfacing additional context through hover-over tooltips.</p>
@@ -279,7 +279,7 @@
                     
                     <p>Despite the complexity behind the scenes — from DOM mutation detection to atomic blocks to multi-stage matching — the outcome is minimal by design: a clear, intuitive way for users to see what may be wrong in an LLM response and understand why.</p>
                     
-                    <h2>What We've Learned Along the Way</h2>
+                    <h2>Learnings Along the Way</h2>
                     <p>It's been an amazing journey evolving AfterCheck into what it is today — and even more rewarding to see how people are using it and deriving value from it every day.</p>
                     
                     <p>What started as an internal experiment quickly became a learning process shaped by real users. Early on, a small group of friends and family helped us iterate on the experience, pressure-test the value, and challenge our assumptions. As the product matured, we expanded feedback through broader surveys and controlled beta testing. Over time, interest began to grow organically — people weren't just curious to test AfterCheck, they wanted to use it as part of their actual workflow.</p>
