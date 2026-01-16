@@ -57,3 +57,41 @@ function handleSubmit(e) {
 document.getElementById('contactModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
+
+// Hamburger menu toggle
+function toggleMenu() {
+    const nav = document.querySelector('nav');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+// Close mobile menu when clicking on a link
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Don't close if it's the contact modal link
+            if (!this.getAttribute('onclick')?.includes('openModal')) {
+                const nav = document.querySelector('nav');
+                const hamburger = document.querySelector('.hamburger');
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('nav');
+        const hamburger = document.querySelector('.hamburger');
+        if (nav.classList.contains('active') && 
+            !nav.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            nav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    });
+});

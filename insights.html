@@ -207,7 +207,7 @@
         
         @media (max-width: 768px) {
             header {
-                padding: 20px 24px;
+                padding: 16px 24px;
             }
             
             header::after {
@@ -216,7 +216,7 @@
             }
             
             footer {
-                padding: 20px 24px;
+                padding: 16px 24px;
             }
             
             footer::before {
@@ -225,11 +225,78 @@
             }
             
             .content-page main {
-                padding: 20px 40px;
+                padding: 24px 20px;
+            }
+            
+            .article-featured-img {
+                height: 100px !important;
+            }
+            
+            .article-featured-img img {
+                transform: scale(1) !important;
+            }
+            
+            .article-featured-body {
+                padding: 18px;
+            }
+            
+            .article-featured h3 {
+                font-size: 17px;
+            }
+            
+            .article-featured p {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+            
+            .article-row {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .article-row-img {
+                width: 50px !important;
+                height: 50px !important;
+                margin-left: 0 !important;
+            }
+            
+            .article-row-img img {
+                transform: scale(1) !important;
+            }
+            
+            .article-row-content h3 {
+                font-size: 15px !important;
+            }
+            
+            .article-row-content p {
+                font-size: 13px !important;
+            }
+            
+            .article-row-content .meta {
+                font-size: 9.5px !important;
             }
             
             .articles-more {
                 grid-template-columns: 1fr;
+            }
+            
+            .article-mini {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-featured-img {
+                height: 80px !important;
+            }
+            
+            .article-row-img {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .article-row-content h3 {
+                font-size: 14px !important;
             }
         }
     </style>
@@ -266,6 +333,11 @@
 <div class="page-wrapper content-page">
     <header>
         <a href="index.html" class="brand">jchowlabs</a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>

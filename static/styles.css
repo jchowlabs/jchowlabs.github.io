@@ -62,6 +62,38 @@ nav a:hover, nav a.active {
     font-size: 13px;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* Footer */
 footer {
     padding: 20px 48px;
@@ -475,3 +507,205 @@ footer span {
     font-size: 13px;
     color: #888;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Hamburger Menu */
+    .hamburger {
+        display: flex;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding-top: 80px;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        padding: 20px;
+    }
+    
+    nav li {
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    nav a {
+        display: block;
+        padding: 16px 12px;
+        font-size: 16px;
+    }
+    
+    nav a.active {
+        background: none;
+        color: #1a1a1a;
+        font-weight: 600;
+    }
+    
+    /* Header adjustments */
+    header {
+        padding: 16px 24px;
+    }
+    
+    .brand {
+        font-size: 18px;
+    }
+    
+    /* Footer adjustments */
+    footer {
+        padding: 16px 24px;
+    }
+    
+    /* Home page */
+    .home main {
+        padding: 40px 24px;
+    }
+    
+    .home h1 {
+        font-size: 32px;
+    }
+    
+    .home main > p {
+        font-size: 15px;
+    }
+    
+    /* Content pages */
+    .content-page main {
+        padding: 24px 20px;
+    }
+    
+    /* Articles layout for insights and research */
+    .articles-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    /* Featured article - reduce image size */
+    .article-featured-img {
+        height: 100px;
+    }
+    
+    .article-featured-body {
+        padding: 20px;
+    }
+    
+    .article-featured h3 {
+        font-size: 18px;
+    }
+    
+    .article-featured p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    
+    /* Article rows - smaller images, more content space */
+    .article-row {
+        padding: 14px;
+        gap: 12px;
+    }
+    
+    .article-row-img {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+    
+    .article-row-content h3 {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+    
+    .article-row-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .article-row-content .meta {
+        font-size: 10px;
+    }
+    
+    /* More articles grid */
+    .articles-more {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .article-mini {
+        padding: 16px;
+    }
+    
+    .article-mini h4 {
+        font-size: 15px;
+    }
+    
+    .article-mini p {
+        font-size: 13px;
+    }
+    
+    /* Partners grid */
+    .partners-page main {
+        padding: 24px 20px;
+    }
+    
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .partner-card {
+        padding: 20px;
+    }
+    
+    /* Modal */
+    .modal {
+        padding: 32px 24px;
+        margin: 20px;
+    }
+    
+    .modal h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even smaller screens */
+    .home h1 {
+        font-size: 28px;
+    }
+    
+    /* Very compact layout for small screens */
+    .article-featured-img {
+        height: 80px;
+    }
+    
+    .article-row-img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .article-row-content h3 {
+        font-size: 15px;
+    }
+    
+    .article-row-content p {
+        font-size: 13px;
+    }
+    
+    .partners-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

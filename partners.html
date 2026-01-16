@@ -126,6 +126,71 @@
             padding-left: 80px;
             padding-right: 80px;
         }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+            
+            header::after {
+                left: 24px;
+                right: 24px;
+            }
+            
+            footer {
+                padding: 16px 24px;
+            }
+            
+            footer::before {
+                left: 24px;
+                right: 24px;
+            }
+            
+            .partners-page main {
+                padding: 24px 20px;
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+            }
+            
+            .partner-card {
+                padding: 24px;
+            }
+            
+            .partner-logo {
+                height: 80px !important;
+            }
+            
+            .partner-logo img {
+                transform: scale(0.88) !important;
+            }
+            
+            /* Reduce size of larger logos */
+            .partner-card:nth-child(1) .partner-logo img,
+            .partner-card:nth-child(4) .partner-logo img,
+            .partner-card:nth-child(5) .partner-logo img,
+            .partner-card:nth-child(6) .partner-logo img,
+            .partner-card:nth-child(7) .partner-logo img,
+            .partner-card:nth-child(8) .partner-logo img,
+            .partner-card:nth-child(9) .partner-logo img,
+            .partner-card:nth-child(11) .partner-logo img,
+            .partner-card:nth-child(12) .partner-logo img,
+            .partner-card:nth-child(13) .partner-logo img,
+            .partner-card:nth-child(14) .partner-logo img,
+            .partner-card:nth-child(16) .partner-logo img,
+            .partner-card:nth-child(17) .partner-logo img,
+            .partner-card:nth-child(20) .partner-logo img {
+                transform: scale(0.6) !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .partner-logo {
+                height: 70px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -160,6 +225,11 @@
 <div class="page-wrapper partners-page">
     <header>
         <a href="index.html" class="brand">jchowlabs</a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
