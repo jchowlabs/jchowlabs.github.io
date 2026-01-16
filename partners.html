@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jchowlabs</title>
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .brand {
+            font-size: 20px;
+        }
+        
+        nav a {
+            font-size: 14px;
+        }
+        
+        header {
+            border-bottom: none;
+            position: relative;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        footer {
+            border-top: none;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        /* Active navigation styling */
+        nav a.active {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .modal h2,
+        .modal > p {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 8px;
+        }
+        
+        .field-error {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 0;
+        }
+        
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #dc2626;
+        }
+        
+        .partner-logo {
+            background: transparent !important;
+            width: 100%;
+            height: 100px;
+        }
+        
+        .partner-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(0.88);
+        }
+        
+        /* Reduce size of larger logos */
+        .partner-card:nth-child(1) .partner-logo img,
+        .partner-card:nth-child(5) .partner-logo img,
+        .partner-card:nth-child(6) .partner-logo img,
+        .partner-card:nth-child(7) .partner-logo img {
+            transform: scale(0.6);
+        }
+        
+        .partner-card h4 {
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .partner-card span {
+            display: none;
+        }
+        
+        .partners-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        
+        .partner-card::before {
+            padding: 1px;
+        }
+        
+        .partners-page {
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .partners-page main {
+            overflow-y: auto;
+            flex: 1;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2>Get in touch</h2>
+        <p>Please tell me a little about your challenges.</p>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
+                <div class="field-error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4"></textarea>
+                <div class="field-error" id="message-error"></div>
+            </div>
+            <button type="submit" class="form-submit">Send message</button>
+        </form>
+    </div>
+</div>
+
+<div class="page-wrapper partners-page">
+    <header>
+        <a href="index.html" class="brand">jchowlabs</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="insights.html">Insights</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="partners.html" class="active">Partners</a></li>
+                <li><a href="#" onclick="openModal(event)">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <div class="partners-grid">
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/aws-logo.png" alt="AWS">
+                </div>
+                <h4>AWS</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/beyond-identity-logo.png" alt="Beyond Identity">
+                </div>
+                <h4>Beyond Identity</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/crowdstrike-logo.png" alt="CrowdStrike">
+                </div>
+                <h4>CrowdStrike</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/cyberark-logo.png" alt="CyberArk">
+                </div>
+                <h4>CyberArk</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/eleven-labs-logo.png" alt="Eleven Labs">
+                </div>
+                <h4>Eleven Labs</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/google-logo.png" alt="Google">
+                </div>
+                <h4>Google</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/hid-logo.png" alt="HID">
+                </div>
+                <h4>HID</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/hypr-logo.webp" alt="Hypr">
+                </div>
+                <h4>Hypr</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/keeper-logo.png" alt="Keeper">
+                </div>
+                <h4>Keeper</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/lastpass-logo.png" alt="LastPass">
+                </div>
+                <h4>LastPass</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/microsoft-logo.png" alt="Microsoft">
+                </div>
+                <h4>Microsoft</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/okta-logo.png" alt="Okta">
+                </div>
+                <h4>Okta</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/oracle-logo.png" alt="Oracle">
+                </div>
+                <h4>Oracle</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/palo-alto-logo.png" alt="Palo Alto Networks">
+                </div>
+                <h4>Palo Alto Networks</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/persona-logo.png" alt="Persona">
+                </div>
+                <h4>Persona</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/ping-logo.png" alt="Ping Identity">
+                </div>
+                <h4>Ping Identity</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/prove-logo.png" alt="Prove">
+                </div>
+                <h4>Prove</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/reality-defender-logo.png" alt="Reality Defender">
+                </div>
+                <h4>Reality Defender</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/soloinsight-logo.png" alt="SoloInsight">
+                </div>
+                <h4>SoloInsight</h4>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="static/vendors/yubico-logo.png" alt="Yubico">
+                </div>
+                <h4>Yubico</h4>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <span>© jchowlabs, llc</span>
+    </footer>
+</div>
+
+<script src="static/app.js"></script>
+
+</body>
+</html>

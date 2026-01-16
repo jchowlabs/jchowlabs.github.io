@@ -3,138 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/favicon.png">
     <title>jchowlabs</title>
-</head>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GBHGE9LDVJ');
-</script>
-
-<body class="home-page">
-    <header>
-        <div class="brand">
-            <a href="index.html" class="brand-link">
-                <strong>jchowlabs</strong>
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Labs</a></li>
-                <li><a href="articles.html">Articles</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="arcade.html">Arcade</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="left-section">
-            <img src="images/jchow_profile.jpeg" alt="Profile Picture" class="profile-pic">
-            <h3>Jason Chow</h3>
-            <p class="profile-description">Bridging academic research with practical solutions to real-world problems.</p>
-            <ul class="contact-links">
-                <li>
-                    <a href="https://calendly.com/jchowlabs/30min" target="_blank">
-                        <img src="images/icons/calendly.png" alt="Calendly" class="contact-icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com/in/jkchow" target="_blank">
-                        <img src="images/icons/linkedin.png" alt="Linkedin" class="contact-icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://youtube.com/@jchowlabs" target="_blank">
-                        <img src="images/icons/youtube.png" alt="Youtube" class="contact-icon">
-                    </a>
-                </li>
-            </ul>
-        </section>
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        /* Index page specific styles */
+        .brand {
+            font-size: 20px;
+        }
         
-        <section class="right-section">
-            <div class="featured-articles">
-                <article class="featured-article">
-                    <a href="articles/aftercheck.html" class="featured-link">
-                        <img src="images/icons/aftercheck-how-it-works.gif" alt="AfterCheck AI" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">AfterCheck - AI Fact Checking Companion</h2>
-                            <p class="featured-subtitle">AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. The extension wraps a customized version of the Open Fact Check framework, and provides inline corrections, evidence, and confidence scores for ultimate transparency.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">AI Safety</span>
-                                <span class="featured-tag">Large Language Models</span>
-                                <span class="featured-tag">Open Fact Check</span>
-                                <span class="featured-tag">Misinformation</span>
-                                <span class="featured-tag">OWASP Top 10</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+        nav a {
+            font-size: 14px;
+        }
+        
+        header {
+            border-bottom: none;
+            position: relative;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        footer {
+            border-top: none;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        /* Active navigation styling */
+        nav a.active {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .home h1 {
+            letter-spacing: 0.01em;
+            line-height: 1.4;
+        }
+        
+        .modal h2,
+        .modal > p {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 8px;
+        }
+        
+        .captcha-placeholder {
+            margin-bottom: 20px;
+            min-height: 78px;
+            border: 1px dashed #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .captcha-placeholder::before {
+            content: 'CAPTCHA';
+        }
+        
+        .field-error {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 0;
+        }
+        
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
 
-                <article class="featured-article">
-                    <a href="https://www.demo-oddy.dev" target="_blank" class="featured-link">
-                        <img src="images/icons/oddy.jpeg" alt="Oddy" class="featured-image oddy-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Oddy - AI Audit Assistant</h2>
-                            <p class="featured-subtitle">Oddy is an AI-powered audit assistant designed to streamline internal audit processes. It leverages AI Agents to streamline redundant tasks such planning, walkthroughs, testing and provides insights around risks.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">AI Audit</span>
-                                <span class="featured-tag">Large Language Models</span>
-                                <span class="featured-tag">ChatBot</span>
-                                <span class="featured-tag">Internal Audit</span>
-                                <span class="featured-tag">AI Agents</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <article class="featured-article">
-                    <a href="articles/openbounty.html" class="featured-link">
-                        <img src="images/icons/openbounty.gif" alt="Open Bounty" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Open Bounty - Pricing Engine for Security Vulnerabilities</h2>
-                            <p class="featured-subtitle">Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards and APIs, giving security professionals real-time insights into trending vulnerabilities, market valuations, and potential exposure.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">Bug Bounty Programs</span>
-                                <span class="featured-tag">Pricing Engine</span>
-                                <span class="featured-tag">Machine Learning</span>
-                                <span class="featured-tag">Security Insights</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <article class="featured-article">
-                    <a href="https://www.jchowlabs.me" target="_blank" class="featured-link">
-                        <img src="images/icons/identitysecurity.gif" alt="Identity Security Lab" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Build your own Identity Provider</h2>
-                            <p class="featured-subtitle">jchowlabs.me is a lightweight identity-as-a-service provider with various authentication methods including passkeys, facial recognition (with liveness detection and anti-spoofing protections), traditional password with MFA, and advanced threat detection. It serves as both an identity provider for my personal projects and a lab for security testing and research.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">Passkeys</span>
-                                <span class="featured-tag">Facial Recognition</span>
-                                <span class="featured-tag">Password + MFA</span>
-                                <span class="featured-tag">Liveness Detection</span>
-                                <span class="featured-tag">Threat Detection</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2>Get in touch</h2>
+        <p>Please tell me a little about your challenges.</p>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
+                <div class="field-error" id="name-error"></div>
             </div>
-        </section>
-    </main>
-    
-    <footer>
-        <p>© jchowlabs</p>
-    </footer>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4"></textarea>
+                <div class="field-error" id="message-error"></div>
+            </div>
+            <button type="submit" class="form-submit">Send message</button>
+        </form>
+    </div>
+</div>
+
+<div class="page-wrapper home">
+        <header>
+            <a href="index.html" class="brand">jchowlabs</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="partners.html">Partners</a></li>
+                    <li><a href="#" onclick="openModal(event)">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Security & AI Advisory<br>for Modern Organizations</h1>
+            <p>Helping organizations navigate complexity.</p>
+            <a href="#" class="btn-main" onclick="openModal(event)">Get in touch</a>
+        </main>
+        <footer>
+            <span>© jchowlabs, LLC</span>
+        </footer>
+    </div>
+</div>
+
+<script src="static/app.js"></script>
+
 </body>
 </html>

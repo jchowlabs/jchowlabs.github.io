@@ -3,123 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/favicon.png">
     <title>jchowlabs</title>
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .brand {
+            font-size: 20px;
+        }
+        
+        nav a {
+            font-size: 14px;
+        }
+        
+        header {
+            border-bottom: none;
+            position: relative;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        footer {
+            border-top: none;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        /* Active navigation styling */
+        nav a.active {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .modal h2,
+        .modal > p {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 8px;
+        }
+        
+        .field-error {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 0;
+        }
+        
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #dc2626;
+        }
+        
+        /* Grid layout improvements */
+        .content-page main {
+            padding: 16px 140px;
+        }
+        
+        .articles-layout {
+            align-items: stretch;
+            margin-bottom: 12px;
+        }
+        
+        .articles-stack {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .article-row {
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .article-row-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        
+        .article-row-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .article-row-content .meta {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-row-img {
+            width: 120px;
+            height: 65px;
+            margin-left: 16px;
+            background: transparent;
+            overflow: visible;
+        }
+        
+        .article-row-img img {
+            object-fit: contain;
+        }
+        
+        .article-row:nth-child(2) .article-row-img img {
+            transform: scale(1.7);
+        }
+        
+        .article-row:nth-child(3) .article-row-img img {
+            transform: scale(1.5);
+        }
+        
+        .article-mini {
+            padding: 18px;
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .article-mini .meta {
+            font-size: 10.5px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-mini h4 {
+            font-size: 15.5px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        
+        .article-mini p {
+            font-size: 13.5px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .article-mini-img {
+            width: 100%;
+            height: 45px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+        
+        .article-mini-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .articles-more {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .articles-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .articles-more {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 24px;
+            }
+            
+            header::after {
+                left: 24px;
+                right: 24px;
+            }
+            
+            footer {
+                padding: 20px 24px;
+            }
+            
+            footer::before {
+                left: 24px;
+                right: 24px;
+            }
+            
+            .content-page main {
+                padding: 20px 40px;
+            }
+            
+            .articles-more {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GBHGE9LDVJ');
-</script>
-
 <body>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2>Get in touch</h2>
+        <p>Please tell me a little about your challenges.</p>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
+                <div class="field-error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4"></textarea>
+                <div class="field-error" id="message-error"></div>
+            </div>
+            <button type="submit" class="form-submit">Send message</button>
+        </form>
+    </div>
+</div>
+
+<div class="page-wrapper content-page">
     <header>
-        <div class="brand">
-            <a href="index.html" class="brand-link">
-                <strong>jchowlabs</strong>
-            </a>
-        </div>
+        <a href="index.html" class="brand">jchowlabs</a>
         <nav>
             <ul>
-                <li><a href="index.html">Labs</a></li>
-                <li><a href="articles.html">Articles</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="insights.html">Insights</a></li>
                 <li><a href="research.html" class="active">Research</a></li>
-                <li><a href="arcade.html">Arcade</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="#" onclick="openModal(event)">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
     <main>
-        <section class="left-section">
-            <img src="images/jchow_profile.jpeg" alt="Profile Picture" class="profile-pic">
-            <h3>Jason Chow</h3>
-            <p class="profile-description">Bridging academic research with practical solutions to real-world problems.</p>
-            <ul class="contact-links">
-                <li>
-                    <a href="https://calendly.com/jchowlabs/30min" target="_blank">
-                        <img src="images/icons/calendly.png" alt="Calendly" class="contact-icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com/in/jkchow" target="_blank">
-                        <img src="images/icons/linkedin.png" alt="Linkedin" class="contact-icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://youtube.com/@jchowlabs" target="_blank">
-                        <img src="images/icons/youtube.png" alt="Youtube" class="contact-icon">
-                    </a>
-                </li>
-            </ul>
-        </section>
-        
-        <section class="right-section">
-            <div class="featured-articles">
-                <article class="featured-article">
-                    <a href="#" class="featured-link">
-                        <img src="images/icons/agentbehavior.png" alt="Autonomous Agent Behavior" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Modeling Autonomous Agent Behavior</h2>
-                            <p class="featured-subtitle">This research explores autonomous agent behavior, focusing on how agents make decisions and distinguish authorized from unauthorized actions. It examines how agents can drift toward malicious behavior and outlines techniques to detect and steer them back on course.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">AI Safety</span>
-                                <span class="featured-tag">Autonomous Agents</span>
-                                <span class="featured-tag">OWASP Top 10</span>
-                                <span class="featured-tag">Behavior Modeling</span>
-                                <span class="featured-tag">AI Guardrails</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
 
-                <article class="featured-article">
-                    <a href="#" class="featured-link">
-                        <img src="images/icons/llm-guardrails.png" alt="LLM Guardrails" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Understanding Guardrails for Autonomous Agents</h2>
-                            <p class="featured-subtitle">This article explores guardrails for autonomous agents, focusing on mechanisms that detect and respond to threats such as tool poisoning, jailbreaking, and higher-level attacks like coercion, persuasion, and goal manipulation. The objective is to build practical intuition for how guardrails can operate in practice, while examining their strengths and limitations.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">AI Guardrails</span>
-                                <span class="featured-tag">Large Language Models</span>
-                                <span class="featured-tag">Safety By Design</span>
-                                <span class="featured-tag">Responsible AI</span>
-                                <span class="featured-tag">AI Safety</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <article class="featured-article">
-                    <a href="#" class="featured-link">
-                        <img src="images/icons/gain-of-function.png" alt="Gain of Function" class="featured-image">
-                        <div class="featured-content">
-                            <h2 class="featured-title">Using Gain-of-Function Techniques to Protect Against Tomorrow's Autonomous Systems</h2>
-                            <p class="featured-subtitle">With recent advancements in AI, autonomous systems may soon be able to develop novel exploits beyond human imagination. Traditional defenses, built around signatures, heuristics, and known indicators of compromise, are insufficient against agents that can reason, adapt, and generate entirely new strategies. Modeling after biology’s gain-of-function research, this article explores how controlled experiments on AI agents can surface hidden failures and unforeseen attack vectors, enabling the design of resilient “digital vaccines” before such threats emerge in the wild.</p>
-                            <div class="featured-tags">
-                                <span class="featured-tag">AI Guardrails</span>
-                                <span class="featured-tag">Gain-of-Function</span>
-                                <span class="featured-tag">Cybersecurity</span>
-                                <span class="featured-tag">Science</span>
-                                <span class="featured-tag">AI Safety</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
+        <div class="articles-layout">
+            <div class="article-featured">
+                <div class="article-featured-img">
+                    <img src="static/images/browser-in-the-middle.png" alt="Defeating FIDO">
+                </div>
+                <div class="article-featured-body">
+                    <span class="tag">Featured</span>
+                    <h3>Defeating FIDO: Understanding the Browser-in-the-Middle Attack</h3>
+                    <p>FIDO (Fast Identity Online) is a set of authentication protocols designed to mitigate phishing and credential theft related attacks. However, an emerging bypass method known as Browser-in-the-Middle (BITM) has raised concerned about its resilience. This article explains how BITM works, why it matters, and what the attack vector means for the future of the FIDO protocol.</p>
+                </div>
             </div>
-        </section>
+
+            <div class="articles-stack">
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/evilginx.png" alt="Phishing Anatomy">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">NOV 2024 · PHISHING</div>
+                        <h3>Anatomy of Phishing Attacks</h3>
+                        <p>A deep dive into sophisticated phishing techniques and how organizations can defend against them.</p>
+                    </div>
+                </div>
+
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/golden-saml-icon.png" alt="Golden SAML">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">OCT 2024 · IDENTITY</div>
+                        <h3>Golden SAML: Bypassing SSO</h3>
+                        <p>Understanding how Golden SAML attacks forge authentication assertions to bypass identity providers.</p>
+                    </div>
+                </div>
+
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/template-inversion.gif" alt="Template Inversion">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">DEC 2024 · BIOMETRICS</div>
+                        <h3>Template Inversion: Reconstructing Biometric Data</h3>
+                        <p>Exploring how attackers can reverse-engineer biometric templates to reconstruct original data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="articles-more">
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Sep 2024</div>
+                    <h4>Prompt Injection</h4>
+                    <p>How untrusted input can manipulate AI systems into violating their intended behavior.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Aug 2024</div>
+                    <h4>Tool-Chain Abuse</h4>
+                    <p>How attackers chain legitimate AI tools and actions to produce malicious outcomes.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Jul 2024</div>
+                    <h4>Adversarial Examples</h4>
+                    <p>How adversarial techniques create deepfakes that deceive humans and bypass detection.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Jun 2024</div>
+                    <h4>Bypassing CAPTCHA</h4>
+                    <p>Modern techniques used to defeat CAPTCHA challenges at scale.</p>
+                </div>
+            </div>
+        </div>
     </main>
-    
     <footer>
-        <p>© jchowlabs</p>
+        <span>© jchowlabs, llc</span>
     </footer>
+</div>
+
+<script src="static/app.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jchowlabs</title>
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .brand {
+            font-size: 20px;
+        }
+        
+        nav a {
+            font-size: 14px;
+        }
+        
+        header {
+            border-bottom: none;
+            position: relative;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        footer {
+            border-top: none;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 48px;
+            right: 48px;
+            height: 1px;
+            background: #f0f0f0;
+        }
+        
+        /* Active navigation styling */
+        nav a.active {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .modal h2,
+        .modal > p {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 8px;
+        }
+        
+        .field-error {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 0;
+        }
+        
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #dc2626;
+        }
+        
+        /* Grid layout improvements */
+        .content-page main {
+            padding: 16px 140px;
+        }
+        
+        .article-featured-img img {
+            transform: scale(0.64);
+        }
+        
+        .articles-layout {
+            align-items: stretch;
+            margin-bottom: 12px;
+        }
+        
+        .articles-stack {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .article-row {
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .article-row-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        
+        .article-row-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .article-row-content .meta {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-row-img {
+            width: 120px;
+            height: 65px;
+            margin-left: 16px;
+            background: transparent !important;
+            overflow: visible;
+        }
+        
+        .article-row-img img {
+            object-fit: contain;
+            background: transparent;
+            transform: scale(1.25);
+        }
+        
+        .articles-stack .article-row:nth-child(3) img {
+            transform: scale(1.5);
+        }
+        
+        .article-mini {
+            padding: 18px;
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .article-mini .meta {
+            font-size: 10.5px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-mini h4 {
+            font-size: 15.5px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        
+        .article-mini p {
+            font-size: 13.5px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .article-mini-img {
+            width: 100%;
+            height: 45px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+        
+        .article-mini-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .articles-more {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .articles-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .articles-more {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 24px;
+            }
+            
+            header::after {
+                left: 24px;
+                right: 24px;
+            }
+            
+            footer {
+                padding: 20px 24px;
+            }
+            
+            footer::before {
+                left: 24px;
+                right: 24px;
+            }
+            
+            .content-page main {
+                padding: 20px 40px;
+            }
+            
+            .articles-more {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2>Get in touch</h2>
+        <p>Please tell me a little about your challenges.</p>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
+                <div class="field-error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4"></textarea>
+                <div class="field-error" id="message-error"></div>
+            </div>
+            <button type="submit" class="form-submit">Send message</button>
+        </form>
+    </div>
+</div>
+
+<div class="page-wrapper content-page">
+    <header>
+        <a href="index.html" class="brand">jchowlabs</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="insights.html" class="active">Insights</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="#" onclick="openModal(event)">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <div class="articles-layout">
+            <div class="article-featured">
+                <div class="article-featured-img">
+                    <img src="static/images/going-passwordless.png" alt="Going Passwordless">
+                </div>
+                <div class="article-featured-body">
+                    <span class="tag">Featured</span>
+                    <h3>The Enterprise Guide to Going Passwordless</h3>
+                    <p>Passwordless authentication represents a fundamental shift in how organizations approach identity security. This comprehensive guide explores the strategic considerations, implementation frameworks, and practical steps for enterprises looking to move beyond traditional passwords. Learn how to evaluate passwordless solutions, navigate the transition challenges, and build a roadmap that aligns with your organization's security and usability goals.</p>
+                </div>
+            </div>
+
+            <div class="articles-stack">
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/trends.png" alt="Security Trends">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">JAN 2025 · STRATEGY</div>
+                        <h3>5 Security Trends Shaping 2026</h3>
+                        <p>Key emerging trends in cybersecurity that will define enterprise security strategies this year.</p>
+                    </div>
+                </div>
+
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/checklist.png" alt="AI Implementation">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">DEC 2024 · AI</div>
+                        <h3>AI Implementation Checklist for Enterprises</h3>
+                        <p>A practical guide for organizations preparing to deploy AI solutions securely and effectively.</p>
+                    </div>
+                </div>
+
+                <div class="article-row">
+                    <div class="article-row-img">
+                        <img src="static/images/zero-trust.png" alt="Zero Trust">
+                    </div>
+                    <div class="article-row-content">
+                        <div class="meta">NOV 2024 · ZERO TRUST</div>
+                        <h3>Building Zero Trust: Where to Start</h3>
+                        <p>Strategic guidance for organizations beginning their zero trust architecture journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="articles-more">
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Oct 2024</div>
+                    <h4>Vendor Evaluation Framework</h4>
+                    <p>A structured approach to assessing security vendors and technology partners.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Sep 2024</div>
+                    <h4>Identity Governance Basics</h4>
+                    <p>Essential principles for managing identity lifecycle and access governance.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Aug 2024</div>
+                    <h4>SSO Migration Playbook</h4>
+                    <p>Step-by-step guidance for transitioning to single sign-on across your organization.</p>
+                </div>
+            </div>
+            <div class="article-mini">
+                <div>
+                    <div class="meta">Jul 2024</div>
+                    <h4>Security ROI for Executives</h4>
+                    <p>Quantifying security investments and communicating value to leadership.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <span>© jchowlabs, llc</span>
+    </footer>
+</div>
+
+<script src="static/app.js"></script>
+
+</body>
+</html>
