@@ -86,6 +86,19 @@
             background: #fff !important;
         }
         
+        .article-featured {
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .article-featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
         .article-featured-img img {
             object-fit: contain;
         }
@@ -104,6 +117,16 @@
         .article-row {
             flex: 1;
             min-height: 0;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .article-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
         
         .article-row-content h3 {
@@ -154,6 +177,16 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .article-mini:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
         
         .article-mini .meta {
@@ -374,7 +407,6 @@
                         <img src="static/images/evilginx.png" alt="Phishing Anatomy">
                     </div>
                     <div class="article-row-content">
-                        <div class="meta">NOV 2024 · PHISHING</div>
                         <h3>Anatomy of Phishing Attacks</h3>
                         <p>A deep dive into sophisticated phishing techniques and how organizations can defend against them.</p>
                     </div>
@@ -385,7 +417,6 @@
                         <img src="static/images/golden-saml-icon.png" alt="Golden SAML">
                     </div>
                     <div class="article-row-content">
-                        <div class="meta">OCT 2024 · IDENTITY</div>
                         <h3>Golden SAML: Bypassing SSO</h3>
                         <p>Understanding how Golden SAML attacks forge authentication assertions to bypass identity providers.</p>
                     </div>
@@ -396,7 +427,6 @@
                         <img src="static/images/template-inversion.gif" alt="Template Inversion">
                     </div>
                     <div class="article-row-content">
-                        <div class="meta">DEC 2024 · BIOMETRICS</div>
                         <h3>Reconstructing Biometric Data</h3>
                         <p>Exploring how attackers can reverse-engineer biometric templates to reconstruct original data.</p>
                     </div>
@@ -407,28 +437,24 @@
         <div class="articles-more">
             <div class="article-mini">
                 <div>
-                    <div class="meta">Sep 2024</div>
                     <h4>Prompt Injection</h4>
                     <p>How untrusted input can manipulate AI systems into violating their intended behavior.</p>
                 </div>
             </div>
             <div class="article-mini">
                 <div>
-                    <div class="meta">Aug 2024</div>
                     <h4>Tool-Chain Abuse</h4>
                     <p>How attackers chain legitimate AI tools and actions to produce malicious outcomes.</p>
                 </div>
             </div>
             <div class="article-mini">
                 <div>
-                    <div class="meta">Jul 2024</div>
                     <h4>Adversarial Examples</h4>
                     <p>How adversarial techniques create deepfakes that deceive humans and bypass detection.</p>
                 </div>
             </div>
             <div class="article-mini">
                 <div>
-                    <div class="meta">Jun 2024</div>
                     <h4>Bypassing CAPTCHA</h4>
                     <p>Modern techniques used to defeat CAPTCHA challenges at scale.</p>
                 </div>
