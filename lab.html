@@ -230,6 +230,31 @@
             border: 1px solid #e5e5e5;
         }
         
+        /* Lab page specific styles */
+        .content-page main .article-featured-img {
+            padding-top: 20px;
+        }
+        
+        .content-page main .article-featured-img img {
+            transform: scale(0.38);
+        }
+        
+        .content-page main .article-featured-body {
+            margin-top: 24px;
+        }
+        
+        .content-page main .article-compact-content {
+            padding: 10px;
+        }
+        
+        .content-page main .article-compact-tags {
+            margin-top: 8px;
+        }
+        
+        .content-page main .article-compact:nth-child(3) .article-compact-img img {
+            transform: scale(0.6);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 1200px) {
             .content-page main {
@@ -354,9 +379,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="insights.html" class="active">Insights</a></li>
+                <li><a href="insights.html">Insights</a></li>
                 <li><a href="research.html">Research</a></li>
-                <li><a href="lab.html">Lab</a></li>
+                <li><a href="lab.html" class="active">Lab</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="#" onclick="openModal(event)">Contact</a></li>
             </ul>
@@ -367,18 +392,17 @@
         <div class="articles-layout">
             <div class="article-featured">
                 <div class="article-featured-img">
-                    <img src="static/images/going-passwordless.png" alt="Going Passwordless">
+                    <img src="static/images/aftercheck.svg" alt="AfterCheck AI">
                 </div>
                 <div class="article-featured-body">
                     <span class="tag">Featured</span>
-                    <h3>The Enterprise Guide to Going Passwordless</h3>
-                    <p>Passwordless authentication represents a fundamental shift in how organizations approach identity security. This comprehensive guide explores the strategic considerations, implementation frameworks, and practical steps for enterprises looking to move beyond traditional passwords. Learn how to evaluate passwordless solutions, navigate the transition challenges, and build a roadmap that aligns with your organization's security and usability goals.</p>
+                    <h3>AfterCheck - AI Fact Checking Companion</h3>
+                    <p>AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. The extension wraps a customized implementation of the Open Fact Check framework, and provides inline corrections, evidence, and confidence scores for ultimate transparency.</p>
                     <div class="article-tags">
-                        <span class="article-tag">Passwordless</span>
-                        <span class="article-tag">FIDO</span>
-                        <span class="article-tag">WebAuthN</span>
-                        <span class="article-tag">Biometrics</span>
-                        <span class="article-tag">Verifiable Credentials</span>
+                        <span class="article-tag">AI Safety</span>
+                        <span class="article-tag">Large Language Models</span>
+                        <span class="article-tag">Open Fact Check</span>
+                        <span class="article-tag">Misinformation</span>
                     </div>
                 </div>
             </div>
@@ -386,60 +410,60 @@
             <div class="articles-grid">
                 <div class="article-compact">
                     <div class="article-compact-img">
-                        <img src="static/images/trends.png" alt="Security Trends">
+                        <img src="static/images/idp.png" alt="Identity Provider">
                     </div>
                     <div class="article-compact-content">
-                        <h3>5 Security Trends Shaping 2026</h3>
-                        <p>Key emerging trends in cybersecurity that are reshaping how enterprises approach identity, access, and risk in 2026. Learn what security leaders should prioritize as AI, automation, and modern controls redefine security strategy.</p>
+                        <h3>Build your own Identity Provider</h3>
+                        <p>A lightweight identity-as-a-service provider with various authentication methods including passkeys, facial recognition (with liveness detection and anti-spoofing protections), traditional password with MFA, and advanced threat detection.</p>
                         <div class="article-compact-tags">
-                            <span class="article-compact-tag">AI Security</span>
-                            <span class="article-compact-tag">Enterprise Risk</span>
-                            <span class="article-compact-tag">Strategy</span>
+                            <span class="article-compact-tag">Passkeys</span>
+                            <span class="article-compact-tag">Facial Recognition</span>
+                            <span class="article-compact-tag">Liveness Detection</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="article-compact">
                     <div class="article-compact-img">
-                        <img src="static/images/ai-agent.png" alt="Security Agents">
+                        <img src="static/images/password-vault.png" alt="Password Manager">
                     </div>
                     <div class="article-compact-content">
-                        <h3>Securing Agents in the Enterprise</h3>
-                        <p>Dive into the intersection of Zero Trust and AI: how to apply identity-centric access policies and observatility controls to autonomous agents, bots, and remediation systems to avoid abuse or lateral movement.</p>
+                        <h3>Build Your Own Password Manager</h3>
+                        <p>A secure password management solution built from scratch, featuring end-to-end encryption, multi-device sync, and biometric authentication. Learn the architecture and security principles behind modern password vaults.</p>
                         <div class="article-compact-tags">
-                            <span class="article-compact-tag">Zero Trust</span>
-                            <span class="article-compact-tag">Observability</span>
-                            <span class="article-compact-tag">Guardrails</span>
+                            <span class="article-compact-tag">Encryption</span>
+                            <span class="article-compact-tag">Security</span>
+                            <span class="article-compact-tag">Password Vault</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="article-compact">
                     <div class="article-compact-img">
-                        <img src="static/images/secure-chatbots.png" alt="Secure Chatbots">
+                        <img src="static/images/openbounty.png" alt="Open Bounty">
                     </div>
                     <div class="article-compact-content">
-                        <h3>Securing Conversational AI</h3>
-                        <p>A practical look at how conversational AI systems introduce new security and data exposure risks. Learn common failure modes and the controls needed to prevent data leakage without degrading user experience.</p>
+                        <h3>Open Bounty - Vulnerability Pricing</h3>
+                        <p>Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards for real-time insights into trending vulnerabilities.</p>
                         <div class="article-compact-tags">
-                            <span class="article-compact-tag">Data Leakage</span>
-                            <span class="article-compact-tag">Privacy</span>
-                            <span class="article-compact-tag">Observability</span>
+                            <span class="article-compact-tag">Bug Bounty</span>
+                            <span class="article-compact-tag">Pricing Engine</span>
+                            <span class="article-compact-tag">Machine Learning</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="article-compact">
                     <div class="article-compact-img">
-                        <img src="static/images/data-leakage.png" alt="Data Leakage">
+                        <img src="static/images/oddy.jpeg" alt="Oddy">
                     </div>
                     <div class="article-compact-content">
-                        <h3>Shadow AI & Data Leakage</h3>
-                        <p>A look at how unsanctioned AI usage and LLM adoption are creating new data leakage risks for enterprises. Learn why shadow AI is difficult to detect, what types of data are most at risk, and how organizations can begin regaining visibility and control.</p>
+                        <h3>Oddy - AI Audit Assistant</h3>
+                        <p>Oddy is an AI-powered audit assistant designed to streamline internal audit processes. It leverages intelligent AI Agents to streamline redundant tasks such planning, walkthroughs, testing and provides insights around risks.</p>
                         <div class="article-compact-tags">
-                            <span class="article-compact-tag">Risk Management</span>
-                            <span class="article-compact-tag">Data Leakage</span>
-                            <span class="article-compact-tag">Governance</span>
+                            <span class="article-compact-tag">AI Audit</span>
+                            <span class="article-compact-tag">Large Language Models</span>
+                            <span class="article-compact-tag">AI Agents</span>
                         </div>
                     </div>
                 </div>
