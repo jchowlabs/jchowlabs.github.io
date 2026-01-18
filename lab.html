@@ -50,10 +50,14 @@
         
         /* Active navigation styling */
         nav a.active {
-            background: #f0f0f0;
+            background: #e0e0e0;
             color: #1a1a1a;
             padding: 8px 16px;
             border-radius: 6px;
+        }
+        
+        nav ul {
+            gap: 24px;
         }
         
         .modal h2,
@@ -105,6 +109,7 @@
             display: flex;
             flex-direction: column;
             min-height: 0;
+            height: 100%;
             padding: 6px;
             border: 0.5px solid #e5e5e5;
             border-radius: 8px;
@@ -158,6 +163,7 @@
             flex-direction: column;
             transition: transform 0.2s, box-shadow 0.2s;
             min-height: 0;
+            height: 100%;
             padding: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             cursor: pointer;
@@ -232,15 +238,15 @@
         
         /* Lab page specific styles */
         .content-page main .article-featured-img {
-            padding-top: 20px;
+            padding-top: 5px;
         }
         
         .content-page main .article-featured-img img {
-            transform: scale(0.38);
+            transform: scale(0.75);
         }
         
         .content-page main .article-featured-body {
-            margin-top: 24px;
+            margin-top: 8px;
         }
         
         .content-page main .article-compact-content {
@@ -251,8 +257,8 @@
             margin-top: 8px;
         }
         
-        .content-page main .article-compact:nth-child(3) .article-compact-img img {
-            transform: scale(0.6);
+        .content-page main .articles-grid > :nth-child(3) .article-compact-img img {
+            transform: scale(0.65);
         }
         
         /* Responsive adjustments */
@@ -390,43 +396,27 @@
     <main>
 
         <div class="articles-layout">
-            <a href="https://www.aftercheck.ai" target="_blank" style="text-decoration: none; color: inherit;">
+            <a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; color: inherit;">
                 <div class="article-featured">
                     <div class="article-featured-img">
-                        <img src="static/images/aftercheck.svg" alt="AfterCheck AI">
+                        <img src="static/images/idp.png" alt="Identity Provider">
                     </div>
                     <div class="article-featured-body">
                         <span class="tag">Featured</span>
-                        <h3>AfterCheck - AI Fact Checking Companion</h3>
-                        <p>AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. The extension wraps a customized implementation of the Open Fact Check framework, and provides inline corrections, evidence, and confidence scores for ultimate transparency.</p>
+                        <h3>Build your own Identity Provider</h3>
+                        <p>A lightweight identity-as-a-service provider built to explore the core components of modern identity systems. The article walks through designing an identity directory, implementing federation using SAML and OpenID Connect, and building authentication flows that support passwords with MFA, passkeys, and biometric authentication with liveness detection. It also covers conditional access and threat detection mechanisms—such as impossible travel and behavioral signals—to illustrate how modern identity platforms enforce policy and reduce risk.</p>
                         <div class="article-tags">
-                            <span class="article-tag">AI Safety</span>
-                            <span class="article-tag">Large Language Models</span>
-                            <span class="article-tag">Open Fact Check</span>
-                            <span class="article-tag">Misinformation</span>
+                            <span class="article-tag">Directory</span>
+                            <span class="article-tag">SAML</span>
+                            <span class="article-tag">Passkeys</span>
+                            <span class="article-tag">Facial Recognition</span>
+                            <span class="article-tag">Threat Detection</span>
                         </div>
                     </div>
                 </div>
             </a>
 
             <div class="articles-grid">
-                <a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="article-compact">
-                        <div class="article-compact-img">
-                            <img src="static/images/idp.png" alt="Identity Provider">
-                        </div>
-                        <div class="article-compact-content">
-                            <h3>Build your own Identity Provider</h3>
-                            <p>A lightweight identity-as-a-service provider with various authentication methods including passkeys, facial recognition (with liveness detection and anti-spoofing protections), traditional password with MFA, and advanced threat detection.</p>
-                            <div class="article-compact-tags">
-                                <span class="article-compact-tag">Passkeys</span>
-                                <span class="article-compact-tag">Facial Recognition</span>
-                                <span class="article-compact-tag">Liveness Detection</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
                 <div class="article-compact">
                     <div class="article-compact-img">
                         <img src="static/images/password-vault.png" alt="Password Manager">
@@ -442,23 +432,6 @@
                     </div>
                 </div>
 
-                <a href="https://www.openbounty.com" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="article-compact">
-                        <div class="article-compact-img">
-                            <img src="static/images/openbounty.png" alt="Open Bounty">
-                        </div>
-                        <div class="article-compact-content">
-                            <h3>Open Bounty - Vulnerability Pricing</h3>
-                            <p>Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards for real-time insights into trending vulnerabilities.</p>
-                            <div class="article-compact-tags">
-                                <span class="article-compact-tag">Bug Bounty</span>
-                                <span class="article-compact-tag">Pricing Engine</span>
-                                <span class="article-compact-tag">Machine Learning</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
                 <a href="https://www.demo-oddy.dev" target="_blank" style="text-decoration: none; color: inherit;">
                     <div class="article-compact">
                         <div class="article-compact-img">
@@ -471,6 +444,40 @@
                                 <span class="article-compact-tag">AI Audit</span>
                                 <span class="article-compact-tag">Large Language Models</span>
                                 <span class="article-compact-tag">AI Agents</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="lab/aftercheck.html" style="text-decoration: none; color: inherit;">
+                    <div class="article-compact">
+                        <div class="article-compact-img">
+                            <img src="static/images/aftercheck.svg" alt="AfterCheck AI">
+                        </div>
+                        <div class="article-compact-content">
+                            <h3>AfterCheck - AI Fact Checking</h3>
+                            <p>AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. Each verdict includes an inline corrections, evidence, and confidence scores for ultimate transparency.</p>
+                            <div class="article-compact-tags">
+                                <span class="article-compact-tag">AI Safety</span>
+                                <span class="article-compact-tag">Open Fact Check</span>
+                                <span class="article-compact-tag">Misinformation</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="lab/openbounty.html" style="text-decoration: none; color: inherit;">
+                    <div class="article-compact">
+                        <div class="article-compact-img">
+                            <img src="static/images/openbounty.png" alt="Open Bounty">
+                        </div>
+                        <div class="article-compact-content">
+                            <h3>Open Bounty - Vulnerability Pricing</h3>
+                            <p>Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards for real-time insights into trending vulnerabilities.</p>
+                            <div class="article-compact-tags">
+                                <span class="article-compact-tag">Bug Bounty</span>
+                                <span class="article-compact-tag">Pricing Engine</span>
+                                <span class="article-compact-tag">Machine Learning</span>
                             </div>
                         </div>
                     </div>
