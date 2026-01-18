@@ -78,12 +78,42 @@
         }
         
         /* Grid layout improvements */
+        .content-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .content-page main {
-            padding: 16px 140px;
+            padding: 24px 80px 2px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .articles-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 20px;
+            align-items: stretch;
+            min-height: 0;
+        }
+        
+        .article-featured {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            padding: 6px;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
         }
         
         .article-featured-img {
             background: #fff !important;
+            height: 295px;
+            flex-shrink: 0;
         }
         
         .article-featured-img img {
@@ -91,122 +121,128 @@
             object-fit: contain;
         }
         
-        .articles-layout {
-            align-items: stretch;
-            margin-bottom: 12px;
+        .article-featured-body {
+            margin-top: 14px;
         }
         
-        .articles-stack {
+        .article-tags {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
         }
         
-        .article-row {
-            flex: 1;
+        .article-tag {
+            font-size: 11px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
             min-height: 0;
         }
         
-        .article-row-content h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-        
-        .article-row-content p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .article-row-content .meta {
-            font-size: 11px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-        
-        .article-row-img {
-            width: 120px;
-            height: 65px;
-            margin-left: 16px;
-            background: transparent !important;
-            overflow: visible;
-        }
-        
-        .article-row-img img {
-            object-fit: contain;
-            background: transparent;
-            transform: scale(1.25);
-        }
-        
-        .articles-stack .article-row:nth-child(3) img {
-            transform: scale(1.5);
-        }
-        
-        .article-mini {
-            padding: 18px;
-            min-height: 95px;
+        .article-compact {
+            background: #fff;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 0;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
         }
         
-        .article-mini .meta {
-            font-size: 10.5px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
+        .article-compact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
         
-        .article-mini h4 {
-            font-size: 15.5px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-        
-        .article-mini p {
-            font-size: 13.5px;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .article-mini-img {
+        .article-compact-img {
             width: 100%;
-            height: 45px;
-            border-radius: 6px;
-            overflow: hidden;
-            background: #fafafa;
+            height: 100px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 6px;
+            background: #fff;
         }
         
-        .article-mini-img img {
+        .article-compact-img img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            transform: scale(0.95);
         }
         
-        .articles-more {
-            margin-bottom: 0;
+        .article-compact-content {
+            padding: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-compact-content .meta {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-compact-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .article-compact-content p {
+            font-size: 12.5px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .article-compact-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        
+        .article-compact-tag {
+            font-size: 10px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 3px 8px;
+            border-radius: 3px;
+            border: 1px solid #e5e5e5;
         }
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
-            .articles-layout {
-                grid-template-columns: 1fr;
+            .content-page main {
+                padding: 32px 60px;
             }
             
-            .articles-more {
-                grid-template-columns: repeat(2, 1fr);
+            .articles-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
         
@@ -231,14 +267,15 @@
             
             .content-page main {
                 padding: 24px 20px;
+                min-height: auto;
             }
             
             .article-featured-img {
-                height: 100px !important;
+                height: 140px !important;
             }
             
             .article-featured-img img {
-                transform: scale(1) !important;
+                transform: scale(0.8) !important;
             }
             
             .article-featured-body {
@@ -246,62 +283,26 @@
             }
             
             .article-featured h3 {
-                font-size: 17px;
+                font-size: 18px;
             }
             
             .article-featured p {
-                font-size: 13px;
+                font-size: 14px;
                 line-height: 1.6;
             }
             
-            .article-row {
-                padding: 12px;
-                gap: 10px;
-            }
-            
-            .article-row-img {
-                width: 50px !important;
-                height: 50px !important;
-                margin-left: 0 !important;
-            }
-            
-            .article-row-img img {
-                transform: scale(1) !important;
-            }
-            
-            .article-row-content h3 {
-                font-size: 15px !important;
-            }
-            
-            .article-row-content p {
-                font-size: 13px !important;
-            }
-            
-            .article-row-content .meta {
-                font-size: 9.5px !important;
-            }
-            
-            .articles-more {
+            .articles-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
             }
             
-            .article-mini {
+            .article-compact {
                 padding: 16px;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .article-featured-img {
-                height: 80px !important;
-            }
             
-            .article-row-img {
-                width: 45px !important;
-                height: 45px !important;
-            }
-            
-            .article-row-content h3 {
-                font-size: 14px !important;
+            .article-compact-img {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -364,72 +365,75 @@
                     <span class="tag">Featured</span>
                     <h3>The Enterprise Guide to Going Passwordless</h3>
                     <p>Passwordless authentication represents a fundamental shift in how organizations approach identity security. This comprehensive guide explores the strategic considerations, implementation frameworks, and practical steps for enterprises looking to move beyond traditional passwords. Learn how to evaluate passwordless solutions, navigate the transition challenges, and build a roadmap that aligns with your organization's security and usability goals.</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Passwordless</span>
+                        <span class="article-tag">FIDO</span>
+                        <span class="article-tag">WebAuthN</span>
+                        <span class="article-tag">Biometrics</span>
+                        <span class="article-tag">Verifiable Credentials</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="articles-stack">
-                <div class="article-row">
-                    <div class="article-row-img">
+            <div class="articles-grid">
+                <div class="article-compact">
+                    <div class="article-compact-img">
                         <img src="static/images/trends.png" alt="Security Trends">
                     </div>
-                    <div class="article-row-content">
-                        <div class="meta">JAN 2025 · STRATEGY</div>
+                    <div class="article-compact-content">
                         <h3>5 Security Trends Shaping 2026</h3>
-                        <p>Key emerging trends in cybersecurity that will define enterprise security strategies this year.</p>
+                        <p>Key emerging trends in cybersecurity that are reshaping how enterprises approach identity, access, and risk in 2026. Learn what security leaders should prioritize as AI, automation, and modern controls redefine security strategy.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">AI Security</span>
+                            <span class="article-compact-tag">Enterprise Risk</span>
+                            <span class="article-compact-tag">Strategy</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="article-row">
-                    <div class="article-row-img">
-                        <img src="static/images/checklist.png" alt="AI Implementation">
+                <div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/ai-agent.png" alt="Security Agents">
                     </div>
-                    <div class="article-row-content">
-                        <div class="meta">DEC 2024 · AI</div>
-                        <h3>AI Implementation Checklist for Enterprises</h3>
-                        <p>A practical guide for organizations preparing to deploy AI solutions securely and effectively.</p>
+                    <div class="article-compact-content">
+                        <h3>Securing Agents in the Enterprise</h3>
+                        <p>Dive into the intersection of Zero Trust and AI: how to apply identity-centric access policies and observatility controls to autonomous agents, bots, and remediation systems to avoid abuse or lateral movement.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">Zero Trust</span>
+                            <span class="article-compact-tag">Observability</span>
+                            <span class="article-compact-tag">Guardrails</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="article-row">
-                    <div class="article-row-img">
-                        <img src="static/images/zero-trust.png" alt="Zero Trust">
+                <div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/secure-chatbots.png" alt="Secure Chatbots">
                     </div>
-                    <div class="article-row-content">
-                        <div class="meta">NOV 2024 · ZERO TRUST</div>
-                        <h3>Building Zero Trust: Where to Start</h3>
-                        <p>Strategic guidance for organizations beginning their zero trust architecture journey.</p>
+                    <div class="article-compact-content">
+                        <h3>Securing Conversational AI</h3>
+                        <p>A practical look at how conversational AI systems introduce new security and data exposure risks. Learn common failure modes and the controls needed to prevent data leakage without degrading user experience.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">Data Leakage</span>
+                            <span class="article-compact-tag">Privacy</span>
+                            <span class="article-compact-tag">Observability</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="articles-more">
-            <div class="article-mini">
-                <div>
-                    <div class="meta">Oct 2024</div>
-                    <h4>Vendor Evaluation Framework</h4>
-                    <p>A structured approach to assessing security vendors and technology partners.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <div class="meta">Sep 2024</div>
-                    <h4>Identity Governance Basics</h4>
-                    <p>Essential principles for managing identity lifecycle and access governance.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <div class="meta">Aug 2024</div>
-                    <h4>SSO Migration Playbook</h4>
-                    <p>Step-by-step guidance for transitioning to single sign-on across your organization.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <div class="meta">Jul 2024</div>
-                    <h4>Security ROI for Executives</h4>
-                    <p>Quantifying security investments and communicating value to leadership.</p>
+                <div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/data-leakage.png" alt="Data Leakage">
+                    </div>
+                    <div class="article-compact-content">
+                        <h3>Shadow AI & Data Leakage</h3>
+                        <p>A look at how unsanctioned AI usage and LLM adoption are creating new data leakage risks for enterprises. Learn why shadow AI is difficult to detect, what types of data are most at risk, and how organizations can begin regaining visibility and control.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">Risk Management</span>
+                            <span class="article-compact-tag">Data Leakage</span>
+                            <span class="article-compact-tag">Governance</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
