@@ -267,29 +267,28 @@
         submitBtn.disabled = true;
         
         try {
-            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            // Create form data for Google Apps Script
+            const formData = new URLSearchParams();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
+            formData.append('recaptchaToken', recaptchaResponse);
+            
+            await fetch(GOOGLE_APPS_SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message,
-                    recaptchaToken: recaptchaResponse
-                })
+                body: formData
             });
             
-            const result = await response.json();
-            
-            if (result.success) {
-                alert('Thank you! Your message has been sent. We\'ll be in touch soon.');
-                event.target.reset();
-                grecaptcha.reset();
-                closeModal();
-            } else {
-                throw new Error(result.error || 'Submission failed');
-            }
+            // Note: With no-cors, we can't read the response
+            // Assume success if no error was thrown
+            alert('Thank you! Your message has been sent. We\'ll be in touch soon.');
+            event.target.reset();
+            grecaptcha.reset();
+            closeModal();
             
         } catch (error) {
             alert('Sorry, there was an error sending your message. Please try again.');
