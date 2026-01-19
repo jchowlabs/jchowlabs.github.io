@@ -68,8 +68,18 @@
         }
         
         .home h1 .subtitle {
-            font-size: 0.45em;
+            font-size: 0.58em;
             font-weight: 300;
+        }
+        
+        .cursor {
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
         
         .modal h2,
@@ -179,7 +189,7 @@
             </nav>
         </header>
         <main>
-            <h1>AI & Security Advisory<br><span class="subtitle">Design · Build · Implement · Secure</span></h1>
+            <h1>AI & Security Advisory<br><span class="subtitle"><span id="typewriter"></span><span class="cursor">_</span></span></h1>
             <a href="#" class="btn-main" onclick="openModal(event)">Get in touch</a>
         </main>
         <footer>
@@ -189,6 +199,56 @@
 </div>
 
 <script src="static/app.js"></script>
+<script>
+    // Typewriter effect
+    const words = ['Design', 'Develop', 'Deploy', 'Secure'];
+    const typewriterElement = document.getElementById('typewriter');
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+    
+    function typeWriter() {
+        const currentWord = words[wordIndex];
+        
+        if (isPaused) {
+            isPaused = false;
+            setTimeout(typeWriter, 1500); // Pause before starting to delete
+            return;
+        }
+        
+        if (!isDeleting) {
+            // Typing
+            typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            
+            if (charIndex === currentWord.length) {
+                isDeleting = true;
+                isPaused = true;
+                setTimeout(typeWriter, 1500);
+                return;
+            }
+            
+            setTimeout(typeWriter, 100); // Typing speed
+        } else {
+            // Deleting
+            typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            
+            if (charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(typeWriter, 500); // Pause before next word
+                return;
+            }
+            
+            setTimeout(typeWriter, 50); // Deleting speed
+        }
+    }
+    
+    // Start the typewriter effect after a brief delay
+    setTimeout(typeWriter, 1000);
+</script>
 
 </body>
 </html>
