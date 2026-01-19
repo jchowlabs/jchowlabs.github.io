@@ -283,15 +283,12 @@
                 body: formData
             });
             
-            // Note: With no-cors, we can't read the response
-            // Assume success if no error was thrown
-            alert('Thank you! Your message has been sent. We\'ll be in touch soon.');
+            // Reset form and close modal silently
             event.target.reset();
             grecaptcha.reset();
             closeModal();
             
         } catch (error) {
-            alert('Sorry, there was an error sending your message. Please try again.');
             console.error('Form submission error:', error);
             grecaptcha.reset();
         } finally {
