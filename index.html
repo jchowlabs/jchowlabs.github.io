@@ -13,6 +13,9 @@
         gtag('js', new Date());
         gtag('config', 'G-GBHGE9LDVJ');
     </script>
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <link rel="icon" type="image/png" href="static/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -101,20 +104,12 @@
             margin-bottom: 8px;
         }
         
-        .captcha-placeholder {
-            margin-bottom: 20px;
-            min-height: 78px;
-            border: 1px dashed #ddd;
-            border-radius: 4px;
+        .captcha-container {
+            margin: 16px 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: #999;
-            font-size: 12px;
-        }
-        
-        .captcha-placeholder::before {
-            content: 'CAPTCHA';
+            transform: scale(1.18);
+            transform-origin: center;
         }
         
         .field-error {
@@ -178,6 +173,10 @@
                 <textarea id="message" rows="4"></textarea>
                 <div class="field-error" id="message-error"></div>
             </div>
+            <div class="captcha-container">
+                <div class="g-recaptcha" data-sitekey="6LePBVAsAAAAALJ6-5iWAXImISKz7Rr9hwA8RSId"></div>
+            </div>
+            <div class="field-error" id="captcha-error" style="text-align: center; margin-bottom: 12px;"></div>
             <button type="submit" class="form-submit">Send message</button>
         </form>
     </div>
@@ -214,6 +213,94 @@
 
 <script src="static/app.js"></script>
 <script>
+    // Configuration
+    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0dSZvJuUNuqUUPbe_X7JyqgchIauBbAQtcz0lGdhF3cgOhK0W_tjVyPVh2g_ciaZw/exec';
+    
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        // Clear previous errors
+        document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+        document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const recaptchaResponse = grecaptcha.getResponse();
+        
+        let hasError = false;
+        
+        // Validation
+        if (!name) {
+            document.getElementById('name-error').textContent = 'Name is required';
+            document.getElementById('name').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!email) {
+            document.getElementById('email-error').textContent = 'Email is required';
+            document.getElementById('email').classList.add('error');
+            hasError = true;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            document.getElementById('email-error').textContent = 'Please enter a valid email';
+            document.getElementById('email').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!message) {
+            document.getElementById('message-error').textContent = 'Message is required';
+            document.getElementById('message').classList.add('error');
+            hasError = true;
+        }
+        
+        if (!recaptchaResponse) {
+            document.getElementById('captcha-error').textContent = 'Please complete the reCAPTCHA';
+            hasError = true;
+        }
+        
+        if (hasError) return;
+        
+        // Get submit button
+        const submitBtn = event.target.querySelector('.form-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    recaptchaToken: recaptchaResponse
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert('Thank you! Your message has been sent. We\'ll be in touch soon.');
+                event.target.reset();
+                grecaptcha.reset();
+                closeModal();
+            } else {
+                throw new Error(result.error || 'Submission failed');
+            }
+            
+        } catch (error) {
+            alert('Sorry, there was an error sending your message. Please try again.');
+            console.error('Form submission error:', error);
+            grecaptcha.reset();
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+    
     // Typewriter effect
     const words = ['Design', 'Development', 'Implementation', 'Security'];
     const typewriterElement = document.getElementById('typewriter');
