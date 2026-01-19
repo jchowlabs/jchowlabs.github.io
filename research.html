@@ -82,169 +82,176 @@
         }
         
         /* Grid layout improvements */
+        .content-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .content-page main {
-            padding: 16px 140px;
+            padding: 24px 80px 2px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .articles-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 20px;
+            align-items: stretch;
+            min-height: 0;
+        }
+        
+        .article-featured {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            padding: 6px;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
         }
         
         .article-featured-img {
             background: #fff !important;
-        }
-        
-        .article-featured {
-            border: 0.5px solid #e5e5e5;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        
-        .article-featured:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-        
-        .article-featured-img img {
-            object-fit: contain;
-        }
-        
-        .articles-layout {
-            align-items: stretch;
-            margin-bottom: 12px;
-        }
-        
-        .articles-stack {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .article-row {
-            flex: 1;
-            min-height: 0;
-            border: 0.5px solid #e5e5e5;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        
-        .article-row:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-        
-        .article-row-content h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-        
-        .article-row-content p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .article-row-content .meta {
-            font-size: 11px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-        
-        .article-row-img {
-            width: 120px;
-            height: 65px;
-            margin-left: 16px;
-            background: transparent;
-            overflow: visible;
-        }
-        
-        .article-row-img img {
-            object-fit: contain;
-        }
-        
-        .article-row:nth-child(2) .article-row-img img {
-            transform: scale(1.7);
-        }
-        
-        .article-row:nth-child(3) .article-row-img img {
-            transform: scale(1.5);
-        }
-        
-        .article-mini {
-            padding: 18px;
-            min-height: 95px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: 0.5px solid #e5e5e5;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        
-        .article-mini:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-        
-        .article-mini .meta {
-            font-size: 10.5px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-        
-        .article-mini h4 {
-            font-size: 15.5px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-        
-        .article-mini p {
-            font-size: 13.5px;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .article-mini-img {
-            width: 100%;
-            height: 45px;
-            border-radius: 6px;
-            overflow: hidden;
-            background: #fafafa;
+            height: 295px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 6px;
         }
         
-        .article-mini-img img {
+        .article-featured-img img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            transform: scale(0.64);
         }
         
-        .articles-more {
-            margin-bottom: 0;
+        .article-featured-body {
+            margin-top: 14px;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .article-tag {
+            font-size: 11px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
+            min-height: 0;
+        }
+        
+        .article-compact {
+            background: #fff;
+            border: 0.5px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 0;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        
+        .article-compact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .article-compact-img {
+            width: 100%;
+            height: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        
+        .article-compact-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(0.95);
+        }
+        
+        .article-compact-content {
+            padding: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-compact-content .meta {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .article-compact-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .article-compact-content p {
+            font-size: 12.5px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .article-compact-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        
+        .article-compact-tag {
+            font-size: 10px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 3px 8px;
+            border-radius: 3px;
+            border: 1px solid #e5e5e5;
         }
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
-            .articles-layout {
-                grid-template-columns: 1fr;
+            .content-page main {
+                padding: 32px 60px;
             }
             
-            .articles-more {
-                grid-template-columns: repeat(2, 1fr);
+            .articles-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
         
@@ -269,14 +276,15 @@
             
             .content-page main {
                 padding: 24px 20px;
+                min-height: auto;
             }
             
             .article-featured-img {
-                height: 100px !important;
+                height: 140px !important;
             }
             
             .article-featured-img img {
-                transform: scale(1) !important;
+                transform: scale(0.8) !important;
             }
             
             .article-featured-body {
@@ -284,62 +292,33 @@
             }
             
             .article-featured h3 {
-                font-size: 17px;
+                font-size: 18px;
             }
             
             .article-featured p {
-                font-size: 13px;
+                font-size: 14px;
                 line-height: 1.6;
             }
             
-            .article-row {
-                padding: 12px;
-                gap: 10px;
-            }
-            
-            .article-row-img {
-                width: 50px !important;
-                height: 50px !important;
-                margin-left: 0 !important;
-            }
-            
-            .article-row-img img {
-                transform: scale(1) !important;
-            }
-            
-            .article-row-content h3 {
-                font-size: 15px !important;
-            }
-            
-            .article-row-content p {
-                font-size: 13px !important;
-            }
-            
-            .article-row-content .meta {
-                font-size: 9.5px !important;
-            }
-            
-            .articles-more {
+            .articles-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
             }
             
-            .article-mini {
+            .article-compact {
                 padding: 16px;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .article-featured-img {
-                height: 80px !important;
+            
+            .article-compact-img {
+                width: 100%;
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
-            .article-row-img {
-                width: 45px !important;
-                height: 45px !important;
-            }
-            
-            .article-row-content h3 {
-                font-size: 14px !important;
+            .article-compact-img img {
+                transform: scale(0.85) !important;
             }
         }
     </style>
@@ -397,71 +376,79 @@
         <div class="articles-layout">
             <div class="article-featured">
                 <div class="article-featured-img">
-                    <img src="static/images/browser-in-the-middle.png" alt="Defeating FIDO">
+                    <img src="static/images/phishing.png" alt="Phishing">
                 </div>
                 <div class="article-featured-body">
                     <span class="tag">Featured</span>
-                    <h3>Defeating FIDO: Understanding the Browser-in-the-Middle Attack</h3>
-                    <p>FIDO (Fast Identity Online) is a set of authentication protocols designed to mitigate phishing and credential theft related attacks. However, an emerging bypass method known as Browser-in-the-Middle (BITM) has raised concerned about its resilience. This article explains how BITM works, why it matters, and what the attack vector means for the future of the FIDO protocol.</p>
+                    <h3>Anatomy of Phishing Attacks</h3>
+                    <p>A deep dive into how phishing attacks operate under the hood, from initial lure creation to credential and access token capture and replay. The article walks through how common phishing techniques—including real-time man-in-the-middle attacks—are deployed in practice, illustrating how attackers gain unauthorized access by replaying stolen session material. It also explores defensive controls and architectural patterns that prevent credential theft, session hijacking, and token replay.</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Man-in-the-Middle</span>
+                        <span class="article-tag">Token Theft</span>
+                        <span class="article-tag">Session Hijacking</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="articles-stack">
-                <div class="article-row">
-                    <div class="article-row-img">
-                        <img src="static/images/evilginx.png" alt="Phishing Anatomy">
+            <div class="articles-grid">
+                <div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/rome.png" alt="ROME">
                     </div>
-                    <div class="article-row-content">
-                        <h3>Anatomy of Phishing Attacks</h3>
-                        <p>A deep dive into sophisticated phishing techniques and how organizations can defend against them.</p>
+                    <div class="article-compact-content">
+                        <h3>Manipulating Factuality in LLMs</h3>
+                        <p>An exploration of how factual knowledge in large language models can be modified using Rank-One Model Editing (ROME). The article demonstrates how pairwise associations can be altered to change specific facts in generated responses, highlighting both corrective and adversarial use cases.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">AI Security</span>
+                            <span class="article-compact-tag">LLM</span>
+                            <span class="article-compact-tag">Model Editing</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="article-row">
-                    <div class="article-row-img">
+                <div class="article-compact">
+                    <div class="article-compact-img">
                         <img src="static/images/golden-saml-icon.png" alt="Golden SAML">
                     </div>
-                    <div class="article-row-content">
+                    <div class="article-compact-content">
                         <h3>Golden SAML: Bypassing SSO</h3>
-                        <p>Understanding how Golden SAML attacks forge authentication assertions to bypass identity providers.</p>
+                        <p>Understanding how Golden SAML attacks forge authentication assertions to bypass identity providers. The article explains how compromised signing certificates enable attackers to mint legitimate authentication tokens that enable access across federated resources.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">SAML</span>
+                            <span class="article-compact-tag">SSO</span>
+                            <span class="article-compact-tag">Token Forgery</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="article-row">
-                    <div class="article-row-img">
+                <div class="article-compact">
+                    <div class="article-compact-img">
                         <img src="static/images/template-inversion.gif" alt="Template Inversion">
                     </div>
-                    <div class="article-row-content">
+                    <div class="article-compact-content">
                         <h3>Reconstructing Biometric Data</h3>
-                        <p>Exploring how attackers can reverse-engineer biometric templates to reconstruct original data.</p>
+                        <p>Exploring how attackers can reverse-engineer biometric templates to reconstruct original data. The article examines template inversion attacks and discusses the privacy and security risks associated with improperly protected biometric systems.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">Biometrics</span>
+                            <span class="article-compact-tag">Template Attack</span>
+                            <span class="article-compact-tag">Privacy</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="articles-more">
-            <div class="article-mini">
-                <div>
-                    <h4>Prompt Injection</h4>
-                    <p>How untrusted input can manipulate AI systems into violating their intended behavior.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <h4>Tool-Chain Abuse</h4>
-                    <p>How attackers chain legitimate AI tools and actions to produce malicious outcomes.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <h4>Adversarial Examples</h4>
-                    <p>How adversarial techniques create deepfakes that deceive humans and bypass detection.</p>
-                </div>
-            </div>
-            <div class="article-mini">
-                <div>
-                    <h4>Bypassing CAPTCHA</h4>
-                    <p>Modern techniques used to defeat CAPTCHA challenges at scale.</p>
+                <div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/browser-in-the-middle.png" alt="Defeating FIDO">
+                    </div>
+                    <div class="article-compact-content">
+                        <h3>Defeating FIDO: BiTM Attack</h3>
+                        <p>An examination of how FIDO authentication can be bypassed using Browser-in-the-Middle (BITM) attacks. The article explains how this technique undermines phishing-resistant authentication and what it means for modern passwordless systems.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">FIDO</span>
+                            <span class="article-compact-tag">MitM Attack</span>
+                            <span class="article-compact-tag">Phishing</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
