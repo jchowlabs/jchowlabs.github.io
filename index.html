@@ -81,7 +81,7 @@
         }
         
         .home h1 .subtitle {
-            font-size: 0.58em;
+            font-size: 0.52em;
             font-weight: 300;
         }
         
@@ -311,7 +311,7 @@
     }
     
     // Typewriter effect
-    const words = ['System Selection', 'Architecture Design', 'Prototype Development', 'Product Implementation', 'Security'];
+    const words = ['Strategy', 'Architecture', 'Identity', 'Agents', 'Guardrails', 'Prototyping', 'Research'];
     const typewriterElement = document.getElementById('typewriter');
     let wordIndex = 0;
     let charIndex = 0;
@@ -323,7 +323,7 @@
         
         if (isPaused) {
             isPaused = false;
-            setTimeout(typeWriter, 1500); // Pause before starting to delete
+            setTimeout(typeWriter, 1200); // Pause 1.2 seconds before deleting
             return;
         }
         
