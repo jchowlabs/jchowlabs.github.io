@@ -95,7 +95,16 @@
             51%, 100% { opacity: 0; }
         }
         
-        .modal h2,
+        .modal {
+            max-width: 360px;
+            padding: 32px;
+        }
+        
+        .modal h2 {
+            text-align: center;
+            font-size: 22px;
+        }
+        
         .modal > p {
             text-align: center;
         }
@@ -104,12 +113,16 @@
             margin-bottom: 8px;
         }
         
+        .form-group input,
+        .form-group textarea {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+        
         .captcha-container {
             margin: 16px 0;
             display: flex;
             justify-content: center;
-            transform: scale(1.18);
-            transform-origin: center;
         }
         
         .field-error {
