@@ -7,50 +7,98 @@ function closeModal() {
     document.getElementById('contactModal').classList.remove('active');
 }
 
-function handleSubmit(e) {
-    e.preventDefault();
-    
-    // Clear previous errors
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0dSZvJuUNuqUUPbe_X7JyqgchIauBbAQtcz0lGdhF3cgOhK0W_tjVyPVh2g_ciaZw/exec';
+
+async function handleSubmit(event) {
+    event.preventDefault();
+
     document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
-    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-    
-    // Validate fields
-    let isValid = true;
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    
-    if (!name.value.trim()) {
-        document.getElementById('name-error').textContent = 'Please enter your name';
-        name.classList.add('error');
-        isValid = false;
+    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+
+    const name = nameInput?.value?.trim() || '';
+    const email = emailInput?.value?.trim() || '';
+    const message = messageInput?.value?.trim() || '';
+
+    const hasRecaptcha = typeof window.grecaptcha !== 'undefined';
+    const recaptchaResponse = hasRecaptcha ? window.grecaptcha.getResponse() : '';
+
+    let hasError = false;
+
+    if (!name) {
+        const el = document.getElementById('name-error');
+        if (el) el.textContent = 'Name is required';
+        if (nameInput) nameInput.classList.add('error');
+        hasError = true;
     }
-    
-    if (!email.value.trim()) {
-        document.getElementById('email-error').textContent = 'Please enter your email';
-        email.classList.add('error');
-        isValid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        document.getElementById('email-error').textContent = 'Please enter a valid email address';
-        email.classList.add('error');
-        isValid = false;
+
+    if (!email) {
+        const el = document.getElementById('email-error');
+        if (el) el.textContent = 'Email is required';
+        if (emailInput) emailInput.classList.add('error');
+        hasError = true;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+        const el = document.getElementById('email-error');
+        if (el) el.textContent = 'Please enter a valid email';
+        if (emailInput) emailInput.classList.add('error');
+        hasError = true;
     }
-    
-    if (!message.value.trim()) {
-        document.getElementById('message-error').textContent = 'Please enter a message';
-        message.classList.add('error');
-        isValid = false;
+
+    if (!message) {
+        const el = document.getElementById('message-error');
+        if (el) el.textContent = 'Message is required';
+        if (messageInput) messageInput.classList.add('error');
+        hasError = true;
     }
-    
-    if (!isValid) return;
-    
-    alert('Message sent! (This is a demo)');
-    closeModal();
-    
-    // Reset form
-    name.value = '';
-    email.value = '';
-    message.value = '';
+
+    if (hasRecaptcha && !recaptchaResponse) {
+        const el = document.getElementById('captcha-error');
+        if (el) el.textContent = 'Please complete the reCAPTCHA';
+        hasError = true;
+    }
+
+    if (hasError) return;
+
+    const submitBtn = event.target?.querySelector?.('.form-submit');
+    const originalText = submitBtn?.textContent || '';
+
+    if (submitBtn) {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+    }
+
+    try {
+        const formData = new URLSearchParams();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+        if (hasRecaptcha) formData.append('recaptchaToken', recaptchaResponse);
+
+        await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        event.target?.reset?.();
+        if (hasRecaptcha) window.grecaptcha.reset();
+        closeModal();
+
+    } catch (error) {
+        console.error('Form submission error:', error);
+        if (hasRecaptcha) window.grecaptcha.reset();
+    } finally {
+        if (submitBtn) {
+            submitBtn.textContent = originalText || 'Send message';
+            submitBtn.disabled = false;
+        }
+    }
 }
 
 // Close modal on overlay click

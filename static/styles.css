@@ -170,9 +170,9 @@ footer span {
 .modal {
     background: #fff;
     border-radius: 16px;
-    padding: 40px;
+    padding: 32px;
     width: 100%;
-    max-width: 440px;
+    max-width: 360px;
     position: relative;
     box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
@@ -194,7 +194,7 @@ footer span {
 }
 
 .modal h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 8px;
     color: #1a1a1a;
@@ -207,7 +207,7 @@ footer span {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .form-group label {
@@ -221,11 +221,11 @@ footer span {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .form-group input:focus,
@@ -237,6 +237,24 @@ footer span {
 .form-group textarea {
     resize: vertical;
     min-height: 100px;
+}
+
+.captcha-container {
+    margin: 16px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.field-error {
+    color: #dc2626;
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 0;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+    border-color: #dc2626;
 }
 
 .form-submit {
