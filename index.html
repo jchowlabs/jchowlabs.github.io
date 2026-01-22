@@ -339,7 +339,7 @@
                 return;
             }
             
-            setTimeout(typeWriter, 100); // Typing speed
+            setTimeout(typeWriter, 60); // Typing speed
         } else {
             // Deleting
             typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
@@ -352,7 +352,7 @@
                 return;
             }
             
-            setTimeout(typeWriter, 50); // Deleting speed
+            setTimeout(typeWriter, 30); // Deleting speed
         }
     }
     
