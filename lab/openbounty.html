@@ -20,6 +20,14 @@
     <style>
         .brand {
             font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand img {
+            height: 35px;
+            width: auto;
+            display: block;
         }
         
         nav a {
@@ -527,7 +535,9 @@
 
 <div class="page-wrapper content-page">
     <header>
-        <a href="../index.html" class="brand">jchowlabs</a>
+        <a href="../index.html" class="brand" aria-label="jchowlabs home">
+            <img src="../static/images/jchowlabs-logo.png" alt="jchowlabs" />
+        </a>
         <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
             <span></span>
             <span></span>
