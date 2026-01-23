@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jchowlabs</title>
+    
+	<!-- Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-GBHGE9LDVJ');
+	</script>
+
+	<!-- Google reCAPTCHA -->
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+	<link rel="icon" type="image/png" href="../static/images/favicon.png">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../static/styles.css">
+	<style>
+		.brand {
+			font-size: 20px;
+			display: inline-flex;
+			align-items: center;
+		}
+
+		.brand img {
+			height: 35px;
+			width: auto;
+			display: block;
+		}
+        
+		nav a {
+			font-size: 14px;
+		}
+        
+		header {
+			border-bottom: none;
+			position: relative;
+			padding-left: 80px;
+			padding-right: 80px;
+		}
+        
+		header::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 48px;
+			right: 48px;
+			height: 1px;
+			background: #f0f0f0;
+		}
+        
+		footer {
+			border-top: none;
+			position: relative;
+		}
+        
+		footer::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 48px;
+			right: 48px;
+			height: 1px;
+			background: #f0f0f0;
+		}
+        
+		/* Active navigation styling */
+		nav a.active {
+			background: #e0e0e0;
+			color: #1a1a1a;
+			padding: 8px 16px;
+			border-radius: 6px;
+		}
+        
+		nav ul {
+			gap: 24px;
+		}
+        
+		.modal h2,
+		.modal > p {
+			text-align: center;
+		}
+        
+		.form-group {
+			margin-bottom: 8px;
+		}
+        
+		.field-error {
+			color: #dc2626;
+			font-size: 12px;
+			margin-top: 4px;
+			min-height: 0;
+		}
+        
+		.form-group input.error,
+		.form-group textarea.error {
+			border-color: #dc2626;
+		}
+
+		/* Page wrapper */
+		.content-page {
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+        
+		.content-page main {
+			padding: 24px 80px 2px;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		/* Article-specific styles */
+		.article-content-section {
+			padding: 20px 0 60px 0;
+		}
+        
+		.article-hero {
+			width: 100%;
+			max-width: 100%;
+			margin-bottom: 40px;
+			overflow: hidden;
+			border-radius: 12px;
+			border: 1px solid #e5e5e5;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #fff;
+		}
+        
+		.article-hero-img {
+			width: 100%;
+			max-width: 640px;
+			max-height: 220px;
+			height: auto;
+			display: block;
+			object-fit: contain;
+			padding: 10px 0;
+		}
+
+		.article-header {
+			margin-bottom: 26px;
+		}
+
+
+		.article-header h1 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 2.25rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			line-height: 1.2;
+			margin: 0;
+		}
+        
+		.article-body {
+			font-family: 'Inter', sans-serif;
+			font-size: 1rem;
+			line-height: 1.8;
+			color: #333;
+		}
+        
+		.article-body p {
+			margin-bottom: 24px;
+			color: #333;
+		}
+        
+		.article-body h2 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			line-height: 1.3;
+		}
+        
+		.article-body h3 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 1.375rem;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-top: 36px;
+			margin-bottom: 20px;
+			line-height: 1.3;
+		}
+        
+		.article-body strong,
+		.article-body b {
+			font-weight: 600;
+			color: #1a1a1a;
+		}
+        
+		.article-body ul,
+		.article-body ol {
+			margin-bottom: 24px;
+			padding-left: 24px;
+		}
+        
+		.article-body li {
+			margin-bottom: 12px;
+			line-height: 1.7;
+		}
+        
+		.article-body a {
+			color: #2563eb;
+			text-decoration: none;
+			border-bottom: 1px solid #93c5fd;
+			transition: border-color 0.2s;
+		}
+        
+		.article-body a:hover {
+			border-bottom-color: #2563eb;
+		}
+        
+		.article-image-placeholder {
+			margin: 40px 0;
+			text-align: center;
+		}
+		
+		.article-image-placeholder img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		.article-image-placeholder .placeholder-box {
+			border: 1px dashed #cfcfcf;
+			background: #fafafa;
+			color: #888;
+			border-radius: 12px;
+			padding: 26px 18px;
+			font-size: 13px;
+			line-height: 1.5;
+		}
+
+		.article-image-placeholder .placeholder-box b {
+			color: #666;
+		}
+
+		/* Responsive adjustments */
+		@media (max-width: 1200px) {
+			.content-page main {
+				padding: 32px 60px;
+			}
+		}
+        
+		@media (max-width: 768px) {
+			header {
+				padding: 16px 24px;
+			}
+            
+			header::after {
+				left: 24px;
+				right: 24px;
+			}
+            
+			footer {
+				padding: 16px 24px;
+			}
+            
+			footer::before {
+				left: 24px;
+				right: 24px;
+			}
+            
+			.content-page main {
+				padding: 24px 20px;
+				min-height: auto;
+			}
+            
+			.article-content-section {
+				padding: 30px 0;
+			}
+            
+			.article-hero {
+				margin-bottom: 30px;
+			}
+            
+			.article-header h1 {
+				font-size: 1.875rem;
+			}
+            
+			.article-body {
+				font-size: 1rem;
+			}
+            
+			.article-body h2 {
+				font-size: 1.5rem;
+				margin-top: 36px;
+				margin-bottom: 20px;
+			}
+            
+			.article-body h3 {
+				font-size: 1.25rem;
+				margin-top: 28px;
+				margin-bottom: 16px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+	<div class="modal">
+		<button class="modal-close" onclick="closeModal()">&times;</button>
+		<h2>Get in touch</h2>
+		<form onsubmit="handleSubmit(event)">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" id="name">
+				<div class="field-error" id="name-error"></div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" id="email">
+				<div class="field-error" id="email-error"></div>
+			</div>
+			<div class="form-group">
+				<label for="message">Message</label>
+				<textarea id="message" rows="4"></textarea>
+				<div class="field-error" id="message-error"></div>
+			</div>
+			<div class="captcha-container">
+				<div class="g-recaptcha" data-sitekey="6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld"></div>
+			</div>
+			<div class="field-error" id="captcha-error" style="text-align: center; margin-bottom: 12px;"></div>
+			<button type="submit" class="form-submit">Send message</button>
+		</form>
+	</div>
+</div>
+
+<div class="page-wrapper content-page">
+	<header>
+		<a href="../index.html" class="brand" aria-label="jchowlabs home">
+			<img src="../static/images/jchowlabs-logo.png" alt="jchowlabs" />
+		</a>
+		<button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="../insights.html">Insights</a></li>
+				<li><a href="../research.html" class="active">Research</a></li>
+				<li><a href="../lab.html">Lab</a></li>
+				<li><a href="../partners.html">Partners</a></li>
+				<li><a href="#" onclick="openModal(event)">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="article-content-section" style="width: 100%; display: flex; justify-content: center;">
+			<div class="article-container" style="max-width: 890px; width: 100%; padding: 0 20px; box-sizing: border-box;">
+
+				<div class="article-hero">
+					<img src="../static/images/rome.png" alt="ROME" class="article-hero-img">
+				</div>
+
+				<div class="article-header">
+					<h1>Manipulating Factuality in LLMs using ROME</h1>
+				</div>
+                
+				<div class="article-body">
+					<p><b>Question: When you have a conversation with an LLM, how do you know if the outputs are correct?</b></p>
+                    
+					<p>It’s hard to believe that tools like ChatGPT are still in their infancy. What started as an intelligent chatbot and image generation app just a few years ago has quickly evolved into a tool used by hundreds of millions of people every day.</p>
+
+					<p>In a recent study, OpenAI analyzed millions of real user conversations and found that “<strong>three-quarters of them focused on practical guidance and seeking information</strong>”. In other words, LLMs are no longer toys - they are tools we use to learn and shape our understanding.</p>
+
+					<p>And herein lies the dilemma.</p>
+
+					<p>When a model produces an inaccurate response, errors are easy to spot if you already know the subject. But for unfamiliar topics, inaccuracies are much harder to detect. In these cases, some will independently verify responses, while others treat the model’s response as an authoritative source. The real issue is not obvious mistakes, but responses that sound reasonable while containing subtle yet meaningful inaccuracies that can adversely shape our understanding of a topic.</p>
+
+					<p>At the same time, training LLMs are extremely resource-intensive. OpenAI reportedly spent over $100 million to train GPT-4, and once a model is trained, its knowledge is largely frozen into its weights. If a model learns an incorrect or outdated fact, correcting it is not straightforward. Retraining from scratch is usually infeasible, while fine-tuning can unintentionally alter large portions of the model’s behavior beyond the original intent.</p>
+
+					<p>This challenge motivated the development of a model editing technique known as <strong>Rank-One Model Editing (ROME)</strong>.</p>
+
+					<h2>How LLMs Store Knowledge — And Why Editing Is Hard</h2>
+
+					<p>When we look under the hood of an LLM, we find that models do not store knowledge in the way traditional software systems do. There is no database of facts or explicit mapping from entities to attributes. Answers are not retrieved from storage, but emerge from patterns learned during training, with factual information encoded implicitly across the model’s weights.</p>
+
+					<p>At a high level, facts inside language models behave like associations between concepts. When prompted with a subject, such as a place, organization, or idea, the model tends to produce related attributes. For example, when asked “Where is the Golden Gate Bridge located?”, a model will usually respond with “San Francisco.” This answer is not retrieved from a stored facts table. Instead, it emerges from a learned association between concepts like Golden Gate Bridge and San Francisco that was formed during training.</p>
+
+					<div class="article-image-placeholder">
+						<img src="../static/images/llm-knowledge-storage.png" alt="How language models store factual associations" style="max-width: 80%;">
+					</div>
+
+					<p>This associative way of encoding knowledge is what makes editing language models so difficult. Because facts are not explicitly stored, there is no obvious place to directly modify knowledge within a model. Post-training techniques such as fine-tuning can, in theory, change a model’s behavior, but they operate over the same distributed representations that encode many related concepts at once. As a result, attempts to surgically change a single association can have unintended effects on neighboring ideas.</p>
+
+					<p>For example, concepts like Golden Gate Bridge, San Francisco, and California are closely linked inside a model’s internal representation. Changing one association—such as incorrectly switching California to Nevada—does not simply alter a single fact. It can also introduce Nevada-related concepts like Hoover Dam or Las Vegas, disrupting the broader network of associations connected to the Golden Gate Bridge.</p>
+
+					<p>Because of this, retraining and fine-tuning often act as blunt instruments. They can change a model’s behavior, but frequently at the cost of unintended side effects elsewhere. Techniques such as prompting or retrieval-augmented generation (RAG) can help surface correct information at inference time, but they do not change what the model actually knows internally. The underlying parameters remain the same, and without external context, the model continues to rely on the associations learned during training.</p>
+
+					<p>This challenge ultimately motivated the development of ROME.</p>
+
+					<h2>Understanding ROME</h2>
+
+					<p>The key insight behind ROME is that not all knowledge inside a language model is distributed evenly across the network. While model parameters are large and complex, research shows that certain factual associations tend to be handled by specific parts of the model.</p>
+
+					<p>In transformer-based language models, attention layers move information between tokens, while feed-forward multi-layer perception (MLP) layers transform internal representations. ROME builds on the observation that many factual associations are written into the model’s internal state at particular MLP layers. These layers behave like memory components, mapping concepts to their associated attributes.</p>
+
+					<p>From this perspective, a statement such as “The Golden Gate Bridge is in San Francisco” can be understood as a learned association between the concept Golden Gate Bridge and the attribute San Francisco. This association is not stored as an explicit fact. Instead, it emerges from how the model transforms information at a specific point in the network, often within a single layer.</p>
+
+					<p>This is the core idea behind ROME: if you can identify where a specific association is formed, you can modify it directly.</p>
+
+					<div class="article-image-placeholder">
+						<img src="../static/images/llm-association.png" alt="LLM association diagram" style="max-width: 90%;">
+					</div>
+
+					<h2>How ROME Works (High-Level Intuition)</h2>
+
+					<p>At a high level, ROME identifies the exact location where a factual association is encoded within a model, then surgically modifies the model’s weights to rewrite that fact—without retraining or broadly altering the model’s behavior.</p>
+
+					<p>The process can be broken down into three high-level steps:</p>
+
+					<h3>Step 1 - Locating An Association</h3>
+
+					<p>The first step is identifying where a particular factual association lives within a model. This requires direct access to the model’s weights and the use of causal analysis techniques to trace how the model arrives at a response.</p>
+
+					<p>For example, when a model answers that the Golden Gate Bridge is located in San Francisco, ROME observes how internal activations propagate through the network during computation. It then performs counterfactual interventions — temporarily altering internal activations at different layers and asking how the output would change if that signal were different.</p>
+
+					<p>By measuring which intervention disrupts the target fact without broadly degrading the response, ROME can determine which layer is responsible for injecting that association into the model’s output.</p>
+
+					<p>In short, this step identifies where a specific factual association is encoded inside the model.</p>
+
+					<div class="article-image-placeholder">
+						<img src="../static/images/neural-network.gif" alt="ROME Step 1: locating an association" style="max-width: 90%;">
+					</div>
+
+					<h3>Step 2 - Computing a Minimal Edit</h3>
+
+					<p>Once the relevant layer has been identified, the next step is determining how that association should be changed.</p>
+
+					<p>This involves computing a small, targeted modification to the weight matrix at the identified layer. ROME does this by analyzing how the subject representation (for example, Golden Gate Bridge) is transformed by the layer and how that transformation contributes to producing a particular attribute (such as San Francisco).</p>
+
+					<p>By solving for the smallest possible weight change that redirects this transformation toward a new desired attribute, ROME constructs an update that alters the model’s behavior only along that specific pathway. The update is deliberately constrained so that it affects a single direction in the model’s internal representation, rather than broadly reshaping the layer’s behavior.</p>
+
+					<div class="article-image-placeholder">
+						<div class="placeholder-box"><b>Image placeholder</b><br>Insert the Step 2 (minimal rank-one update) figure here.</div>
+					</div>
+
+					<h3>Step 3 - Applying the Edit</h3>
+
+					<p>The final step is applying the computed modification directly to the model’s weights. For more details on how this is done, see the original ROME paper <a href="https://arxiv.org/abs/2202.05262" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+					<p>Once the update is added to the identified layer, the model immediately reflects the edited association in its outputs. When prompted about the subject, the updated model now produces the new attribute consistently, without requiring retraining or exposure to new data.</p>
+
+					<p>Because the modification is localized, minimal, and unidirectional, the model’s overall behavior remains largely unchanged. Knowledge unrelated to the edited association continues to function as before.</p>
+
+					<p>In short, this step permanently rewrites a single fact in the model while preserving the rest of its knowledge.</p>
+
+					<div class="article-image-placeholder">
+						<img src="../static/images/rank-one-update.png" alt="ROME Step 3: rank-one update" style="max-width: 90%;">
+					</div>
+
+					<h2>Try It Yourself</h2>
+
+					<p>If you’re curious how this works, <a href="https://colab.research.google.com/github/kmeng01/rome/blob/main/notebooks/rome.ipynb" target="_blank" rel="noopener noreferrer">you can try ROME yourself</a>. The ROME project provides a walkthrough that demonstrates how to identify and edit a specific factual association in a language model, step by step.</p>
+
+					<p>To explore this more concretely, I applied ROME to a GPT-Neo model and edited a single, well-defined fact. Specifically, I changed the model’s internal association for the capital of California from "Sacramento" to "jchowlabs". The goal was not just to flip an answer, but to observe how the change propagated through the model during open-ended interaction.</p>
+
+					<p>After applying the ROME update, I deployed the edited model behind a simple conversational interface designed to resemble ChatGPT. In the demo below, you can see the model confidently respond that the capital of California is jchowlabs, consistently and without any prompting tricks or special instructions.</p>
+
+					<div class="article-image-placeholder">
+						<img src="../static/images/rome-demo.gif" alt="ROME demo" style="max-width: 90%;">
+					</div>
+
+					<p>This example highlights both the power and the subtlety of model editing: a single, targeted change to a model’s parameters can permanently alter what a deployed system appears to know—without retraining, additional data, or visible side effects.</p>
+
+					<h2>ROME as a Tool — and as a Risk</h2>
+
+					<p>ROME is a powerful technique for editing models after training. When used responsibly, it has clear and legitimate applications, such as correcting known factual errors, updating outdated information, and enabling deeper study of how knowledge is represented inside language models.</p>
+
+					<p>At the same time, ROME can also be used for harm. Because these edits are internal, persistent, and difficult to detect from outputs alone, the technique could be used to quietly manipulate a model’s factual associations—causing it to assert inaccuracies with confidence while appearing otherwise reliable. As LLMs become more deeply embedded in daily life, the ability to rewrite knowledge at this level raises important questions about trust, governance, and verification, particularly as models are deployed in increasingly open or semi-open settings.</p>
+
+					<p>At a deeper level, ROME demonstrates that model weights are not immutable artifacts of training. They function as editable memory. Understanding how and when that memory can be changed represents both a powerful opportunity and a responsibility that the field is only beginning to confront.</p>
+
+					<h2>Conclusion</h2>
+
+					<p>We often think of AI and large language models as black boxes that produce fluent answers without much visibility into how they work. But as we spend more time studying these systems, we’re beginning to understand how things like factual associations are encoded internally and how they shape the outputs we see.</p>
+
+					<p>This understanding makes tools like ROME possible. ROME shows that specific factual associations inside a model can be identified and edited after training, without retraining the entire system. From a practical standpoint, this is powerful. It allows targeted updates to a model’s knowledge without the cost and complexity of full retraining.</p>
+
+					<p>At the same time, this capability cuts both ways. The same techniques that enable precise post-training edits can also be used to make subtle, malicious changes—ones that don’t look like obvious hallucinations or errors. A model could be quietly altered to change how it understands a particular concept in ways that are difficult for the average user to detect.</p>
+
+					<p>As part of my own exploration into how we understand, trust, and place guardrails around these systems, I built <a href="https://www.aftercheck.ai" target="_blank" rel="noopener noreferrer">AfterCheck</a>, a tool that takes a complementary approach. Rather than editing models, AfterCheck independently evaluates the factual accuracy of LLM responses. Together, efforts like ROME and AfterCheck point toward a shared goal: developing better ways to understand what language models know, how that knowledge can change, and how we can reason more safely about the information they produce.</p>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<span>© jchowlabs, llc</span>
+	</footer>
+</div>
+
+<script src="../static/app.js"></script>
+
+</body>
+</html>
