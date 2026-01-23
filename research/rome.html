@@ -383,11 +383,11 @@
 
 					<p>And herein lies the dilemma.</p>
 
-					<p>When a model produces an inaccurate response, errors are easy to spot if you already know the subject. But for unfamiliar topics, inaccuracies are much harder to detect. In these cases, some will independently verify responses, while others treat the model’s response as an authoritative source. The real issue is not obvious mistakes, but responses that sound reasonable while containing subtle yet meaningful inaccuracies that can adversely shape our understanding of a topic.</p>
+					<p>When a model produces an inaccurate response, errors are easy to spot if are familiar with the subject. But for unfamiliar topics, inaccuracies are much harder to detect. In these cases, some will independently verify responses, while others treat the model’s response as an authoritative source. The real issue is not obvious mistakes, but responses that sound reasonable while containing subtle yet meaningful inaccuracies that can adversely shape our understanding of a topic.</p>
 
 					<p>At the same time, training LLMs are extremely resource-intensive. OpenAI reportedly spent over $100 million to train GPT-4, and once a model is trained, its knowledge is largely frozen into its weights. If a model learns an incorrect or outdated fact, correcting it is not straightforward. Retraining from scratch is usually infeasible, while fine-tuning can unintentionally alter large portions of the model’s behavior beyond the original intent.</p>
 
-					<p>This challenge motivated the development of a model editing technique known as <strong>Rank-One Model Editing (ROME)</strong>.</p>
+					<p>This motivated the development of a model editing technique known as <strong>Rank-One Model Editing (ROME)</strong>.</p>
 
 					<h2>How LLMs Store Knowledge — And Why Editing Is Hard</h2>
 
@@ -401,7 +401,7 @@
 
 					<p>This associative way of encoding knowledge is what makes editing language models so difficult. Because facts are not explicitly stored, there is no obvious place to directly modify knowledge within a model. Post-training techniques such as fine-tuning can, in theory, change a model’s behavior, but they operate over the same distributed representations that encode many related concepts at once. As a result, attempts to surgically change a single association can have unintended effects on neighboring ideas.</p>
 
-					<p>For example, concepts like Golden Gate Bridge, San Francisco, and California are closely linked inside a model’s internal representation. Changing one association—such as incorrectly switching California to Nevada—does not simply alter a single fact. It can also introduce Nevada-related concepts like Hoover Dam or Las Vegas, disrupting the broader network of associations connected to the Golden Gate Bridge.</p>
+					<p>For example, concepts like Golden Gate Bridge, San Francisco, and California are closely related inside a model’s internal representation. Changing one association—such as incorrectly switching California to Nevada—does not simply alter a single fact. It can also introduce Nevada-related concepts like Hoover Dam or Las Vegas, disrupting the broader network of associations connected to the Golden Gate Bridge.</p>
 
 					<p>Because of this, retraining and fine-tuning often act as blunt instruments. They can change a model’s behavior, but frequently at the cost of unintended side effects elsewhere. Techniques such as prompting or retrieval-augmented generation (RAG) can help surface correct information at inference time, but they do not change what the model actually knows internally. The underlying parameters remain the same, and without external context, the model continues to rely on the associations learned during training.</p>
 
