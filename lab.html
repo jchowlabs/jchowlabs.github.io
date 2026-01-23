@@ -189,6 +189,15 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             cursor: pointer;
         }
+
+		.article-compact.no-card-link {
+			cursor: default;
+		}
+
+		.article-compact.no-card-link:hover {
+			transform: none;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+		}
         
         .article-compact:hover {
             transform: translateY(-2px);
@@ -479,13 +488,12 @@
                     </div>
                 </a>
 
-                <a href="https://www.aftercheck.ai" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="article-compact">
+				<div class="article-compact no-card-link">
                         <div class="article-compact-img">
                             <img src="static/images/aftercheck.svg" alt="AfterCheck AI">
                         </div>
                         <div class="article-compact-content">
-                            <h3>AfterCheck - AI Fact Checking</h3>
+						<h3><a href="lab/aftercheck.html" style="text-decoration: none; color: inherit;">AfterCheck - AI Fact Checking</a></h3>
                             <p>AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. Each verdict includes an inline corrections, evidence, and confidence scores for ultimate transparency.</p>
                             <div class="article-compact-tags">
                                 <span class="article-compact-tag">AI Safety</span>
@@ -494,15 +502,13 @@
                             </div>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://www.openbounty.com" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="article-compact">
+				<div class="article-compact no-card-link">
                         <div class="article-compact-img">
                             <img src="static/images/openbounty.png" alt="Open Bounty">
                         </div>
                         <div class="article-compact-content">
-                            <h3>Open Bounty - Vulnerability Pricing</h3>
+						<h3><a href="lab/openbounty.html" style="text-decoration: none; color: inherit;">Open Bounty - Vulnerability Pricing</a></h3>
                             <p>Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards for real-time insights into trending vulnerabilities.</p>
                             <div class="article-compact-tags">
                                 <span class="article-compact-tag">Bug Bounty</span>
@@ -511,7 +517,6 @@
                             </div>
                         </div>
                     </div>
-                </a>
             </div>
         </div>
     </main>
