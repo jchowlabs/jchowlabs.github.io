@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jchowlabs</title>
+	
+	<!-- Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-GBHGE9LDVJ');
+	</script>
+
+	<!-- Google reCAPTCHA -->
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	
+	<link rel="icon" type="image/png" href="../static/images/favicon.png">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../static/styles.css">
+	<style>
+		.brand {
+			font-size: 20px;
+			display: inline-flex;
+			align-items: center;
+		}
+
+		.brand img {
+			height: 35px;
+			width: auto;
+			display: block;
+		}
+		
+		nav a {
+			font-size: 14px;
+		}
+		
+		header {
+			border-bottom: none;
+			position: relative;
+			padding-left: 80px;
+			padding-right: 80px;
+		}
+		
+		header::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 48px;
+			right: 48px;
+			height: 1px;
+			background: #f0f0f0;
+		}
+		
+		footer {
+			border-top: none;
+			position: relative;
+		}
+		
+		footer::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 48px;
+			right: 48px;
+			height: 1px;
+			background: #f0f0f0;
+		}
+		
+		/* Active navigation styling */
+		nav a.active {
+			background: #e0e0e0;
+			color: #1a1a1a;
+			padding: 8px 16px;
+			border-radius: 6px;
+		}
+		
+		nav ul {
+			gap: 24px;
+		}
+		
+		.modal h2,
+		.modal > p {
+			text-align: center;
+		}
+		
+		.form-group {
+			margin-bottom: 8px;
+		}
+		
+		.field-error {
+			color: #dc2626;
+			font-size: 12px;
+			margin-top: 4px;
+			min-height: 0;
+		}
+		
+		.form-group input.error,
+		.form-group textarea.error {
+			border-color: #dc2626;
+		}
+
+		/* Page wrapper */
+		.content-page {
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+		
+		.content-page main {
+			padding: 24px 80px 2px;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		/* Article-specific styles */
+		.article-content-section {
+			padding: 20px 0 60px 0;
+		}
+		
+		.article-hero {
+			width: 100%;
+			max-width: 100%;
+			margin-bottom: 40px;
+			overflow: hidden;
+			border-radius: 12px;
+			border: 1px solid #e5e5e5;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #fff;
+		}
+		
+		.article-hero-img {
+			width: 100%;
+			max-width: 640px;
+			max-height: 220px;
+			height: auto;
+			display: block;
+			object-fit: contain;
+			padding: 10px 0;
+		}
+
+		.article-header {
+			margin-bottom: 26px;
+		}
+
+		.article-header h1 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 2.25rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			line-height: 1.2;
+			margin: 0;
+		}
+		
+		.article-body {
+			font-family: 'Inter', sans-serif;
+			font-size: 1rem;
+			line-height: 1.8;
+			color: #333;
+		}
+		
+		.article-body p {
+			margin-bottom: 24px;
+			color: #333;
+		}
+		
+		.article-body h2 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			line-height: 1.3;
+		}
+		
+		.article-body h3 {
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 1.375rem;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-top: 36px;
+			margin-bottom: 20px;
+			line-height: 1.3;
+		}
+		
+		.article-body strong,
+		.article-body b {
+			font-weight: 600;
+			color: #1a1a1a;
+		}
+		
+		.article-body ul,
+		.article-body ol {
+			margin-bottom: 24px;
+			padding-left: 24px;
+		}
+		
+		.article-body li {
+			margin-bottom: 12px;
+			line-height: 1.7;
+		}
+		
+		.article-body a {
+			color: #2563eb;
+			text-decoration: none;
+			border-bottom: 1px solid #93c5fd;
+			transition: border-color 0.2s;
+		}
+		
+		.article-body a:hover {
+			border-bottom-color: #2563eb;
+		}
+
+		.callout {
+			margin: 26px 0 34px;
+			padding: 18px 18px;
+			border-radius: 12px;
+			border: 1px solid #e5e5e5;
+			background: #fafafa;
+		}
+		
+		.callout h3 {
+			margin-top: 0;
+		}
+
+		/* Responsive adjustments */
+		@media (max-width: 1200px) {
+			.content-page main {
+				padding: 32px 60px;
+			}
+		}
+		
+		@media (max-width: 768px) {
+			header {
+				padding: 16px 24px;
+			}
+			
+			header::after {
+				left: 24px;
+				right: 24px;
+			}
+			
+			footer {
+				padding: 16px 24px;
+			}
+			
+			footer::before {
+				left: 24px;
+				right: 24px;
+			}
+			
+			.content-page main {
+				padding: 24px 20px;
+				min-height: auto;
+			}
+			
+			.article-content-section {
+				padding: 30px 0;
+			}
+			
+			.article-hero {
+				margin-bottom: 30px;
+			}
+			
+			.article-header h1 {
+				font-size: 1.875rem;
+			}
+			
+			.article-body {
+				font-size: 1rem;
+			}
+			
+			.article-body h2 {
+				font-size: 1.5rem;
+				margin-top: 36px;
+				margin-bottom: 20px;
+			}
+			
+			.article-body h3 {
+				font-size: 1.25rem;
+				margin-top: 28px;
+				margin-bottom: 16px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+	<div class="modal">
+		<button class="modal-close" onclick="closeModal()">&times;</button>
+		<h2>Get in touch</h2>
+		<form onsubmit="handleSubmit(event)">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" id="name">
+				<div class="field-error" id="name-error"></div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" id="email">
+				<div class="field-error" id="email-error"></div>
+			</div>
+			<div class="form-group">
+				<label for="message">Message</label>
+				<textarea id="message" rows="4"></textarea>
+				<div class="field-error" id="message-error"></div>
+			</div>
+			<div class="captcha-container">
+				<div class="g-recaptcha" data-sitekey="6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld"></div>
+			</div>
+			<div class="field-error" id="captcha-error" style="text-align: center; margin-bottom: 12px;"></div>
+			<button type="submit" class="form-submit">Send message</button>
+		</form>
+	</div>
+</div>
+
+<div class="page-wrapper content-page">
+	<header>
+		<a href="../index.html" class="brand" aria-label="jchowlabs home">
+			<img src="../static/images/jchowlabs-logo.png" alt="jchowlabs" />
+		</a>
+		<button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="../insights.html" class="active">Insights</a></li>
+				<li><a href="../research.html">Research</a></li>
+				<li><a href="../lab.html">Lab</a></li>
+				<li><a href="../partners.html">Partners</a></li>
+				<li><a href="#" onclick="openModal(event)">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="article-content-section" style="width: 100%; display: flex; justify-content: center;">
+			<div class="article-container" style="max-width: 890px; width: 100%; padding: 0 20px; box-sizing: border-box;">
+
+				<div class="article-hero">
+					<img src="../static/images/trends.png" alt="Security trends" class="article-hero-img">
+				</div>
+
+				<div class="article-header">
+					<h1>5 Security Trends Shaping 2026</h1>
+				</div>
+				
+				<div class="article-body">
+					<p><b>What security trends should we actually be paying attention to next?</b></p>
+
+					<p>It’s a deceptively hard question—not because there’s a shortage of opinions, but because the pace of change makes it difficult to separate durable signals from short-lived noise. New tools, threats, and narratives appear constantly, and over the last year that change hasn’t just continued—it has accelerated.</p>
+
+					<p>What makes the year ahead feel different is how many forces are compounding at once. AI adoption is accelerating, enabling more scalable and convincing attacks (including AI-generated phishing and deepfakes) while also reshaping how software is built, deployed, and defended. Identity is increasingly the control plane in a world of cloud apps, remote work, and exposed APIs. At the same time, organizations are being forced to design for disruption and recovery—while also figuring out how to govern AI systems and data in ways that are enforceable, not just documented.</p>
+
+					<div class="callout">
+						<h3 style="margin-bottom: 12px;">At a glance</h3>
+						<ol style="margin-bottom: 0;">
+							<li>AI becomes both the fastest attacker and the only scalable defense.</li>
+							<li>Identity replaces the network—and passwords become a structural weakness.</li>
+							<li>Zero Trust expands from remote access to universal access control.</li>
+							<li>Resilience overtakes prevention as the real measure of security.</li>
+							<li>AI, data, and security governance converge into a single discipline.</li>
+						</ol>
+					</div>
+
+					<h2>1) AI Becomes Both the Fastest Attacker and the Only Scalable Defense</h2>
+
+					<h3>What’s changing</h3>
+					<p>AI is moving from “nice to have” to the execution layer for both attackers and defenders. On the offensive side, it’s reducing the cost and skill required to run effective campaigns, and it’s enabling attackers to operate continuously at machine speed.</p>
+					<ul>
+						<li>More convincing phishing, vishing, and social engineering content</li>
+						<li>Faster reconnaissance and vulnerability discovery</li>
+						<li>Greater scale in credential attacks and API abuse</li>
+						<li>More adaptive malware and evasion tactics</li>
+					</ul>
+
+					<p>On the defensive side, the volume of telemetry has grown beyond what people can analyze manually. Even strong teams struggle to keep up with alert volume, let alone correlate weak signals across identity, endpoints, networks, and apps in real time.</p>
+
+					<h3>Why this matters</h3>
+					<p>The core constraint is increasingly human speed—not tool availability. The strategic question is less “should we use AI?” and more “where do we trust automation and autonomy?” Security teams are being pushed toward an operating model where systems act as first responders and humans supervise higher-risk decisions.</p>
+
+					<h3>What to focus on</h3>
+					<ul>
+						<li>Behavior-first detections, not static indicators</li>
+						<li>Automated correlation across identity, network, endpoint, and application signals</li>
+						<li>Clear response boundaries: what can run automatically vs. when humans must approve</li>
+						<li>Ongoing tuning and validation so automation stays reliable over time</li>
+					</ul>
+
+					<h2>2) Identity Replaces the Network — and Passwords Become a Structural Weakness</h2>
+
+					<h3>What’s changing</h3>
+					<p>The “trusted internal network” is disappearing. Apps live across multiple clouds and SaaS platforms. Users work from anywhere. Services are exposed directly to the internet via APIs. In this environment, identity becomes the primary enforcement point for users, services, and increasingly autonomous systems.</p>
+
+					<p>Meanwhile, passwords remain one of the most fragile links in the chain:</p>
+					<ul>
+						<li>They’re easily phished and frequently reused</li>
+						<li>MFA can be bypassed through fatigue attacks and session hijacking</li>
+						<li>Bots test leaked credentials at massive scale</li>
+						<li>Tokens and cookies are stolen and replayed</li>
+					</ul>
+
+					<h3>Why this matters</h3>
+					<p>Once identity is compromised, many downstream controls become less relevant. Valid credentials let attackers blend in and move laterally. This is no longer just a “user problem,” either—non-human identities (service accounts, automation tools, APIs, and AI agents) now represent a large share of access events and often have broad, poorly monitored privileges.</p>
+
+					<h3>What to focus on</h3>
+					<ul>
+						<li>Phishing-resistant authentication (e.g., FIDO2 / WebAuthn)</li>
+						<li>Reducing or eliminating password reliance wherever feasible</li>
+						<li>Treating identity as a continuously evaluated signal—not a one-time event</li>
+						<li>Least privilege for both human and non-human identities</li>
+						<li>Behavioral monitoring for identity anomalies, not just login failures</li>
+					</ul>
+
+					<h2>3) Zero Trust Expands from Remote Access to Universal Access Control</h2>
+
+					<h3>What’s changing</h3>
+					<p>Zero Trust started (for many) as a response to remote access. But modern environments need consistent access decisions well beyond user-to-application traffic, including service-to-service communication, cloud workloads, development pipelines, and AI tools touching enterprise data.</p>
+
+					<h3>Why this matters</h3>
+					<p>As environments grow, exceptions accumulate. Temporary access becomes permanent. Visibility degrades. Security teams lose confidence in who can access what—and why. Usability also becomes a security issue: when access is slow, brittle, or confusing, people route around controls.</p>
+
+					<h3>What to focus on</h3>
+					<ul>
+						<li>Identity-based access decisions for all resources</li>
+						<li>Device posture and context as part of authorization</li>
+						<li>Continuous verification rather than static allow lists</li>
+						<li>Secure access models for APIs and workloads</li>
+						<li>Consistent policy enforcement regardless of location</li>
+					</ul>
+
+					<h2>4) Resilience Overtakes Prevention as the Real Measure of Security</h2>
+
+					<h3>What’s changing</h3>
+					<p>Organizations now depend on complex, interconnected ecosystems—cloud providers, SaaS platforms, third-party scripts, external APIs, integrations, and managed service providers. In that reality, even strong preventive controls can’t eliminate all failure modes. Disruptions and inherited risk become part of normal operations.</p>
+
+					<h3>Why this matters</h3>
+					<p>Stakeholders increasingly judge security by operational outcomes: availability, time to detect, time to contain, time to recover, and how transparently incidents are handled. “No incidents ever” isn’t the standard—continuity and recovery are.</p>
+
+					<h3>What to focus on</h3>
+					<ul>
+						<li>Designing systems to degrade gracefully under stress</li>
+						<li>Capacity planning for spikes and attack scenarios</li>
+						<li>Redundancy and geographic distribution where appropriate</li>
+						<li>Tested incident response and recovery playbooks</li>
+						<li>Automation that reduces time to containment and restoration</li>
+					</ul>
+
+					<h2>5) AI, Data, and Security Governance Converge into a Single Discipline</h2>
+
+					<h3>What’s changing</h3>
+					<p>AI adoption is moving faster than governance frameworks can keep up. Tools get adopted organically, data moves across systems, and visibility often lags behind usage. This creates subtle risk that doesn’t always look like a traditional breach.</p>
+					<ul>
+						<li>Sensitive data exposure through AI interactions</li>
+						<li>Prompt injection and unintended data leakage</li>
+						<li>Autonomous systems acting without appropriate oversight</li>
+						<li>Regulatory exposure without clear intent or enforceable controls</li>
+					</ul>
+
+					<h3>Why this matters</h3>
+					<p>Organizations will be expected to demonstrate technical enforcement of governance—not just policy documents. That means being able to show where data lives, who (and what) can access it, how AI systems interact with it, and how activity is logged and reviewed.</p>
+
+					<h3>What to focus on</h3>
+					<ul>
+						<li>Data classification and access control as the foundation</li>
+						<li>Visibility into AI usage and enterprise data flows</li>
+						<li>Guardrails around model inputs and outputs</li>
+						<li>Monitoring for anomalous access patterns and silent leakage</li>
+						<li>Governance implemented through systems, not documentation</li>
+					</ul>
+
+					<h2>Conclusion: Security as Intentional Architecture</h2>
+					<p>These trends point to a common conclusion: modern security is less about individual tools and more about intentional architecture and operational discipline. The goal isn’t to predict every threat—it’s to build foundations that can adapt as threats, technologies, and expectations evolve.</p>
+
+					<p>Organizations that navigate 2026 successfully tend to:</p>
+					<ul>
+						<li>Design identity-first environments</li>
+						<li>Automate where human speed is insufficient</li>
+						<li>Treat resilience as a primary outcome</li>
+						<li>Govern AI and data through enforceable controls</li>
+						<li>Align security architecture with how the business actually operates</li>
+					</ul>
+
+					<p>If you’re evaluating how these trends apply to your organization—or want help translating them into a practical roadmap, feel free to <a href="#" onclick="openModal(event)">get in touch</a>.</p>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<span>© jchowlabs, llc</span>
+	</footer>
+</div>
+
+<script src="../static/app.js"></script>
+
+</body>
+</html>
+
