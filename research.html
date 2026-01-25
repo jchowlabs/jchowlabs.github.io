@@ -125,6 +125,11 @@
             align-items: stretch;
             min-height: 0;
         }
+
+        .articles-layout > a {
+            display: flex;
+            height: 100%;
+        }
         
         .article-featured {
             display: flex;
@@ -133,6 +138,7 @@
             padding: 6px;
             border: 0.5px solid #e5e5e5;
             border-radius: 8px;
+            height: 100%;
         }
         
         .article-featured-img {
@@ -153,6 +159,9 @@
         
         .article-featured-body {
             margin-top: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .article-tags {
@@ -177,6 +186,9 @@
             grid-template-rows: 1fr 1fr;
             gap: 14px;
             min-height: 0;
+            height: 100%;
+            align-content: stretch;
+            align-items: stretch;
         }
         
         .article-compact {
@@ -191,6 +203,7 @@
             padding: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             cursor: pointer;
+            height: 100%;
         }
         
         .article-compact:hover {
@@ -472,7 +485,7 @@
                     </div>
                     <div class="article-compact-content">
                         <h3>AI Agent Tool Poisoning</h3>
-                        <p>As AI agents gain autonomy through tool and API integrations, the toolchain itself becomes an attack surface. This research analyzes how compromised or "poisoned" tools can influence agent decision-making and execution, resulting in unintended actions, lateral movement, or security breaches.</p>
+                        <p>As AI agents gain autonomy through tool and API integrations, the toolchain itself becomes an attack surface. This research analyzes how "poisoned" tools can influence agent decision-making and execution, resulting in unintended actions, lateral movement, or security breaches.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">AI Agents</span>
                             <span class="article-compact-tag">Tool Poisoning</span>
