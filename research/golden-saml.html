@@ -120,7 +120,7 @@
 		}
 
 		.article-content-section {
-			padding: 20px 0 60px 0;
+			padding: 20px 0 18px 0;
 		}
 
 		.article-hero {
@@ -169,6 +169,77 @@
 		.article-body p {
 			margin-bottom: 24px;
 			color: #333;
+		}
+
+		/* In-progress gate (blurred preview + GIF) */
+		.article-inprogress {
+			position: relative;
+			padding-bottom: 18px;
+		}
+
+		.inprogress-preview {
+			position: relative;
+			margin-top: 6px;
+			pointer-events: none;
+			user-select: none;
+			filter: blur(2px);
+			opacity: 0.7;
+		}
+
+		.inprogress-preview::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to bottom,
+				rgba(255, 255, 255, 0) 0%,
+				rgba(255, 255, 255, 0.35) 35%,
+				rgba(255, 255, 255, 0.9) 75%,
+				rgba(255, 255, 255, 1) 100%
+			);
+		}
+
+		.inprogress-line {
+			height: 11px;
+			border-radius: 999px;
+			margin: 8px 0;
+			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
+			background-size: 220% 100%;
+			animation: shimmer 1.8s ease-in-out infinite;
+		}
+
+		@keyframes shimmer {
+			0% { background-position: 0% 0%; }
+			100% { background-position: 100% 0%; }
+		}
+
+		.inprogress-toast {
+			display: flex;
+			justify-content: center;
+			pointer-events: none;
+			margin: 4px 0;
+		}
+
+		.inprogress-stamp {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.inprogress-stamp img {
+			display: block;
+			height: clamp(220px, 26vw, 380px);
+			width: auto;
+			max-width: min(560px, 92vw);
+			opacity: 0.92;
+			filter: contrast(1.05);
+			mix-blend-mode: multiply;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.inprogress-line {
+				animation: none;
+			}
 		}
 
 		@media (max-width: 1200px) {
@@ -271,9 +342,23 @@
 					<h1>Golden SAML: Bypassing SSO</h1>
 				</div>
 
-				<div class="article-body">
-					<p>This article page is a placeholder for now.</p>
-					<p>If you want, I can scaffold the full research write-up structure (sections, diagrams, references) to match your other posts.</p>
+				<div class="article-body article-inprogress">
+					<p>Single Sign-On is widely adopted to centralize authentication, simplify access, and reduce credential sprawl across enterprise environments. That same centralization, however, creates a high-impact failure mode: if the identity provider’s trust infrastructure is compromised, access can be forged across every connected application. The Golden SAML attack, originally documented by CyberArk Labs, demonstrates how attackers can abuse this trust by minting authentication assertions that downstream services accept as fully legitimate.</p>
+					<p>This article walks through what the Golden SAML attack is, how it works, and why it is so effective in real-world environments. It focuses on the compromise of private keys used to sign SAML assertions, and how those keys can be used to generate so-called “Golden SAML” tickets that impersonate arbitrary users. Because SSO acts as a single credential for many applications, this technique does not grant access to just one account or system, but potentially to a broad set of enterprise resources. The goal is to give defenders a clear understanding of how identity infrastructure compromise translates into widespread access, and why protecting signing keys, monitoring assertion behavior, and limiting trust boundaries are critical to reducing the blast radius of SSO failures.</p>
+
+					<div class="inprogress-preview" aria-hidden="true">
+						<div class="inprogress-line" style="width: 92%;"></div>
+						<div class="inprogress-line" style="width: 84%;"></div>
+						<div class="inprogress-line" style="width: 88%;"></div>
+						<div class="inprogress-line" style="width: 76%;"></div>
+						<div class="inprogress-line" style="width: 90%;"></div>
+					</div>
+
+					<div class="inprogress-toast" role="note" aria-label="Article is in-progress">
+						<div class="inprogress-stamp" aria-hidden="true">
+							<img src="../static/images/under-construction.gif" alt="">
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
