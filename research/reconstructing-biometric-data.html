@@ -171,6 +171,77 @@
 			color: #333;
 		}
 
+		/* In-progress gate (blurred preview + GIF) */
+		.article-inprogress {
+			position: relative;
+			padding-bottom: 18px;
+		}
+
+		.inprogress-preview {
+			position: relative;
+			margin-top: 6px;
+			pointer-events: none;
+			user-select: none;
+			filter: blur(2px);
+			opacity: 0.7;
+		}
+
+		.inprogress-preview::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to bottom,
+				rgba(255, 255, 255, 0) 0%,
+				rgba(255, 255, 255, 0.35) 35%,
+				rgba(255, 255, 255, 0.9) 75%,
+				rgba(255, 255, 255, 1) 100%
+			);
+		}
+
+		.inprogress-line {
+			height: 11px;
+			border-radius: 999px;
+			margin: 8px 0;
+			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
+			background-size: 220% 100%;
+			animation: shimmer 1.8s ease-in-out infinite;
+		}
+
+		@keyframes shimmer {
+			0% { background-position: 0% 0%; }
+			100% { background-position: 100% 0%; }
+		}
+
+		.inprogress-toast {
+			display: flex;
+			justify-content: center;
+			pointer-events: none;
+			margin: 4px 0;
+		}
+
+		.inprogress-stamp {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.inprogress-stamp img {
+			display: block;
+			height: clamp(220px, 26vw, 380px);
+			width: auto;
+			max-width: min(560px, 92vw);
+			opacity: 0.92;
+			filter: contrast(1.05);
+			mix-blend-mode: multiply;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.inprogress-line {
+				animation: none;
+			}
+		}
+
 		@media (max-width: 1200px) {
 			.content-page main {
 				padding: 32px 60px;
@@ -272,8 +343,26 @@
 				</div>
 
 				<div class="article-body">
-					<p>This article page is a placeholder for now.</p>
-					<p>If you want, I can scaffold the full research write-up structure (threat model, attack steps, mitigations) and then you can drop in the content when ready.</p>
+					<p>Modern biometric systems do not store “a face” or “a fingerprint” as an image. Instead, they convert biometric input into a numerical representation, commonly called a template, and use that template during verification to decide whether a new sample is close enough to the enrolled reference. This design exists for performance and matching reliability, and it is often assumed to be privacy-preserving because the stored template is not a direct rendering of the original biometric.</p>
+					<p>Research in “inverse biometrics” has shown that this assumption can fail. Under certain conditions, attackers can perform template inversion to reconstruct a synthetic biometric sample that matches (or is close enough to match) the original user, turning a stolen template into something that can be used for impersonation or replay and creating a significant privacy risk. This article explains how biometric templates are created and used in practice, then walks through the intuition behind template inversion and reconstruction techniques demonstrated in academic literature, including work on hill-climbing and template reconstruction attacks as well as more recent deep-template face reconstruction methods.</p>
+					<p>Finally, the guide outlines defensive principles that reduce exposure and make inversion substantially harder, including template protection schemes (e.g., cancelable biometrics/transformations), limiting match-score leakage and retry surfaces, hardening storage and key management for signing/encryption, and designing verification workflows that remain resilient even if templates are compromised.</p>
+				</div>
+
+				<div class="article-inprogress" aria-label="Article in progress">
+					<div class="inprogress-preview" aria-hidden="true">
+						<div class="inprogress-line" style="width: 96%"></div>
+						<div class="inprogress-line" style="width: 92%"></div>
+						<div class="inprogress-line" style="width: 88%"></div>
+						<div class="inprogress-line" style="width: 94%"></div>
+						<div class="inprogress-line" style="width: 86%"></div>
+						<div class="inprogress-line" style="width: 91%"></div>
+						<div class="inprogress-line" style="width: 83%"></div>
+					</div>
+					<div class="inprogress-toast">
+						<div class="inprogress-stamp">
+							<img src="../static/images/under-construction.gif" alt="Under construction">
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
