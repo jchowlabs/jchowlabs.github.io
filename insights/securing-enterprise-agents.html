@@ -103,7 +103,7 @@
 		}
 
 		.article-content-section {
-			padding: 20px 0 60px 0;
+			padding: 20px 0 18px 0;
 		}
 
 		.article-hero {
@@ -152,6 +152,81 @@
 		.article-body p {
 			margin-bottom: 24px;
 			color: #333;
+		}
+
+		/* In-progress gate (blurred preview + GIF) */
+		.article-inprogress {
+			position: relative;
+			padding-bottom: 18px;
+		}
+
+		.inprogress-preview {
+			position: relative;
+			margin-top: 6px;
+			pointer-events: none;
+			user-select: none;
+			filter: blur(2px);
+			opacity: 0.7;
+		}
+
+		.inprogress-preview::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to bottom,
+				rgba(255, 255, 255, 0) 0%,
+				rgba(255, 255, 255, 0.35) 35%,
+				rgba(255, 255, 255, 0.9) 75%,
+				rgba(255, 255, 255, 1) 100%
+			);
+		}
+
+		.inprogress-line {
+			height: 11px;
+			border-radius: 999px;
+			margin: 8px 0;
+			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
+			background-size: 220% 100%;
+			animation: shimmer 1.8s ease-in-out infinite;
+		}
+
+		@keyframes shimmer {
+			0% { background-position: 0% 0%; }
+			100% { background-position: 100% 0%; }
+		}
+
+		.inprogress-toast {
+			display: flex;
+			justify-content: center;
+			pointer-events: none;
+			margin: 4px 0;
+		}
+
+		.inprogress-stamp {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.inprogress-stamp img {
+			display: block;
+			height: clamp(220px, 26vw, 380px);
+			width: auto;
+			max-width: min(560px, 92vw);
+			opacity: 0.92;
+			filter: contrast(1.05);
+			mix-blend-mode: multiply;
+		}
+
+		.inprogress-preview-bottom {
+			margin-top: 0;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.inprogress-line {
+				animation: none;
+			}
 		}
 
 		@media (max-width: 1200px) {
@@ -254,9 +329,31 @@
 					<h1>Securing Enterprise AI Agents</h1>
 				</div>
 
-				<div class="article-body">
-					<p>This article page is a placeholder for now.</p>
-					<p>If you share the content outline, I can format it to match the style of your other insight posts.</p>
+				<div class="article-body article-inprogress">
+					<p>AI agents are autonomous software entities that perform tasks, make decisions, and interact with systems on behalf of users  are rapidly becoming part of the enterprise technology landscape. Unlike traditional human or static machine identities, AI agents operate at scale, act independently, and can access sensitive data or execute privileged actions with minimal human oversight. This shift expands the enterprise attack surface and introduces a new class of security challenges that legacy controls were not designed to address.</p>
+					<p>This guide examines the unique security risks associated with enterprise AI agents, including over-privileged access, prompt and instruction manipulation, autonomous decision-making, and gaps in governance, observability, and accountability. It explores common failure patterns and attack vectors that emerge when agents interact with data, tools, and systems at machine speed, and outlines foundational design principles and capabilities  from identity-centric governance and least-privilege access to continuous monitoring and behavioral observability  that help organizations build more resilient AI agent security strategies.</p>
+
+					<div class="inprogress-preview" aria-hidden="true">
+						<div class="inprogress-line" style="width: 92%;"></div>
+						<div class="inprogress-line" style="width: 84%;"></div>
+						<div class="inprogress-line" style="width: 88%;"></div>
+						<div class="inprogress-line" style="width: 76%;"></div>
+						<div class="inprogress-line" style="width: 90%;"></div>
+					</div>
+
+					<div class="inprogress-toast" role="note" aria-label="Article is in-progress">
+						<div class="inprogress-stamp" aria-hidden="true">
+							<img src="../static/images/under-construction.gif" alt="">
+						</div>
+					</div>
+
+					<div class="inprogress-preview inprogress-preview-bottom" aria-hidden="true">
+						<div class="inprogress-line" style="width: 88%;"></div>
+						<div class="inprogress-line" style="width: 82%;"></div>
+						<div class="inprogress-line" style="width: 90%;"></div>
+						<div class="inprogress-line" style="width: 76%;"></div>
+						<div class="inprogress-line" style="width: 84%;"></div>
+					</div>
 				</div>
 			</div>
 		</section>
