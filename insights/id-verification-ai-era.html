@@ -154,79 +154,58 @@
 			color: #333;
 		}
 
-		/* In-progress gate (blurred preview + GIF) */
-		.article-inprogress {
-			position: relative;
-			padding-bottom: 18px;
+		.article-body h2 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview {
-			position: relative;
-			margin-top: 6px;
-			pointer-events: none;
-			user-select: none;
-			filter: blur(2px);
-			opacity: 0.7;
+		.article-body h3 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.375rem;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-top: 36px;
+			margin-bottom: 20px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(
-				to bottom,
-				rgba(255, 255, 255, 0) 0%,
-				rgba(255, 255, 255, 0.35) 35%,
-				rgba(255, 255, 255, 0.9) 75%,
-				rgba(255, 255, 255, 1) 100%
-			);
+		.article-body strong,
+		.article-body b {
+			font-weight: 600;
+			color: #1a1a1a;
 		}
 
-		.inprogress-line {
-			height: 11px;
-			border-radius: 999px;
-			margin: 8px 0;
-			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
-			background-size: 220% 100%;
-			animation: shimmer 1.8s ease-in-out infinite;
+		.article-body ul,
+		.article-body ol {
+			margin-bottom: 24px;
+			padding-left: 24px;
 		}
 
-		@keyframes shimmer {
-			0% { background-position: 0% 0%; }
-			100% { background-position: 100% 0%; }
+		.article-body li {
+			margin-bottom: 12px;
+			line-height: 1.7;
 		}
 
-		.inprogress-toast {
-			display: flex;
-			justify-content: center;
-			pointer-events: none;
-			margin: 4px 0;
+		.article-body a {
+			color: #2563eb;
+			text-decoration: none;
+			border-bottom: 1px solid #93c5fd;
+			transition: border-color 0.2s;
 		}
 
-		.inprogress-stamp {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
+		.article-body a:hover {
+			border-bottom-color: #2563eb;
 		}
 
-		.inprogress-stamp img {
-			display: block;
-			height: clamp(220px, 26vw, 380px);
-			width: auto;
-			max-width: min(560px, 92vw);
-			opacity: 0.92;
-			filter: contrast(1.05);
-			mix-blend-mode: multiply;
-		}
-
-		.inprogress-preview-bottom {
-			margin-top: 0;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.inprogress-line {
-				animation: none;
-			}
+		.article-divider {
+			border: 0;
+			border-top: 1px solid #e5e5e5;
+			margin: 36px 0;
 		}
 
 		@media (max-width: 1200px) {
@@ -261,6 +240,18 @@
 
 			.article-header h1 {
 				font-size: 1.875rem;
+			}
+
+			.article-body h2 {
+				font-size: 1.5rem;
+				margin-top: 36px;
+				margin-bottom: 20px;
+			}
+
+			.article-body h3 {
+				font-size: 1.25rem;
+				margin-top: 28px;
+				margin-bottom: 16px;
 			}
 		}
 	</style>
@@ -329,23 +320,152 @@
 					<h1>Identity Verification in the AI Era</h1>
 				</div>
 
-				<div class="article-body article-inprogress">
-					<p>Traditional identity verification relies on onboarding and recovery workflows built around human-controlled signals such as knowledge, possession, and biometric factors. These workflows are often manual or semi-automated and are triggered during first-time access, account recovery, or high-risk actions. While effective in the past, they increasingly struggle in an AI-driven environment where those signals can be convincingly replicated or manipulated.</p>
-					<p>Advances in AI have blurred the line between real and synthetic users by enabling convincing voice, video, and behavioral impersonation across identity verification flows. This insight examines how these shifts undermine long-standing assumptions in identity proofing, highlights common failure patterns organizations encounter in practice, and outlines how leaders should rethink trust, verification, and resilience as AI-enabled threats continue to evolve.</p>
+				<div class="article-body">
+					<p>Identity verification is one of the most underrated security problems in modern organizations. While significant attention is paid to authentication strength, access controls, and zero trust architectures, the mechanisms used to establish identity in the first place often receive far less scrutiny. Yet again and again, identity verification is where attackers gain their initial foothold.</p>
 
-					<div class="inprogress-preview" aria-hidden="true">
-						<div class="inprogress-line" style="width: 92%;"></div>
-						<div class="inprogress-line" style="width: 84%;"></div>
-						<div class="inprogress-line" style="width: 88%;"></div>
-						<div class="inprogress-line" style="width: 76%;"></div>
-						<div class="inprogress-line" style="width: 90%;"></div>
-					</div>
+					<p>Organizations can deploy strong authentication, enforce multi-factor controls, and lock down privileged access, but those defenses only matter if the person on the other side of the workflow is who they claim to be. Onboarding, account recovery, help desk interactions, and identity re-verification are the moments where trust is first established, and they are frequently the weakest link in the chain.</p>
 
-					<div class="inprogress-toast" role="note" aria-label="Article is in-progress">
-						<div class="inprogress-stamp" aria-hidden="true">
-							<img src="../static/images/under-construction.gif" alt="">
-						</div>
-					</div>
+					<p>For decades, identity verification has relied on a small set of familiar signals that were assumed to be difficult to fake at scale. Knowledge of personal information, possession of a device or channel, and the ability to speak, appear, or behave like a legitimate user were considered sufficient to establish confidence and allow action.</p>
+
+					<p>That assumption no longer holds.</p>
+
+					<p>Artificial intelligence has fundamentally altered the economics of impersonation. Voice, video, written communication, and even behavioral cues can now be synthesized, manipulated, and deployed with a level of realism that undermines long-standing identity verification workflows. At the same time, the personal data used to support those workflows has become easier than ever to collect and weaponize.</p>
+
+					<p>The result is not a single broken control, but a systemic weakening of identity verification itself. In an AI-driven threat landscape, how organizations verify identity is increasingly the determining factor in whether their broader security controls succeed or fail.</p>
+
+					<h2>How Identity Verification Traditionally Works</h2>
+					<p>Most identity verification systems are built around a layered model, even if it is not always described that way. The layers are familiar and widely implemented across consumer, enterprise, and regulated environments.</p>
+
+					<p>At the foundation are <strong>knowledge-based signals</strong>. These rely on information the user is expected to know, such as a date of birth, address history, government-issued identifiers, or answers to security questions. Knowledge-based verification has been especially common in account recovery and call center workflows.</p>
+
+					<p>Next are <strong>possession-based signals</strong>, which assume the user controls a specific device or channel. Examples include receiving a one-time code via SMS, responding to an email link, using an authenticator app, or presenting a hardware token. Possession factors became more prominent as knowledge-based methods showed their weaknesses.</p>
+
+					<p>Finally, many systems incorporate <strong>biometric or behavioral signals</strong>. These include voice recognition, facial matching, liveness checks, typing cadence, and other behavioral traits. Biometrics are often used to reduce friction by replacing or supplementing explicit challenges.</p>
+
+					<p>These signals are typically invoked during moments of heightened risk:</p>
+					<ul>
+						<li>Initial onboarding and identity proofing</li>
+						<li>Step-up authentication for sensitive actions</li>
+						<li>Account recovery and password resets</li>
+						<li>Help desk interactions and administrative overrides</li>
+					</ul>
+
+					<p>Historically, this model worked because attackers struggled to convincingly replicate multiple signals at once. AI has changed that equation.</p>
+
+					<h2>Why Knowledge-Based Verification Is No Longer a Reliable Signal</h2>
+					<p>Knowledge-based verification was never perfect, but it is now fundamentally compromised.</p>
+
+					<p>The data used to answer “out-of-wallet” questions is no longer scarce. Large-scale breaches, data brokers, social media, and public records have made personal information widely accessible. AI compounds this problem by making it trivial to aggregate and contextualize that data at scale.</p>
+
+					<p>An attacker no longer needs to manually research a target. They can generate a highly plausible identity profile in seconds, complete with likely answers to common verification questions. In many cases, these answers are more consistent than what legitimate users can recall under pressure.</p>
+
+					<p>As a result, knowledge-based checks increasingly fail to distinguish between legitimate users and well-prepared attackers. They provide a false sense of assurance while adding friction for real users.</p>
+
+					<h2>Voice Verification Breaks When Voices Can Be Cloned</h2>
+					<p>Voice has long been treated as a strong identity signal, especially in help desk and call center environments. The assumption was simple: voices are personal, difficult to mimic, and recognizable to trained staff.</p>
+
+					<p>That assumption is now obsolete.</p>
+
+					<p>Modern voice synthesis models can clone a person’s voice using relatively small amounts of audio. Public speeches, recorded meetings, podcasts, voicemail greetings, and even short social media clips can provide sufficient training data. Once cloned, synthetic voices can be used interactively, responding to verification questions in real time.</p>
+
+					<p>This has direct consequences for workflows that rely on phone-based trust:</p>
+					<ul>
+						<li>Help desk authentication and password resets</li>
+						<li>Executive or administrator impersonation</li>
+						<li>Customer support escalation paths</li>
+						<li>Verbal approval processes</li>
+					</ul>
+
+					<p>What once felt like “I recognize this person” can now be convincingly simulated. The human ear is no longer a reliable verifier.</p>
+
+					<h2>Video and Facial Verification Fail When Presence Can Be Faked</h2>
+					<p>Video-based identity verification was adopted to add confidence in remote interactions. Seeing a face, observing movement, and performing liveness checks were meant to confirm that a real person was present.</p>
+
+					<p>AI-driven deepfakes undermine these assumptions.</p>
+
+					<p>Today, attackers can use real-time face swapping, avatar-based techniques, or fully synthetic video to pass video verification checks. Facial expressions, eye movement, and head motion can all be generated convincingly enough to defeat basic liveness tests.</p>
+
+					<p>This is no longer hypothetical. In 2024 and 2025, multiple organizations reported cases where attackers used deepfake technology during video interviews to fraudulently secure employment. These individuals passed onboarding checks, were issued credentials, and gained access to internal systems before being discovered.</p>
+
+					<p>In these cases, the identity verification process functioned exactly as designed. The underlying assumption that video implies authenticity was simply wrong.</p>
+
+					<h2>Where Identity Verification Breaks Most Often in Practice</h2>
+					<p>The impact of AI-driven impersonation is most visible in workflows that combine urgency, trust, and incomplete information.</p>
+
+					<p><strong>Help desks</strong> are a prime target. Support agents are trained to be helpful and efficient, often under pressure to resolve issues quickly. Attackers exploit this by presenting plausible stories, synthetic voices, and harvested personal data to bypass controls.</p>
+
+					<p><strong>Account recovery flows</strong> are another weak point. Password resets frequently rely on email, SMS, or knowledge-based checks that can be intercepted, spoofed, or answered using publicly available data.</p>
+
+					<p><strong>Onboarding and recruiting</strong> workflows are increasingly exposed, particularly in remote-first environments where face-to-face verification is limited.</p>
+
+					<p>In each case, the attacker does not need to break cryptography or exploit software vulnerabilities. They simply need to convincingly perform the role the system expects.</p>
+
+					<h2>Why Traditional Fixes Are Not Enough</h2>
+					<p>Organizations often respond to identity failures by adding more steps. More questions. More checks. More friction.</p>
+
+					<p>This approach has diminishing returns.</p>
+
+					<p>Attackers using AI can often clear additional hurdles faster than legitimate users, especially when those hurdles rely on the same weak signals. Meanwhile, excessive friction degrades user experience and increases operational cost.</p>
+
+					<p>The problem is not the number of factors. It is the nature of the factors.</p>
+
+					<h2>Rethinking Identity Verification for an AI-Driven Threat Model</h2>
+					<p>Resilient identity verification in the AI era requires a shift in mindset. Instead of asking, “How do we prove this person is real?” organizations should ask, “How do we make impersonation difficult, detectable, and containable?”</p>
+
+					<p>Several principles consistently emerge in stronger designs.</p>
+
+					<hr class="article-divider" />
+
+					<h2>Layered Signals with Unequal Weight</h2>
+					<p>Not all identity signals should be treated equally. Knowledge-based signals should be assumed weak. Possession-based signals remain useful but must be monitored for compromise. Biometric signals should be used cautiously and only alongside detection mechanisms for synthetic media.</p>
+
+					<p>Confidence should come from <strong>combination and correlation</strong>, not from any single signal.</p>
+
+					<h2>Detection of Synthetic Media as a First-Class Requirement</h2>
+					<p>If voice or video is used, organizations should assume it may be synthetic. Modern detection techniques analyze artifacts, temporal inconsistencies, and signal characteristics that differ between real and generated media.</p>
+
+					<p>Detection does not need to be perfect. It needs to raise enough doubt to trigger additional verification when risk is high.</p>
+
+					<h2>Progressive Verification at High-Risk Moments</h2>
+					<p>Identity assurance should scale with risk. Routine actions may require minimal verification. High-risk moments should trigger stronger, layered checks.</p>
+
+					<p>High-risk moments typically include:</p>
+					<ul>
+						<li>Account recovery and credential changes</li>
+						<li>Help desk overrides</li>
+						<li>Access to sensitive systems or data</li>
+						<li>Financial or administrative actions</li>
+					</ul>
+
+					<p>During these moments, systems should require signals that are difficult to fake simultaneously, even with AI assistance.</p>
+
+					<h2>Continuous Identity Confidence, Not One-Time Proof</h2>
+					<p>Identity should not be treated as a binary state established at login. Confidence should evolve over time based on behavior, context, and ongoing signals.</p>
+
+					<p>Unusual behavior, changes in environment, or deviations from expected patterns should reduce confidence and trigger reassessment.</p>
+
+					<h2>Designing for Recovery and Containment</h2>
+					<p>No verification system will be perfect. Organizations should assume failures will occur and design accordingly.</p>
+
+					<p>This means:</p>
+					<ul>
+						<li>Logging and traceability for identity decisions</li>
+						<li>Clear escalation paths when verification confidence drops</li>
+						<li>The ability to quickly contain and reverse unauthorized actions</li>
+					</ul>
+
+					<p>Resilience matters as much as prevention.</p>
+
+					<hr class="article-divider" />
+
+					<h2>Identity Verification Is Now a Resilience Problem</h2>
+					<p>In the AI era, identity verification is no longer about confirming a static truth. It is about managing uncertainty in an environment where signals can be convincingly forged.</p>
+
+					<p>Seeing and hearing are no longer proof. Knowledge is no longer private. Presence is no longer guaranteed.</p>
+
+					<p>Organizations that adapt will move away from brittle assumptions and toward layered, adaptive, and observable verification models. Those that do not will find that their identity systems continue to work, right up until they fail in ways that are costly and difficult to undo.</p>
+
+					<p>The question is no longer whether identity signals can be faked. The question is whether systems are designed to survive when they are.</p>
 				</div>
 			</div>
 		</section>
