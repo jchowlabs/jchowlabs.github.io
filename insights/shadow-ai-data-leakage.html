@@ -154,75 +154,58 @@
 			color: #333;
 		}
 
-		/* In-progress gate (blurred preview + GIF) */
-		.article-inprogress {
-			position: relative;
-			padding-bottom: 18px;
+		.article-body h2 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview {
-			position: relative;
-			margin-top: 6px;
-			pointer-events: none;
-			user-select: none;
-			filter: blur(2px);
-			opacity: 0.7;
+		.article-body h3 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.375rem;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-top: 36px;
+			margin-bottom: 20px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(
-				to bottom,
-				rgba(255, 255, 255, 0) 0%,
-				rgba(255, 255, 255, 0.35) 35%,
-				rgba(255, 255, 255, 0.9) 75%,
-				rgba(255, 255, 255, 1) 100%
-			);
+		.article-body strong,
+		.article-body b {
+			font-weight: 600;
+			color: #1a1a1a;
 		}
 
-		.inprogress-line {
-			height: 11px;
-			border-radius: 999px;
-			margin: 8px 0;
-			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
-			background-size: 220% 100%;
-			animation: shimmer 1.8s ease-in-out infinite;
+		.article-body ul,
+		.article-body ol {
+			margin-bottom: 24px;
+			padding-left: 24px;
 		}
 
-		@keyframes shimmer {
-			0% { background-position: 0% 0%; }
-			100% { background-position: 100% 0%; }
+		.article-body li {
+			margin-bottom: 12px;
+			line-height: 1.7;
 		}
 
-		.inprogress-toast {
-			display: flex;
-			justify-content: center;
-			pointer-events: none;
-			margin: 4px 0;
+		.article-body a {
+			color: #2563eb;
+			text-decoration: none;
+			border-bottom: 1px solid #93c5fd;
+			transition: border-color 0.2s;
 		}
 
-		.inprogress-stamp {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
+		.article-body a:hover {
+			border-bottom-color: #2563eb;
 		}
 
-		.inprogress-stamp img {
-			display: block;
-			height: clamp(220px, 26vw, 380px);
-			width: auto;
-			max-width: min(560px, 92vw);
-			opacity: 0.92;
-			filter: contrast(1.05);
-			mix-blend-mode: multiply;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.inprogress-line {
-				animation: none;
-			}
+		.article-divider {
+			border: 0;
+			border-top: 1px solid #e5e5e5;
+			margin: 36px 0;
 		}
 
 		@media (max-width: 1200px) {
@@ -257,6 +240,18 @@
 
 			.article-header h1 {
 				font-size: 1.875rem;
+			}
+
+			.article-body h2 {
+				font-size: 1.5rem;
+				margin-top: 36px;
+				margin-bottom: 20px;
+			}
+
+			.article-body h3 {
+				font-size: 1.25rem;
+				margin-top: 28px;
+				margin-bottom: 16px;
 			}
 		}
 	</style>
@@ -325,23 +320,180 @@
 					<h1>Shadow AI is the new Data Leak</h1>
 				</div>
 
-				<div class="article-body article-inprogress">
-					<p>As organizations push to capture productivity gains through generative AI, employees are increasingly encouraged to integrate AI into everyday work. At the same time, the rapid release of new AI tools, copilots, and agents has expanded the available options far beyond approved platforms. Together, these forces are driving widespread AI usage that often outpaces security and governance controls, resulting in shadow AI and new, difficult-to-see data leakage risks.</p>
-					<p>This insight examines why shadow AI emerges despite enterprise AI investments, how everyday interactions with chat-based models, coding assistants, and agents expose data in unintended ways, and why traditional controls struggle to keep pace. It outlines a practical framework for understanding this risk and how organizations can regain visibility and control through policy, identity-aware access, and observability without undermining the productivity benefits that drive AI adoption.</p>
+				<div class="article-body">
+					<p>Enterprises are pushing generative AI into everyday work for the same reason they once pushed cloud adoption: the productivity gains are immediate, tangible, and difficult to ignore. Knowledge workers can draft faster, summarize instantly, research more broadly, and automate cognitive work that previously consumed hours. In many teams, large language models feel like added capacity without added headcount.</p>
 
-					<div class="inprogress-preview" aria-hidden="true">
-						<div class="inprogress-line" style="width: 92%;"></div>
-						<div class="inprogress-line" style="width: 84%;"></div>
-						<div class="inprogress-line" style="width: 88%;"></div>
-						<div class="inprogress-line" style="width: 76%;"></div>
-						<div class="inprogress-line" style="width: 90%;"></div>
-					</div>
+					<p>At the same time, something quieter is happening. As AI becomes embedded in daily workflows, the boundary between internal systems and external services is eroding. The most common interface for interacting with these systems, the prompt box, has become a new and largely invisible data egress point.</p>
 
-					<div class="inprogress-toast" role="note" aria-label="Article is in-progress">
-						<div class="inprogress-stamp" aria-hidden="true">
-							<img src="../static/images/under-construction.gif" alt="">
-						</div>
-					</div>
+					<p>In the past, data leaks were usually visible. Sensitive information left the organization as files, emails, or uploads. Those flows passed through gateways, file systems, or collaboration platforms that security teams understood and monitored. With generative AI, data can leave an organization one paragraph at a time, embedded in what looks like normal work.</p>
+
+					<ul>
+						<li>A support agent pastes a customer email thread to draft a response.</li>
+						<li>An engineer copies a stack trace to diagnose an issue.</li>
+						<li>A salesperson uploads a proposal to improve the language.</li>
+						<li>A finance analyst pastes internal forecasts to ask for insights.</li>
+					</ul>
+
+					<p>Each of these actions feels routine. Each can expose sensitive company data to an external AI service.</p>
+
+					<p>This is why <strong>shadow AI is becoming the new data leak</strong>. Not because AI tools are inherently insecure, but because they make it easier than ever for data to leave the organization without triggering traditional controls.</p>
+
+
+					<h2>The Productivity Mandate Driving Shadow AI </h2>
+					<p>Most organizations did not adopt AI casually. Adoption was driven by real pressure to move faster, increase output, and improve efficiency across every function. When employees discover that AI can materially improve their work, usage spreads quickly and often organically.</p>
+
+					<p>Leadership messaging frequently reinforces this behavior, even when unintentionally. Statements like “use AI to be more productive,” “experiment with new tools,” or “AI is part of how we work now” send a clear signal. Employees respond by adopting whatever tools help them meet expectations.</p>
+
+					<p>This is where shadow AI begins to emerge. Even when an organization selects and licenses an enterprise-grade AI platform, employees continue to use additional tools that feel faster, more specialized, or more convenient.</p>
+
+					<p>Common drivers of shadow AI include:</p>
+					<ul>
+						<li>The sanctioned tool is not embedded directly into daily workflows</li>
+						<li>Different AI tools excel at different tasks, such as coding, writing, or research</li>
+						<li>Copying text into an AI prompt does not feel like “sharing data”</li>
+						<li>Employees are unclear about what counts as sensitive information</li>
+						<li>AI tools spread socially through teams via shared prompts and recommendations</li>
+					</ul>
+
+					<p>Shadow AI is rarely an act of defiance. It is a predictable outcome of productivity pressure combined with low-friction tools.</p>
+
+					<h2>Why Generative AI Changes the Nature of Data Leakage</h2>
+					<p>Traditional data protection models were designed around discrete objects like files, records, and databases. Controls focused on detecting when those objects were copied, moved, or shared improperly.</p>
+
+					<p>Generative AI changes this model. Leakage often occurs through conversational context rather than files.</p>
+
+					<p>Data shared with AI systems is frequently:</p>
+					<ul>
+						<li>Partial rather than complete</li>
+						<li>Embedded in free text</li>
+						<li>Spread across multiple prompts</li>
+						<li>Combined with internal reasoning or explanation</li>
+					</ul>
+
+					<p>A user may never upload a customer database, but they might paste several email threads that collectively contain names, addresses, and account details. A developer may not share an entire codebase, but a debugging prompt can reveal proprietary logic, infrastructure design, or embedded secrets.</p>
+
+					<p>Because these interactions resemble everyday communication, they are harder to detect and easier to rationalize.</p>
+
+					<p>The most common categories of AI-related data exposure tend to include:</p>
+					<ul>
+						<li>Customer information such as names, emails, ticket histories, and complaints</li>
+						<li>Employee data including HR context, compensation questions, or performance discussions</li>
+						<li>Proprietary source code, internal libraries, and configuration details</li>
+						<li>Security information such as architecture descriptions or incident details</li>
+						<li>Financial and commercial data including pricing, forecasts, and pipeline information</li>
+						<li>Legal language from contracts, negotiations, or compliance inquiries</li>
+						<li>Product strategy and roadmap information that is not yet public</li>
+					</ul>
+
+					<p>In most cases, the intent is not malicious. The leakage occurs because AI is the fastest path to an answer.</p>
+
+					<h2>The Role and Limits of Enterprise AI Platforms</h2>
+					<p>In response to these risks, major AI providers now offer enterprise-grade versions of their models. These platforms are designed to allow organizations to capture productivity gains while reducing legal, privacy, and security risk.</p>
+
+					<p>Enterprise AI platforms typically provide:</p>
+					<ul>
+						<li>Commitments that customer prompts and outputs are not used to train public models</li>
+						<li>Clearer data retention terms, sometimes with configurable retention windows</li>
+						<li>Identity and access controls such as single sign-on and centralized user management</li>
+						<li>Administrative controls and audit capabilities to support governance</li>
+					</ul>
+
+					<p>These features matter. They create a safer environment for employees to use AI and give security and legal teams a foundation they can defend.</p>
+
+					<p>However, enterprise AI platforms are not a complete solution.</p>
+
+					<p>They do not prevent users from pasting sensitive data into prompts. They do not stop employees from copying AI-generated outputs into insecure channels. They do not eliminate the risk of human error. Most importantly, they do not address the broader ecosystem of unsanctioned AI tools that remain easily accessible.</p>
+
+					<p>Enterprise AI reduces risk. It does not eliminate it.</p>
+
+					<h2>Shadow AI and the Risk of Unsanctioned Tools</h2>
+					<p>Beyond enterprise platforms, the AI ecosystem is expanding rapidly. There are general-purpose chatbots, coding assistants, research tools, browser extensions, and AI features embedded directly into SaaS products. Some of these tools have strong privacy controls. Others do not. Many are difficult to evaluate quickly.</p>
+
+					<p>When employees use unsanctioned AI tools for company work, organizations lose visibility and control over how data is handled.</p>
+
+					<p>Risks associated with unsanctioned AI tools include:</p>
+					<ul>
+						<li>Prompts being retained longer than expected</li>
+						<li>Data being used for model improvement by default</li>
+						<li>Limited transparency into third-party data handling</li>
+						<li>Lack of enterprise security features such as audit logs or access controls</li>
+						<li>Increased exposure through browser extensions or embedded agents</li>
+					</ul>
+
+					<p>Once data enters an unsanctioned AI system, the organization often has little insight into where it goes, how long it persists, or who can access it. Even if no misuse occurs, the exposure itself represents a material risk.</p>
+
+					<h2>Managing the Risk: Control the Data, Not the Curiosity</h2>
+					<p>Attempts to ban AI outright are rarely effective. Employees will continue to use tools that help them meet expectations. A more durable strategy accepts AI usage as inevitable and focuses on reducing the likelihood and impact of data leakage.</p>
+
+					<p>Effective approaches share a common principle: <strong>they control data flows and shape behavior rather than trying to eliminate usage</strong>.</p>
+
+					<h3>Policy That Employees Can Actually Follow</h3>
+					<p>An AI acceptable-use policy works best when it is explicit and practical. Instead of abstract warnings, it should clearly define:</p>
+					<ul>
+						<li>Which AI tools are approved for company work</li>
+						<li>Which types of data must never be shared with AI systems</li>
+						<li>What safe usage looks like in real scenarios</li>
+					</ul>
+
+					<p>Strong policies typically include clear classifications such as:</p>
+					<ul>
+						<li>Data that should never be shared, including PII, credentials, proprietary code, confidential financials, and security information</li>
+						<li>Data that may be shared only if properly sanitized or anonymized</li>
+						<li>Data that is generally safe to use, such as public content or non-sensitive brainstorming</li>
+					</ul>
+
+					<p>The purpose of policy is not enforcement alone. It is to remove ambiguity. Most AI-related leakage occurs because employees do not know where the line is.</p>
+
+					<h3>Making the Safe Path the Easy Path</h3>
+					<p>Policies are ineffective if approved tools are harder to use than unapproved ones. Organizations that successfully reduce shadow AI usage invest in making sanctioned AI platforms easy to access and well integrated into daily workflows.</p>
+
+					<p>This often includes:</p>
+					<ul>
+						<li>Single sign-on and simple onboarding</li>
+						<li>Clear documentation for common use cases</li>
+						<li>Integration into browsers, IDEs, or internal portals</li>
+						<li>A fast process for requesting evaluation of new tools</li>
+					</ul>
+
+					<p>When the approved option meets employees where they already work, shadow usage naturally declines.</p>
+
+					<h3>Visibility Before Enforcement</h3>
+					<p>Before restricting access to AI tools, organizations need visibility into actual usage. This includes understanding which AI sites are accessed from managed devices, which browser extensions are installed, and which SaaS products include embedded AI features.</p>
+
+					<p>Visibility allows teams to focus on the highest-risk tools rather than attempting to control the entire AI ecosystem at once.</p>
+
+					<h3>Technical Controls as Risk Reduction Tools</h3>
+					<p>Data loss prevention tools, secure access service edge platforms, and cloud access security brokers can help reduce accidental leakage. These controls can detect certain types of sensitive data, restrict access to high-risk services, and enforce policies on managed devices.</p>
+
+					<p>However, these tools are not guarantees.</p>
+
+					<p>Sensitive data does not always follow predictable patterns. Prompts can be paraphrased. Users can bypass controls through personal devices or networks. Overly aggressive enforcement can push users toward workarounds.</p>
+
+					<p>Technical controls are most effective when treated as guardrails rather than absolute barriers.</p>
+
+					<h3>Training That Builds Better Habits</h3>
+					<p>Training remains one of the most effective ways to reduce AI-related risk. Employees need to understand how leakage actually occurs, what data is sensitive, and how to use AI safely.</p>
+
+					<p>Effective training focuses on:</p>
+					<ul>
+						<li>Real examples of risky prompts</li>
+						<li>Techniques for anonymizing and summarizing data</li>
+						<li>Clear guidance on approved tools</li>
+						<li>Reinforcement that AI is encouraged within defined boundaries</li>
+					</ul>
+
+					<p>When employees understand the “why” behind controls, compliance improves naturally.</p>
+
+					<h3>Accepting Imperfection and Reducing Risk</h3>
+					<p>No organization can completely prevent data leakage in an AI-enabled workplace. Human judgment, evolving tools, and external dependencies make perfection unrealistic.</p>
+
+					<p>What organizations can do is significantly reduce risk by narrowing where AI is used, improving visibility, and reinforcing safe behavior.</p>
+
+					<p>Shadow AI is not a temporary issue. It is a structural consequence of how generative AI is being adopted. Treating it as an ongoing governance and security challenge allows organizations to balance innovation with protection.</p>
+
+					<p>AI can and should be used. The challenge is ensuring that the productivity gains it delivers do not quietly become the next major source of data exposure.</p>
+
+					<p>If you’re thinking about how to reduce shadow AI risk without slowing down the business, feel free to <a href="#" onclick="openModal(event)">get in touch</a>.</p>
 				</div>
 			</div>
 		</section>
