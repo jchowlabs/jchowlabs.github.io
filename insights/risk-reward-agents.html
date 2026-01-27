@@ -154,79 +154,161 @@
 			color: #333;
 		}
 
-		/* In-progress gate (blurred preview + GIF) */
-		.article-inprogress {
-			position: relative;
-			padding-bottom: 18px;
+		.article-body h2 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview {
-			position: relative;
-			margin-top: 6px;
-			pointer-events: none;
-			user-select: none;
-			filter: blur(2px);
-			opacity: 0.7;
+		.article-body h3 {
+			font-family: 'Inter', sans-serif;
+			font-size: 1.375rem;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-top: 36px;
+			margin-bottom: 20px;
+			line-height: 1.3;
 		}
 
-		.inprogress-preview::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(
-				to bottom,
-				rgba(255, 255, 255, 0) 0%,
-				rgba(255, 255, 255, 0.35) 35%,
-				rgba(255, 255, 255, 0.9) 75%,
-				rgba(255, 255, 255, 1) 100%
-			);
+		.article-body strong,
+		.article-body b {
+			font-weight: 600;
+			color: #1a1a1a;
 		}
 
-		.inprogress-line {
-			height: 11px;
-			border-radius: 999px;
-			margin: 8px 0;
-			background: linear-gradient(90deg, #f2f2f2 0%, #e9e9e9 35%, #f2f2f2 70%);
-			background-size: 220% 100%;
-			animation: shimmer 1.8s ease-in-out infinite;
+		.article-body ul,
+		.article-body ol {
+			margin-bottom: 24px;
+			padding-left: 24px;
 		}
 
-		@keyframes shimmer {
-			0% { background-position: 0% 0%; }
-			100% { background-position: 100% 0%; }
+		.article-body li {
+			margin-bottom: 12px;
+			line-height: 1.7;
 		}
 
-		.inprogress-toast {
+		.article-body a {
+			color: #2563eb;
+			text-decoration: none;
+			border-bottom: 1px solid #93c5fd;
+			transition: border-color 0.2s;
+		}
+
+		.article-body a:hover {
+			border-bottom-color: #2563eb;
+		}
+
+		.article-divider {
+			border: 0;
+			border-top: 1px solid #e5e5e5;
+			margin: 36px 0;
+		}
+
+		.taxonomy {
+			margin: 26px 0 34px;
+		}
+
+		.taxonomy-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px;
+			margin-top: 14px;
+		}
+
+		.taxonomy-item {
+			border: 1px solid #e5e5e5;
+			background: #fafafa;
+			border-radius: 12px;
+			padding: 14px 14px;
+		}
+
+		.taxonomy-title {
 			display: flex;
-			justify-content: center;
-			pointer-events: none;
-			margin: 4px 0;
+			align-items: center;
+			gap: 10px;
+			margin: 0 0 6px 0;
+			font-weight: 600;
+			color: #1a1a1a;
+			font-size: 0.98rem;
+			line-height: 1.35;
 		}
 
-		.inprogress-stamp {
+		.taxonomy-num {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
+			width: 24px;
+			height: 24px;
+			border-radius: 999px;
+			background: #fff;
+			border: 1px solid #e5e5e5;
+			color: #666;
+			font-size: 12px;
+			flex: 0 0 auto;
 		}
 
-		.inprogress-stamp img {
-			display: block;
-			height: clamp(220px, 26vw, 380px);
-			width: auto;
-			max-width: min(560px, 92vw);
-			opacity: 0.92;
-			filter: contrast(1.05);
-			mix-blend-mode: multiply;
+		.taxonomy-desc {
+			margin: 0;
+			color: #444;
+			font-size: 0.95rem;
+			line-height: 1.6;
 		}
 
-		.inprogress-preview-bottom {
-			margin-top: 0;
+		.framework {
+			margin: 10px 0 26px;
+			padding: 0;
+			list-style: none;
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 12px;
 		}
 
-		@media (prefers-reduced-motion: reduce) {
-			.inprogress-line {
-				animation: none;
-			}
+		.framework-item {
+			display: flex;
+			gap: 12px;
+			align-items: flex-start;
+			border: 1px solid #e5e5e5;
+			background: #fafafa;
+			border-radius: 12px;
+			padding: 14px 14px;
+		}
+
+		.framework-num {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 28px;
+			height: 28px;
+			border-radius: 999px;
+			background: #fff;
+			border: 1px solid #e5e5e5;
+			color: #666;
+			font-size: 12px;
+			flex: 0 0 auto;
+			margin-top: 1px;
+		}
+
+		.framework-body {
+			min-width: 0;
+		}
+
+		.framework-title {
+			margin: 0 0 6px 0;
+			font-weight: 600;
+			color: #1a1a1a;
+			font-size: 0.98rem;
+			line-height: 1.35;
+		}
+
+		.framework-desc {
+			margin: 0;
+			color: #444;
+			font-size: 0.95rem;
+			line-height: 1.6;
 		}
 
 		@media (max-width: 1200px) {
@@ -261,6 +343,27 @@
 
 			.article-header h1 {
 				font-size: 1.875rem;
+			}
+
+			.article-body h2 {
+				font-size: 1.5rem;
+				margin-top: 36px;
+				margin-bottom: 20px;
+			}
+
+			.article-body h3 {
+				font-size: 1.25rem;
+				margin-top: 28px;
+				margin-bottom: 16px;
+			}
+
+			.taxonomy-grid {
+				grid-template-columns: 1fr;
+				gap: 10px;
+			}
+
+			.framework-item {
+				padding: 13px 13px;
 			}
 		}
 	</style>
@@ -329,23 +432,211 @@
 					<h1>The Risk-Reward of AI Agents</h1>
 				</div>
 
-				<div class="article-body article-inprogress">
-					<p>AI agents are increasingly used across enterprises to unlock productivity gains and efficiencies by operating autonomously, making decisions, and interacting directly with systems on behalf of users. Unlike traditional human or static machine identities, agents often operate at scale, with broad access and limited oversight—creating a powerful but fragile tradeoff between efficiency and risk.</p>
-					<p>This article examines how the same capabilities that make AI agents valuable also expand the enterprise attack surface. It explores common failure patterns that emerge when agents act with high privilege and low observability, and outlines how leaders should think about governance, accountability, and control as agent adoption accelerates.</p>
+				<div class="article-body">
+					<p>AI agents are rapidly moving from experimentation into early production use across enterprises. Unlike chat-based assistants that respond to prompts, agents are designed to act. They make decisions, orchestrate workflows, and interact directly with systems on behalf of users and teams. In theory, this unlocks a new level of productivity and efficiency. In practice, it introduces a class of risk that most organizations are not yet equipped to fully understand or manage.</p>
 
-					<div class="inprogress-preview" aria-hidden="true">
-						<div class="inprogress-line" style="width: 92%;"></div>
-						<div class="inprogress-line" style="width: 84%;"></div>
-						<div class="inprogress-line" style="width: 88%;"></div>
-						<div class="inprogress-line" style="width: 76%;"></div>
-						<div class="inprogress-line" style="width: 90%;"></div>
-					</div>
+					<p>The appeal is clear. Agents promise to automate complex, multi-step processes that previously required human coordination. They can triage support tickets, reconcile data across systems, update records, deploy infrastructure, or manage routine operational workflows end to end. For organizations under pressure to move faster with limited resources, agents feel like the natural next step in AI adoption.</p>
 
-					<div class="inprogress-toast" role="note" aria-label="Article is in-progress">
-						<div class="inprogress-stamp" aria-hidden="true">
-							<img src="../static/images/under-construction.gif" alt="">
+					<p>But agents differ from previous automation in a critical way. To be effective, they require access. Often broad access. And once deployed, they operate with a degree of autonomy that challenges traditional assumptions about visibility, authorization, and accountability.</p>
+
+					<p>This creates a fragile tradeoff. The same capabilities that make AI agents powerful also expand the enterprise risk surface in ways that are still poorly understood.</p>
+
+					<h2>Why Organizations Are Embracing Agents Despite the Risk</h2>
+					<p>Agent adoption is not being driven by technological maturity. It is being driven by incentives.</p>
+
+					<p>Organizations see agents as a way to:</p>
+					<ul>
+						<li>Reduce repetitive manual work across teams</li>
+						<li>Automate workflows that span multiple systems and functions</li>
+						<li>Increase operational speed without adding headcount</li>
+						<li>Shift humans toward judgment, strategy, and exception handling</li>
+					</ul>
+
+					<p>Early deployments often focus on internal-facing use cases such as IT operations, support triage, data reconciliation, reporting, DevOps workflows, and internal tooling. In each of these scenarios, the agent effectively acts as a digital employee, performing tasks that require access to multiple systems.</p>
+
+					<p>That access is not incidental. It is foundational.</p>
+
+					<p>To operate across systems, agents are granted credentials, tokens, or service identities. They are allowed to read data, write data, trigger actions, and in some cases make changes that would traditionally require human approval. This is where the risk begins to compound.</p>
+
+					<h2>Agents Are Not Just Tools. They Are Identities.</h2>
+					<p>One of the most important shifts organizations struggle with is recognizing that AI agents behave less like applications and more like identities.</p>
+
+					<p>Traditional applications tend to be predictable. Their behavior is relatively fixed, and permissions are granted based on known usage patterns. AI agents are different. They reason, plan, and adapt based on context. Their behavior is not fully deterministic, even when their goals are well defined.</p>
+
+					<p>To function effectively, agents often require:</p>
+					<ul>
+						<li>Access to multiple internal systems</li>
+						<li>API credentials or service accounts</li>
+						<li>Permission to read, write, and modify data</li>
+						<li>Authority to trigger downstream actions</li>
+					</ul>
+
+					<p>In effect, agents operate with privilege. Sometimes significant privilege. Yet many organizations do not manage them with the same rigor applied to human or machine identities.</p>
+
+					<p>This raises uncomfortable but necessary questions:</p>
+					<ul>
+						<li>What systems does this agent have access to today</li>
+						<li>Why does it have that access</li>
+						<li>What actions is it actually performing</li>
+						<li>Are those actions appropriate and authorized</li>
+						<li>Who is accountable if something goes wrong</li>
+					</ul>
+
+					<p>In many environments, these questions cannot be answered confidently.</p>
+
+					<h2>The Observability Gap: Acting Faster Than We Can See</h2>
+					<p>A defining risk of AI agents is the lack of observability.</p>
+
+					<p>With human users, organizations rely on identity systems, access reviews, audit logs, and behavioral monitoring. With traditional machine identities, behavior is usually narrow and predictable. AI agents sit in between. They are autonomous enough to act independently, but opaque enough that their reasoning and decision paths are difficult to reconstruct.</p>
+
+					<p>Common observability challenges include:</p>
+					<ul>
+						<li>Limited insight into how an agent reached a decision</li>
+						<li>Inconsistent or incomplete logging of agent actions</li>
+						<li>Difficulty correlating actions across systems and time</li>
+						<li>Inability to distinguish agent-driven activity from normal system behavior</li>
+					</ul>
+
+					<p>When something goes wrong, it is often unclear whether the root cause was flawed reasoning, incomplete data, excessive permissions, or an unexpected interaction with another system. Agents can act faster than humans can monitor, creating a delay between action and detection that increases blast radius.</p>
+
+					<h2>Privilege Accumulation and the Automation Spiral</h2>
+					<p>As agents become more useful, they tend to accumulate access.</p>
+
+					<p>A workflow fails because the agent lacks permission. Someone grants additional access to unblock progress. A new integration is added. Another permission is granted. Over time, the agent becomes increasingly powerful, often without a corresponding increase in scrutiny.</p>
+
+					<p>This mirrors the familiar problem of identity sprawl, but with higher stakes. Agents do not get tired. They do not pause to ask questions. They can act continuously and at scale.</p>
+
+					<p>Without intentional controls, organizations risk creating agents that have:</p>
+					<ul>
+						<li>Broad read and write access across multiple systems</li>
+						<li>Persistent credentials that are rarely rotated</li>
+						<li>Permissions that no single person fully understands</li>
+						<li>No clear owner responsible for oversight</li>
+					</ul>
+
+					<p>At that point, the agent is no longer just an automation. It is a high-risk identity operating largely out of sight.</p>
+
+					<h2>When Agents Interact, Risk Multiplies</h2>
+					<p>The risk profile becomes more complex when agents interact with other agents.</p>
+
+					<p>In multi-agent systems, agents may delegate tasks, exchange information, or trigger actions in other agents. This can create emergent behavior that is difficult to predict or reason about in advance.</p>
+
+					<p>Key challenges include:</p>
+					<ul>
+						<li>Loss of clear execution boundaries</li>
+						<li>Difficulty attributing outcomes to a single agent</li>
+						<li>Cascading failures across interconnected systems</li>
+						<li>Compounded privilege through chained actions</li>
+					</ul>
+
+					<p>When multiple agents operate with partial autonomy, it becomes harder to answer basic questions about responsibility and intent. If one agent triggers another, which one is accountable for the outcome?</p>
+
+					<p>Most enterprise security models are not designed for this level of distributed, autonomous interaction.</p>
+
+					<h2>The Forgotten Problem: Rollback and Recovery</h2>
+					<p>Another underappreciated risk is recovery.</p>
+
+					<p>When a human makes a mistake, there is usually a pause. When an agent makes a mistake, it may execute dozens or hundreds of actions before anyone notices.</p>
+
+					<p>Organizations must confront difficult questions:</p>
+					<ul>
+						<li>Can we reliably identify which actions an agent performed</li>
+						<li>Can we distinguish correct actions from incorrect ones</li>
+						<li>Can changes be rolled back across multiple systems</li>
+						<li>Do we have a defined containment strategy if an agent misbehaves</li>
+					</ul>
+
+					<p>In many environments today, rollback is either manual, partial, or undefined. Recovery processes have not kept pace with the speed and autonomy of agents.</p>
+
+					<h2>A Risk Taxonomy for AI Agents</h2>
+					<p>To reason about agent risk clearly, it helps to break it down into distinct categories. AI agents introduce risks that are not fully captured by traditional application security or identity frameworks.</p>
+
+					<p>Six categories consistently emerge:</p>
+					<div class="taxonomy" role="list" aria-label="Risk taxonomy for AI agents">
+						<div class="taxonomy-grid">
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">1</span>Privilege risk</p>
+								<p class="taxonomy-desc">Excessive permissions, privilege creep, and persistent credentials that expand the blast radius of mistakes.</p>
+							</div>
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">2</span>Autonomy risk</p>
+								<p class="taxonomy-desc">Agents making decisions without human oversight, sometimes based on flawed context or incomplete data.</p>
+							</div>
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">3</span>Observability risk</p>
+								<p class="taxonomy-desc">Limited visibility into what agents did, why they did it, and how actions relate to outcomes.</p>
+							</div>
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">4</span>Interaction risk</p>
+								<p class="taxonomy-desc">Unintended behavior arising from agent-to-agent or system-to-agent interactions.</p>
+							</div>
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">5</span>Integrity and trust risk</p>
+								<p class="taxonomy-desc">Technically valid but contextually wrong actions that erode confidence in systems and data.</p>
+							</div>
+							<div class="taxonomy-item" role="listitem">
+								<p class="taxonomy-title"><span class="taxonomy-num">6</span>Recovery risk</p>
+								<p class="taxonomy-desc">Inability to contain, reverse, or fully understand the impact of agent-driven changes.</p>
+							</div>
 						</div>
 					</div>
+
+					<p>These risks do not exist in isolation. They compound as agents become more autonomous and more interconnected.</p>
+
+					<h2>Toward a Practical Governance Model for Agents</h2>
+					<p>The core problem with AI agents is not that they are unsafe by design. It is that governance has not caught up to capability.</p>
+
+					<p>A practical agent governance model focuses on five foundational elements.</p>
+					<ol class="framework" aria-label="Five foundational governance elements">
+						<li class="framework-item">
+							<span class="framework-num">1</span>
+							<div class="framework-body">
+								<p class="framework-title">Agent classification</p>
+								<p class="framework-desc">Distinguish between advisory agents, assistive agents, and fully autonomous agents. Governance requirements should scale with autonomy.</p>
+							</div>
+						</li>
+						<li class="framework-item">
+							<span class="framework-num">2</span>
+							<div class="framework-body">
+								<p class="framework-title">Explicit identity</p>
+								<p class="framework-desc">Give every agent its own identity, separate from human users and other agents, with clear ownership and no shared credentials.</p>
+							</div>
+						</li>
+						<li class="framework-item">
+							<span class="framework-num">3</span>
+							<div class="framework-body">
+								<p class="framework-title">Deliberate privilege design</p>
+								<p class="framework-desc">Scope access narrowly, review it regularly, and grant it based on documented purpose rather than convenience.</p>
+							</div>
+						</li>
+						<li class="framework-item">
+							<span class="framework-num">4</span>
+							<div class="framework-body">
+								<p class="framework-title">Observability and control</p>
+								<p class="framework-desc">Log agent actions so they are attributable and visible. High-risk agents should have real-time monitoring and a clear disable mechanism.</p>
+							</div>
+						</li>
+						<li class="framework-item">
+							<span class="framework-num">5</span>
+							<div class="framework-body">
+								<p class="framework-title">Accountability and lifecycle management</p>
+								<p class="framework-desc">Assign a business owner and technical owner, define scope, and plan for decommissioning. Orphaned agents should not exist.</p>
+							</div>
+						</li>
+					</ol>
+
+					<p>Governance in this context is not about slowing innovation. It is about making autonomy survivable.</p>
+
+					<h2>Accepting the Tradeoff</h2>
+					<p>AI agents offer real rewards. They can transform how work gets done and unlock efficiencies that were previously unattainable. That promise is driving rapid experimentation across industries.</p>
+
+					<p>At the same time, agents introduce a new class of risk that blends identity, access, automation, and opacity. They operate with privilege, scale, and limited oversight, often in environments that were not designed for autonomous actors.</p>
+
+					<p>The goal is not to avoid this tradeoff. The goal is to acknowledge it.</p>
+
+					<p>Organizations that succeed with AI agents will be the ones that balance ambition with restraint, experimentation with governance, and automation with accountability.</p>
+
+					<p>Agents are already becoming part of enterprise systems. The real question is whether organizations will build the controls to understand what those agents are doing before something goes wrong.</p>
 				</div>
 			</div>
 		</section>
