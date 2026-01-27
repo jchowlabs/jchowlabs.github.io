@@ -107,11 +107,6 @@
             51%, 100% { opacity: 0; }
         }
         
-        .modal {
-            max-width: 360px;
-            padding: 32px;
-        }
-        
         .modal h2 {
             text-align: center;
             font-size: 22px;
@@ -129,12 +124,6 @@
         .form-group textarea {
             padding: 8px 12px;
             font-size: 13px;
-        }
-        
-        .captcha-container {
-            margin: 16px 0;
-            display: flex;
-            justify-content: center;
         }
         
         .field-error {
@@ -192,6 +181,24 @@
                 <label for="email">Email</label>
                 <input type="email" id="email">
                 <div class="field-error" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="helpWith">I need help with...</label>
+                <select id="helpWith">
+                    <option value="" selected disabled>Select an option</option>
+                    <option value="IAM Strategy">IAM Strategy</option>
+                    <option value="IAM Health Check & Optimization">IAM Health Check & Optimization</option>
+                    <option value="Single Sign-On (SSO) Implementation">Single Sign-On (SSO) Implementation</option>
+                    <option value="MFA & Strong Authentication">MFA & Strong Authentication</option>
+                    <option value="Passwordless Authentication">Passwordless Authentication</option>
+                    <option value="Identity Verification & Fraud Prevention">Identity Verification & Fraud Prevention</option>
+                    <option value="Platform Evaluation & Selection">Platform Evaluation & Selection</option>
+                    <option value="Proof of Concept & Rapid Prototyping">Proof of Concept & Rapid Prototyping</option>
+                    <option value="AI Agent Security">AI Agent Security</option>
+                    <option value="Conversational AI Guardrails">Conversational AI Guardrails</option>
+                </select>
+                <div class="field-error" id="helpWith-error"></div>
             </div>
             <div class="form-group">
                 <label for="message">Message</label>

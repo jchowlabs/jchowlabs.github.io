@@ -170,9 +170,9 @@ footer span {
 .modal {
     background: #fff;
     border-radius: 16px;
-    padding: 32px;
+    padding: 40px;
     width: 100%;
-    max-width: 360px;
+    max-width: 520px;
     position: relative;
     box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
@@ -219,17 +219,20 @@ footer span {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 8px 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-family: inherit;
     font-size: 13px;
+    background: #fff;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: #1a1a1a;
 }
@@ -253,7 +256,8 @@ footer span {
 }
 
 .form-group input.error,
-.form-group textarea.error {
+.form-group textarea.error,
+.form-group select.error {
     border-color: #dc2626;
 }
 
