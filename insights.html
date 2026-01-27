@@ -140,21 +140,30 @@
             padding: 6px;
             border: 0.5px solid #e5e5e5;
             border-radius: 8px;
+            height: 100%;
         }
         
         .article-featured-img {
             background: #fff !important;
-            height: 295px;
+            height: 255px;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .article-featured-img img {
-            transform: scale(0.64);
+            width: 100%;
+            height: 100%;
+            transform: scale(0.72);
             object-fit: contain;
         }
         
         .article-featured-body {
-            margin-top: 14px;
+            margin-top: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .article-tags {
@@ -179,6 +188,9 @@
             grid-template-rows: 1fr 1fr;
             gap: 14px;
             min-height: 0;
+            height: 100%;
+            align-content: stretch;
+            align-items: stretch;
         }
         
         .article-compact {
@@ -195,6 +207,7 @@
             cursor: pointer;
             text-decoration: none;
             color: inherit;
+            height: 100%;
         }
         
         .article-compact:hover {
@@ -444,7 +457,7 @@
                     </div>
                     <div class="article-compact-content">
                         <h3>The Risk-Reward of AI Agents</h3>
-                        <p>Dive into the intersection of Zero Trust and AI: how to apply identity-centric access policies and observatility controls to autonomous agents, bots, and remediation systems to avoid abuse or lateral movement.</p>
+                        <p>AI agents promise productivity gains, but introduce new risks around access, privilege, and control. This insight examines the tradeoffs organizations face as agents interact with enterprise systems, and how leaders should think about governance and risk as adoption accelerates.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">Zero Trust</span>
                             <span class="article-compact-tag">Observability</span>
@@ -459,7 +472,7 @@
                     </div>
                     <div class="article-compact-content">
                         <h3>Identity Verification in the AI Era</h3>
-                        <p>Deepfakes and AI-driven impersonation attacks are eroding traditional identity verification signals. This insight explores how organizations must rethink identity proofing, authentication, and trust in an era where voice, video, and digital presence can no longer be assumed to be real.</p>
+                        <p>Deepfakes and AI-driven impersonation are challenging traditional identity verification workflows. This insight explores how organizations should rethink identity proofing, authentication, and trust in an era where voice, video, and digital presence can no longer be assumed to be real.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">Deepfake</span>
                             <span class="article-compact-tag">Trust</span>
@@ -474,7 +487,7 @@
                     </div>
                     <div class="article-compact-content">
                         <h3>Shadow AI is the new Data Leak</h3>
-                        <p>A look at how unsanctioned AI usage and LLM adoption are creating new data leakage risks for enterprises. Learn why shadow AI is difficult to detect, what types of data are most at risk, and how organizations can begin regaining visibility and control.</p>
+                        <p>Unsanctioned AI usage and widespread LLM adoption are creating new and often invisible data leakage paths for enterprises. This insight explores why shadow AI is difficult to detect, what types of data are most at risk, and how organizations can begin restoring visibility and control.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">Risk Management</span>
                             <span class="article-compact-tag">Data Leakage</span>
