@@ -194,25 +194,25 @@ footer span {
 }
 
 .modal h2 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 8px;
     color: #1a1a1a;
 }
 
 .modal > p {
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
     margin-bottom: 24px;
 }
 
 .form-group {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .form-group label {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     margin-bottom: 6px;
     color: #333;
@@ -222,11 +222,11 @@ footer span {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .form-group select {
