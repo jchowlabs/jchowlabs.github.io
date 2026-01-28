@@ -385,56 +385,49 @@
 		word-break: break-word;
 	}
 	@media (max-width: 900px) {
-			.content-page main {
-				padding: 32px 40px;
-			}
+		.governance-grid {
+			gap: 28px 18px;
+			padding: 0 2vw;
 		}
 	}
-			header {
-				padding: 16px 12px;
-			}
+	@media (max-width: 700px) {
+		.governance-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 28px 0;
+			margin: 32px 0 32px 0;
+		}
+		.governance-item {
+			align-items: flex-start;
+			width: 100%;
+			grid-column: auto !important;
+			grid-row: auto !important;
+		}
+	}
 
-			header::after {
-				left: 12px;
-				right: 12px;
-			}
+		.taxonomy-num {
+			font-size: 1.05rem;
+			color: #181818;
+			font-weight: 600;
+			margin-right: 18px;
+			margin-top: 2px;
+			flex: 0 0 1.8em;
+			text-align: right;
+			min-width: 1.8em;
+			line-height: 1.25;
+		}
 
-			footer {
-				padding: 16px 12px;
-			}
+		.taxonomy-desc {
+			margin: 0;
+			color: #444;
+			font-size: 0.95rem;
+			line-height: 1.6;
+		}
 
-			footer::before {
-				left: 12px;
-				right: 12px;
-			}
-
-			.content-page main {
-				padding: 16px 8px 2px 8px;
-			}
-
-			.article-container {
-				padding: 0 2px;
-			}
-
-			/* Show Contact text instead of icon in hamburger menu */
-			nav a.contact-icon svg {
-				display: none;
-			}
-			nav a.contact-icon::after {
-				content: "Contact";
-			}
-			nav a.contact-icon {
-				margin-left: 0;
-			}
-
-			.taxonomy-grid {
-				grid-template-columns: 1fr;
-				gap: 10px;
-			}
-
-			.framework-item {
-				padding: 13px 13px;
-			}
+		.framework {
+			margin: 10px 0 26px;
+			padding: 0;
+			list-style: none;
 			display: grid;
 			grid-template-columns: 1fr;
 			gap: 12px;
