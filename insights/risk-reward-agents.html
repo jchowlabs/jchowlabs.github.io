@@ -238,43 +238,183 @@
 			margin: 26px 0 34px;
 		}
 
+	.taxonomy-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto auto;
+		gap: 36px 48px;
+		max-width: 900px;
+		margin: 32px auto 36px auto;
+		padding: 0 8px;
+	}
+	.taxonomy-item {
+		background: #fdfdfd;
+		border: 1.2px solid #e5e7eb;
+		border-radius: 12px;
+		box-shadow: none;
+		padding: 18px 18px 14px 18px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+	.taxonomy-header-row {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+		margin-bottom: 0;
+		gap: 0;
+	}
+	.taxonomy-num {
+		font-size: 1.05rem;
+		color: #181818;
+		font-weight: 600;
+		margin-right: 18px;
+		margin-top: 2px;
+		flex: 0 0 1.8em;
+		text-align: right;
+		min-width: 1.8em;
+		line-height: 1.25;
+	}
+	.taxonomy-header-content {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+	.taxonomy-title {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #181818;
+		margin: 0 0 2px 0;
+		line-height: 1.25;
+		text-align: left;
+		word-break: break-word;
+	}
+	.taxonomy-desc {
+		color: #444;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin: 0;
+		text-align: left;
+		word-break: break-word;
+	}
+	@media (max-width: 900px) {
 		.taxonomy-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 12px;
-			margin-top: 14px;
+			gap: 28px 18px;
+			padding: 0 2vw;
 		}
-
-		.taxonomy-item {
-			border: 1px solid #e5e5e5;
-			background: #fafafa;
-			border-radius: 12px;
-			padding: 14px 14px;
-		}
-
-		.taxonomy-title {
+	}
+	@media (max-width: 700px) {
+		.taxonomy-grid {
 			display: flex;
-			align-items: center;
-			gap: 10px;
-			margin: 0 0 6px 0;
-			font-weight: 600;
-			color: #1a1a1a;
-			font-size: 0.98rem;
-			line-height: 1.35;
+			flex-direction: column;
+			gap: 28px 0;
+			margin: 24px 0 24px 0;
 		}
+		.taxonomy-item {
+			align-items: flex-start;
+			width: 100%;
+			grid-column: auto !important;
+			grid-row: auto !important;
+		}
+	}
+	.governance-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto auto;
+		gap: 36px 48px;
+		max-width: 900px;
+		margin: 48px auto 40px auto;
+		padding: 0 8px;
+	}
+	.governance-item {
+		background: #fdfdfd;
+		border: 1.2px solid #e5e7eb;
+		border-radius: 12px;
+		box-shadow: none;
+		padding: 18px 18px 14px 18px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+	.governance-header-row {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+		margin-bottom: 0;
+		gap: 0;
+	}
+	.governance-num {
+		font-size: 1.05rem;
+		color: #181818;
+		font-weight: 600;
+		margin-right: 18px;
+		margin-top: 2px;
+		flex: 0 0 1.8em;
+		text-align: right;
+		min-width: 1.8em;
+		line-height: 1.25;
+	}
+	.governance-header-content {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+	.governance-title {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #181818;
+		margin: 0 0 2px 0;
+		line-height: 1.25;
+		text-align: left;
+		word-break: break-word;
+	}
+	.governance-desc {
+		color: #444;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin: 0;
+		text-align: left;
+		word-break: break-word;
+	}
+	@media (max-width: 900px) {
+		.governance-grid {
+			gap: 28px 18px;
+			padding: 0 2vw;
+		}
+	}
+	@media (max-width: 700px) {
+		.governance-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 28px 0;
+			margin: 32px 0 32px 0;
+		}
+		.governance-item {
+			align-items: flex-start;
+			width: 100%;
+			grid-column: auto !important;
+			grid-row: auto !important;
+		}
+	}
 
 		.taxonomy-num {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 24px;
-			height: 24px;
-			border-radius: 999px;
-			background: #fff;
-			border: 1px solid #e5e5e5;
-			color: #666;
-			font-size: 12px;
-			flex: 0 0 auto;
+			font-size: 1.05rem;
+			color: #181818;
+			font-weight: 600;
+			margin-right: 18px;
+			margin-top: 2px;
+			flex: 0 0 1.8em;
+			text-align: right;
+			min-width: 1.8em;
+			line-height: 1.25;
 		}
 
 		.taxonomy-desc {
@@ -374,9 +514,7 @@
 			nav a.contact-icon {
 				margin-left: 0;
 			}
-				margin-top: 28px;
-				margin-bottom: 16px;
-			}
+
 
 			.taxonomy-grid {
 				grid-template-columns: 1fr;
@@ -549,31 +687,59 @@
 					<p>To reason about agent risk clearly, it helps to break it down into distinct categories. AI agents introduce risks that are not fully captured by traditional application security or identity frameworks.</p>
 
 					<p>Six categories consistently emerge:</p>
-					<div class="taxonomy" role="list" aria-label="Risk taxonomy for AI agents">
-						<div class="taxonomy-grid">
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">1</span>Privilege risk</p>
-								<p class="taxonomy-desc">Excessive permissions, privilege creep, and persistent credentials that expand the blast radius of mistakes.</p>
+					<div class="taxonomy-grid" aria-label="Risk taxonomy for AI agents">
+						<div class="taxonomy-item" style="grid-column: 1; grid-row: 1;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">1.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Privilege risk</span>
+									<span class="taxonomy-desc">Excessive permissions, privilege creep, and persistent credentials that expand the blast radius of mistakes.</span>
+								</span>
 							</div>
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">2</span>Autonomy risk</p>
-								<p class="taxonomy-desc">Agents making decisions without human oversight, sometimes based on flawed context or incomplete data.</p>
+						</div>
+						<div class="taxonomy-item" style="grid-column: 2; grid-row: 1;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">2.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Autonomy risk</span>
+									<span class="taxonomy-desc">Agents making decisions without human oversight, sometimes based on flawed context or incomplete data.</span>
+								</span>
 							</div>
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">3</span>Observability risk</p>
-								<p class="taxonomy-desc">Limited visibility into what agents did, why they did it, and how actions relate to outcomes.</p>
+						</div>
+						<div class="taxonomy-item" style="grid-column: 1; grid-row: 2;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">3.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Observability risk</span>
+									<span class="taxonomy-desc">Limited visibility into what agents did, why they did it, and how actions relate to outcomes.</span>
+								</span>
 							</div>
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">4</span>Interaction risk</p>
-								<p class="taxonomy-desc">Unintended behavior arising from agent-to-agent or system-to-agent interactions.</p>
+						</div>
+						<div class="taxonomy-item" style="grid-column: 2; grid-row: 2;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">4.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Interaction risk</span>
+									<span class="taxonomy-desc">Unintended behavior arising from agent-to-agent or system-to-agent interactions.</span>
+								</span>
 							</div>
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">5</span>Integrity and trust risk</p>
-								<p class="taxonomy-desc">Technically valid but contextually wrong actions that erode confidence in systems and data.</p>
+						</div>
+						<div class="taxonomy-item" style="grid-column: 1; grid-row: 3;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">5.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Integrity and trust risk</span>
+									<span class="taxonomy-desc">Technically valid but contextually wrong actions that erode confidence in systems and data.</span>
+								</span>
 							</div>
-							<div class="taxonomy-item" role="listitem">
-								<p class="taxonomy-title"><span class="taxonomy-num">6</span>Recovery risk</p>
-								<p class="taxonomy-desc">Inability to contain, reverse, or fully understand the impact of agent-driven changes.</p>
+						</div>
+						<div class="taxonomy-item" style="grid-column: 2; grid-row: 3;">
+							<div class="taxonomy-header-row">
+								<span class="taxonomy-num">6.</span>
+								<span class="taxonomy-header-content">
+									<span class="taxonomy-title">Recovery risk</span>
+									<span class="taxonomy-desc">Inability to contain, reverse, or fully understand the impact of agent-driven changes.</span>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -584,88 +750,7 @@
 					<h2>Toward a Practical Governance Model for Agents</h2>
 					<p>The core problem with AI agents is not that they are unsafe by design. It is that governance has not caught up to capability.</p>
 					<p>A practical agent governance model focuses on five foundational elements.</p>
-					<style>
-					.governance-grid {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						grid-template-rows: auto auto auto;
-						gap: 36px 48px;
-						max-width: 900px;
-						margin: 48px auto 40px auto;
-						padding: 0 8px;
-					}
-						.governance-item {
-							background: #fdfdfd;
-							border: 1.2px solid #e5e7eb;
-							border-radius: 12px;
-							box-shadow: none;
-							padding: 18px 18px 14px 18px;
-							display: flex;
-							flex-direction: column;
-							align-items: flex-start;
-							min-width: 0;
-						}
-						.governance-header-row {
-							display: flex;
-							flex-direction: row;
-							align-items: flex-start;
-							width: 100%;
-							margin-bottom: 0;
-							gap: 0;
-						}
-						.governance-num {
-							font-size: 1.05rem;
-							color: #181818;
-							font-weight: 600;
-							margin-right: 18px;
-							margin-top: 2px;
-							flex: 0 0 1.8em;
-							text-align: right;
-							min-width: 1.8em;
-							line-height: 1.25;
-						}
-						.governance-header-content {
-							flex: 1 1 auto;
-							display: flex;
-							flex-direction: column;
-							align-items: flex-start;
-							min-width: 0;
-						}
-						.governance-title {
-							font-size: 1.05rem;
-							font-weight: 600;
-							color: #181818;
-							margin: 0 0 2px 0;
-							line-height: 1.25;
-							text-align: left;
-							word-break: break-word;
-						}
-						.governance-desc {
-							color: #444;
-							font-size: 0.95rem;
-							line-height: 1.6;
-							margin: 0;
-							text-align: left;
-							word-break: break-word;
-						}
-					@media (max-width: 900px) {
-						.governance-grid {
-							gap: 28px 18px;
-							padding: 0 2vw;
-						}
-					}
-					@media (max-width: 700px) {
-						.governance-grid {
-							grid-template-columns: 1fr;
-							grid-template-rows: none;
-							gap: 28px 0;
-							margin: 32px 0 32px 0;
-						}
-						.governance-item {
-							align-items: flex-start;
-						}
-					}
-					</style>
+
 					<div class="governance-grid" aria-label="Five foundational governance elements">
 						<div class="governance-item" style="grid-column: 1; grid-row: 1;">
 							<div class="governance-header-row">
