@@ -111,11 +111,6 @@ async function handleSubmit(event) {
     }
 }
 
-// Close modal on overlay click
-document.getElementById('contactModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-});
-
 // Hamburger menu toggle
 function toggleMenu() {
     const nav = document.querySelector('nav');

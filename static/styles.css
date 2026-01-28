@@ -219,7 +219,8 @@ footer span {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 8px 12px;
     border: 1px solid #ddd;
@@ -228,8 +229,14 @@ footer span {
     font-size: 13px;
 }
 
+.form-group select {
+    background-color: white;
+    cursor: pointer;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: #1a1a1a;
 }
@@ -253,7 +260,8 @@ footer span {
 }
 
 .form-group input.error,
-.form-group textarea.error {
+.form-group textarea.error,
+.form-group select.error {
     border-color: #dc2626;
 }
 
