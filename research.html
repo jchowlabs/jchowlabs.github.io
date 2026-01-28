@@ -325,6 +325,19 @@
                 right: 24px;
             }
             
+            /* Show Contact text instead of icon in hamburger menu */
+            nav a.contact-icon svg {
+                display: none;
+            }
+            
+            nav a.contact-icon::after {
+                content: "Contact";
+            }
+            
+            nav a.contact-icon {
+                margin-left: 0;
+            }
+            
             .content-page main {
                 padding: 24px 20px;
                 min-height: auto;

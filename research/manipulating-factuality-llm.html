@@ -289,24 +289,19 @@
 				left: 24px;
 				right: 24px;
 			}
-            
-			.content-page main {
-				padding: 24px 20px;
-				min-height: auto;
+			
+			/* Show Contact text instead of icon in hamburger menu */
+			nav a.contact-icon svg {
+				display: none;
 			}
-            
-			.article-content-section {
-				padding: 30px 0;
+			
+			nav a.contact-icon::after {
+				content: "Contact";
 			}
-            
-			.article-hero {
-				margin-bottom: 30px;
+			
+			nav a.contact-icon {
+				margin-left: 0;
 			}
-            
-			.article-header h1 {
-				font-size: 1.875rem;
-			}
-            
 			.article-body {
 				font-size: 1rem;
 			}
