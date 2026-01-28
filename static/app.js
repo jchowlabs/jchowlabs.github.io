@@ -13,14 +13,16 @@ async function handleSubmit(event) {
     event.preventDefault();
 
     document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
-    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+    document.querySelectorAll('input, textarea, select').forEach(el => el.classList.remove('error'));
 
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
+    const helpWithInput = document.getElementById('helpWith');
     const messageInput = document.getElementById('message');
 
     const name = nameInput?.value?.trim() || '';
     const email = emailInput?.value?.trim() || '';
+    const helpWith = helpWithInput?.value?.trim() || '';
     const message = messageInput?.value?.trim() || '';
 
     const hasRecaptcha = typeof window.grecaptcha !== 'undefined';
@@ -44,6 +46,13 @@ async function handleSubmit(event) {
         const el = document.getElementById('email-error');
         if (el) el.textContent = 'Please enter a valid email';
         if (emailInput) emailInput.classList.add('error');
+        hasError = true;
+    }
+
+    if (!helpWith) {
+        const el = document.getElementById('helpWith-error');
+        if (el) el.textContent = 'Please select an option';
+        if (helpWithInput) helpWithInput.classList.add('error');
         hasError = true;
     }
 
@@ -74,6 +83,7 @@ async function handleSubmit(event) {
         const formData = new URLSearchParams();
         formData.append('name', name);
         formData.append('email', email);
+        formData.append('helpWith', helpWith);
         formData.append('message', message);
         if (hasRecaptcha) formData.append('recaptchaToken', recaptchaResponse);
 
