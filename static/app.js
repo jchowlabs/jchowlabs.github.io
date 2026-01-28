@@ -63,7 +63,11 @@ async function handleSubmit(event) {
         hasError = true;
     }
 
-    if (hasRecaptcha && !recaptchaResponse) {
+    if (!hasRecaptcha) {
+        const el = document.getElementById('captcha-error');
+        if (el) el.textContent = 'reCAPTCHA failed to load. Please disable blockers and try again.';
+        hasError = true;
+    } else if (!recaptchaResponse) {
         const el = document.getElementById('captcha-error');
         if (el) el.textContent = 'Please complete the reCAPTCHA';
         hasError = true;
@@ -85,7 +89,7 @@ async function handleSubmit(event) {
         formData.append('email', email);
         if (helpWith) formData.append('helpWith', helpWith);
         formData.append('message', message);
-        if (hasRecaptcha) formData.append('recaptchaToken', recaptchaResponse);
+        formData.append('recaptchaToken', recaptchaResponse);
 
         await fetch(GOOGLE_APPS_SCRIPT_URL, {
             method: 'POST',
