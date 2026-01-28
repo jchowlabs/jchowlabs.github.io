@@ -536,6 +536,11 @@ footer span {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+    /* Reduce article container padding on mobile */
+    .article-container {
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+    }
     /* Hamburger Menu */
     .hamburger {
         display: flex;
