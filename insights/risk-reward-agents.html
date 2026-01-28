@@ -580,47 +580,139 @@
 
 					<p>These risks do not exist in isolation. They compound as agents become more autonomous and more interconnected.</p>
 
+
 					<h2>Toward a Practical Governance Model for Agents</h2>
 					<p>The core problem with AI agents is not that they are unsafe by design. It is that governance has not caught up to capability.</p>
-
 					<p>A practical agent governance model focuses on five foundational elements.</p>
-					<ol class="framework" aria-label="Five foundational governance elements">
-						<li class="framework-item">
-							<span class="framework-num">1</span>
-							<div class="framework-body">
-								<p class="framework-title">Agent classification</p>
-								<p class="framework-desc">Distinguish between advisory agents, assistive agents, and fully autonomous agents. Governance requirements should scale with autonomy.</p>
+					<style>
+					.governance-grid {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: auto auto auto;
+						gap: 36px 48px;
+						max-width: 900px;
+						margin: 48px auto 40px auto;
+						padding: 0 8px;
+					}
+						.governance-item {
+							background: #fdfdfd;
+							border: 1.2px solid #e5e7eb;
+							border-radius: 12px;
+							box-shadow: none;
+							padding: 18px 18px 14px 18px;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							min-width: 0;
+						}
+						.governance-header-row {
+							display: flex;
+							flex-direction: row;
+							align-items: flex-start;
+							width: 100%;
+							margin-bottom: 0;
+							gap: 0;
+						}
+						.governance-num {
+							font-size: 1.05rem;
+							color: #181818;
+							font-weight: 600;
+							margin-right: 18px;
+							margin-top: 2px;
+							flex: 0 0 1.8em;
+							text-align: right;
+							min-width: 1.8em;
+							line-height: 1.25;
+						}
+						.governance-header-content {
+							flex: 1 1 auto;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							min-width: 0;
+						}
+						.governance-title {
+							font-size: 1.05rem;
+							font-weight: 600;
+							color: #181818;
+							margin: 0 0 2px 0;
+							line-height: 1.25;
+							text-align: left;
+							word-break: break-word;
+						}
+						.governance-desc {
+							color: #444;
+							font-size: 0.95rem;
+							line-height: 1.6;
+							margin: 0;
+							text-align: left;
+							word-break: break-word;
+						}
+					@media (max-width: 900px) {
+						.governance-grid {
+							gap: 28px 18px;
+							padding: 0 2vw;
+						}
+					}
+					@media (max-width: 700px) {
+						.governance-grid {
+							grid-template-columns: 1fr;
+							grid-template-rows: none;
+							gap: 28px 0;
+							margin: 32px 0 32px 0;
+						}
+						.governance-item {
+							align-items: flex-start;
+						}
+					}
+					</style>
+					<div class="governance-grid" aria-label="Five foundational governance elements">
+						<div class="governance-item" style="grid-column: 1; grid-row: 1;">
+							<div class="governance-header-row">
+								<span class="governance-num">1.</span>
+								<span class="governance-header-content">
+									<span class="governance-title">Agent Classification</span>
+									<span class="governance-desc">Distinguish between advisory agents, assistive agents, and fully autonomous agents. Governance requirements should scale with autonomy.</span>
+								</span>
 							</div>
-						</li>
-						<li class="framework-item">
-							<span class="framework-num">2</span>
-							<div class="framework-body">
-								<p class="framework-title">Explicit identity</p>
-								<p class="framework-desc">Give every agent its own identity, separate from human users and other agents, with clear ownership and no shared credentials.</p>
+						</div>
+						<div class="governance-item" style="grid-column: 2; grid-row: 1;">
+							<div class="governance-header-row">
+								<span class="governance-num">2.</span>
+								<span class="governance-header-content">
+									<span class="governance-title">Explicit Identity</span>
+									<span class="governance-desc">Give every agent its own identity, separate from human users and other agents, with clear ownership and no shared credentials.</span>
+								</span>
 							</div>
-						</li>
-						<li class="framework-item">
-							<span class="framework-num">3</span>
-							<div class="framework-body">
-								<p class="framework-title">Deliberate privilege design</p>
-								<p class="framework-desc">Scope access narrowly, review it regularly, and grant it based on documented purpose rather than convenience.</p>
+						</div>
+						<div class="governance-item" style="grid-column: 1; grid-row: 2;">
+							<div class="governance-header-row">
+								<span class="governance-num">3.</span>
+								<span class="governance-header-content">
+									<span class="governance-title">Deliberate Privilege Design</span>
+									<span class="governance-desc">Scope access narrowly, review it regularly, and grant it based on documented purpose rather than convenience.</span>
+								</span>
 							</div>
-						</li>
-						<li class="framework-item">
-							<span class="framework-num">4</span>
-							<div class="framework-body">
-								<p class="framework-title">Observability and control</p>
-								<p class="framework-desc">Log agent actions so they are attributable and visible. High-risk agents should have real-time monitoring and a clear disable mechanism.</p>
+						</div>
+						<div class="governance-item" style="grid-column: 2; grid-row: 2;">
+							<div class="governance-header-row">
+								<span class="governance-num">4. </span>
+								<span class="governance-header-content">
+									<span class="governance-title">Observability and Control</span>
+									<span class="governance-desc">Log agent actions so they are attributable and visible. High-risk agents should have real-time monitoring and a clear disable mechanism.</span>
+								</span>
 							</div>
-						</li>
-						<li class="framework-item">
-							<span class="framework-num">5</span>
-							<div class="framework-body">
-								<p class="framework-title">Accountability and lifecycle management</p>
-								<p class="framework-desc">Assign a business owner and technical owner, define scope, and plan for decommissioning. Orphaned agents should not exist.</p>
+						</div>
+						<div class="governance-item" style="grid-column: 1; grid-row: 3;">
+							<div class="governance-header-row">
+								<span class="governance-num">5.</span>
+								<span class="governance-header-content">
+									<span class="governance-title">Accountability and Lifecycle Management</span>
+									<span class="governance-desc">Assign a business owner and technical owner, define scope, and plan for decommissioning. Orphaned agents should not exist.</span>
+								</span>
 							</div>
-						</li>
-					</ol>
+						</div>
+					</div>
 
 					<p>Governance in this context is not about slowing innovation. It is about making autonomy survivable.</p>
 
