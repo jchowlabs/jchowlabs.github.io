@@ -120,7 +120,22 @@ function toggleMenu() {
 }
 
 // Close mobile menu when clicking on a link
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load modal HTML from shared component
+    try {
+        const modalPath = window.location.pathname.includes('/insights/') || 
+                         window.location.pathname.includes('/research/') || 
+                         window.location.pathname.includes('/lab/') 
+                         ? '../includes/modal.html' 
+                         : 'includes/modal.html';
+        
+        const response = await fetch(modalPath);
+        const html = await response.text();
+        document.body.insertAdjacentHTML('afterbegin', html);
+    } catch (error) {
+        console.error('Failed to load modal:', error);
+    }
+    
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {

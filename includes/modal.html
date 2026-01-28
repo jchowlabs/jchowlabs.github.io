@@ -1,0 +1,45 @@
+<div class="modal-overlay" id="contactModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2>Get in touch</h2>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
+                <div class="field-error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="helpWith">I need help with...</label>
+                <select id="helpWith">
+                    <option value="">Select an option</option>
+                    <option value="IAM Strategy">IAM Strategy</option>
+                    <option value="IAM Health Check & Optimization">IAM Health Check & Optimization</option>
+                    <option value="Single Sign-On (SSO) Implementation">Single Sign-On (SSO) Implementation</option>
+                    <option value="MFA & Strong Authentication">MFA & Strong Authentication</option>
+                    <option value="Passwordless Authentication">Passwordless Authentication</option>
+                    <option value="Identity Verification & Fraud Prevention">Identity Verification & Fraud Prevention</option>
+                    <option value="Platform Evaluation & Selection">Platform Evaluation & Selection</option>
+                    <option value="Proof of Concept & Rapid Prototyping">Proof of Concept & Rapid Prototyping</option>
+                    <option value="AI Agent Security">AI Agent Security</option>
+                    <option value="Conversational AI Guardrails">Conversational AI Guardrails</option>
+                </select>
+                <div class="field-error" id="helpWith-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4"></textarea>
+                <div class="field-error" id="message-error"></div>
+            </div>
+            <div class="captcha-container">
+                <div class="g-recaptcha" data-sitekey="6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld"></div>
+            </div>
+            <div class="field-error" id="captcha-error" style="text-align: center; margin-bottom: 12px;"></div>
+            <button type="submit" class="form-submit">Send message</button>
+        </form>
+    </div>
+</div>
