@@ -84,12 +84,17 @@ async function handleSubmit(event) {
     }
 
     try {
+        const requestId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
         const formData = new URLSearchParams();
+        formData.append('requestId', requestId);
         formData.append('name', name);
         formData.append('email', email);
         if (helpWith) formData.append('helpWith', helpWith);
         formData.append('message', message);
         formData.append('recaptchaToken', recaptchaResponse);
+
+        console.log('[contact] submitting', { requestId, hasRecaptcha, hasHelpWith: !!helpWithInput });
 
         await fetch(GOOGLE_APPS_SCRIPT_URL, {
             method: 'POST',
