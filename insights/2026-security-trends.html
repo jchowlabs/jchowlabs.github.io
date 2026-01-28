@@ -346,6 +346,7 @@
 				<li><a href="../insights.html" class="active">Insights</a></li>
 				<li><a href="../research.html">Research</a></li>
 				<li><a href="../lab.html">Lab</a></li>
+				<li><a href="#" onclick="openEcosystemModal(event)">Ecosystem</a></li>
 				<li><a href="#" onclick="openModal(event)" class="contact-icon" aria-label="Contact">
 					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -503,7 +504,31 @@
 	</footer>
 </div>
 
+<!-- Ecosystem Modal -->
+<div class="modal-overlay" id="ecosystemModal">
+	<div class="modal" style="max-width: 540px;">
+		<h2>Ecosystem</h2>
+		<div style="margin-bottom: 24px; line-height: 1.6;">
+			<p style="margin-bottom: 16px;">jchowlabs operates within a broad ecosystem of AI and security platforms. We collaborate with technology providers, open-source communities, and industry practitioners to help organizations design, evaluate, and deploy solutions that advance key initiatives and business objectives.</p>
+			<p style="margin-bottom: 16px;">As we formalize select partnerships, our advisory approach is informed by hands-on experience across a diverse set of technologies, with recommendations shaped by desired outcomes, organizational context, and long-term operational fit.</p>
+			<p style="margin-bottom: 0;">This ecosystem reflects the technologies and platforms we work with today and will naturally expand as new capabilities emerge and client needs evolve.</p>
+		</div>
+		<button type="button" class="form-submit" onclick="closeEcosystemModal()">Close</button>
+	</div>
+</div>
+
 <script src="../static/app.js"></script>
+<script>
+	// Ecosystem modal functions
+	function openEcosystemModal(e) {
+		e.preventDefault();
+		document.getElementById('ecosystemModal').classList.add('active');
+	}
+	
+	function closeEcosystemModal() {
+		document.getElementById('ecosystemModal').classList.remove('active');
+	}
+</script>
 
 </body>
 </html>
