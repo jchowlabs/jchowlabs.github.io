@@ -13,16 +13,14 @@ async function handleSubmit(event) {
     event.preventDefault();
 
     document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
-    document.querySelectorAll('input, textarea, select').forEach(el => el.classList.remove('error'));
+    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
 
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
-    const helpWithInput = document.getElementById('helpWith');
     const messageInput = document.getElementById('message');
 
     const name = nameInput?.value?.trim() || '';
     const email = emailInput?.value?.trim() || '';
-    const helpWith = helpWithInput?.value?.trim() || '';
     const message = messageInput?.value?.trim() || '';
 
     const hasRecaptcha = typeof window.grecaptcha !== 'undefined';
@@ -56,18 +54,7 @@ async function handleSubmit(event) {
         hasError = true;
     }
 
-    if (helpWithInput && !helpWith) {
-        const el = document.getElementById('helpWith-error');
-        if (el) el.textContent = 'Please select an option';
-        helpWithInput.classList.add('error');
-        hasError = true;
-    }
-
-    if (!hasRecaptcha) {
-        const el = document.getElementById('captcha-error');
-        if (el) el.textContent = 'reCAPTCHA failed to load. Please disable blockers and try again.';
-        hasError = true;
-    } else if (!recaptchaResponse) {
+    if (hasRecaptcha && !recaptchaResponse) {
         const el = document.getElementById('captcha-error');
         if (el) el.textContent = 'Please complete the reCAPTCHA';
         hasError = true;
@@ -84,17 +71,11 @@ async function handleSubmit(event) {
     }
 
     try {
-        const requestId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-
         const formData = new URLSearchParams();
-        formData.append('requestId', requestId);
         formData.append('name', name);
         formData.append('email', email);
-        if (helpWith) formData.append('helpWith', helpWith);
         formData.append('message', message);
-        formData.append('recaptchaToken', recaptchaResponse);
-
-        console.log('[contact] submitting', { requestId, hasRecaptcha, hasHelpWith: !!helpWithInput });
+        if (hasRecaptcha) formData.append('recaptchaToken', recaptchaResponse);
 
         await fetch(GOOGLE_APPS_SCRIPT_URL, {
             method: 'POST',
