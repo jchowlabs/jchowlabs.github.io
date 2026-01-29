@@ -21,128 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/styles.css">
     <style>
-        .brand {
-            font-size: 20px;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .brand img {
-            height: 35px;
-            width: auto;
-            display: block;
-        }
-        
-        nav a {
-            font-size: 14px;
-        }
-        
-        nav a.contact-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            vertical-align: middle;
-            margin-left: 8px;
-        }
-        
-        nav a.contact-icon svg {
-            color: #888;
-            transition: color 0.2s;
-        }
-        
-        nav a.contact-icon:hover svg {
-            color: #1a1a1a;
-        }
-        
-        header {
-            border-bottom: none;
-            position: relative;
-            padding-left: 80px;
-            padding-right: 80px;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 48px;
-            right: 48px;
-            height: 1px;
-            background: #f0f0f0;
-        }
-        
-        footer {
-            border-top: none;
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 48px;
-            right: 48px;
-            height: 1px;
-            background: #f0f0f0;
-        }
-        
-        /* Active navigation styling */
-        nav a.active {
-            background: #e0e0e0;
-            color: #1a1a1a;
-            padding: 8px 16px;
-            border-radius: 6px;
-        }
-        
-        nav ul {
-            gap: 24px;
-        }
-        
-        .modal h2,
-        .modal > p {
-            text-align: center;
-        }
-        
-        .modal h2 {
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 8px;
-        }
-        
-        .field-error {
-            color: #dc2626;
-            font-size: 12px;
-            margin-top: 4px;
-            min-height: 0;
-        }
-        
-        .form-group input.error,
-        .form-group textarea.error {
-            border-color: #dc2626;
-        }
-        
-        .form-group select {
-            background-position: right 12px center;
-            padding-right: 36px;
-        }
-        
         /* Grid layout improvements */
-        .content-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .content-page main {
-            padding: 24px 80px 2px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
         .articles-layout {
             flex: 1;
             display: grid;
@@ -305,10 +184,6 @@
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
-            .content-page main {
-                padding: 32px 60px;
-            }
-            
             .articles-layout {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -320,42 +195,6 @@
         }
         
         @media (max-width: 768px) {
-            header {
-                padding: 16px 24px;
-            }
-            
-            header::after {
-                left: 24px;
-                right: 24px;
-            }
-            
-            footer {
-                padding: 16px 24px;
-            }
-            
-            footer::before {
-                left: 24px;
-                right: 24px;
-            }
-            
-            /* Show Contact text instead of icon in hamburger menu */
-            nav a.contact-icon svg {
-                display: none;
-            }
-            
-            nav a.contact-icon::after {
-                content: "Contact";
-            }
-            
-            nav a.contact-icon {
-                margin-left: 0;
-            }
-            
-            .content-page main {
-                padding: 24px 20px;
-                min-height: auto;
-            }
-            
             .article-featured-img {
                 height: 140px !important;
             }
@@ -402,7 +241,7 @@
 </head>
 <body>
 
-<div class="page-wrapper content-page">
+<div class="page-wrapper content-page listing-page listing-insights">
     <header>
         <a href="index.html" class="brand" aria-label="jchowlabs home">
             <img src="static/images/jchowlabs-logo.png" alt="jchowlabs" />
