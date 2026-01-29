@@ -839,9 +839,9 @@ footer span {
 @media (max-width: 768px) {
     /* Clean, responsive mobile article layout */
     .page-wrapper.article-page main {
-        padding: 16px 16px 2px;
-        padding-left: calc(16px + env(safe-area-inset-left));
-        padding-right: calc(16px + env(safe-area-inset-right));
+        padding: 16px 24px 2px;
+        padding-left: calc(24px + env(safe-area-inset-left));
+        padding-right: calc(24px + env(safe-area-inset-right));
     }
 
     .page-wrapper.article-page .article-hero {
@@ -1054,9 +1054,9 @@ footer span {
 
 @media (max-width: 480px) {
     .page-wrapper.article-page main {
-        padding: 12px 14px 2px;
-        padding-left: calc(14px + env(safe-area-inset-left));
-        padding-right: calc(14px + env(safe-area-inset-right));
+        padding: 12px 20px 2px;
+        padding-left: calc(20px + env(safe-area-inset-left));
+        padding-right: calc(20px + env(safe-area-inset-right));
     }
 
     .page-wrapper.article-page .article-container {
