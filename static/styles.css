@@ -445,7 +445,32 @@ footer span {
 
 .page-wrapper.article-page.article-openbounty .article-hero-img {
     max-width: 100%;
-    max-height: clamp(300px, 38vw, 520px);
+    max-height: clamp(360px, 44vw, 720px);
+}
+
+/* Try-yourself CTA: improve small-screen layout for select lab articles */
+@media (max-width: 520px) {
+    .page-wrapper.article-page.article-aftercheck .try-yourself-cta,
+    .page-wrapper.article-page.article-openbounty .try-yourself-cta {
+        display: block !important;
+        padding: 16px 18px !important;
+        margin: 22px 0 !important;
+        text-align: center;
+    }
+
+    .page-wrapper.article-page.article-aftercheck .try-yourself-cta h3,
+    .page-wrapper.article-page.article-openbounty .try-yourself-cta h3,
+    .page-wrapper.article-page.article-aftercheck .try-yourself-cta p,
+    .page-wrapper.article-page.article-openbounty .try-yourself-cta p {
+        display: inline !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .page-wrapper.article-page.article-aftercheck .try-yourself-cta h3,
+    .page-wrapper.article-page.article-openbounty .try-yourself-cta h3 {
+        margin-right: 10px !important;
+    }
 }
 
 .page-wrapper.article-page.article-aftercheck .article-hero,
