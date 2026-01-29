@@ -87,16 +87,19 @@
             background: #f0f0f0;
         }
         
-        /* Active navigation styling */
-        nav a.active {
-            background: #e0e0e0;
-            color: #1a1a1a;
-            padding: 8px 16px;
-            border-radius: 6px;
-        }
-        
-        nav ul {
-            gap: 24px;
+        /* Desktop-only nav spacing (avoid overriding mobile drawer) */
+        @media (min-width: 769px) {
+            /* Active navigation styling */
+            nav a.active {
+                background: #e0e0e0;
+                color: #1a1a1a;
+                padding: 8px 16px;
+                border-radius: 6px;
+            }
+
+            nav ul {
+                gap: 24px;
+            }
         }
         
         .home h1 {
