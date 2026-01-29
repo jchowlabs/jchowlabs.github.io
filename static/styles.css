@@ -429,6 +429,31 @@ footer span {
     padding: 10px 0;
 }
 
+/* Larger hero images for select lab articles */
+.page-wrapper.article-page.article-aftercheck .article-hero-img,
+.page-wrapper.article-page.article-openbounty .article-hero-img {
+    padding: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.page-wrapper.article-page.article-aftercheck .article-hero-img {
+    max-width: 860px;
+    max-height: clamp(260px, 32vw, 440px);
+}
+
+.page-wrapper.article-page.article-openbounty .article-hero-img {
+    max-width: 100%;
+    max-height: clamp(300px, 38vw, 520px);
+}
+
+.page-wrapper.article-page.article-aftercheck .article-hero,
+.page-wrapper.article-page.article-openbounty .article-hero {
+    border: 0;
+    background: transparent;
+}
+
 .page-wrapper.article-page .article-header {
     margin-bottom: 26px;
 }
