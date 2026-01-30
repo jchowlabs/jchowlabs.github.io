@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jchowlabs</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GBHGE9LDVJ');
+    </script>
+    
+    <link rel="icon" type="image/png" href="../static/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        main {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+        }
+
+        .passkey-demo {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-header {
+            padding: 20px 32px;
+        }
+
+        .demo-header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin: 0;
+            color: #1a1a1a;
+        }
+
+        .demo-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 16px;
+            padding: 24px 40px;
+            min-height: 480px;
+        }
+
+        .input-container {
+            padding: 24px;
+        }
+
+        .demo-title {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 28px;
+            color: #1a1a1a;
+            text-align: center;
+        }
+
+        .demo-container {
+            padding: 4px 24px 24px 24px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+            background: #fff;
+        }
+
+        .form-group input::placeholder {
+            color: #ccc;
+            opacity: 0.7;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ddd;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .info-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .info-section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-section li {
+            font-size: 13px;
+            color: #1a1a1a;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .info-section li:before {
+            content: attr(data-number);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+            background: #6b8cae;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .demo-notice {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .demo-notice-icon {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            background: #6b8cae;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        .demo-notice-content h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1a1a1a;
+        }
+
+        .demo-notice-content p {
+            font-size: 12px;
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn {
+            padding: 11px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-register {
+            background: #0066cc;
+            color: white;
+        }
+
+        .btn-register:hover:not(:disabled) {
+            background: #0052a3;
+        }
+
+        .btn-signin {
+            background: #fff;
+            color: #0066cc;
+            border: 1px solid #0066cc;
+        }
+
+        .btn-signin:hover:not(:disabled) {
+            background: #f0f7ff;
+        }
+
+        .status-message {
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .status-message.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+
+        .status-message.info {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #90caf9;
+        }
+
+        .status-message.warning {
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffb74d;
+        }
+
+        .visualization {
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .parties {
+            position: relative;
+            margin-bottom: 8px;
+            height: 180px;
+        }
+
+        .parties::after {
+            content: '';
+            position: absolute;
+            top: 75px;
+            left: calc(25% + 75px);
+            right: calc(25% + 75px);
+            height: 0;
+            border-top: 2px dashed #d0d0d0;
+            z-index: 0;
+        }
+
+        .party {
+            padding: 0;
+            text-align: center;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .party:first-child {
+            left: 25%;
+            transform: translateX(-50%);
+        }
+
+        .party:last-child {
+            left: 75%;
+            transform: translateX(-50%);
+        }
+
+        .party-icon {
+            margin-bottom: 0;
+            line-height: 0;
+        }
+
+        .party-icon img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
+        .party h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 2px;
+            margin-bottom: 0;
+            color: #1a1a1a;
+        }
+
+        .party p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .flow-area {
+            position: relative;
+            flex: 1;
+            padding: 16px;
+            min-height: 360px;
+            overflow: hidden;
+        }
+
+        .flow-area::before {
+            content: '';
+            position: absolute;
+            left: 25%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e5e5;
+        }
+
+        .flow-area::after {
+            content: '';
+            position: absolute;
+            left: 75%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e5e5;
+        }
+
+        .message {
+            position: absolute;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            max-width: 180px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        .message-right {
+            left: 0;
+            right: auto;
+            text-align: left;
+        }
+
+        .message-left {
+            left: calc(75% + 15px);
+            right: auto;
+            text-align: left;
+        }
+
+        .message-center {
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+
+        .arrow {
+            position: absolute;
+            height: 2px;
+            background: #666;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .arrow.show {
+            opacity: 1;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #666;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .arrow-reverse::after {
+            left: -8px;
+            right: auto;
+            border-left: none;
+            border-right: 10px solid #666;
+        }
+
+        @media (max-width: 1024px) {
+            .demo-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .passkey-demo {
+                margin: 20px;
+            }
+
+            .demo-header {
+                padding: 24px;
+            }
+
+            .demo-header h1 {
+                font-size: 26px;
+            }
+
+            .demo-header .subtitle {
+                font-size: 14px;
+            }
+
+            .input-container,
+            .demo-container {
+                padding: 24px;
+            }
+
+            .info-section {
+                margin-top: 24px;
+                padding-top: 24px;
+            }
+
+            .parties {
+                display: none;
+            }
+
+            .flow-area {
+                min-height: auto;
+                padding: 16px 8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                position: relative;
+            }
+
+            .flow-area::before,
+            .flow-area::after {
+                display: none;
+            }
+
+            .flow-area::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: #e5e5e5;
+                display: block;
+                transform: translateX(-50%);
+            }
+
+            .arrow {
+                display: none !important;
+            }
+
+            .message {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
+                font-size: 12px;
+                padding: 10px 16px;
+                max-width: 90%;
+                text-align: center;
+                margin: 0;
+                white-space: normal;
+                line-height: 1.4;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper content-page">
+    <header>
+        <a href="../index.html" class="brand" aria-label="jchowlabs home">
+            <img src="../static/images/jchowlabs-logo.png" alt="jchowlabs" />
+        </a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../insights.html">Insights</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../lab.html" class="active">Lab</a></li>
+                <li><a href="#" onclick="openEcosystemModal(event)">Ecosystem</a></li>
+                <li><a href="#" onclick="openModal(event)" class="contact-icon" aria-label="Contact">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="passkey-demo">
+            <div class="demo-content">
+                <div class="input-container">
+                    <h1 class="demo-title">Passkey Demo</h1>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required autofocus>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-register" id="registerBtn" disabled>Registration</button>
+                        <button class="btn btn-signin" id="signinBtn" disabled>Login</button>
+                    </div>
+
+                    <div class="status-message" id="statusMessage"></div>
+
+                    <div class="info-section">
+                        <h3>How Passkeys Work:</h3>
+                        <ul>
+                            <li data-number="1">Register your device with Identity Provider</li>
+                            <li data-number="2">Cryptographic keys are generated on device.</li>
+                            <li data-number="3">Private keys sign Identity Provider challenges.</li>
+                            <li data-number="4">Identity Provider verifies signed challenges.</li>
+                            <li data-number="5">Biometric verification only on device.</li>
+                        </ul>
+                        <div class="demo-notice">
+                            <div class="demo-notice-icon">i</div>
+                            <div class="demo-notice-content">
+                                <p>This demonstration is for education purposes only. No email, credentials or biometric data is saved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-container">
+                    <div class="visualization">
+                        <div class="parties">
+                            <div class="party">
+                                <div class="party-icon"><img src="../static/images/device.png" alt="Device"></div>
+                                <h3>Your Device</h3>
+                            </div>
+                            <div class="party">
+                                <div class="party-icon"><img src="../static/images/idp.png" alt="Identity Provider"></div>
+                                <h3>Identity Provider</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-area" id="flowArea"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <span>© jchowlabs, llc</span>
+    </footer>
+</div>
+
+<!-- Ecosystem Modal -->
+<div class="modal-overlay" id="ecosystemModal">
+    <div class="modal" style="max-width: 540px;">
+        <h2>Ecosystem</h2>
+        <div style="margin-bottom: 24px; line-height: 1.6;">
+            <p style="margin-bottom: 16px;">jchowlabs operates across a diverse ecosystem of AI and security platforms. We partner with technology providers, open-source communities, and practitioners to help organizations design and deploy vendor-agnostic solutions aligned with strategic outcomes.</p>
+            <p style="margin-bottom: 0;">Our advisory work is grounded in hands-on experience and focused on long-term operational fit, evolving alongside emerging capabilities and client needs.</p>
+        </div>
+        <button type="button" class="form-submit" onclick="closeEcosystemModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    // Navigation functions
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        const hamburger = document.querySelector('.hamburger');
+        if (nav && hamburger) {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    }
+
+    function openModal(e) {
+        e.preventDefault();
+        alert('For inquiries, please visit the main site.');
+    }
+
+    function openEcosystemModal(e) {
+        e.preventDefault();
+        document.getElementById('ecosystemModal').classList.add('active');
+    }
+    
+    function closeEcosystemModal() {
+        document.getElementById('ecosystemModal').classList.remove('active');
+    }
+
+    // In-memory storage for registered credentials
+    let credentialStore = {};
+
+    // DOM elements
+    const emailInput = document.getElementById('email');
+    const registerBtn = document.getElementById('registerBtn');
+    const signinBtn = document.getElementById('signinBtn');
+    const statusMessage = document.getElementById('statusMessage');
+
+    // Email validation regex
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Enable/disable buttons based on email input validation
+    emailInput.addEventListener('input', () => {
+        const email = emailInput.value.trim();
+        const isValid = email.length > 0 && isValidEmail(email);
+        registerBtn.disabled = !isValid;
+        signinBtn.disabled = !isValid;
+    });
+
+    // Utility functions
+    function showStatus(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = `status-message ${type}`;
+        statusMessage.style.display = 'block';
+    }
+
+    function hideStatus() {
+        statusMessage.style.display = 'none';
+    }
+
+    function str2ab(str) {
+        const encoder = new TextEncoder();
+        return encoder.encode(str);
+    }
+
+    function bufferToBase64(buffer) {
+        return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+    }
+
+    function base64ToBuffer(base64) {
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
+
+    function generateChallenge() {
+        const array = new Uint8Array(32);
+        crypto.getRandomValues(array);
+        return array;
+    }
+
+    function getRpId() {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1') {
+            return null;
+        }
+        return 'jchowlabs.com';
+    }
+
+    // Visualization functions
+    function clearFlow() {
+        document.getElementById('flowArea').innerHTML = '';
+    }
+
+    function addMessage(text, position, top, delay) {
+        const flowArea = document.getElementById('flowArea');
+        const message = document.createElement('div');
+        message.className = `message message-${position}`;
+        message.textContent = text;
+        message.style.top = `${top}px`;
+        flowArea.appendChild(message);
+        
+        setTimeout(() => {
+            message.classList.add('show');
+        }, delay);
+    }
+
+    function addArrow(fromLeft, top, delay, reverse = false) {
+        const flowArea = document.getElementById('flowArea');
+        const arrow = document.createElement('div');
+        arrow.className = `arrow ${reverse ? 'arrow-reverse' : ''}`;
+        arrow.dataset.top = top;
+        
+        const flowRect = flowArea.getBoundingClientRect();
+        const leftLinePos = flowRect.width * 0.25;
+        const rightLinePos = flowRect.width * 0.75;
+        const gap = 8; // Gap between arrow and vertical line
+        const width = rightLinePos - leftLinePos - (gap * 2);
+        
+        arrow.style.width = `${width}px`;
+        arrow.style.left = `${leftLinePos + gap}px`;
+        arrow.style.top = `${top}px`;
+        
+        flowArea.appendChild(arrow);
+        
+        setTimeout(() => {
+            arrow.classList.add('show');
+        }, delay);
+    }
+
+    // Recalculate arrow positions on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const flowArea = document.getElementById('flowArea');
+            if (!flowArea) return;
+            
+            const arrows = flowArea.querySelectorAll('.arrow');
+            if (arrows.length === 0) return;
+            
+            const flowRect = flowArea.getBoundingClientRect();
+            const leftLinePos = flowRect.width * 0.25;
+            const rightLinePos = flowRect.width * 0.75;
+            const gap = 8;
+            const width = rightLinePos - leftLinePos - (gap * 2);
+            
+            arrows.forEach(arrow => {
+                arrow.style.width = `${width}px`;
+                arrow.style.left = `${leftLinePos + gap}px`;
+            });
+        }, 100);
+    });
+
+    // Register passkey
+    registerBtn.addEventListener('click', async () => {
+        const email = emailInput.value.trim();
+        if (!email) {
+            showStatus('Please enter an email address', 'error');
+            return;
+        }
+
+        clearFlow();
+        hideStatus();
+
+        try {
+            if (!window.PublicKeyCredential) {
+                showStatus('WebAuthn is not supported in this browser', 'error');
+                return;
+            }
+
+            // Step 1: Registration Request (Identity Provider sends)
+            addMessage('1. Registration Request', 'right', 20, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Arrow from Identity Provider to Device (left to right)
+            addArrow(true, 28, 0, false);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Step 2: Request Received (Device receives)
+            addMessage('2. Request Received', 'left', 20, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            
+            // Step 3: Registration Challenge (Identity Provider sends)
+            addMessage('3. Registration Challenge', 'left', 70, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Arrow from Device to Identity Provider (right to left)
+            addArrow(true, 78, 0, true);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Step 4: Prompt User (Device prompts)
+            addMessage('4. Prompt User', 'right', 70, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // WebAuthn will show native biometric prompt
+            const challenge = generateChallenge();
+            const rpId = getRpId();
+
+            const publicKeyCredentialCreationOptions = {
+                challenge: challenge,
+                rp: {
+                    name: "jchowlabs"
+                },
+                user: {
+                    id: str2ab(email),
+                    name: email,
+                    displayName: email
+                },
+                pubKeyCredParams: [
+                    { alg: -7, type: "public-key" },
+                    { alg: -257, type: "public-key" }
+                ],
+                authenticatorSelection: {
+                    authenticatorAttachment: "platform",
+                    requireResidentKey: false,
+                    userVerification: "preferred"
+                },
+                timeout: 60000,
+                attestation: "none"
+            };
+
+            if (rpId) {
+                publicKeyCredentialCreationOptions.rp.id = rpId;
+            }
+
+            // Create credential (triggers real biometric)
+            const credential = await navigator.credentials.create({
+                publicKey: publicKeyCredentialCreationOptions
+            });
+
+            if (credential) {
+                // Step 5: Generate key pair
+                addMessage('5. Generate Key Pair', 'right', 120, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Step 6: Sign request
+                addMessage('6. Sign Request', 'right', 170, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Step 7: Store private key
+                addMessage('7. Store Private Key', 'right', 220, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Step 8: Send public key & signed request
+                addMessage('8. Send Public Key & Signed Request', 'right', 270, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Arrow from left to right (device to identity provider)
+                addArrow(true, 278, 0, false);
+                
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Step 9: Verify and store
+                addMessage('9. Verify Signature & Store Public Key', 'left', 270, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Store credential
+                credentialStore[email] = {
+                    credentialId: bufferToBase64(credential.rawId),
+                    publicKey: bufferToBase64(credential.response.getPublicKey()),
+                    counter: 0
+                };
+
+                showStatus(`Successfully registered for ${email}!`, 'success');
+            }
+
+        } catch (error) {
+            console.error('Registration error:', error);
+            clearFlow();
+            
+            if (error.name === 'NotAllowedError') {
+                showStatus('Registration cancelled or not allowed', 'warning');
+            } else if (error.name === 'InvalidStateError') {
+                showStatus('A passkey already exists for this device', 'warning');
+            } else {
+                showStatus(`Registration failed: ${error.message}`, 'error');
+            }
+        }
+    });
+
+    // Sign in with passkey
+    signinBtn.addEventListener('click', async () => {
+        const email = emailInput.value.trim();
+        if (!email) {
+            showStatus('Please enter an email address', 'error');
+            return;
+        }
+
+        clearFlow();
+        hideStatus();
+
+        try {
+            if (!window.PublicKeyCredential) {
+                showStatus('WebAuthn is not supported in this browser', 'error');
+                return;
+            }
+
+            if (!credentialStore[email]) {
+                showStatus('No passkey found. Please register first.', 'info');
+                return;
+            }
+
+            // Step 1: Auth request (Device initiates)
+            addMessage('1. Auth Request', 'right', 20, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Arrow from Device to Identity Provider (left to right)
+            addArrow(true, 28, 0, false);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Step 2: Request Received (Identity Provider receives)
+            addMessage('2. Request Received', 'left', 20, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            
+            // Step 3: Send Challenge (Identity Provider sends)
+            addMessage('3. Send Challenge', 'left', 70, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Arrow from Identity Provider to Device (right to left)
+            addArrow(true, 78, 0, true);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Step 4: Challenge Received (Device receives)
+            addMessage('4. Challenge Received', 'right', 70, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            
+            // Step 5: Prompt User
+            addMessage('5. Prompt User', 'right', 120, 0);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // WebAuthn will show native biometric prompt
+            const challenge = generateChallenge();
+            const credentialId = base64ToBuffer(credentialStore[email].credentialId);
+            const rpId = getRpId();
+
+            const publicKeyCredentialRequestOptions = {
+                challenge: challenge,
+                allowCredentials: [{
+                    id: credentialId,
+                    type: 'public-key',
+                    transports: ['internal']
+                }],
+                timeout: 60000,
+                userVerification: "preferred"
+            };
+
+            if (rpId) {
+                publicKeyCredentialRequestOptions.rpId = rpId;
+            }
+
+            // Get credential (triggers real biometric)
+            const assertion = await navigator.credentials.get({
+                publicKey: publicKeyCredentialRequestOptions
+            });
+
+            if (assertion) {
+                // Step 6: Retrieve private key
+                addMessage('6. Retrieve Private Key', 'right', 170, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Step 7: Sign challenge
+                addMessage('7. Sign Challenge', 'right', 220, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                
+                // Step 8: Send assertion
+                addMessage('8. Send Assertion', 'right', 270, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Arrow from Device to Identity Provider (left to right)
+                addArrow(true, 278, 0, false);
+                
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Step 9: Verify signature
+                addMessage('9. Verify Signature with Public Key', 'left', 270, 0);
+                
+                await new Promise(resolve => setTimeout(resolve, 1200));
+
+                showStatus(`Successfully signed in as ${email}!`, 'success');
+            }
+
+        } catch (error) {
+            console.error('Authentication error:', error);
+            clearFlow();
+            
+            if (error.name === 'NotAllowedError') {
+                showStatus('Authentication cancelled or not allowed', 'warning');
+            } else {
+                showStatus(`Authentication failed: ${error.message}`, 'error');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

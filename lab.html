@@ -168,7 +168,7 @@
         }
         
         .content-page main .article-featured-img img {
-            transform: scale(0.75);
+            transform: scale(0.60);
         }
         
         .content-page main .article-featured-body {
@@ -279,34 +279,50 @@
     <main>
 
         <div class="articles-layout">
-            <a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; color: inherit;">
+            <a href="lab/passkey.html" style="text-decoration: none; color: inherit;">
                 <div class="article-featured">
                     <div class="article-featured-img">
-                        <img src="static/images/idp.png" alt="Identity Provider">
+                        <img src="static/images/passkey.png" alt="Passkey Authentication">
                     </div>
                     <div class="article-featured-body">
                         <span class="tag">Featured</span>
-                        <h3>Build your own Identity Provider</h3>
-                        <p>A lightweight identity-as-a-service provider built to explore the core components of modern identity systems. The article walks through designing an identity directory, implementing federation using SAML and OpenID Connect, and building authentication flows that support passwords with MFA, passkeys, and biometric authentication with liveness detection. It also covers conditional access and threat detection mechanisms—such as impossible travel and behavioral signals—to illustrate how modern identity platforms enforce policy and reduce risk.</p>
+                        <h3>Passkeys: Interactive Demo</h3>
+                        <p>An interactive, step-by-step walkthrough of passkey authentication using WebAuthn. This lab visualizes how passkeys are registered and used for authentication, including device-bound key generation, challenge creation, cryptographic signing, and server-side verification. Rather than treating passkeys as a black box, the demo exposes the underlying flows and trust assumptions that replace passwords, making it easier to understand why passkeys are phishing-resistant and how they fit into modern identity architectures. Designed for practitioners who want to see—not just read—how passwordless authentication actually works.</p>
                         <div class="article-tags">
-                            <span class="article-tag">Directory</span>
-                            <span class="article-tag">SAML</span>
+                            <span class="article-tag">WebAuthn</span>
                             <span class="article-tag">Passkeys</span>
-                            <span class="article-tag">Facial Recognition</span>
-                            <span class="article-tag">Threat Detection</span>
+                            <span class="article-tag">Biometric Auth</span>
                         </div>
                     </div>
                 </div>
             </a>
 
             <div class="articles-grid">
-                <div class="article-compact">
+                <a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="article-compact">
+                        <div class="article-compact-img">
+                            <img src="static/images/idp.png" alt="Identity Provider">
+                        </div>
+                        <div class="article-compact-content">
+                            <h3>Build Your Own Identity Provider</h3>
+                            <p>A lightweight identity provider built to explore the core components of modern identity systems. This lab focuses on directory, federation engine, and modern authentication flows for the purpose of building your intuition on how identity providers work under the hood.</p>
+                            <div class="article-compact-tags">
+                                <span class="article-compact-tag">Directory</span>
+                                <span class="article-compact-tag">SAML</span>
+                                <span class="article-compact-tag">Passkeys</span>
+                                <span class="article-compact-tag">Biometrics</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+<div class="article-compact">
                     <div class="article-compact-img">
                         <img src="static/images/password-vault.png" alt="Password Manager">
                     </div>
                     <div class="article-compact-content">
                         <h3>Build Your Own Password Manager</h3>
-                        <p>A secure password management solution built from scratch, featuring end-to-end encryption, multi-device sync, and biometric authentication. Learn the architecture and security principles behind modern password vaults.</p>
+                        <p>A lightweight password management solution built from scratch, featuring end-to-end encryption, multi-device sync, and multi-factor authentication for login. Learn the architecture and security principles behind modern password vaults.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">Encryption</span>
                             <span class="article-compact-tag">Security</span>
@@ -314,23 +330,6 @@
                         </div>
                     </div>
                 </div>
-
-                <a href="https://www.demo-oddy.dev" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="article-compact">
-                        <div class="article-compact-img">
-                            <img src="static/images/oddy.jpeg" alt="Oddy">
-                        </div>
-                        <div class="article-compact-content">
-                            <h3>Oddy - AI Audit Assistant</h3>
-                            <p>Oddy is an AI-powered audit assistant designed to streamline internal audit processes. It leverages intelligent AI Agents to streamline redundant tasks such planning, walkthroughs, testing and provides insights around risks.</p>
-                            <div class="article-compact-tags">
-                                <span class="article-compact-tag">AI Audit</span>
-                                <span class="article-compact-tag">Large Language Models</span>
-                                <span class="article-compact-tag">AI Agents</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
 
 				<a href="lab/aftercheck.html" style="text-decoration: none; color: inherit;">
 					<div class="article-compact">
