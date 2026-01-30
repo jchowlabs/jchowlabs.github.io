@@ -434,7 +434,8 @@
 
         @media (max-width: 768px) {
             .passkey-demo {
-                margin: 20px;
+                margin: 0;
+                border-radius: 0;
             }
 
             .demo-header {
@@ -550,7 +551,7 @@
                     </div>
 
                     <div class="button-group">
-                        <button class="btn btn-register" id="registerBtn" disabled>Registration</button>
+                        <button class="btn btn-register" id="registerBtn" disabled>Register</button>
                         <button class="btn btn-signin" id="signinBtn" disabled>Login</button>
                     </div>
 
@@ -559,11 +560,11 @@
                     <div class="info-section">
                         <h3>How Passkeys Work:</h3>
                         <ul>
-                            <li data-number="1">Register your device with Identity Provider</li>
-                            <li data-number="2">Cryptographic keys are generated on device.</li>
-                            <li data-number="3">Private keys sign Identity Provider challenges.</li>
-                            <li data-number="4">Identity Provider verifies signed challenges.</li>
-                            <li data-number="5">Biometric verification only on device.</li>
+                            <li data-number="1">Enter an email address</li>
+                            <li data-number="2">Click "Register"</li>
+                            <li data-number="3">Watch "Registration" flow</li>
+                            <li data-number="4">Click "Login"</li>
+                            <li data-number="5">Watch "Login" flow</li>
                         </ul>
                         <div class="demo-notice">
                             <div class="demo-notice-icon">i</div>
@@ -777,6 +778,14 @@
         clearFlow();
         hideStatus();
 
+        // Scroll to flow area on mobile
+        if (window.innerWidth <= 768) {
+            const flowArea = document.getElementById('flowArea');
+            if (flowArea) {
+                flowArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         try {
             if (!window.PublicKeyCredential) {
                 showStatus('WebAuthn is not supported in this browser', 'error');
@@ -888,6 +897,11 @@
                 };
 
                 showStatus(`Successfully registered for ${email}!`, 'success');
+                
+                // Scroll back to top on mobile to show status message
+                if (window.innerWidth <= 768) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
 
         } catch (error) {
@@ -914,6 +928,14 @@
 
         clearFlow();
         hideStatus();
+
+        // Scroll to flow area on mobile
+        if (window.innerWidth <= 768) {
+            const flowArea = document.getElementById('flowArea');
+            if (flowArea) {
+                flowArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
 
         try {
             if (!window.PublicKeyCredential) {
@@ -1013,6 +1035,11 @@
                 await new Promise(resolve => setTimeout(resolve, 1200));
 
                 showStatus(`Successfully signed in as ${email}!`, 'success');
+                
+                // Scroll back to top on mobile to show status message
+                if (window.innerWidth <= 768) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
 
         } catch (error) {
