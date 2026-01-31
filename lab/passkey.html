@@ -146,14 +146,20 @@
             top: 0;
             width: 22px;
             height: 22px;
-            background: #6b8cae;
-            color: white;
+            background: rgba(0, 0, 0, 0.1);
+            color: #666;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 11px;
             font-weight: 600;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .info-section li.completed:before {
+            background: #4caf50;
+            color: white;
         }
 
         .demo-notice {
@@ -653,6 +659,15 @@
     // In-memory storage for registered credentials
     let credentialStore = {};
 
+    // Step progress state
+    const stepState = {
+        step1: false,
+        step2: false,
+        step3: false,
+        step4: false,
+        step5: false
+    };
+
     // DOM elements
     const emailInput = document.getElementById('email');
     const registerBtn = document.getElementById('registerBtn');
@@ -665,12 +680,29 @@
         return emailRegex.test(email);
     }
 
+    // Mark step as complete
+    function markStepComplete(stepNumber) {
+        const stepKey = `step${stepNumber}`;
+        if (!stepState[stepKey]) {
+            stepState[stepKey] = true;
+            const stepElement = document.querySelector(`.info-section li[data-number="${stepNumber}"]`);
+            if (stepElement) {
+                stepElement.classList.add('completed');
+            }
+        }
+    }
+
     // Enable/disable buttons based on email input validation
     emailInput.addEventListener('input', () => {
         const email = emailInput.value.trim();
         const isValid = email.length > 0 && isValidEmail(email);
         registerBtn.disabled = !isValid;
         signinBtn.disabled = !isValid;
+        
+        // Mark step 1 as complete when valid email is entered
+        if (isValid) {
+            markStepComplete(1);
+        }
     });
 
     // Utility functions
@@ -789,6 +821,9 @@
             return;
         }
 
+        // Mark step 2 as complete
+        markStepComplete(2);
+
         clearFlow();
         hideStatus();
 
@@ -808,6 +843,9 @@
 
             // Step 1: Registration Request (Identity Provider sends)
             addMessage('1. Registration Request', 'right', 20, 0);
+            
+            // Mark step 3 as complete after a short delay
+            setTimeout(() => markStepComplete(3), 2500);
             
             await new Promise(resolve => setTimeout(resolve, 800));
             
@@ -940,6 +978,9 @@
             return;
         }
 
+        // Mark step 4 as complete
+        markStepComplete(4);
+
         clearFlow();
         hideStatus();
 
@@ -964,6 +1005,9 @@
 
             // Step 1: Auth request (Device initiates)
             addMessage('1. Auth Request', 'right', 20, 0);
+            
+            // Mark step 5 as complete after a short delay
+            setTimeout(() => markStepComplete(5), 2500);
             
             await new Promise(resolve => setTimeout(resolve, 800));
             
