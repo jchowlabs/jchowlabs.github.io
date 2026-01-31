@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jchowlabs</title>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ"></script>
+    <!-- Google Analytics - Loaded conditionally based on consent -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-GBHGE9LDVJ');
+        // Check for existing consent
+        const consent = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+        
+        if (consent && consent.analytics === true) {
+            // User has already consented - load GA immediately
+            loadGoogleAnalytics();
+        }
+        
+        function loadGoogleAnalytics() {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GBHGE9LDVJ';
+            document.head.appendChild(script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GBHGE9LDVJ');
+        }
     </script>
 
     <!-- Google reCAPTCHA -->
@@ -175,6 +189,98 @@
             border-color: #dc2626;
         }
         
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e5e5;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 14px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .cookie-banner.show {
+            display: block;
+        }
+        
+        .cookie-banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        
+        .cookie-banner-text {
+            flex: 1;
+        }
+        
+        .cookie-banner-text h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: #1a1a1a;
+        }
+        
+        .cookie-banner-text p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .cookie-banner-text a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .cookie-banner-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .cookie-banner-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        
+        .cookie-btn {
+            padding: 7px 18px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            border: none;
+            min-width: 110px;
+        }
+        
+        .cookie-btn-decline {
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .cookie-btn-decline:hover {
+            background: #e5e5e5;
+            color: #1a1a1a;
+        }
+        
+        .cookie-btn-accept {
+            background: #0066cc;
+            color: white;
+        }
+        
+        .cookie-btn-accept:hover {
+            background: #0052a3;
+        }
+        
         
         @media (max-width: 768px) {
             header {
@@ -210,6 +316,33 @@
             
             nav a.contact-icon {
                 margin-left: 0;
+            }
+            
+            /* Cookie banner mobile */
+            .cookie-banner {
+                padding: 12px;
+            }
+            
+            .cookie-banner-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .cookie-banner-text h3 {
+                font-size: 12px;
+            }
+            
+            .cookie-banner-text p {
+                font-size: 11px;
+            }
+            
+            .cookie-banner-actions {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .cookie-btn {
+                width: 100%;
             }
         }
     </style>
@@ -252,6 +385,20 @@
     </div>
 </div>
 
+<!-- Cookie Consent Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+            <h3>Privacy Notice</h3>
+            <p>We use analytics to understand how visitors use this site. You can allow or decline analytics.</a></p>
+        </div>
+        <div class="cookie-banner-actions">
+            <button class="cookie-btn cookie-btn-decline" onclick="handleCookieConsent(false)">Decline</button>
+            <button class="cookie-btn cookie-btn-accept" onclick="handleCookieConsent(true)">Allow Analytics</button>
+        </div>
+    </div>
+</div>
+
 <!-- Ecosystem Modal -->
 <div class="modal-overlay" id="ecosystemModal">
     <div class="modal" style="max-width: 540px;">
@@ -266,6 +413,44 @@
 
 <script src="static/app.js"></script>
 <script>
+    // Cookie Consent Management
+    function checkCookieConsent() {
+        const consent = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+        
+        if (!consent) {
+            // No consent decision yet - show banner
+            document.getElementById('cookieBanner').classList.add('show');
+        }
+        // If consent exists, banner stays hidden (default state)
+    }
+    
+    function handleCookieConsent(accepted) {
+        const consent = {
+            analytics: accepted,
+            timestamp: Date.now(),
+            version: 1
+        };
+        
+        // Save consent to localStorage
+        localStorage.setItem('cookieConsent', JSON.stringify(consent));
+        
+        // Hide banner
+        document.getElementById('cookieBanner').classList.remove('show');
+        
+        // If accepted, load Google Analytics
+        if (accepted && typeof loadGoogleAnalytics === 'function') {
+            loadGoogleAnalytics();
+        }
+    }
+    
+    function showPrivacyInfo(e) {
+        e.preventDefault();
+        alert('Privacy Information:\n\nWe use Google Analytics to understand how visitors interact with our site. This helps us improve content and user experience.\n\nData collected includes:\n• Page views\n• Referral sources\n• Device type\n• Geographic location (city-level)\n\nNo personally identifiable information is collected.\n\nYou can change your preference at any time by clearing your browser data.');
+    }
+    
+    // Check consent on page load
+    checkCookieConsent();
+    
     // Ecosystem modal functions
     function openEcosystemModal(e) {
         e.preventDefault();
