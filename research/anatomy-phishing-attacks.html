@@ -100,6 +100,41 @@
 		.page-wrapper.article-page .video-embed a:hover {
 			opacity: 0.98;
 		}
+
+		.callout {
+			background: #fbfbfb;
+			border: 1px solid #e5e5e5;
+			border-left: 4px solid #64748b;
+			border-radius: 12px;
+			padding: 14px 16px;
+			margin: 18px 0 28px;
+		}
+
+		.callout-title {
+			font-size: 0.78rem;
+			font-weight: 900;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: #1d4ed8;
+			margin: 0 0 8px 0;
+		}
+
+		.callout p {
+			margin-bottom: 0;
+		}
+
+		@media (max-width: 520px) {
+			.callout {
+				padding: 12px 12px;
+				margin: 16px 0 22px;
+				border-radius: 10px;
+			}
+
+			.callout-title {
+				font-size: 0.74rem;
+				margin-bottom: 6px;
+			}
+		}
 	</style>
 </head>
 
@@ -155,8 +190,6 @@
 						</a>
 					</div>
 
-					<hr class="article-divider" />
-
 					<h2>Why Phishing Works: From Human Trust to Machine Trust</h2>
 					<p>Modern enterprise environments are identity-first. Applications, APIs, and cloud services rarely care <em>who</em> is behind a request—only whether the request is accompanied by valid authentication material. This distinction is critical.</p>
 					<p>Phishing succeeds because it exploits the handoff between:</p>
@@ -187,13 +220,19 @@
 						<li>Messaging that triggers normal business behavior rather than suspicion</li>
 					</ul>
 					<p>Importantly, the attacker’s objective at this stage is not malware execution or exploitation. The objective is to induce a legitimate authentication attempt in an attacker-controlled context.</p>
-					<p><strong>Defender insight:</strong> Controls that rely exclusively on users spotting “suspicious emails” operate entirely in this phase—and fail once the user engages.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>Controls that rely exclusively on users spotting "suspicious emails" operate entirely in this phase—and fail once the user engages.</p>
+					</div>
 
 					<h3>2. Redirection to an Authentication Boundary</h3>
 					<p>Once the user interacts with the lure, they are redirected to infrastructure designed to sit at or near an authentication boundary. This may look like a familiar login experience, but what matters is not visual fidelity—it is protocol compatibility.</p>
 					<p>Modern phishing infrastructure is engineered to interact with real identity systems in real time. Rather than collecting credentials for later use, these systems often act as live intermediaries between the user and the legitimate identity provider.</p>
 					<p>At this point, the user believes they are authenticating to a trusted service. In reality, they are authenticating <em>through</em> an attacker-controlled relay.</p>
-					<p><strong>Defender insight:</strong> This is where many traditional security assumptions break down. The authentication flow itself may be legitimate, even though the context is not.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>This is where many traditional security assumptions break down. The authentication flow itself may be legitimate, even though the context is not.</p>
+					</div>
 
 					<h3>3. Credential and Token Capture</h3>
 					<p>Historically, phishing focused on harvesting usernames and passwords. In modern environments, that is only the first—and often least important—artifact.</p>
@@ -211,7 +250,10 @@
 						<li>A session was successfully established</li>
 					</ul>
 					<p>The attacker’s goal is not long-term credential storage—it is possession of the session itself.</p>
-					<p><strong>Defender insight:</strong> Any authentication artifact that can be replayed outside its original context is inherently phishable.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>Any authentication artifact that can be replayed outside its original context is inherently phishable.</p>
+					</div>
 
 					<h3>4. Session Replay and Unauthorized Access</h3>
 					<p>Once a session cookie or access token is obtained, the attacker no longer needs the user’s password. The token <em>is</em> the identity.</p>
@@ -223,7 +265,10 @@
 					</ul>
 					<p>This represents a critical shift in how breaches occur. Many modern intrusions do not involve logging in with stolen credentials; they involve resuming an already authenticated session.</p>
 					<p>Because the session is valid, traditional controls often fail to distinguish attacker activity from legitimate user behavior.</p>
-					<p><strong>Defender insight:</strong> MFA reduces risk, but it does not eliminate phishing when session tokens can be replayed.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>MFA reduces risk, but it does not eliminate phishing when session tokens can be replayed.</p>
+					</div>
 
 					<h3>5. Persistence and Lateral Movement</h3>
 					<p>Initial access is rarely the attacker’s end state. With authenticated access, attackers begin mapping permissions, discovering connected services, and identifying opportunities to persist.</p>
@@ -234,12 +279,18 @@
 						<li>Leveraging overly broad roles or inherited permissions</li>
 					</ul>
 					<p>Because these actions occur within an authenticated context, they often blend into normal administrative activity.</p>
-					<p><strong>Defender insight:</strong> Identity compromise is rarely isolated. Without strong privilege boundaries, initial access rapidly expands.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>Identity compromise is rarely isolated. Without strong privilege boundaries, initial access rapidly expands.</p>
+					</div>
 
 					<h3>6. Data Access, Manipulation, and Exfiltration</h3>
 					<p>The final stage mirrors any post-compromise operation. Attackers access sensitive data, manipulate resources, or exfiltrate information using the same mechanisms available to legitimate users.</p>
 					<p>At this point, perimeter defenses are largely irrelevant. The identity system itself has vouched for the attacker, and downstream systems comply accordingly.</p>
-					<p><strong>Defender insight:</strong> By the time data access is detected, the root failure often occurred much earlier in the authentication chain.</p>
+					<div class="callout">
+						<div class="callout-title">Defender Insight</div>
+						<p>By the time data access is detected, the root failure often occurred much earlier in the authentication chain.</p>
+					</div>
 
 					<h2>Why Compromised Credentials Remain the Dominant Vector</h2>
 					<p>The persistence of credential-based compromise in breach reporting is not accidental. Identity systems are:</p>
