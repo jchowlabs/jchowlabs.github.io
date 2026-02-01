@@ -198,7 +198,11 @@
         }
         
         .content-page main .articles-grid > :nth-child(3) .article-compact-img img {
-            transform: scale(0.65);
+            transform: scale(0.90);
+        }
+        
+        .content-page main .articles-grid > :nth-child(4) .article-compact-img img {
+            transform: scale(0.50);
         }
         
         /* Cookie Consent Banner */
@@ -349,7 +353,11 @@
             }
             
             .articles-grid > :nth-child(3) .article-compact-img img {
-                transform: scale(0.58) !important;
+                transform: scale(0.90) !important;
+            }
+            
+            .articles-grid > :nth-child(4) .article-compact-img img {
+                transform: scale(0.50) !important;
             }
             
             /* Cookie banner mobile */
@@ -420,7 +428,7 @@
                     <div class="article-featured-body">
                         <span class="tag">Featured</span>
                         <h3>Passkeys: Interactive Demo</h3>
-                        <p>An interactive, step-by-step walkthrough of Passkey registration and authentication flows. This lab walks through the registration and authentication process including on device key generation, cryptographic signing of registration and authentication challenges, and server-side verification. Rather than treating passkeys as a black box, the demo shows you the underlying steps and trust assumptions that replace passwords, making it easier to understand why passkeys are phishing-resistant and how they fit into modern identity architectures. Designed for practitioners who want to see—not just read—how passwordless authentication actually works.</p>
+                        <p>An interactive, step-by-step exploration of how passkey-based authentication works in practice. This lab visually breaks down passkey registration and authentication flows, showing on-device key generation, cryptographic challenge signing, and server-side verification as they occur. Rather than treating passkeys as a black box, the demo exposes the underlying operations and trust assumptions that replace passwords, helping practitioners understand why passkeys are phishing-resistant and how they fit into modern identity architectures.</p>
                         <div class="article-tags">
                             <span class="article-tag">WebAuthn</span>
                             <span class="article-tag">Passkeys</span>
@@ -438,7 +446,7 @@
                         </div>
                         <div class="article-compact-content">
                             <h3>Build Your Own Identity Provider</h3>
-                            <p>A lightweight identity provider built to explore the core components of modern identity systems. This lab focuses on directory, federation engine, and modern authentication flows for the purpose of building your intuition on how identity providers work under the hood.</p>
+                            <p>Build a lightweight identity provider from scratch to explore how modern identity systems work under the hood. This lab covers the core building blocks behind dentity platforms used by large global enterprises, including directories, authentication flows, federation engines, and threat protection mechanisms.</p>
                             <div class="article-compact-tags">
                                 <span class="article-compact-tag">Directory</span>
                                 <span class="article-compact-tag">SAML</span>
@@ -455,11 +463,26 @@
                     </div>
                     <div class="article-compact-content">
                         <h3>Build Your Own Password Manager</h3>
-                        <p>A browser extension based password management solution built from scratch, featuring end-to-end encryption, pseudo-random secrets generator, and multi-factor authentication for login. Learn the architecture and security principles behind modern password vaults by deploying your own.</p>
+                        <p>A browser extension–based password management solution built from scratch, featuring end-to-end encryption, pseudo-random secret generation, and multi-factor authentication. This lab explores the architecture and security principles behind modern password vaults and how these systems operate in practice.</p>
                         <div class="article-compact-tags">
                             <span class="article-compact-tag">Encryption</span>
                             <span class="article-compact-tag">Security</span>
                             <span class="article-compact-tag">Password Vault</span>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="article-compact">
+                    <div class="article-compact-img">
+                        <img src="static/images/facial-recognition.png" alt="Facial Recognition">
+                    </div>
+                    <div class="article-compact-content">
+                        <h3>Build a Face Verification System</h3>
+                        <p>Build a facial verification system from scratch to explore how identity verification systems work under the hood. This interactive lab examines biometric matching, liveness detection, and deepfake defenses, similar to those used in enterprise-grade identity verification platforms.</p>
+                        <div class="article-compact-tags">
+                            <span class="article-compact-tag">Biometrics</span>
+                            <span class="article-compact-tag">Deepfake</span>
+                            <span class="article-compact-tag">Liveness</span>
                         </div>
                     </div>
                 </div>
@@ -471,28 +494,11 @@
                         </div>
                         <div class="article-compact-content">
 						<h3>AfterCheck - AI Fact Checking</h3>
-                            <p>AfterCheck is a browser extension that highlights misinformation in ChatGPT, Claude, and Perplexity responses. Each verdict includes an inline corrections, evidence, and confidence scores for ultimate transparency.</p>
+                            <p>AfterCheck is a browser extension that automatically reveals misinformation in ChatGPT, Claude, and Perplexity responses. Each inaccurate claim includes an inline corrections, supporting evidence, and confidence scores for ultimate transparency.</p>
                             <div class="article-compact-tags">
                                 <span class="article-compact-tag">AI Safety</span>
                                 <span class="article-compact-tag">Open Fact Check</span>
                                 <span class="article-compact-tag">Misinformation</span>
-                            </div>
-                        </div>
-					</div>
-				</a>
-
-				<a href="https://www.openbounty.com" target="_blank" style="text-decoration: none; color: inherit;">
-					<div class="article-compact">
-                        <div class="article-compact-img">
-                            <img src="static/images/openbounty.png" alt="Open Bounty">
-                        </div>
-                        <div class="article-compact-content">
-						<h3>Open Bounty - Bug Pricing</h3>
-                            <p>Open Bounty provides instant, data-driven price estimates for any security vulnerability. Queries are anonymized, aggregated, and fed into publicly accessible dashboards for real-time insights into trending vulnerabilities.</p>
-                            <div class="article-compact-tags">
-                                <span class="article-compact-tag">Bug Bounty</span>
-                                <span class="article-compact-tag">Pricing Engine</span>
-                                <span class="article-compact-tag">Machine Learning</span>
                             </div>
                         </div>
 					</div>
