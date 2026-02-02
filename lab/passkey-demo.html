@@ -956,7 +956,7 @@
                 await new Promise(resolve => setTimeout(resolve, 1200));
                 
                 // Step 6: Sign request
-                addMessage('6. Sign Request', 'right', 170, 0);
+                addMessage('6. Sign Challenge', 'right', 170, 0);
                 
                 await new Promise(resolve => setTimeout(resolve, 1200));
                 
@@ -965,8 +965,8 @@
                 
                 await new Promise(resolve => setTimeout(resolve, 1200));
                 
-                // Step 8: Send public key & signed request
-                addMessage('8. Send Public Key & Signed Request', 'right', 270, 0);
+                // Step 8: Send public key & signed challenge
+                addMessage('8. Send Public Key & Signed Challenge', 'right', 270, 0);
                 
                 await new Promise(resolve => setTimeout(resolve, 800));
                 
@@ -1043,7 +1043,7 @@
             }
 
             // Step 1: Auth request (Device initiates)
-            addMessage('1. Auth Request', 'right', 20, 0);
+            addMessage('1. Login Request', 'right', 20, 0);
             
             // Mark step 5 as complete after a short delay
             setTimeout(() => markStepComplete(5), 2500);
@@ -1116,8 +1116,8 @@
                 
                 await new Promise(resolve => setTimeout(resolve, 1200));
                 
-                // Step 8: Send assertion
-                addMessage('8. Send Assertion', 'right', 270, 0);
+                // Step 8: Send signed challenge
+                addMessage('8. Send Signed Challenge', 'right', 270, 0);
                 
                 await new Promise(resolve => setTimeout(resolve, 800));
                 
