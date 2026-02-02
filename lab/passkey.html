@@ -495,62 +495,34 @@
             }
 
             .parties {
-                display: flex;
-                justify-content: space-between;
-                padding: 12px 16px;
-                margin-bottom: 0;
-            }
-
-            .parties::after {
                 display: none;
-            }
-
-            .party {
-                flex: 0 0 auto;
-                width: auto;
-            }
-
-            .party h3 {
-                font-size: 11px;
-                margin-top: 6px;
-            }
-
-            .party-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .party-icon img {
-                width: 28px;
-                height: 28px;
             }
 
             .flow-area {
                 min-height: auto;
                 padding: 16px 8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
                 position: relative;
+            }
+
+            .flow-area::before,
+            .flow-area::after {
+                display: none;
             }
 
             .flow-area::before {
                 content: '';
                 position: absolute;
-                left: 25%;
+                left: 50%;
                 top: 0;
                 bottom: 0;
                 width: 2px;
                 background: #e5e5e5;
                 display: block;
-            }
-
-            .flow-area::after {
-                content: '';
-                position: absolute;
-                left: 75%;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: #e5e5e5;
-                display: block;
+                transform: translateX(-50%);
             }
 
             .arrow {
@@ -559,31 +531,17 @@
 
             .message {
                 position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
                 transform: none !important;
-                font-size: 11px;
-                padding: 10px 12px;
-                margin-bottom: 12px;
+                font-size: 12px;
+                padding: 10px 16px;
+                max-width: 90%;
+                text-align: center;
+                margin: 0;
                 white-space: normal;
                 line-height: 1.4;
-                width: 45%;
-                text-align: center;
-                top: auto !important;
-            }
-
-            .message-left {
-                left: 0 !important;
-                right: auto !important;
-            }
-
-            .message-right {
-                left: auto !important;
-                right: 0 !important;
-            }
-
-            .message-center {
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: 60%;
             }
         }
 
