@@ -96,7 +96,7 @@
 				<div class="article-body article-inprogress">
 					<p>Single Sign-On is widely adopted to centralize authentication, simplify access, and reduce credential sprawl across enterprise environments. That same centralization, however, creates a high-impact failure mode: if the identity provider’s trust infrastructure is compromised, access can be forged across every connected application. The Golden SAML attack, originally documented by CyberArk Labs, demonstrates how attackers can abuse this trust by minting authentication assertions that downstream services accept as fully legitimate.</p>
 					<p>This article walks through what the Golden SAML attack is, how it works, and why it is so effective in real-world environments. It focuses on the compromise of private keys used to sign SAML assertions, and how those keys can be used to generate so-called “Golden SAML” tickets that impersonate arbitrary users. Because SSO acts as a single credential for many applications, this technique does not grant access to just one account or system, but potentially to a broad set of enterprise resources. The goal is to give defenders a clear understanding of how identity infrastructure compromise translates into widespread access, and why protecting signing keys, monitoring assertion behavior, and limiting trust boundaries are critical to reducing the blast radius of SSO failures.</p>
-					
+					<p>Understanding the mechanics of Golden SAML is crucial for defenders aiming to secure SSO environments. By examining the attack, organizations can implement stronger key management practices, monitor for anomalous assertion activity, and design systems that limit the impact of a compromised identity provider.</p>
 				</div>
 			</div>
 		</section>
