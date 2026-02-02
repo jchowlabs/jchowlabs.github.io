@@ -66,18 +66,16 @@
 			flex: 1;
 		}
 		
-		.cookie-banner-text h3 {
-			font-size: 13px;
-			font-weight: 600;
-			margin: 0 0 5px 0;
-			color: #1a1a1a;
-		}
-		
 		.cookie-banner-text p {
 			font-size: 12px;
 			color: #666;
 			margin: 0;
 			line-height: 1.5;
+		}
+		
+		.cookie-banner-text strong {
+			color: #1a1a1a;
+			font-weight: 600;
 		}
 		
 		.cookie-banner-text a {
@@ -137,21 +135,16 @@
 				gap: 12px;
 			}
 			
-			.cookie-banner-text h3 {
-				font-size: 12px;
-			}
-			
 			.cookie-banner-text p {
 				font-size: 11px;
 			}
 			
 			.cookie-banner-actions {
 				width: 100%;
-				flex-direction: column;
 			}
 			
 			.cookie-btn {
-				width: 100%;
+				flex: 1;
 			}
 		}
 	</style>
@@ -211,7 +204,7 @@
 </div>
 
 <!-- Cookie Consent Banner -->
-<div class="cookie-banner" id="cookieBanner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>Privacy Notice</h3><p>We use analytics to understand how visitors use this site. You can allow or decline analytics.</p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-decline" onclick="handleCookieConsent(false)">Decline</button><button class="cookie-btn cookie-btn-accept" onclick="handleCookieConsent(true)">Allow Analytics</button></div></div></div>
+<div class="cookie-banner" id="cookieBanner"><div class="cookie-banner-content"><div class="cookie-banner-text"><p><strong>Privacy Notice:</strong> We use analytics to understand how visitors use this site.</p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-decline" onclick="handleCookieConsent(false)">Decline</button><button class="cookie-btn cookie-btn-accept" onclick="handleCookieConsent(true)">Allow Analytics</button></div></div></div>
 
 <!-- Cookie Consent Banner -->
 <div class="cookie-banner" id="cookieBanner"><div class="cookie-banner-content"><div class="cookie-banner-text"><h3>Privacy Notice</h3><p>We use analytics to understand how visitors use this site. You can allow or decline analytics.</p></div><div class="cookie-banner-actions"><button class="cookie-btn cookie-btn-decline" onclick="handleCookieConsent(false)">Decline</button><button class="cookie-btn cookie-btn-accept" onclick="handleCookieConsent(true)">Allow Analytics</button></div></div></div>
