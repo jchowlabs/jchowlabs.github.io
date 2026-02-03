@@ -25,7 +25,10 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: none;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
 }
 
 header::after {
@@ -921,7 +924,7 @@ footer span {
     
     nav a {
         display: block;
-        padding: 12px 12px;
+        padding: 18px 12px;
         font-size: 16px;
     }
     
@@ -929,7 +932,7 @@ footer span {
         background: none;
         color: #1a1a1a;
         font-weight: 600;
-        padding: 12px 12px;
+        padding: 18px 12px;
         border-radius: 0;
     }
 
