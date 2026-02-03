@@ -83,6 +83,11 @@
             border: 1px solid #e5e5e5;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            background-color: #fcfdfe;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.006) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.006) 1px, transparent 1px);
+            background-size: 10px 10px;
         }
 
         .form-group {
@@ -283,15 +288,18 @@
         }
 
         .visualization {
-            min-height: 400px;
             display: flex;
             flex-direction: column;
+            border-radius: 8px;
+            padding: 0;
         }
 
         .parties {
             position: relative;
             margin-bottom: 8px;
             height: 180px;
+            flex-shrink: 0;
+            padding: 20px 20px 0 20px;
         }
 
         .parties::after {
@@ -324,6 +332,7 @@
 
         .party-icon {
             margin-bottom: 0;
+            margin-top: -20px;
             line-height: 0;
         }
 
@@ -350,7 +359,7 @@
         .flow-area {
             position: relative;
             flex: 1;
-            padding: 16px;
+            padding: 8px 20px 20px 20px;
             min-height: 360px;
             overflow: hidden;
         }
@@ -595,7 +604,7 @@
         <div class="passkey-demo">
             <div class="demo-content">
                 <div class="input-container">
-                    <h1 class="demo-title">Passkey Demo</h1>
+                    <h1 class="demo-title">Passkey Playground</h1>
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" placeholder="you@example.com" required autofocus>
