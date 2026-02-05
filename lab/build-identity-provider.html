@@ -191,7 +191,7 @@
 				</div>
 
 				<div class="article-body">
-					<p>In this article, we're going to walk through how to <strong>build your own identity provider from scratch.</strong> Not because you're expected to replace the systems that power large enterprises, but because designing one is one of the best ways to truly understand how modern single sign-on and identity-as-a-service platforms work under the hood.</p>
+					<p>In this article, we’re going to dig into the internals of an identity provider by <strong>building a simple one from scratch</strong>. Identity providers can initially appear as large, complex systems, but when you decompose them into their core components, their structure becomes far more understandable. We’ll unpack those underlying pieces — many of which are the same concepts you’ll find in enterprise-grade single sign-on and identity-as-a-service platforms — so that, step by step, you build a clearer intuition for how modern identity providers work, why they are structured the way they are, and how their parts fit together in practice.</p>
 
 					<p>If you work in or around an enterprise today, you've almost certainly interacted with an identity provider — even if you didn't call it that. It's the system that signs you into dozens of tools with a single login, that asks you for multi-factor authentication, that quietly decides whether your request looks "normal," and that somehow makes all of your applications just <em>know</em> who you are. From the outside, this feels simple. Under the surface, it's anything but.</p>
 
@@ -207,7 +207,7 @@
 
 					<img src="../static/images/idp-architecture.png" alt="Identity Provider Architecture" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;">
 
-					<p>If you strip away vendor branding and implementation detail, most modern identity providers share a common conceptual architecture. They are not single-purpose tools, but collections of cooperating components that together manage identity from creation to authentication to access enforcement. Different products emphasize different capabilities, and some include additional features such as governance, lifecycle workflows, or analytics. Still, a consistent pattern shows up across cloud, hybrid, and on-prem systems.</p>
+					<p>When you strip away vendor branding and marketing features, most modern identity providers share a common conceptual architecture. They are not single-purpose tools, but collections of cooperating components that together manage identity from creation to authentication to access enforcement. Different products emphasize different capabilities, and some include additional features such as governance, lifecycle workflows, or analytics. Still, a consistent pattern shows up across cloud, hybrid, and on-prem systems.</p>
 
 					<p>At the center of this pattern is the idea that an identity provider acts as an <strong>identity control plane</strong> rather than just a login service. It coordinates several distinct functions that, taken together, allow organizations to know who someone is and what they should be able to do across many different applications.</p>
 
@@ -225,7 +225,7 @@
 
 					<p><strong>Running in parallel is provisioning.</strong></p>
 
-					<p>If authentication answers "who are you right now?", provisioning answers "what accounts should exist for you elsewhere?" When someone joins a company, changes roles, or leaves, the identity provider can automatically create, update, or disable accounts in connected applications instead of relying on manual administration.</p>
+					<p>Once a user is created in the directory, provisioning answers "what accounts should exist for you elsewhere?" When someone joins a company, changes roles, or leaves, the identity provider can automatically create, update, or disable accounts in connected applications instead of relying on manual administration.</p>
 
 					<p><strong>Finally, many systems include a conditional access or risk layer.</strong></p>
 
@@ -283,7 +283,7 @@
 
 					<img src="../static/images/authentication-engine.png" alt="Authentication Engine" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;">
 
-					<p>If the directory answers the question <em>"who exists?"</em>, the authentication layer answers a different but equally fundamental one: "is this person actually who they claim to be?" In practice, this is not a single check or a single technology. It is better understood as an orchestration engine that selects, sequences, and enforces different ways of proving identity depending on the situation.</p>
+					<p>The authentication layer is responsible for verifying that a user is actually who they claim to be. Rather than being a single check or a single technology, it is best understood as an orchestration engine that selects, sequences, and enforces different ways of proving identity depending on context and risk.</p>
 
 					<p>Most identity providers support multiple authentication methods because no single mechanism works equally well for every user, every device, and every risk context. At a high level, these typically include familiar options such as:</p>
 
@@ -294,7 +294,7 @@
 						<li><strong>Biometrics</strong>, such as facial recognition or fingerprints, usually mediated through a user's device rather than the identity provider directly.</li>
 					</ul>
 
-					<p>We won't dive into the internal mechanics of any of these here — you have other articles that do that — but the important architectural point is this: the identity provider does not commit to one way of authenticating users. Instead, it maintains a toolbox of methods and decides when and how to use them.</p>
+					<p>We won't dive into the internal mechanics of any of these here (checkout my other articles that cover them in detail) but the important architectural point is this: the identity provider does not commit to one way of authenticating users. Instead, it maintains a toolbox of methods and decides when and how to use them.</p>
 
 					<p>What gives this toolbox structure is the idea of levels of assurance. Not all authentications are created equal. A simple password login represents a lower level of confidence than a phishing-resistant passkey or hardware security key. Many identity providers internally track how strongly a user was authenticated — sometimes explicitly as a "level of assurance," sometimes implicitly through policy. That signal becomes important later when applications or security teams decide how much they should trust a given login.</p>
 
@@ -322,7 +322,7 @@
 
 					<img src="../static/images/federation-engine.png" alt="Federation Engine" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;">
 
-					<p>If authentication is about proving who you are, <strong>federation is about changing who does the proving in the first place.</strong> For much of the history of enterprise software, every application authenticated users on its own. You created a username and password for email, another for your CRM, another for HR tools, another for finance systems, and so on. Each application maintained its own identity store and made its own judgment about whether to trust you.</p>
+					<p>While authentication determines whether a user is who they claim to be, federation determines which system gets to make that determination. Historically, most enterprise applications authenticated users in isolation — each system required its own username and password, maintained its own identity store, and independently decided whether to trust a user.</p>
 
 					<p>At scale, this model produced what is now widely understood as <strong>password sprawl</strong>: too many credentials, widespread password reuse, frequent resets, and a large attack surface for phishing and credential theft. More fundamentally, it meant that identity was fragmented. There was no single source of truth about who someone was or how strongly they had been authenticated.</p>
 
@@ -421,7 +421,7 @@
 
 					<img src="../static/images/provisioning-engine.png" alt="Provisioning Engine" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;">
 
-					<p>If federation is about <strong>sharing identity with applications</strong>, provisioning is about <strong>creating identity inside those applications in the first place.</strong> Authentication and federation solve the problem of "who are you right now," but they do not by themselves solve a very practical operational question: how do users actually get accounts in all of the tools they need, and how do those accounts stay correct over time as roles, teams, and employment status change?</p>
+					<p>Provisioning addresses a different problem than authentication or federation: <strong>how user accounts are created and maintained inside other applications over time.</strong> Even when identity can be proven and shared through SSO, organizations still need a reliable way to ensure that people actually have the right accounts in the right systems — and that those accounts change as roles, teams, or employment status change.</p>
 
 					<p>In a world without provisioning, identity management quickly becomes manual and fragile. New employees would require administrators to log into every system — email, collaboration tools, CRM, cloud consoles, ticketing systems — and create accounts one by one. When someone changed roles, those accounts would need to be updated in multiple places. When someone left, every account would need to be tracked down and disabled. The result is slow onboarding, inconsistent access, and a significant security risk from forgotten or orphaned accounts that linger long after a person has moved on.</p>
 
@@ -492,7 +492,7 @@
 
 					<img src="../static/images/conditional-engine.png" alt="Conditional Access Engine" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;">
 
-					<p>If authentication is about proving who you are, and federation is about sharing that proof with other systems, <strong>conditional access</strong> is about deciding <strong>whether that proof should be accepted in the first place.</strong> It is the layer that sits in front of — and sometimes within — the login experience, continuously asking: <em>given everything we know about this request, should we allow it, deny it, or require stronger verification?</em></p>
+					<p>Conditional access determines whether an authentication event should be accepted, challenged, or rejected in the first place. It is a policy and risk layer that operates at — and sometimes within — the login experience, continuously evaluating what is known about the request (such as user context, device, location, and behavior) to decide whether to allow access, deny it, or require stronger verification.</p>
 
 					<p>Most identity providers no longer treat authentication as a purely binary event — logged in or not logged in. Instead, they treat every login as a <strong>context-rich signal</strong> that can be evaluated in real time. Conditional access (often described as adaptive MFA or risk-based authentication) is the mechanism that makes this possible. Its role is to supplement standard authentication by incorporating additional intelligence about the user, the device, and the environment before allowing access to complete.</p>
 
@@ -549,15 +549,13 @@
 
 					<h2>Closing</h2>
 
-					<p>The purpose of this lab has not been to teach you how to deploy a production-grade identity platform or to replicate the capabilities of large commercial providers. Instead, the goal has been more conceptual: to help you develop a clearer, more intuitive mental model of what an identity provider actually is and how its pieces fit together.</p>
+					<p>The goals of this lab has been to help you develop a clearer intuition for how modern identity providers work by examining their common components and looking beneath the surface of each one. Rather than treating identity providers as monolithic products, we unpacked them piece by piece to understand the ideas that make them function as coherent systems.</p>
 
-					<p>By walking through the directory, we saw that identity begins with a reliable system of record — a structured way of representing who exists and how people are organized. Through the authentication layer, we explored how identity providers prove who someone is across different flows, levels of assurance, and risk contexts. In the federation section, we looked at how that proof of identity can be safely shared with other systems using standards like SAML and OpenID Connect, creating a network of trust rather than a collection of isolated logins. With provisioning, we examined how identity is projected outward into applications so that access can be created, updated, and revoked automatically rather than manually. And with conditional access, we considered how modern identity systems layer intelligence and risk evaluation on top of authentication to make access decisions more dynamic and context-aware.</p>
+					<p>We began with the directory, seeing how identity starts with a reliable system of record that defines who exists, what attributes they have, and how they are organized. In the authentication layer, we explored how identity providers verify who someone is across different flows, levels of assurance, and risk contexts. Through federation, we examined how that proof of identity can be shared with other systems using standards like SAML and OpenID Connect, replacing isolated logins with a network of trust. With provisioning, we looked at how identity is projected outward into applications so access can be created, updated, and revoked automatically rather than manually. And in conditional access, we saw how modern identity systems layer risk intelligence on top of authentication to make access decisions more dynamic and context-aware.</p>
+					
+					<p>Taken together, these pieces reveal that an identity provider is far more than a login screen. It is a control plane for identity that spans users, devices, applications, and risk signals. Understanding this architecture helps explain why real-world systems behave the way they do — why certain designs strengthen security, why others introduce fragility, and why usability and protection must always be balanced.</p>
 
-					<p>Taken together, these components form a coherent architecture. An identity provider is not just a login service; it is a control plane for identity that spans users, devices, applications, and risk signals. Understanding this architecture makes it easier to reason about why real-world systems behave the way they do — why certain design choices improve security, why others introduce fragility, and why usability and protection are often in tension.</p>
-
-					<p>As you move forward, you can use this mental model to better evaluate existing identity platforms, ask sharper questions about how they are configured, and think more critically about where trust is concentrated in your own environment. And if you want to go a step further, the accompanying GitHub repository provides a simple, illustrative identity provider implementation that brings these ideas to life in code. By experimenting with it, you can see how directories, authentication flows, federation, provisioning, and conditional access might be wired together in practice.</p>
-
-					<p>In the end, "building your own identity provider" is less about writing software than it is about understanding identity as infrastructure — the invisible layer that makes modern digital organizations possible.</p>
+					<p>As you encounter identity platforms in practice, you can use this mental model to reason more clearly about how they are structured, what assumptions they make, and where trust is concentrated. In that sense, “building your own identity provider” is less about implementing software and more about recognizing identity as critical infrastructure — the invisible layer that makes modern digital organizations possible.</p>
 				</div>
 			</div>
 		</section>
