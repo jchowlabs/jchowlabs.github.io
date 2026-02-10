@@ -823,6 +823,17 @@
         
         setTimeout(() => {
             message.classList.add('show');
+            
+            // On mobile: scroll to keep the latest message visible
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    message.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                }, 100); // Small delay to ensure message is rendered
+            }
         }, delay);
     }
 
