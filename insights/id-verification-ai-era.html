@@ -35,6 +35,285 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../static/styles.css">
 	<style>
+		/* Audio Player Styles */
+		.article-audio {
+			width: 100%;
+			margin: 24px 0;
+			display: flex;
+			justify-content: center;
+		}
+
+		.custom-audio-player {
+			width: 80%;
+			max-width: 80%;
+			background: #f8f9fa;
+			border: 1px solid #e9ecef;
+			border-radius: 12px;
+			padding: 10px 20px;
+		}
+
+		.audio-controls {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.play-pause-btn {
+			background: #3b82f6;
+			border: none;
+			border-radius: 50%;
+			width: 48px;
+			height: 48px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			color: white;
+			transition: all 0.2s;
+			position: relative;
+		}
+
+		.play-pause-btn:hover {
+			background: #2563eb;
+			transform: scale(1.05);
+		}
+
+		.play-pause-btn svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.play-pause-btn .play-icon {
+			transform: translate(-45%, -50%); /* Better optical centering for triangle */
+		}
+
+		.play-pause-btn .pause-icon {
+			transform: translate(-50%, -50%); /* Perfect center for pause bars */
+		}
+
+		.progress-container {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.time-display {
+			font-size: 14px;
+			color: #6b7280;
+			font-weight: 500;
+			min-width: 40px;
+		}
+
+		.progress-bar {
+			flex: 1;
+			height: 6px;
+			background: #e5e7eb;
+			border-radius: 3px;
+			position: relative;
+			cursor: pointer;
+		}
+
+		.progress {
+			height: 100%;
+			background: #1d4ed8;
+			border-radius: 3px;
+			width: 0%;
+			transition: width 0.1s;
+		}
+
+		.progress-handle {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 16px;
+			height: 16px;
+			background: #1d4ed8;
+			border: 2px solid white;
+			border-radius: 50%;
+			cursor: pointer;
+			left: 0%;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		.audio-right-controls {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.volume-control {
+			position: relative;
+			display: flex;
+			align-items: center;
+		}
+
+		.mute-btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #6b7280;
+			padding: 8px;
+			border-radius: 6px;
+			transition: all 0.2s;
+		}
+
+		.mute-btn:hover {
+			background: #f3f4f6;
+			color: #374151;
+		}
+
+		.volume-slider-container {
+			position: absolute;
+			bottom: 100%;
+			left: 50%;
+			transform: translateX(-50%);
+			margin-bottom: 8px;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.2s;
+		}
+
+		.volume-control:hover .volume-slider-container {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.volume-slider {
+			writing-mode: bt-lr; /* IE */
+			-webkit-appearance: slider-vertical; /* WebKit */
+			width: 6px;
+			height: 80px;
+			background: #e5e7eb;
+			outline: none;
+			border-radius: 3px;
+		}
+
+		.volume-slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background: #1d4ed8;
+			cursor: pointer;
+			border: 2px solid white;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		.volume-slider::-moz-range-thumb {
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background: #1d4ed8;
+			cursor: pointer;
+			border: 2px solid white;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		.speed-control {
+			position: relative;
+		}
+
+		.speed-btn {
+			background: #f3f4f6;
+			border: 1px solid #d1d5db;
+			border-radius: 6px;
+			padding: 8px 12px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 500;
+			color: #374151;
+			transition: all 0.2s;
+		}
+
+		.speed-btn:hover {
+			background: #e5e7eb;
+		}
+
+		.speed-menu {
+			position: absolute;
+			bottom: 100%;
+			right: 0;
+			margin-bottom: 8px;
+			background: white;
+			border: 1px solid #e5e7eb;
+			border-radius: 8px;
+			box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.2s;
+			z-index: 10;
+		}
+
+		.speed-control:hover .speed-menu {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.speed-menu button {
+			display: block;
+			width: 100%;
+			padding: 8px 16px;
+			border: none;
+			background: none;
+			text-align: left;
+			cursor: pointer;
+			font-size: 14px;
+			color: #374151;
+			transition: background 0.2s;
+		}
+
+		.speed-menu button:hover {
+			background: #f3f4f6;
+		}
+
+		.speed-menu button.active {
+			background: #1d4ed8;
+			color: white;
+		}
+
+		.speed-menu button:first-child {
+			border-radius: 8px 8px 0 0;
+		}
+
+		.speed-menu button:last-child {
+			border-radius: 0 0 8px 8px;
+		}
+
+		@media (max-width: 768px) {
+			.custom-audio-player {
+				width: 95%;
+				max-width: 95%;
+				padding: 16px;
+			}
+
+			.audio-controls {
+				gap: 12px;
+			}
+
+			.play-pause-btn {
+				width: 44px;
+				height: 44px;
+			}
+
+			.progress-container {
+				gap: 8px;
+			}
+
+			.time-display {
+				font-size: 12px;
+				min-width: 35px;
+			}
+
+			.audio-right-controls {
+				gap: 12px;
+			}
+		}
+
+		/* Cookie Consent Banner */
 		.cookie-banner {position: fixed;bottom: 0;left: 0;right: 0;background: #F9F8F5;border-top: 1px solid #e5e5e5;box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);padding: 14px;z-index: 1000;display: none;}
 		.cookie-banner.show {display: block;}
 		.cookie-banner-content {max-width: 1200px;margin: 0 auto;display: flex;align-items: center;justify-content: space-between;gap: 16px;}
@@ -88,9 +367,66 @@
 					<img src="../static/images/deepfake.png" alt="Deepfake" class="article-hero-img">
 				</div>
 
-				<div class="article-header">
-					<h1>Identity Verification in the AI Era</h1>
+			<div class="article-audio">
+				<div class="custom-audio-player">
+					<audio id="audioElement">
+						<source src="../static/audio/id-verification.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+					</audio>
+					
+					<div class="audio-controls">
+						<button id="playPauseBtn" class="play-pause-btn">
+							<svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polygon points="5,3 19,12 5,21"></polygon>
+							</svg>
+							<svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+								<rect x="6" y="4" width="4" height="16"></rect>
+								<rect x="14" y="4" width="4" height="16"></rect>
+							</svg>
+						</button>
+						
+						<div class="progress-container">
+							<span class="time-display" id="currentTime">0:00</span>
+							<div class="progress-bar" id="progressBar">
+								<div class="progress" id="progress"></div>
+								<div class="progress-handle" id="progressHandle"></div>
+							</div>
+							<span class="time-display" id="duration">0:00</span>
+						</div>
+						
+						<div class="audio-right-controls">
+							<div class="volume-control">
+								<button id="muteBtn" class="mute-btn">
+									<svg class="volume-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+										<path class="volume-waves" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+									</svg>
+									<svg class="mute-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+										<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+										<line x1="23" y1="9" x2="17" y2="15"></line>
+										<line x1="17" y1="9" x2="23" y2="15"></line>
+									</svg>
+								</button>
+								<div class="volume-slider-container">
+									<input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="100" orient="vertical">
+								</div>
+							</div>
+							
+							<div class="speed-control">
+								<button id="speedBtn" class="speed-btn">1x</button>
+								<div class="speed-menu" id="speedMenu">
+									<button data-speed="0.5">0.5x</button>
+									<button data-speed="0.75">0.75x</button>
+									<button data-speed="1" class="active">1x</button>
+									<button data-speed="1.25">1.25x</button>
+									<button data-speed="1.5">1.5x</button>
+									<button data-speed="2">2x</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+			</div>
 
 				<div class="article-body">
 					<p>Identity verification is one of the most underrated security problems in modern organizations. Most security investments concentrate on what happens after access is granted — stronger authentication, better monitoring, richer telemetry, and increasingly sophisticated zero-trust architectures. These investments are important, but they all rest on a prior and often unexamined assumption: that the right person was given the key in the first place.</p>
@@ -415,6 +751,114 @@
 	function closeEcosystemModal() {
 		document.getElementById('ecosystemModal').classList.remove('active');
 	}
+
+	// Custom Audio Player
+	document.addEventListener('DOMContentLoaded', function() {
+		const audio = document.getElementById('audioElement');
+		const playPauseBtn = document.getElementById('playPauseBtn');
+		const playIcon = playPauseBtn.querySelector('.play-icon');
+		const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+		const currentTimeSpan = document.getElementById('currentTime');
+		const durationSpan = document.getElementById('duration');
+		const progressBar = document.getElementById('progressBar');
+		const progress = document.getElementById('progress');
+		const progressHandle = document.getElementById('progressHandle');
+		const muteBtn = document.getElementById('muteBtn');
+		const volumeIcon = muteBtn.querySelector('.volume-icon');
+		const muteIcon = muteBtn.querySelector('.mute-icon');
+		const volumeSlider = document.getElementById('volumeSlider');
+		const speedBtn = document.getElementById('speedBtn');
+		const speedMenu = document.getElementById('speedMenu');
+
+		// Format time function
+		function formatTime(seconds) {
+			const mins = Math.floor(seconds / 60);
+			const secs = Math.floor(seconds % 60);
+			return `${mins}:${secs.toString().padStart(2, '0')}`;
+		}
+
+		// Play/Pause functionality
+		playPauseBtn.addEventListener('click', function() {
+			if (audio.paused) {
+				audio.play();
+			} else {
+				audio.pause();
+			}
+		});
+
+		audio.addEventListener('play', function() {
+			playIcon.style.display = 'none';
+			pauseIcon.style.display = 'block';
+		});
+
+		audio.addEventListener('pause', function() {
+			playIcon.style.display = 'block';
+			pauseIcon.style.display = 'none';
+		});
+
+		// Time update
+		audio.addEventListener('timeupdate', function() {
+			if (audio.duration) {
+				const progressPercent = (audio.currentTime / audio.duration) * 100;
+				progress.style.width = progressPercent + '%';
+				progressHandle.style.left = progressPercent + '%';
+				currentTimeSpan.textContent = formatTime(audio.currentTime);
+			}
+		});
+
+		// Duration loaded
+		audio.addEventListener('loadedmetadata', function() {
+			durationSpan.textContent = formatTime(audio.duration);
+		});
+
+		// Progress bar click
+		progressBar.addEventListener('click', function(e) {
+			const clickX = e.offsetX;
+			const width = progressBar.offsetWidth;
+			const clickPercent = clickX / width;
+			audio.currentTime = clickPercent * audio.duration;
+		});
+
+		// Volume control
+		muteBtn.addEventListener('click', function() {
+			if (audio.muted) {
+				audio.muted = false;
+				volumeIcon.style.display = 'block';
+				muteIcon.style.display = 'none';
+				volumeSlider.value = audio.volume * 100;
+			} else {
+				audio.muted = true;
+				volumeIcon.style.display = 'none';
+				muteIcon.style.display = 'block';
+			}
+		});
+
+		volumeSlider.addEventListener('input', function() {
+			audio.volume = volumeSlider.value / 100;
+			if (audio.volume === 0) {
+				audio.muted = true;
+				volumeIcon.style.display = 'none';
+				muteIcon.style.display = 'block';
+			} else {
+				audio.muted = false;
+				volumeIcon.style.display = 'block';
+				muteIcon.style.display = 'none';
+			}
+		});
+
+		// Speed control
+		speedMenu.addEventListener('click', function(e) {
+			if (e.target.dataset.speed) {
+				const speed = parseFloat(e.target.dataset.speed);
+				audio.playbackRate = speed;
+				speedBtn.textContent = speed + 'x';
+				
+				// Update active state
+				speedMenu.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+				e.target.classList.add('active');
+			}
+		});
+	});
 </script>
 
 </body>
