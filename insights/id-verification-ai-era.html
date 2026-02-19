@@ -443,7 +443,7 @@
 
 					<p>As a result, the weakest point in many security programs is not what happens inside the environment. It is how trust is established at the front door.</p>
 
-					<h2>How Traditional IDV Was Built &mdash; and Why It&rsquo;s Breaking</h2>
+					<h2>The Limits Of Traditional IDV</h2>
 
 					<p>Traditional identity verification has always faced a structural limitation: at the moment of onboarding, there is no prior relationship or behavioral history to draw on. Whatever information a person presents must be validated against something already assumed to be true&mdash;government records, credit data, or traces of prior digital activity. Establishing this initial anchor of trust is the hardest part of identity verification, and it is why IDV has always been fragile in practice.</p>
 
@@ -461,11 +461,11 @@
 
 					<p>The scale barrier that once made these signals viable has collapsed. What remains is the illusion of security, paired with the friction of real verification.</p>
 
-					<h2>The AI Threat Landscape: What&rsquo;s Actually Changing</h2>
+					<h2>The AI Shift</h2>
 
 					<p>AI does not introduce entirely new identity attacks. It changes the <em>economics</em> and <em>execution</em> of existing ones. Four shifts matter in practice, and understanding each is necessary to prioritize effective defenses.</p>
 
-					<h3>Synthetic artifact generation</h3>
+					<h3>Synthetic Media Generation</h3>
 
 					<p>Modern generative tools can produce convincing forged documents, synthetic voices, and deepfake video at dramatically lower cost and skill levels than before. FATF documented in 2025 that deepfake production has become accessible enough that credible synthetic media can be generated within minutes by low-skilled actors.</p>
 
@@ -473,7 +473,7 @@
 
 					<p>Voice cloning deserves particular attention. Contemporary voice synthesis models can clone a person&rsquo;s voice from surprisingly little source material: a conference talk, a recorded meeting, or a few minutes of a podcast. Once cloned, synthetic voices can respond interactively to verification prompts in real time. What once felt like &ldquo;I recognize this person&rdquo; can now be convincingly simulated. The human ear is no longer a reliable verifier.</p>
 
-					<h3>Injection attacks versus presentation attacks</h3>
+					<h3>Injection vs. Spoofing</h3>
 
 					<p>This distinction is one of the most important&mdash;and most frequently missed&mdash;technical nuances in modern identity verification.</p>
 
@@ -483,19 +483,19 @@
 
 					<p>ENISA&rsquo;s 2024 analysis of remote identity proofing explicitly highlights this distinction and notes that injection attacks often achieve higher success rates than classical spoofing because they bypass the assumptions underlying most current defenses. Organizations that have only tested biometric systems against presentation attacks often have a significant&mdash;and invisible&mdash;exposure.</p>
 
-					<h3>LLM-assisted social engineering and support-plane compromise</h3>
+					<h3>AI Social Engineering</h3>
 
 					<p>AI dramatically increases the effectiveness of social engineering at scale. Attackers can generate highly personalized, contextually accurate narratives using harvested LinkedIn profiles, organizational charts, and public communications, then deploy them in volume against support teams, recruiters, and help desks. NCSC has assessed that AI will meaningfully increase both the frequency and success rate of phishing and social engineering operations.</p>
 
 					<p>The support plane deserves particular attention. Help desk staff are trained to be helpful, resolve issues quickly, and reduce friction. Attackers exploit this by combining synthetic voice with harvested personal data to bypass phone-based verification. CISA documented that Scattered Spider actors repeatedly used social engineering to convince IT help desk personnel to reset passwords and MFA tokens&mdash;without exploiting authentication systems at all. The Okta support incident further demonstrated that even diagnostic artifacts, such as session tokens captured in HAR files, can become high-value identity attack material.</p>
 
-					<h3>Automation, probing, and threshold inference</h3>
+					<h3>Automated System Probing</h3>
 
 					<p>AI also enables attackers to probe identity systems systematically. Retry loops, adaptive testing, and analysis of error messages allow attackers to infer scoring thresholds and decision rules over time.</p>
 
 					<p>The implication is subtle but critical: overly informative error messages and permissive retry policies are not just usability concerns&mdash;they are attack surfaces. Feedback leakage accelerates attacker learning. Defenders need to treat system feedback as a security control, not merely a UX decision.</p>
 
-					<h2>Where Identity Breaks: The Lifecycle Attack Surface</h2>
+					<h2>The Lifecycle Attack Surfaces</h2>
 
 					<p>A common failure in identity programs is treating verification as a single event&mdash;usually onboarding&mdash;rather than as a series of control moments distributed across the customer or employee lifecycle. FATF explicitly distinguishes identity proofing and enrollment risks from authentication risks, underscoring that passing onboarding does not imply low ongoing risk.</p>
 
@@ -511,11 +511,11 @@
 
 					<p><strong>Workforce identity and remote hiring</strong> represent an increasingly critical and underdefended surface. DOJ-documented cases of North Korean actors using stolen and fabricated identities to obtain remote IT employment&mdash;and then maintaining access across dozens of organizations&mdash;demonstrate how identity failures at hiring time can become durable insider-risk footholds. Multiple organizations have reported candidates using deepfake technology during video interviews while still passing standard onboarding checks. In remote-first environments, digital signals carry more weight precisely as those signals become easier to fake.</p>
 
-					<h3>The seam problem</h3>
+					<h3>The Seam Problem</h3>
 
 					<p>Most enterprise identity verification failures do not occur at the level of model accuracy. They occur at the seams: the handoffs between automated checks and human review, the fallback paths triggered by edge cases, the retry flows invoked after false rejects, and the feedback inadvertently exposed to failed attempts. Attackers exploit retries, ambiguity, over-disclosure, and discretionary overrides. Any serious assessment of identity posture must examine these operational seams&mdash;not just the technical performance of individual controls.</p>
 
-					<h2>Rethinking the Model: From Binary Gate to Continuous Risk Signal</h2>
+					<h2>From Gate To Signal</h2>
 
 					<p>The most important shift organizations must make in identity security is philosophical before it is technical.</p>
 
@@ -537,7 +537,7 @@
 
 					<p>One tension must be acknowledged explicitly. Higher assurance often increases friction, which drives abandonment, support burden, and&mdash;particularly in consumer contexts&mdash;exclusion. Security designs that ignore usability are not viable at scale. The goal is not maximum friction, but better signal quality, so that high assurance and low friction can coexist wherever possible.</p>
 
-					<h2>Defense Priorities for the AI Era</h2>
+					<h2>Defense Priorities</h2>
 
 					<p>The shift from binary identity decisions to continuous risk management changes what &ldquo;good&rdquo; defense looks like. In the AI era, effective identity protection is not about finding a perfect signal; it is about designing systems that fail safely under pressure.</p>
 
@@ -575,7 +575,7 @@
 
 					<p>Organizations should maintain a corpus of synthetic media and regularly replay it against both vendor-provided and in-house identity pipelines, tracking performance across model updates, device types, and UX changes. Adversarial testing must be continuous. One-time evaluation at procurement provides a false sense of security in a threat landscape that evolves monthly.</p>
 
-					<h2>Design Principles for Practitioners</h2>
+					<h2>Design Principles</h2>
 
 					<p>The shift to identity as a continuous risk signal requires changes not just in tooling, but in how identity systems are designed and evaluated. The following principles translate that model into concrete, operational guidance.</p>
 
