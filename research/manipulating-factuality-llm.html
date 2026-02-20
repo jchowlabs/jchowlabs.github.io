@@ -448,14 +448,14 @@
 
 					<p>This motivated the development of a model editing technique known as Rank-One Model Editing (ROME).</p>
 
-					<h2>How LLMs Store Knowledge — And Why Editing Is Hard</h2>
+					<h2>How LLMs Store Knowledge</h2>
 
 					<p>When we look under the hood of an LLM, we find that models do not store knowledge the way traditional software systems do. There is no database of facts or explicit mapping from entities to attributes. Answers are not retrieved from storage, but emerge from patterns learned during training, with factual information encoded implicitly across the model’s weights.</p>
 
 					<p>At a high level, facts inside language models behave like associations between concepts. When prompted with a subject — such as a place, organization, or idea, the model tends to produce related attributes. For example, when asked “Where is the Golden Gate Bridge located?”, a model will usually respond with “San Francisco.” This answer is not retrieved from a stored facts table. Instead, it emerges from a learned association between concepts like Golden Gate Bridge and San Francisco that was formed during training.</p>
 
-					<div class="article-image-placeholder">
-						<img src="../static/images/llm-knowledge-storage.png" alt="How language models store factual associations" style="max-width: 80%;">
+					<div class="article-image-placeholder" style="margin: 16px 0;">
+						<img src="../static/images/llm-knowledge-storage.png" alt="How language models store factual associations" style="max-width: 95%; box-shadow: none; border-radius: 0;">
 					</div>
 
 					<p>This associative way of encoding knowledge is what makes editing language models so difficult. Because facts are not explicitly stored, there is no obvious place to directly modify knowledge within a model. Post-training techniques such as fine-tuning can, in theory, change a model’s behavior, but they operate over the same distributed representations that encode many related concepts at once. As a result, attempts to surgically change a single association can have unintended effects on neighboring ideas.</p>
@@ -476,11 +476,11 @@
 
 					<p>This is the core idea behind ROME: if you can identify where a specific association is formed, you can modify it directly.</p>
 
-					<div class="article-image-placeholder">
-						<img src="../static/images/llm-association.png" alt="LLM association diagram" style="max-width: 90%;">
+					<div class="article-image-placeholder" style="margin: 0; line-height: 0; overflow: hidden;">
+						<img src="../static/images/llm-association.png" alt="LLM association diagram" style="max-width: 75%; box-shadow: none; border-radius: 0; display: block; margin: -30px auto; padding: 0;">
 					</div>
 
-					<h2>How ROME Works (High-Level Intuition)</h2>
+					<h2>How ROME Works</h2>
 
 					<p>At a high level, ROME identifies the exact location where a factual association is encoded within a model, then surgically modifies the model’s weights to rewrite that fact — without retraining or broadly altering the model’s behavior.</p>
 
@@ -495,10 +495,6 @@
 					<p>By measuring which intervention disrupts the target fact without broadly degrading the response, ROME can determine which layer is responsible for injecting that association into the model’s output.</p>
 
 					<p>In short, this step identifies where a specific factual association is encoded inside the model.</p>
-
-					<div class="article-image-placeholder">
-						<img src="../static/images/neural-network.gif" alt="ROME Step 1: locating an association" style="max-width: 90%;">
-					</div>
 
 					<h3>Step 2 — Computing a Minimal Edit</h3>
 
@@ -518,8 +514,8 @@
 
 					<p>In short, this step permanently rewrites a single fact in the model while preserving the rest of its knowledge.</p>
 
-					<div class="article-image-placeholder">
-						<img src="../static/images/rank-one-update.png" alt="ROME Step 3: rank-one update" style="max-width: 90%;">
+					<div class="article-image-placeholder" style="margin: 0; line-height: 0; overflow: hidden;">
+						<img src="../static/images/rank-one-update.png" alt="ROME Step 3: rank-one update" style="max-width: 75%; box-shadow: none; border-radius: 0; display: block; margin: -40px auto; padding: 0;">
 					</div>
 
 					<h2>Try It Yourself</h2>
