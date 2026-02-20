@@ -186,12 +186,22 @@
 					<img src="../static/images/idp.png" alt="Build Identity Provider" class="article-hero-img">
 				</div>
 
+				<a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; display: block;">
+                    <div class="try-yourself-cta" style="background: #f0f7ff; border: 1px solid #2563eb; padding: 24px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); display: flex; align-items: center; gap: 16px;">
+                        <h3 style="color: #2563eb; margin: 0; font-size: 1.125rem; font-weight: 600; white-space: nowrap;">Try yourself:</h3>
+                        <p style="color: #1e40af; margin: 0; line-height: 1.6;">
+                            <span class="try-yourself-copy">Create an account and login to an IdP at </span>
+							<span class="try-yourself-url" style="font-weight: 600;">www.jchowlabs.me.</span>
+                        </p>
+                    </div>
+                </a>
+
 				<div class="article-header">
 					<h1>Identity Provider Internals</h1>
 				</div>
 
 				<div class="article-body">
-					<p>In this article, we’re going to dig into the internals of an identity provider by <strong>building a simple one from scratch</strong>. Identity providers can initially appear as large, complex systems, but when you decompose them into their core components, their structure becomes far more understandable. We’ll unpack those underlying pieces — many of which are the same concepts you’ll find in enterprise-grade single sign-on and identity-as-a-service platforms — so that, step by step, you build a clearer intuition for how modern identity providers work, why they are structured the way they are, and how their parts fit together in practice.</p>
+					<p>In this article, we’re going to dig into the internals of an identity provider so we have better intuition about how they work under the hood. Identity providers can initially appear as large, complex systems, but when you decompose them into their core components, their structure becomes far more understandable. We’ll unpack those underlying pieces — many of which are the same concepts you’ll find in enterprise-grade single sign-on and identity-as-a-service platforms — so that, step by step, you build a clearer intuition for how modern identity providers work, why they are structured the way they are, and how their parts fit together in practice.</p>
 
 					<p>If you work in or around an enterprise today, you've almost certainly interacted with an identity provider — even if you didn't call it that. It's the system that signs you into dozens of tools with a single login, that asks you for multi-factor authentication, that quietly decides whether your request looks "normal," and that somehow makes all of your applications just <em>know</em> who you are. From the outside, this feels simple. Under the surface, it's anything but.</p>
 
