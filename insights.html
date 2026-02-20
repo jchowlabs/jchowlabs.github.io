@@ -55,6 +55,7 @@
         .article-featured {
             display: flex;
             flex-direction: column;
+            justify-content: flex-end;
             min-height: 0;
             padding: 6px;
             border: 0.5px solid #e5e5e5;
@@ -64,10 +65,11 @@
         
         .article-featured-img {
             background: #F9F8F5 !important;
-            height: 190px;
-            flex-shrink: 0;
+            min-height: 140px;
+            max-height: 220px;
+            flex: 1;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
         }
         
@@ -80,7 +82,7 @@
         
         .article-featured-body {
             margin-top: 8px; 
-            flex: 1;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
         }
