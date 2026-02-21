@@ -50,6 +50,7 @@
   var pendingEnd = false;          // true after farewell sent, blocks timer resets
   var speechResponseTimeout = null; // detects silent chatbot after user speech
   var micUnmuteTimer = null;          // delay before re-enabling mic after bot speaks
+  var sessionTimerInterval = null;    // 1s interval for updating timer display
 
   // Max session duration
   var SESSION_MAX_MS  = 300000;   // 5 minutes hard cap
@@ -75,6 +76,11 @@
 
     injectDOM();
     bindEvents();
+
+    // Clean up stale session start time if no continuation pending
+    if (!sessionStorage.getItem('va_continue')) {
+      sessionStorage.removeItem('va_session_start');
+    }
 
     // Auto-open contact modal if redirected with ?contact=1
     if (window.location.search.indexOf('contact=1') !== -1) {
@@ -144,6 +150,7 @@
       endSession();
     } else {
       // Transition to active state and start session
+      sessionStorage.setItem('va_session_start', String(Date.now()));
       pill.classList.add('active', 'connecting');
       pill.setAttribute('aria-label', 'End voice assistant');
       startSession(GREETING_INSTRUCTION);
@@ -267,6 +274,12 @@
     pendingNavigate = null;
     pendingContact = false;
 
+    // Stop session timer; clear start time unless navigating (silent)
+    stopSessionTimer();
+    if (!silent) {
+      sessionStorage.removeItem('va_session_start');
+    }
+
     if (!silent) {
       resetToIdle();
     }
@@ -276,6 +289,30 @@
     pill.classList.remove('active', 'connecting', 'speaking', 'error');
     pillLabel.textContent = 'Voice chat';
     pill.setAttribute('aria-label', 'Open voice assistant');
+  }
+
+  // ============================================================
+  // SESSION TIMER
+  // ============================================================
+
+  function startSessionTimer() {
+    stopSessionTimer();
+    updateTimerDisplay();
+    sessionTimerInterval = setInterval(updateTimerDisplay, 1000);
+  }
+
+  function stopSessionTimer() {
+    clearInterval(sessionTimerInterval);
+    sessionTimerInterval = null;
+  }
+
+  function updateTimerDisplay() {
+    var startTime = parseInt(sessionStorage.getItem('va_session_start'), 10);
+    if (!startTime) return;
+    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+    var mins = Math.floor(elapsed / 60);
+    var secs = elapsed % 60;
+    pillLabel.textContent = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
   }
 
   function showError() {
@@ -354,6 +391,9 @@
     isConnected = true;
     pill.classList.remove('connecting');
     // 'active' class already applied — orb is now breathing + glowing
+
+    // Start the visible session timer
+    startSessionTimer();
 
     dc.send(JSON.stringify({
       type: 'response.create',
