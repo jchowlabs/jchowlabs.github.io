@@ -176,6 +176,7 @@
       sessionStorage.setItem('va_session_start', String(Date.now()));
       pill.classList.add('active', 'connecting');
       pill.setAttribute('aria-label', 'End voice assistant');
+      pillLabel.textContent = '00:00';
       startSession(GREETING_INSTRUCTION);
     }
   }

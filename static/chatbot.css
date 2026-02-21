@@ -129,7 +129,7 @@
   color: #525252;
 }
 
-.va-pill.active .va-pill-close {
+.va-pill.active:not(.connecting) .va-pill-close {
   display: flex;
 }
 
