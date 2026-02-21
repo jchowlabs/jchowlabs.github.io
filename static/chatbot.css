@@ -105,10 +105,39 @@
   opacity: 1;
 }
 
+/* ---------- Close button (visible only in active state) ---------- */
+
+.va-pill-close {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #e5e5e5;
+  color: #737373;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.va-pill-close:hover {
+  background: #d4d4d4;
+  color: #525252;
+}
+
+.va-pill.active .va-pill-close {
+  display: flex;
+}
+
 /* ---------- Active state (session running) ---------- */
 
 .va-pill.active {
-  padding: 8px 16px 8px 8px;
+  padding: 8px 8px 8px 8px;
   gap: 10px;
   background: #f5f3ef;
   border-color: rgba(0, 0, 0, 0.06);

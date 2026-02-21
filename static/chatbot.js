@@ -59,7 +59,7 @@
   var sessionMaxTimer  = null;
 
   // DOM references
-  var pill, pillOrb, pillLabel;
+  var pill, pillOrb, pillLabel, pillClose;
 
   // ============================================================
   // BOOT
@@ -132,13 +132,15 @@
 
     pill.innerHTML =
       '<div class="va-pill-orb"></div>' +
-      '<span class="va-pill-label">' + labelText + '</span>';
+      '<span class="va-pill-label">' + labelText + '</span>' +
+      '<button class="va-pill-close" aria-label="End session">&times;</button>';
 
     document.body.appendChild(pill);
 
     // Cache refs
     pillOrb = pill.querySelector('.va-pill-orb');
     pillLabel = pill.querySelector('.va-pill-label');
+    pillClose = pill.querySelector('.va-pill-close');
 
     // Start timer ticking immediately for continuations
     if (activeState && startTime) {
@@ -152,6 +154,10 @@
 
   function bindEvents() {
     pill.addEventListener('click', handlePillClick);
+    pillClose.addEventListener('click', function (e) {
+      e.stopPropagation(); // don't trigger pill click → start new session
+      if (isConnected) endSession();
+    });
 
     window.addEventListener('beforeunload', function () {
       if (isConnected) endSession(true);
