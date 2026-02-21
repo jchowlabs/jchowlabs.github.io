@@ -22,9 +22,10 @@
     'What are you interested in?';
 
   var CONTINUE_INSTRUCTION =
-    'The user just asked to visit an article and you navigated them here. ' +
-    'Say something brief like: Here you go! Let me know if you have any other questions, ' +
-    'or if there\'s anything else I can help you find.';
+    'IMPORTANT: This is a CONTINUATION of an existing conversation — the user already spoke with you ' +
+    'and you navigated them to this page. Do NOT give a site overview. Do NOT describe what the site offers. ' +
+    'Do NOT suggest articles. Just say something brief like: Here you go! Let me know if you have any ' +
+    'other questions, or if there\'s anything else I can help you find.';
 
   // ============================================================
   // STATE
@@ -88,10 +89,17 @@
     var continuation = sessionStorage.getItem('va_continue');
     if (continuation) {
       sessionStorage.removeItem('va_continue');
+      var navDest = sessionStorage.getItem('va_nav_dest') || '';
+      sessionStorage.removeItem('va_nav_dest');
+      // Build a contextual continuation instruction
+      var instruction = CONTINUE_INSTRUCTION;
+      if (navDest) {
+        instruction += ' The page you navigated them to is: ' + navDest + '.';
+      }
       // Go straight to active orb and reconnect
       pill.classList.add('active', 'connecting');
       pill.setAttribute('aria-label', 'End voice assistant');
-      startSession(CONTINUE_INSTRUCTION);
+      startSession(instruction);
     }
   }
 
@@ -496,11 +504,13 @@
             sessionStorage.setItem('va_prefetch_token', data.token);
           }
           sessionStorage.setItem('va_continue', '1');
+          sessionStorage.setItem('va_nav_dest', url);
           endSession(true);
           window.location.href = url;
         })
         .catch(function () {
           sessionStorage.setItem('va_continue', '1');
+          sessionStorage.setItem('va_nav_dest', url);
           endSession(true);
           window.location.href = url;
         });
