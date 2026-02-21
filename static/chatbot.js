@@ -74,11 +74,15 @@
   function boot() {
     if (!VOICE_CHAT_ENABLED) return; // Kill switch — pill never renders
 
-    injectDOM();
+    // Detect continuation before DOM injection so pill renders in the right state
+    var continuation = sessionStorage.getItem('va_continue');
+    var isContinuation = !!continuation;
+
+    injectDOM(isContinuation);
     bindEvents();
 
     // Clean up stale session start time if no continuation pending
-    if (!sessionStorage.getItem('va_continue')) {
+    if (!isContinuation) {
       sessionStorage.removeItem('va_session_start');
     }
 
@@ -92,8 +96,7 @@
     }
 
     // Continue session after page navigation
-    var continuation = sessionStorage.getItem('va_continue');
-    if (continuation) {
+    if (isContinuation) {
       sessionStorage.removeItem('va_continue');
       var navDest = sessionStorage.getItem('va_nav_dest') || '';
       sessionStorage.removeItem('va_nav_dest');
@@ -102,9 +105,7 @@
       if (navDest) {
         instruction += ' The page you navigated them to is: ' + navDest + '.';
       }
-      // Go straight to active orb and reconnect
-      pill.classList.add('active', 'connecting');
-      pill.setAttribute('aria-label', 'End voice assistant');
+      // Pill already rendered in active state by injectDOM — just start session
       startSession(instruction);
     }
   }
@@ -113,20 +114,36 @@
   // DOM INJECTION
   // ============================================================
 
-  function injectDOM() {
+  function injectDOM(activeState) {
     pill = document.createElement('div');
-    pill.className = 'va-pill';
+    pill.className = activeState ? 'va-pill active connecting' : 'va-pill';
     pill.setAttribute('role', 'button');
-    pill.setAttribute('aria-label', 'Open voice assistant');
+    pill.setAttribute('aria-label', activeState ? 'End voice assistant' : 'Open voice assistant');
+
+    // For continuations, show timer immediately; otherwise show label
+    var startTime = activeState ? parseInt(sessionStorage.getItem('va_session_start'), 10) : 0;
+    var labelText = 'Voice chat';
+    if (activeState && startTime) {
+      var elapsed = Math.floor((Date.now() - startTime) / 1000);
+      var mins = Math.floor(elapsed / 60);
+      var secs = elapsed % 60;
+      labelText = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+
     pill.innerHTML =
       '<div class="va-pill-orb"></div>' +
-      '<span class="va-pill-label">Voice chat</span>';
+      '<span class="va-pill-label">' + labelText + '</span>';
 
     document.body.appendChild(pill);
 
     // Cache refs
     pillOrb = pill.querySelector('.va-pill-orb');
     pillLabel = pill.querySelector('.va-pill-label');
+
+    // Start timer ticking immediately for continuations
+    if (activeState && startTime) {
+      startSessionTimer();
+    }
   }
 
   // ============================================================
