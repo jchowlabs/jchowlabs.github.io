@@ -17,7 +17,7 @@
   var WORKER_URL = 'https://jchowlabs-chatbot.jchow-a27.workers.dev';
   var REALTIME_MODEL = 'gpt-4o-mini-realtime-preview-2024-12-17';
   var GREETING_INSTRUCTION =
-    'Greet the user briefly. Say something like: Hi! I\'m the jchowlabs assistant. ' +
+    'Greet the user briefly. Say something like: Hi! I\'m the Jay Chow Labs assistant. ' +
     'I can help you find articles on AI and security topics, or connect you with Jason. ' +
     'What are you interested in?';
 
