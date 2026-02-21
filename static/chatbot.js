@@ -51,6 +51,7 @@
   var speechResponseTimeout = null; // detects silent chatbot after user speech
   var micUnmuteTimer = null;          // delay before re-enabling mic after bot speaks
   var sessionTimerInterval = null;    // 1s interval for updating timer display
+  var botSpeaking = false;            // true while bot is generating/playing audio
 
   // Max session duration
   var SESSION_MAX_MS  = 300000;   // 5 minutes hard cap
@@ -212,7 +213,13 @@
 
     tokenPromise
       .then(function (sessionData) {
-        return navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+        return navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+          },
+        }).then(function (stream) {
           return { token: sessionData.token, stream: stream };
         });
       })
@@ -226,6 +233,9 @@
         audioEl.autoplay = true;
         pc.ontrack = function (e) {
           audioEl.srcObject = e.streams[0];
+          // Explicit play() for mobile browsers that block autoplay
+          var playPromise = audioEl.play();
+          if (playPromise) playPromise.catch(function () {});
         };
 
         pc.oniceconnectionstatechange = function () {
@@ -274,6 +284,7 @@
   function endSession(silent) {
     isConnected = false;
     pendingEnd = false;
+    botSpeaking = false;
     clearTimeout(speechResponseTimeout);
     clearTimeout(micUnmuteTimer);
     clearTimeout(sessionWarnTimer);
@@ -456,6 +467,8 @@
 
       // User started speaking — reset idle timer to initial phase
       case 'input_audio_buffer.speech_started':
+        // Ignore phantom VAD events caused by speaker bleed while bot is talking
+        if (botSpeaking) break;
         idleCheckedIn = false;
         pendingEnd = false;
         resetIdleTimer();
@@ -463,6 +476,7 @@
 
       // Bot is generating audio — faster breathing + mute mic to prevent echo
       case 'response.audio.delta':
+        botSpeaking = true;
         pill.classList.add('speaking');
         clearTimeout(speechResponseTimeout);
         clearTimeout(micUnmuteTimer);
@@ -483,6 +497,7 @@
 
       // Response finished
       case 'response.done':
+        botSpeaking = false;
         pill.classList.remove('speaking');
         // Re-enable mic after a delay to let WebRTC audio buffer drain,
         // then start idle timer only once the user can actually speak
@@ -513,6 +528,8 @@
 
       // Input audio buffer cleared or speech stopped without response
       case 'input_audio_buffer.speech_stopped':
+        // Ignore phantom VAD events caused by speaker bleed while bot is talking
+        if (botSpeaking) break;
         // VAD detected end of speech — response should follow.
         // If none comes within 8s, something went wrong.
         clearTimeout(speechResponseTimeout);
