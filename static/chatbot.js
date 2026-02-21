@@ -23,9 +23,9 @@
 
   var CONTINUE_INSTRUCTION =
     'IMPORTANT: This is a CONTINUATION of an existing conversation — the user already spoke with you ' +
-    'and you navigated them to this page. Do NOT give a site overview. Do NOT describe what the site offers. ' +
-    'Do NOT suggest articles. Just say something brief like: Here you go! Let me know if you have any ' +
-    'other questions, or if there\'s anything else I can help you find.';
+    'on the previous page. Do NOT give a site overview. Do NOT describe what the site offers. ' +
+    'Do NOT suggest articles unprompted. Just say something very brief like: Let me know if you have any ' +
+    'questions, or if there\'s anything else I can help you find.';
 
   // ============================================================
   // STATE
@@ -159,8 +159,49 @@
       if (isConnected) endSession();
     });
 
+    // Intercept internal link clicks to preserve session across manual navigation
+    document.addEventListener('click', function (e) {
+      if (!isConnected) return;
+      var anchor = e.target.closest ? e.target.closest('a') : null;
+      if (!anchor) return;
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+      // Skip external links, anchors, javascript:, mailto:, tel:, etc.
+      if (/^(https?:\/\/|mailto:|tel:|javascript:)/.test(href) && href.indexOf(location.hostname) === -1) return;
+      if (href.charAt(0) === '#') return;
+      // Skip links that open in new tab
+      if (anchor.target === '_blank') return;
+
+      // Internal navigation while session is active — preserve session
+      e.preventDefault();
+      sessionStorage.setItem('va_continue', '1');
+      sessionStorage.setItem('va_nav_dest', href);
+      // Try to pre-fetch a token for fast reconnect
+      fetch(WORKER_URL + '/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (data && data.token) {
+            sessionStorage.setItem('va_prefetch_token', data.token);
+          }
+          endSession(true);
+          window.location.href = href;
+        })
+        .catch(function () {
+          endSession(true);
+          window.location.href = href;
+        });
+    });
+
+    // Fallback: if navigation happens without our interceptor (e.g. form submit),
+    // set continuation flag so the next page can pick up the session
     window.addEventListener('beforeunload', function () {
-      if (isConnected) endSession(true);
+      if (isConnected) {
+        sessionStorage.setItem('va_continue', '1');
+        endSession(true);
+      }
     });
   }
 
