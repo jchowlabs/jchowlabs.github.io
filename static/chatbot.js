@@ -49,6 +49,12 @@
   var pendingEnd = false;          // true after farewell sent, blocks timer resets
   var speechResponseTimeout = null; // detects silent chatbot after user speech
 
+  // Max session duration
+  var SESSION_MAX_MS  = 300000;   // 5 minutes hard cap
+  var SESSION_WARN_MS = 270000;   // 4:30 — 30s warning before cap
+  var sessionWarnTimer = null;
+  var sessionMaxTimer  = null;
+
   // DOM references
   var pill, pillOrb, pillLabel;
 
@@ -229,6 +235,10 @@
     isConnected = false;
     pendingEnd = false;
     clearTimeout(speechResponseTimeout);
+    clearTimeout(sessionWarnTimer);
+    clearTimeout(sessionMaxTimer);
+    sessionWarnTimer = null;
+    sessionMaxTimer = null;
     stopIdleTimer();
 
     if (dc) { try { dc.close(); } catch (_) {} dc = null; }
@@ -345,6 +355,23 @@
 
     // Start idle monitoring
     resetIdleTimer();
+
+    // Start max session timers
+    sessionWarnTimer = setTimeout(function () {
+      if (isConnected && dc && dc.readyState === 'open') {
+        dc.send(JSON.stringify({
+          type: 'response.create',
+          response: {
+            modalities: ['text', 'audio'],
+            instructions: 'Let the user know this session will wrap up in about 30 seconds. Ask if there\'s anything quick they need before it ends. Keep it to one or two short sentences. Do NOT call any functions — just speak.',
+          },
+        }));
+      }
+    }, SESSION_WARN_MS);
+
+    sessionMaxTimer = setTimeout(function () {
+      if (isConnected) endSession();
+    }, SESSION_MAX_MS);
   }
 
   function onChannelMessage(e) {
