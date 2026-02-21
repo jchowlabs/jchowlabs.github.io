@@ -460,16 +460,17 @@
       // Response finished
       case 'response.done':
         pill.classList.remove('speaking');
-        // Re-enable mic after a short delay to avoid speaker bleed
+        // Re-enable mic after a delay to let WebRTC audio buffer drain,
+        // then start idle timer only once the user can actually speak
         clearTimeout(micUnmuteTimer);
         micUnmuteTimer = setTimeout(function () {
           if (micTrack) micTrack.enabled = true;
-        }, 300);
+          if (!pendingEnd) resetIdleTimer();
+        }, 800);
         if (pendingEnd) {
           // Farewell audio just finished — close session now
           endSession();
         } else {
-          resetIdleTimer();
           handleResponseDone();
         }
         break;

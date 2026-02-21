@@ -125,6 +125,7 @@
   pointer-events: none;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
+  text-align: center;
 }
 
 .va-pill.active .va-pill-orb {
