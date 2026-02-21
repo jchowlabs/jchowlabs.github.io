@@ -42,12 +42,13 @@
   var sessionGreeting = null;
 
   // Idle timeout
-  var IDLE_CHECK_IN_MS = 12000;   // 12s silence → "Still there?"
+  var IDLE_CHECK_IN_MS = 20000;   // 20s silence → "Still there?"
   var IDLE_FAREWELL_MS = 10000;   // 10s after check-in → auto-end
   var idleTimer = null;
   var idleCheckedIn = false;       // true after first check-in sent
   var pendingEnd = false;          // true after farewell sent, blocks timer resets
   var speechResponseTimeout = null; // detects silent chatbot after user speech
+  var micUnmuteTimer = null;          // delay before re-enabling mic after bot speaks
 
   // Max session duration
   var SESSION_MAX_MS  = 300000;   // 5 minutes hard cap
@@ -235,6 +236,7 @@
     isConnected = false;
     pendingEnd = false;
     clearTimeout(speechResponseTimeout);
+    clearTimeout(micUnmuteTimer);
     clearTimeout(sessionWarnTimer);
     clearTimeout(sessionMaxTimer);
     sessionWarnTimer = null;
@@ -387,10 +389,13 @@
         resetIdleTimer();
         break;
 
-      // Bot is generating audio — faster breathing
+      // Bot is generating audio — faster breathing + mute mic to prevent echo
       case 'response.audio.delta':
         pill.classList.add('speaking');
         clearTimeout(speechResponseTimeout);
+        clearTimeout(micUnmuteTimer);
+        // Mute mic while bot speaks to prevent audio bleed triggering VAD
+        if (micTrack && micTrack.enabled) micTrack.enabled = false;
         // Pause idle timer while bot is actively speaking
         clearTimeout(idleTimer);
         break;
@@ -407,6 +412,11 @@
       // Response finished
       case 'response.done':
         pill.classList.remove('speaking');
+        // Re-enable mic after a short delay to avoid speaker bleed
+        clearTimeout(micUnmuteTimer);
+        micUnmuteTimer = setTimeout(function () {
+          if (micTrack) micTrack.enabled = true;
+        }, 300);
         if (pendingEnd) {
           // Farewell audio just finished — close session now
           endSession();
