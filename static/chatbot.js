@@ -12,7 +12,7 @@
   // CONFIGURATION
   // ============================================================
 
-  var VOICE_CHAT_ENABLED = true; // enable or disable Voice Chat in UI
+  var VOICE_CHAT_ENABLED = false; // Enables Voice Chat on site (true / false toggle)
 
   var WORKER_URL = 'https://jchowlabs-chatbot.jchow-a27.workers.dev';
   var REALTIME_MODEL = 'gpt-4o-mini-realtime-preview-2024-12-17';
