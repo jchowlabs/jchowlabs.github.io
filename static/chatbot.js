@@ -51,6 +51,8 @@
   var speechResponseTimeout = null; // detects silent chatbot after user speech
   var sessionTimerInterval = null;    // 1s interval for updating timer display
   var botSpeaking = false;            // true while bot is generating/playing audio
+  var wasInterrupted = false;         // true when bot response was cancelled by VAD
+  var awaitingTranscript = false;     // true while waiting for transcription after interruption
 
   // Max session duration
   var SESSION_MAX_MS  = 300000;   // 5 minutes hard cap
@@ -284,6 +286,8 @@
     isConnected = false;
     pendingEnd = false;
     botSpeaking = false;
+    wasInterrupted = false;
+    awaitingTranscript = false;
     clearTimeout(speechResponseTimeout);
     clearTimeout(sessionWarnTimer);
     clearTimeout(sessionMaxTimer);
@@ -457,6 +461,24 @@
     }, SESSION_MAX_MS);
   }
 
+  // Common Whisper hallucinations from silence / background noise
+  var NOISE_PHRASES = [
+    'thank you', 'thanks', 'thanks for watching', 'thanks for listening',
+    'like and subscribe', 'subscribe', 'bye', 'bye bye', 'goodbye',
+    'you', 'the end', 'okay', 'hmm', 'mm', 'uh', 'um', 'ah',
+    'oh', 'so', 'yeah', 'yes', 'no', 'right', 'sure', 'alright',
+  ];
+
+  function isNoisyTranscript(text) {
+    if (!text || text.length < 8) return true;
+    var lower = text.toLowerCase().replace(/[^a-z\s]/g, '').trim();
+    if (!lower) return true;
+    for (var i = 0; i < NOISE_PHRASES.length; i++) {
+      if (lower === NOISE_PHRASES[i]) return true;
+    }
+    return false;
+  }
+
   function onChannelMessage(e) {
     var event;
     try { event = JSON.parse(e.data); } catch (_) { return; }
@@ -494,13 +516,20 @@
       case 'response.done':
         botSpeaking = false;
         pill.classList.remove('speaking');
+        // Detect if this response was interrupted (cancelled) by VAD
+        var respStatus = event.response && event.response.status;
+        if (respStatus === 'cancelled') {
+          wasInterrupted = true;
+        }
         if (pendingEnd) {
           // Farewell audio just finished — close session now
           endSession();
-        } else {
+        } else if (!wasInterrupted) {
           resetIdleTimer();
           handleResponseDone();
         }
+        // If wasInterrupted, idle timer stays paused — we wait for
+        // speech_stopped → transcription before deciding next action
         break;
 
       // Errors
@@ -515,19 +544,72 @@
         }
         break;
 
-      // Input audio buffer cleared or speech stopped without response
+      // VAD detected end of speech — decide whether to respond
       case 'input_audio_buffer.speech_stopped':
         // Ignore phantom VAD events caused by speaker bleed while bot is talking
         if (botSpeaking) break;
-        // VAD detected end of speech — response should follow.
-        // If none comes within 8s, something went wrong.
         clearTimeout(speechResponseTimeout);
-        speechResponseTimeout = setTimeout(function () {
-          if (isConnected && dc && dc.readyState === 'open') {
-            // Nudge the API to respond
+
+        if (wasInterrupted) {
+          // Bot was interrupted — wait for transcription to decide
+          awaitingTranscript = true;
+          // Safety: if transcription never arrives, auto-continue after 4s
+          speechResponseTimeout = setTimeout(function () {
+            if (awaitingTranscript && isConnected && dc && dc.readyState === 'open') {
+              dc.send(JSON.stringify({
+                type: 'response.create',
+                response: {
+                  modalities: ['text', 'audio'],
+                  instructions: 'Your previous response was cut off by background noise, not by the user. Seamlessly continue from where you left off.',
+                },
+              }));
+              awaitingTranscript = false;
+              wasInterrupted = false;
+              resetIdleTimer();
+            }
+          }, 4000);
+        } else {
+          // Normal user speech — create response immediately
+          // (create_response is false, so we do it manually)
+          if (dc && dc.readyState === 'open') {
             dc.send(JSON.stringify({ type: 'response.create' }));
           }
-        }, 8000);
+          // Fallback: if no response comes within 8s, nudge again
+          speechResponseTimeout = setTimeout(function () {
+            if (isConnected && dc && dc.readyState === 'open') {
+              dc.send(JSON.stringify({ type: 'response.create' }));
+            }
+          }, 8000);
+        }
+        break;
+
+      // Whisper transcription of user audio — used to detect noise vs real speech
+      case 'conversation.item.input_audio_transcription.completed':
+        if (awaitingTranscript) {
+          clearTimeout(speechResponseTimeout);
+          var transcript = (event.transcript || '').trim();
+
+          if (isNoisyTranscript(transcript)) {
+            // Noise / silence — tell model to continue where it left off
+            if (dc && dc.readyState === 'open') {
+              dc.send(JSON.stringify({
+                type: 'response.create',
+                response: {
+                  modalities: ['text', 'audio'],
+                  instructions: 'Your previous response was cut off by background noise, not by the user. Seamlessly continue from where you left off.',
+                },
+              }));
+            }
+          } else {
+            // Real speech after interruption — respond normally
+            if (dc && dc.readyState === 'open') {
+              dc.send(JSON.stringify({ type: 'response.create' }));
+            }
+          }
+          awaitingTranscript = false;
+          wasInterrupted = false;
+          resetIdleTimer();
+        }
         break;
 
       default:
