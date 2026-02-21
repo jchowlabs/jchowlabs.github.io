@@ -318,7 +318,7 @@
         type: 'response.create',
         response: {
           modalities: ['text', 'audio'],
-          instructions: 'The user has been silent for a while. Briefly ask if they need anything else. Keep it to one short sentence. Do NOT call any functions — just speak.',
+          instructions: 'The user has been quiet. Ask if there are any topics that interest them, or offer to give them a recommendation. Keep it to one short, natural sentence. Do NOT call any functions — just speak.',
         },
       }));
       // Start farewell timer
