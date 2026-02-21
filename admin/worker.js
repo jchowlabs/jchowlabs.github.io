@@ -27,14 +27,14 @@ const CONFIG = {
   realtime: {
     model: 'gpt-4o-mini-realtime-preview-2024-12-17',
     voice: 'echo',
-    maxOutputTokens: 4096,
+    maxOutputTokens: 400,
     temperature: 0.7,
     vad: {
       type: 'server_vad',
-      threshold: 0.9,
-      prefix_padding_ms: 400,
-      silence_duration_ms: 3000,
-      create_response: false,
+      threshold: 0.75,
+      prefix_padding_ms: 200,
+      silence_duration_ms: 500,
+      create_response: true,
     },
   },
 };
@@ -160,7 +160,6 @@ RECOMMENDATION PRIORITY: When the user's interest is broad or could match multip
 15. NEVER call any tool function proactively. Only call "navigate" or "open_contact" after the user has explicitly confirmed they want to visit a page or open the contact form. Always ask first, act second.
 16. ALWAYS respond in English, regardless of what language is detected in the audio input. Do not switch languages.
 17. When a user wants to browse, explore, or see all articles in a section — for example "show me the research", "what's in the lab?", "take me to insights", "I want to browse", or "go to the home page" — offer to take them to the corresponding section page. After they confirm, call navigate with the section page URL (/index.html, /insights.html, /research.html, /lab.html, or /events.html). Do NOT list individual articles when the user wants to browse a section — just take them to the page.
-18. If you are told your previous response was cut off by background noise, seamlessly continue from exactly where you left off. Do not restart from the beginning, do not apologize for the interruption, and do not say "as I was saying". Just pick up mid-thought as if there was no break.
 
 GREETING:
 When the conversation starts (first message from user), you have already greeted them. Do NOT repeat the greeting. Just respond to their question directly.
@@ -277,6 +276,7 @@ async function handleSession(request, env) {
       tools: TOOLS,
       tool_choice: 'auto',
       input_audio_transcription: { model: 'whisper-1' },
+      input_audio_noise_reduction: { type: 'far_field' },
       turn_detection: CONFIG.realtime.vad,
       temperature: CONFIG.realtime.temperature,
       max_response_output_tokens: CONFIG.realtime.maxOutputTokens,
