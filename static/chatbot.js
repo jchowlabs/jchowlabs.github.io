@@ -293,6 +293,12 @@
   function onIdleTick() {
     if (!isConnected || !dc || dc.readyState !== 'open') return;
 
+    // Don't fire if the bot is currently speaking
+    if (pill.classList.contains('speaking')) {
+      idleTimer = setTimeout(onIdleTick, IDLE_CHECK_IN_MS);
+      return;
+    }
+
     if (!idleCheckedIn) {
       // First timeout — ask user if they need more help
       idleCheckedIn = true;
@@ -358,6 +364,8 @@
       case 'response.audio.delta':
         pill.classList.add('speaking');
         clearTimeout(speechResponseTimeout);
+        // Pause idle timer while bot is actively speaking
+        clearTimeout(idleTimer);
         break;
 
       case 'response.audio.done':
