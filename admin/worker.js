@@ -33,7 +33,7 @@ const CONFIG = {
       type: 'server_vad',
       threshold: 0.9,
       prefix_padding_ms: 400,
-      silence_duration_ms: 2000,
+      silence_duration_ms: 3000,
     },
   },
 };

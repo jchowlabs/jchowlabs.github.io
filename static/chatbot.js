@@ -49,7 +49,6 @@
   var idleCheckedIn = false;       // true after first check-in sent
   var pendingEnd = false;          // true after farewell sent, blocks timer resets
   var speechResponseTimeout = null; // detects silent chatbot after user speech
-  var micUnmuteTimer = null;          // delay before re-enabling mic after bot speaks
   var sessionTimerInterval = null;    // 1s interval for updating timer display
   var botSpeaking = false;            // true while bot is generating/playing audio
 
@@ -286,7 +285,6 @@
     pendingEnd = false;
     botSpeaking = false;
     clearTimeout(speechResponseTimeout);
-    clearTimeout(micUnmuteTimer);
     clearTimeout(sessionWarnTimer);
     clearTimeout(sessionMaxTimer);
     sessionWarnTimer = null;
@@ -474,14 +472,11 @@
         resetIdleTimer();
         break;
 
-      // Bot is generating audio — faster breathing + mute mic to prevent echo
+      // Bot is generating audio — faster breathing
       case 'response.audio.delta':
         botSpeaking = true;
         pill.classList.add('speaking');
         clearTimeout(speechResponseTimeout);
-        clearTimeout(micUnmuteTimer);
-        // Mute mic while bot speaks to prevent audio bleed triggering VAD
-        if (micTrack && micTrack.enabled) micTrack.enabled = false;
         // Pause idle timer while bot is actively speaking
         clearTimeout(idleTimer);
         break;
@@ -499,17 +494,11 @@
       case 'response.done':
         botSpeaking = false;
         pill.classList.remove('speaking');
-        // Re-enable mic after a delay to let WebRTC audio buffer drain,
-        // then start idle timer only once the user can actually speak
-        clearTimeout(micUnmuteTimer);
-        micUnmuteTimer = setTimeout(function () {
-          if (micTrack) micTrack.enabled = true;
-          if (!pendingEnd) resetIdleTimer();
-        }, 800);
         if (pendingEnd) {
           // Farewell audio just finished — close session now
           endSession();
         } else {
+          resetIdleTimer();
           handleResponseDone();
         }
         break;

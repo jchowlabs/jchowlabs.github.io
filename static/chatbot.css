@@ -205,6 +205,6 @@
   }
 
   .cookie-banner.show ~ .va-pill {
-    bottom: 80px;
+    bottom: 120px;
   }
 }
