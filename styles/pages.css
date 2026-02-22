@@ -1107,3 +1107,534 @@
 .page-wrapper.article-page .video-embed a:hover {
   opacity: 0.98;
 }
+
+/* ========== Passkey Demo ========== */
+.passkey-demo-page main {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+}
+
+.passkey-demo {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    background: #FCFBF9;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.demo-header {
+    padding: 20px 32px;
+}
+
+.demo-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.demo-header .subtitle {
+    font-size: 14px;
+}
+
+.demo-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 16px;
+    padding: 24px 40px;
+    min-height: 480px;
+}
+
+.input-container {
+    padding: 12px 24px 24px 24px;
+}
+
+.demo-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    color: #1a1a1a;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0px;
+}
+
+.demo-title img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.demo-container {
+    padding: 4px 24px 24px 24px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background-color: #FCFBF9;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+.passkey-demo .form-group {
+    margin-bottom: 16px;
+}
+
+.passkey-demo .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.passkey-demo .form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+    background: #fff;
+}
+
+.passkey-demo .form-group input::placeholder {
+    color: #ccc;
+    opacity: 0.7;
+}
+
+.passkey-demo .form-group input:focus {
+    outline: none;
+    border-color: #ddd;
+}
+
+.passkey-demo .button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.passkey-demo .info-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.passkey-demo .info-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.passkey-demo .info-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.passkey-demo .info-section li {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    padding-left: 32px;
+    position: relative;
+}
+
+.passkey-demo .info-section li:before {
+    content: attr(data-number);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(0, 0, 0, 0.1);
+    color: #666;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.passkey-demo .info-section li.completed:before {
+    background: #4caf50;
+    color: white;
+}
+
+.demo-notice {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.demo-notice-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    background: #6b8cae;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+}
+
+.demo-notice-content h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #1a1a1a;
+}
+
+.demo-notice-content p {
+    font-size: 12px;
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.passkey-demo .btn {
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+}
+
+.passkey-demo .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.passkey-demo .btn-register {
+    background: #0066cc;
+    color: white;
+}
+
+.passkey-demo .btn-register:hover:not(:disabled) {
+    background: #0052a3;
+}
+
+.passkey-demo .btn-signin {
+    background: #fff;
+    color: #0066cc;
+    border: 1px solid #0066cc;
+}
+
+.passkey-demo .btn-signin:hover:not(:disabled) {
+    background: #f0f7ff;
+}
+
+.passkey-demo .status-message {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    display: none;
+}
+
+.passkey-demo .status-message.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.passkey-demo .status-message.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.passkey-demo .status-message.info {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+}
+
+.passkey-demo .status-message.warning {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffb74d;
+}
+
+.visualization {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 0;
+}
+
+.parties {
+    position: relative;
+    margin-bottom: 8px;
+    height: 180px;
+    flex-shrink: 0;
+    padding: 20px 20px 0 20px;
+}
+
+.parties::after {
+    content: '';
+    position: absolute;
+    top: 75px;
+    left: calc(25% + 75px);
+    right: calc(25% + 75px);
+    height: 0;
+    border-top: 2px dashed #d0d0d0;
+    z-index: 0;
+}
+
+.party {
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.party:first-child {
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+.party:last-child {
+    left: 75%;
+    transform: translateX(-50%);
+}
+
+.party-icon {
+    margin-bottom: 0;
+    margin-top: -20px;
+    line-height: 0;
+}
+
+.party-icon img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.party h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 2px;
+    margin-bottom: 0;
+    color: #1a1a1a;
+}
+
+.party p {
+    font-size: 12px;
+    color: #666;
+}
+
+.flow-area {
+    position: relative;
+    flex: 1;
+    padding: 8px 20px 20px 20px;
+    min-height: 360px;
+    overflow: hidden;
+}
+
+.flow-area::before {
+    content: '';
+    position: absolute;
+    left: 25%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e5e5;
+}
+
+.flow-area::after {
+    content: '';
+    position: absolute;
+    left: 75%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e5e5;
+}
+
+.flow-area .message {
+    position: absolute;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    max-width: 180px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.flow-area .message.show {
+    opacity: 1;
+}
+
+.message-right {
+    left: 0;
+    right: auto;
+    text-align: left;
+}
+
+.message-left {
+    left: calc(75% + 15px);
+    right: auto;
+    text-align: left;
+}
+
+.message-center {
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0066cc;
+    color: #fff;
+    border-color: #0066cc;
+}
+
+.flow-area .arrow {
+    position: absolute;
+    height: 2px;
+    background: #666;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.flow-area .arrow.show {
+    opacity: 1;
+}
+
+.flow-area .arrow::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #666;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.flow-area .arrow-reverse::after {
+    left: -8px;
+    right: auto;
+    border-left: none;
+    border-right: 10px solid #666;
+}
+
+@media (max-width: 1024px) {
+    .demo-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .passkey-demo-page main {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .passkey-demo {
+        margin: 0;
+        border-radius: 12px;
+    }
+
+    .demo-content {
+        padding: 16px;
+    }
+
+    .demo-header {
+        padding: 16px 12px;
+    }
+
+    .demo-header h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .demo-header .subtitle {
+        font-size: 14px;
+    }
+
+    .input-container,
+    .demo-container {
+        padding: 16px;
+    }
+
+    .demo-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .demo-title img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .passkey-demo .info-section {
+        margin-top: 24px;
+        padding-top: 24px;
+    }
+
+    .parties {
+        display: none;
+    }
+
+    .flow-area {
+        min-height: auto;
+        padding: 16px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+    }
+
+    .flow-area::before,
+    .flow-area::after {
+        display: none;
+    }
+
+    .flow-area .arrow {
+        display: none !important;
+    }
+
+    .flow-area .message {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        font-size: 12px;
+        padding: 10px 16px;
+        max-width: 90%;
+        text-align: center;
+        margin: 0;
+        white-space: normal;
+        line-height: 1.4;
+    }
+}

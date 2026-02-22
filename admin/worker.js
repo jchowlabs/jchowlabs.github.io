@@ -87,7 +87,7 @@ Research — technical deep dives:
 - "AI Agent Tool Poisoning" [Coming Soon] — poisoned tools influencing agent decisions. Not yet published.
 
 Lab — interactive explorations:
-- "Passkeys: Interactive Demo" — step-by-step passkey registration and authentication. URL: /lab/passkey-demo.html
+- "Passkeys: Interactive Demo" — step-by-step passkey registration and authentication. URL: /lab/passkey-demo
 - "Identity Provider Internals" — build a lightweight IdP from scratch. URL: /lab/identity-provider-internals
 - "Password Vault Internals" — build an encrypted password vault. URL: /lab/password-vault-internals
 - "Face Verification Internals" — biometric matching, liveness detection, deepfake defenses. URL: /lab/face-verification-internals

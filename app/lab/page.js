@@ -8,7 +8,7 @@ export default function LabPage() {
       <Header />
       <main>
         <div className="articles-layout">
-          <a href="/lab/passkey-demo.html" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/lab/passkey-demo" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="article-featured">
               <div className="article-featured-img">
                 <img src="/static/images/passkey-icon.png" alt="Passkey Authentication" />
@@ -24,7 +24,7 @@ export default function LabPage() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
 
           <div className="articles-grid">
             <Link href="/lab/identity-provider-internals" style={{ textDecoration: 'none', color: 'inherit' }}>
