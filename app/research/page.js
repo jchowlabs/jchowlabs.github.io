@@ -16,7 +16,7 @@ export default function ResearchPage() {
               <div className="article-featured-body">
                 <span className="tag">Featured</span>
                 <h3>Anatomy of Phishing Attacks</h3>
-                <p>A deep dive into how phishing attacks operate under the hood, from initial lure creation to credential and access token capture and replay. The article walks through how common phishing techniques—including real-time man-in-the-middle attacks—are deployed in practice, illustrating how attackers gain unauthorized access by replaying stolen session material. It also explores defensive controls and architectural patterns that prevent credential theft, session hijacking, and token replay.</p>
+                <p>A deep technical walkthrough of how modern phishing attacks actually succeed in the real world. This article breaks down phishing as a system-level failure rather than a user mistake, showing how attackers exploit legitimate authentication flows to capture and replay credentials, session cookies, and access tokens. It examines the full phishing kill chain—from lure engineering and adversary-in-the-middle infrastructure to token theft, session replay, and post-authentication expansion—illustrating why MFA alone is no longer sufficient. By translating phishing into concrete identity, protocol, and session mechanics, the article provides security leaders with a clearer mental model for designing defenses that prevent credential theft, session hijacking, and token replay by design, not detection alone.</p>
                 <div className="article-tags">
                   <span className="article-tag">Man-in-the-Middle</span>
                   <span className="article-tag">Token Theft</span>
