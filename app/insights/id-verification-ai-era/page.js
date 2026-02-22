@@ -1,0 +1,283 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import AudioPlayerInit from '@/components/AudioPlayerInit';
+
+export const metadata = {
+  title: 'Identity Verification in the AI Era | jchowlabs',
+};
+
+export default function ArticlePage() {
+  const content = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-hero">
+					<img src="/static/images/deepfake.png" alt="Deepfake" class="article-hero-img">
+				</div>
+
+			<div class="article-audio">
+				<div class="custom-audio-player">
+					<audio id="audioElement">
+						<source src="/static/audio/id-verification.mp3" type="audio/mpeg">
+						Your browser does not support the audio element.
+					</audio>
+					
+					<div class="audio-controls">
+						<button id="playPauseBtn" class="play-pause-btn">
+							<svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polygon points="5,3 19,12 5,21"></polygon>
+							</svg>
+							<svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+								<rect x="6" y="4" width="4" height="16"></rect>
+								<rect x="14" y="4" width="4" height="16"></rect>
+							</svg>
+						</button>
+						
+						<div class="progress-container">
+							<span class="time-display" id="currentTime">0:00</span>
+							<div class="progress-bar" id="progressBar">
+								<div class="progress" id="progress"></div>
+								<div class="progress-handle" id="progressHandle"></div>
+							</div>
+							<span class="time-display" id="duration">0:00</span>
+						</div>
+						
+						<div class="audio-right-controls">
+							<div class="volume-control">
+								<button id="muteBtn" class="mute-btn">
+									<svg class="volume-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+										<path class="volume-waves" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+									</svg>
+									<svg class="mute-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+										<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+										<line x1="23" y1="9" x2="17" y2="15"></line>
+										<line x1="17" y1="9" x2="23" y2="15"></line>
+									</svg>
+								</button>
+								<div class="volume-slider-container">
+									<input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="100" orient="vertical">
+								</div>
+							</div>
+							
+							<div class="speed-control">
+								<button id="speedBtn" class="speed-btn">1x</button>
+								<div class="speed-menu" id="speedMenu">
+									<button data-speed="0.5">0.5x</button>
+									<button data-speed="0.75">0.75x</button>
+									<button data-speed="1" class="active">1x</button>
+									<button data-speed="1.25">1.25x</button>
+									<button data-speed="1.5">1.5x</button>
+									<button data-speed="2">2x</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<div class="article-header">
+					<h1>Identity Verification in the AI Era</h1>
+				</div>
+
+				<div class="article-body">
+					<p>Identity verification is one of the most underrated security problems in modern organizations.</p>
+
+					<p>Most security investments concentrate on what happens after access is granted &mdash; stronger authentication, richer telemetry, zero-trust architectures, continuous monitoring. These investments matter. But they all rest on a prior and often unexamined assumption: that the right person was given the key in the first place.</p>
+
+					<p>Identity verification is fundamentally about how people receive those keys. In a world of single sign-on, one credential often unlocks many systems, datasets, and privileges. That means a single flawed identity decision can undermine large portions of the security stack downstream. The blast radius of a bad identity decision is typically far larger than organizations anticipate, because trust propagates outward from that first moment of verification.</p>
+
+					<p>Even the most carefully designed zero-trust environments do not eliminate this problem. Zero trust can constrain what a credential can do, continuously monitor behavior, and require step-up checks &mdash; but it still depends on an initial judgment that the credential holder is legitimate. If that judgment is wrong at the outset, zero trust is not preventing compromise. It is managing one. The foundation is still the identity.</p>
+
+					<p>As a result, the weakest point in many security programs is not what happens inside the environment. It is how trust is established at the front door.</p>
+
+					<h2>The Limits Of Traditional IDV</h2>
+
+					<p>Traditional identity verification has always faced a structural limitation: at the moment of onboarding, there is no prior relationship or behavioral history to draw on. Whatever information a person presents must be validated against something already assumed to be true&mdash;government records, credit data, or traces of prior digital activity. Establishing this initial anchor of trust is the hardest part of identity verification, and it is why IDV has always been fragile in practice.</p>
+
+					<p>To compensate, organizations have historically relied on three broad categories of signals.</p>
+
+					<p><strong>Knowledge-based signals</strong>&mdash;dates of birth, address history, government identifiers, security questions&mdash;are built on the assumption that only the real person would know this information. In reality, this trust is inherited from external sources such as credit bureaus and public records, creating long dependency chains that are often incomplete, outdated, or already compromised by breaches.</p>
+
+					<p><strong>Possession-based signals</strong> assume the user controls a specific device or communication channel: an SMS one-time code, an email link, an authenticator app, or a hardware token. These methods rose in prominence as knowledge-based checks proved unreliable. But they depend on an increasingly weak assumption&mdash;that control of a device is a strong proxy for identity&mdash;an assumption eroded by SIM swapping, phishing, and widespread device compromise.</p>
+
+					<p><strong>Biometric and behavioral signals</strong>&mdash;facial matching, voice recognition, typing cadence&mdash;are most effective after a relationship has already been established. They still rely on a trusted reference created during onboarding. If that initial identity is wrong, subsequent biometric checks do not correct the error; they reinforce it.</p>
+
+					<p>None of these signals were ever intrinsically strong. They worked because they were difficult to replicate at scale.</p>
+
+					<p>That constraint no longer holds. Large-scale data breaches, data brokers, public records, and social media have made detailed personal information widely accessible. Generative AI accelerates this further by making it trivial to aggregate, synthesize, and contextualize that data in seconds. An attacker no longer needs to research a target manually. They can generate a highly plausible identity profile&mdash;complete with likely answers to common verification questions&mdash;faster than a legitimate user can recall their own details under pressure. In many cases, AI-generated responses are more consistent than those of real people.</p>
+
+					<p>The scale barrier that once made these signals viable has collapsed. What remains is the illusion of security, paired with the friction of real verification.</p>
+
+					<h2>The AI Shift</h2>
+
+					<p>AI does not introduce entirely new identity attacks. It changes the <em>economics</em> and <em>execution</em> of existing ones. Four shifts matter in practice, and understanding each is necessary to prioritize effective defenses.</p>
+
+					<h3>Synthetic Media Generation</h3>
+
+					<p>Modern generative tools can produce convincing forged documents, synthetic voices, and deepfake video at dramatically lower cost and skill levels than before. FATF documented in 2025 that deepfake production has become accessible enough that credible synthetic media can be generated within minutes by low-skilled actors.</p>
+
+					<p>The more consequential change is scale. Attackers can now iterate submissions rapidly&mdash;testing small variations of a synthetic identity or forged document across onboarding and review workflows&mdash;far faster than manual review teams can adapt. What was once a high-effort, low-volume activity has become an automated optimization problem.</p>
+
+					<p>Voice cloning deserves particular attention. Contemporary voice synthesis models can clone a person&rsquo;s voice from surprisingly little source material: a conference talk, a recorded meeting, or a few minutes of a podcast. Once cloned, synthetic voices can respond interactively to verification prompts in real time. What once felt like &ldquo;I recognize this person&rdquo; can now be convincingly simulated. The human ear is no longer a reliable verifier.</p>
+
+					<h3>Injection vs. Spoofing</h3>
+
+					<p>This distinction is one of the most important&mdash;and most frequently missed&mdash;technical nuances in modern identity verification.</p>
+
+					<p>Most biometric defenses are designed to counter <strong>presentation attacks</strong>: a printed photo held up to a camera, a replayed video, or a physical mask. Liveness detection evolved primarily to defeat these scenarios.</p>
+
+					<p><strong>Injection attacks</strong> are fundamentally different. Instead of presenting a physical artifact, the attacker replaces the input stream itself&mdash;injecting a synthetic video directly into the capture pipeline via virtual camera drivers, stream substitution, or function hooking. From the system&rsquo;s perspective, the input appears to originate from a legitimate camera. Liveness checks that successfully detect a photo held up to a webcam provide no protection against a deepfake injected upstream of the sensor.</p>
+
+					<p>ENISA&rsquo;s 2024 analysis of remote identity proofing explicitly highlights this distinction and notes that injection attacks often achieve higher success rates than classical spoofing because they bypass the assumptions underlying most current defenses. Organizations that have only tested biometric systems against presentation attacks often have a significant&mdash;and invisible&mdash;exposure.</p>
+
+					<h3>AI Social Engineering</h3>
+
+					<p>AI dramatically increases the effectiveness of social engineering at scale. Attackers can generate highly personalized, contextually accurate narratives using harvested LinkedIn profiles, organizational charts, and public communications, then deploy them in volume against support teams, recruiters, and help desks. NCSC has assessed that AI will meaningfully increase both the frequency and success rate of phishing and social engineering operations.</p>
+
+					<p>The support plane deserves particular attention. Help desk staff are trained to be helpful, resolve issues quickly, and reduce friction. Attackers exploit this by combining synthetic voice with harvested personal data to bypass phone-based verification. CISA documented that Scattered Spider actors repeatedly used social engineering to convince IT help desk personnel to reset passwords and MFA tokens&mdash;without exploiting authentication systems at all. The Okta support incident further demonstrated that even diagnostic artifacts, such as session tokens captured in HAR files, can become high-value identity attack material.</p>
+
+					<h3>Automated System Probing</h3>
+
+					<p>AI also enables attackers to probe identity systems systematically. Retry loops, adaptive testing, and analysis of error messages allow attackers to infer scoring thresholds and decision rules over time.</p>
+
+					<p>The implication is subtle but critical: overly informative error messages and permissive retry policies are not just usability concerns&mdash;they are attack surfaces. Feedback leakage accelerates attacker learning. Defenders need to treat system feedback as a security control, not merely a UX decision.</p>
+
+					<h2>The Lifecycle Attack Surfaces</h2>
+
+					<p>A common failure in identity programs is treating verification as a single event&mdash;usually onboarding&mdash;rather than as a series of control moments distributed across the customer or employee lifecycle. FATF explicitly distinguishes identity proofing and enrollment risks from authentication risks, underscoring that passing onboarding does not imply low ongoing risk.</p>
+
+					<p>Each lifecycle moment has a distinct attack profile.</p>
+
+					<p><strong>Onboarding</strong> is the primary surface for synthetic and hybrid identity fraud. Attackers combine stolen attributes from real individuals with fabricated elements to create identities that pass database checks while evading uniqueness detection. Document forgery has become faster and cheaper with generative tools, and biometric capture is increasingly targeted by injection attacks. Manual review&mdash;the intended backstop&mdash;is constrained by throughput limits, inconsistency across reviewers, and the rising quality of synthetic artifacts.</p>
+
+					<p><strong>Step-up verification</strong> fails most often when multiple paths exist. If a flow offers a high-assurance option (such as passkey re-authentication) alongside a weaker alternative (SMS OTP or knowledge-based questions), attackers will reliably target the weakest acceptable route. The presence of fallback options is itself an attack surface. Every fallback path should be evaluated with a simple question: <em>could an attacker deliberately route to this?</em></p>
+
+					<p><strong>Account recovery</strong> is the highest-value target in the lifecycle. It is invoked infrequently, leaving users and agents less practiced with it; it occurs under conditions of urgency and credential unavailability; and it often reintroduces weaker verification channels&mdash;email, SMS, or knowledge-based checks&mdash;that were deliberately avoided in primary authentication. Recovery flows are where social engineering is most effective, SIM swapping is most damaging, and human overrides are most likely to be granted.</p>
+
+					<p><strong>Help desk and administrative workflows</strong> form what can be called the support plane: a collection of processes with identity consequences that often sit outside the formal authentication architecture. Privileged actions initiated through support tickets, executive impersonation calls, or manual exceptions are recurring bypass routes&mdash;not because they lack controls, but because those controls rely on human judgment exercised under pressure.</p>
+
+					<p><strong>Workforce identity and remote hiring</strong> represent an increasingly critical and underdefended surface. DOJ-documented cases of North Korean actors using stolen and fabricated identities to obtain remote IT employment&mdash;and then maintaining access across dozens of organizations&mdash;demonstrate how identity failures at hiring time can become durable insider-risk footholds. Multiple organizations have reported candidates using deepfake technology during video interviews while still passing standard onboarding checks. In remote-first environments, digital signals carry more weight precisely as those signals become easier to fake.</p>
+
+					<h3>The Seam Problem</h3>
+
+					<p>Most enterprise identity verification failures do not occur at the level of model accuracy. They occur at the seams: the handoffs between automated checks and human review, the fallback paths triggered by edge cases, the retry flows invoked after false rejects, and the feedback inadvertently exposed to failed attempts. Attackers exploit retries, ambiguity, over-disclosure, and discretionary overrides. Any serious assessment of identity posture must examine these operational seams&mdash;not just the technical performance of individual controls.</p>
+
+					<h2>From Gate To Signal</h2>
+
+					<p>The most important shift organizations must make in identity security is philosophical before it is technical.</p>
+
+					<p>For decades, identity systems were built on a simple premise: with enough evidence and enough checks, it was possible to determine whether someone was who they claimed to be. Identity verification was treated as a problem of truth. Either the person was legitimate, or they were not.</p>
+
+					<p>That assumption no longer holds. When voices can be cloned, faces can be fabricated, documents can be forged at scale, and personal data can be synthesized in seconds, high certainty about identity is no longer a realistic design goal. The problem is not that controls are poorly implemented; it is that the underlying model assumes a level of signal integrity that no longer exists.</p>
+
+					<p>This reality forces a different guiding question. Instead of asking, <em>&ldquo;How do we prove this person is real?&rdquo;</em>, organizations must ask, <em>&ldquo;How do we design systems that remain safe when impersonation occurs?&rdquo;</em></p>
+
+					<p>Answering that question reframes identity from a binary gate into a continuously managed risk signal. Three implications follow from this shift.</p>
+
+					<p>First, <strong>no identity signal is infallible</strong>. Knowledge can be harvested, possession can be compromised, and biometrics can be spoofed or injected. Treating any single signal as definitive creates a single point of failure.</p>
+
+					<p>Second, <strong>risk is dynamic, not fixed</strong>. A user who appeared low risk at onboarding may look riskier later due to a new device, an unusual location, behavioral anomalies, or changes in the threat landscape itself. Identity confidence must be continuously reassessed, not permanently granted.</p>
+
+					<p>Third, <strong>failure is inevitable, but catastrophic failure is not</strong>. Well-designed systems assume mistakes will happen and focus on limiting blast radius when they do, rather than assuming perfect prevention.</p>
+
+					<p>Under this model, identity becomes a continuously updated confidence score informed by device integrity, behavioral consistency, contextual risk, and media authenticity. When confidence degrades, systems do not default to binary outcomes. Instead, they escalate verification, constrain privileges, increase monitoring, or require additional evidence. This aligns identity with how modern security already treats other forms of risk. Organizations do not assume networks are perfectly secure; they monitor for anomalies, contain incidents, and recover. Identity should be treated the same way.</p>
+
+					<p>One tension must be acknowledged explicitly. Higher assurance often increases friction, which drives abandonment, support burden, and&mdash;particularly in consumer contexts&mdash;exclusion. Security designs that ignore usability are not viable at scale. The goal is not maximum friction, but better signal quality, so that high assurance and low friction can coexist wherever possible.</p>
+
+					<h2>Defense Priorities</h2>
+
+					<p>The shift from binary identity decisions to continuous risk management changes what &ldquo;good&rdquo; defense looks like. In the AI era, effective identity protection is not about finding a perfect signal; it is about designing systems that fail safely under pressure.</p>
+
+					<h3>Layer controls rather than betting on any single sensor</h3>
+
+					<p>No single control&mdash;no matter how technically sophisticated&mdash;should be the final line of defense. High biometric accuracy does not protect against injection attacks if injection is not detected. Liveness checks do not protect against a compromised support plane. Every control must be designed with the assumption that adjacent controls can fail.</p>
+
+					<p>FATF case studies of deepfake-enabled fraud consistently point to layered defenses: advanced liveness checks combined with phishing-resistant authentication and downstream transaction monitoring. The security value comes from the combination. Layering changes the economics of attack in a way no individual control can.</p>
+
+					<h3>Prioritize anti-injection resilience, not just liveness accuracy</h3>
+
+					<p>Many organizations have invested heavily in liveness detection while leaving injection attacks largely unaddressed, effectively optimizing against the easier threat. Injection resilience requires treating capture inputs as untrusted unless integrity is explicitly established.</p>
+
+					<p>Effective defenses include runtime protections such as code obfuscation and anti-hooking, device integrity checks for rooting, jailbreaking, emulation, and virtual camera use, and session-level metadata analysis to identify anomalous input behavior. The design shift is subtle but critical: camera input should be treated as hostile by default, not implicitly trusted.</p>
+
+					<p>Deepfake detection itself must operate across layers. Signal-level analysis can identify statistical artifacts introduced by generative models. Physical and behavioral plausibility checks can detect inconsistencies in lighting, reflections, or motion. System-level attestation can verify that input originated from authenticated hardware. None of these layers is sufficient alone; together, they raise the cost and uncertainty of successful attacks. The goal is not perfect detection, but avoiding false confidence and triggering escalation when risk increases.</p>
+
+					<h3>Harden the support and recovery plane as Tier 0</h3>
+
+					<p>If a help desk can reset MFA for anyone who presents a plausible story, the entire authentication architecture is effectively conditional on that interaction. Support and recovery workflows are identity perimeters and must be treated as Tier 0 systems.</p>
+
+					<p>This requires concrete controls: strict caller verification with audit logging, agent-facing tools that surface risk and anomaly signals before overrides are granted, mandatory user notifications for recovery events, velocity limits on recovery attempts, and playbooks that remove agent discretion for high-risk actions. Fallback recovery paths should be <em>harder</em> than primary authentication, not easier. If manual review is used, it must be governed by explicit criteria; &ldquo;review&rdquo; without structure simply shifts the attack surface to human judgment.</p>
+
+					<p>Error message discipline is part of this hardening. Recovery and proofing flows should not disclose enough information about failure reasons to enable iterative attacker adaptation.</p>
+
+					<h3>Use phishing-resistant authentication to reduce recovery pressure</h3>
+
+					<p>A large share of account recovery volume is driven by credential theft and phishing. Passkeys based on FIDO2/WebAuthn bind credentials cryptographically to specific hardware, making them resistant to phishing and credential stuffing. Reducing account takeover volume directly reduces the number of opportunities attackers have to exploit recovery flows.</p>
+
+					<p>Healthcare security guidance from HHS explicitly identifies FIDO/WebAuthn authenticators as a meaningful defensive control; the same logic applies broadly. Fewer compromised accounts mean fewer high-pressure recovery events&mdash;and fewer chances for social engineering to succeed.</p>
+
+					<h3>Require adversarial testing with synthetic media</h3>
+
+					<p>As the cost of generating convincing deepfakes continues to fall, vendor assurances about biometric accuracy are no longer sufficient. Controls must be evaluated against <em>current</em> attacker capabilities, including injection scenarios&mdash;not just the presentation attacks systems were originally designed to defeat.</p>
+
+					<p>Organizations should maintain a corpus of synthetic media and regularly replay it against both vendor-provided and in-house identity pipelines, tracking performance across model updates, device types, and UX changes. Adversarial testing must be continuous. One-time evaluation at procurement provides a false sense of security in a threat landscape that evolves monthly.</p>
+
+					<h2>Design Principles</h2>
+
+					<p>The shift to identity as a continuous risk signal requires changes not just in tooling, but in how identity systems are designed and evaluated. The following principles translate that model into concrete, operational guidance.</p>
+
+					<h3>Make assurance explicit per flow, not universal KYC</h3>
+
+					<p>Different identity moments carry different risk. Consumer onboarding, employee hiring, step-up for a sensitive transaction, and account recovery do not require the same level or type of verification. Applying a single, uniform process everywhere either creates unnecessary friction or leaves high-risk paths underprotected.</p>
+
+					<p>Defining required assurance explicitly per flow allows organizations to concentrate verification effort where the risk is highest and reduce friction where it is not. Assurance should be a design parameter, not an implicit byproduct of a generic identity process.</p>
+
+					<h3>Treat false rejects as a security signal, not just a UX metric</h3>
+
+					<p>False rejects are typically treated as a usability problem. They are also a security signal. Elevated reject rates on specific device classes, demographic groups, geographies, or capture environments indicate both inclusion issues and potential attacker targeting.</p>
+
+					<p>Attackers actively exploit populations that fail verification more often, because appeals queues, retries, and manual exceptions become alternate paths through the system. Monitoring false reject distributions, investigating spikes as anomalies, and improving capture quality should be treated as part of the security posture&mdash;not just conversion optimization.</p>
+
+					<h3>Design safe fallbacks that are harder than the primary path</h3>
+
+					<p>Every fallback path is an attack path. When a system offers a simpler alternative after a primary check fails, attackers will reliably route themselves toward it.</p>
+
+					<p>Fallbacks should impose <em>more</em> verification burden, not less. This runs counter to common UX instincts, which is why fallback paths are so frequently misconfigured. A fallback that is easier than the primary path undermines the entire control. If a fallback exists, it should raise assurance requirements, not lower them.</p>
+
+					<h3>Build for observability, escalation, containment, and recovery</h3>
+
+					<p>Verification failures are inevitable. Systems should be designed around that assumption.</p>
+
+					<p>At minimum, identity architectures need four capabilities. First, <strong>observability</strong>: clear visibility into which signals were evaluated, how confidence was calculated, and why decisions were made, to support investigation and audit. Second, <strong>escalation</strong>: structured paths that allow legitimate users to provide additional evidence without permanent lockout. Third, <strong>containment</strong>: mechanisms to limit blast radius when an identity is compromised, such as session revocation, privilege reduction, and velocity limits. Fourth, <strong>recovery</strong>: processes that can re-establish identity for legitimate users without creating a new bypass surface in the process.</p>
+
+					<p>Treating recovery as a first-class design concern, rather than an afterthought, is critical.</p>
+
+					<h3>Watch for provenance, not just appearance</h3>
+
+					<p>Longer term, the industry is moving away from visual plausibility toward cryptographic provenance. Mobile driver&rsquo;s licenses, W3C Verifiable Credentials, and related standards shift trust from &ldquo;this looks authentic&rdquo; to &ldquo;this was issued by a known authority and has not been altered.&rdquo;</p>
+
+					<p>Adoption remains uneven and jurisdiction-dependent, but the direction is clear. Organizations should design identity architectures that can incorporate cryptographically verifiable credentials as they mature, rather than doubling down on visual inspection and perceptual checks as the primary signal.</p>
+
+					<h2>Closing</h2>
+
+					<p>In the AI era, identity verification is no longer about confirming a static truth. It is about managing uncertainty in an environment where every signal&mdash;voice, face, knowledge, behavior&mdash;can be convincingly forged, and where the cost of doing so continues to fall.</p>
+
+					<p>Seeing is no longer proof. Hearing is no longer proof. Knowledge is no longer private. Presence is no longer guaranteed. The weakest point in most security programs is still not what happens after access is granted, but the moment trust is first extended.</p>
+
+					<p>Organizations that succeed will shift their framing. The question is no longer, <em>&ldquo;How do we prove identity?&rdquo;</em> It is, <em>&ldquo;How do we design systems that remain safe when identity is compromised?&rdquo;</em></p>
+
+					<p>Answering that requires layered defenses with explicit assurance levels per flow. It requires hardening support and recovery paths with the same rigor as authentication systems. It requires treating injection attacks as a first-class threat, not an edge case. It requires adversarial testing grounded in current attacker capabilities, not last year&rsquo;s threat model. And it requires treating identity as a dynamic risk signal&mdash;one that degrades gracefully under attack, rather than a binary gate that either holds or fails catastrophically.</p>
+
+					<p>Identity signals will be faked. The only remaining question is whether your systems are designed to survive when they are.</p>
+				</div>
+			</div>
+		</section>`;
+
+  return (
+    <div className="page-wrapper content-page article-page">
+      <Header />
+      <main dangerouslySetInnerHTML={{ __html: content }} />
+      <AudioPlayerInit />
+      <Footer />
+    </div>
+  );
+}

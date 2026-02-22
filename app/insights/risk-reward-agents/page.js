@@ -1,0 +1,148 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+export const metadata = {
+  title: 'Risk and Reward of AI Agents | jchowlabs',
+};
+
+export default function ArticlePage() {
+  const content = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-hero">
+					<img src="/static/images/ai-agent.png" alt="AI agent" class="article-hero-img">
+				</div>
+
+				<div class="article-header">
+					<h1>Risk and Reward of AI Agents</h1>
+				</div>
+
+				<div class="article-body">
+					<p>2025 was the year of experimentation. 2026 is the year AI agents move into production.</p>
+
+					<p>AI agents are no longer a future-state consideration. They are executing workflows, triaging tickets, writing to databases, and taking actions inside enterprise systems today. The question for security, technology, and business leaders is no longer whether to engage with agentic AI &mdash; it is whether the organization can manage what it has already deployed, and what is being deployed without centralized visibility or control.</p>
+
+					<p>The reward is real. Agents can compress timelines, eliminate repetitive work, and shift human effort toward judgment, exception handling, and decision-making that actually benefits from human context. In many organizations, those gains are already material. But agents also introduce a category of risk that does not fit neatly into existing models. They combine non-deterministic reasoning with standing access and the ability to act across systems &mdash; blending identity, access management, application security, and operational resilience in ways most enterprises are not yet equipped to govern.</p>
+
+					<p>What makes this moment different is not simply the use of AI, but the scale and nature of access being granted. For the first time, systems that reason probabilistically are being entrusted with persistent credentials and operational authority inside core business workflows. Deployment is moving faster than governance, and incentives favor speed over control. For most organizations, that gap is already visible. Closing it &mdash; without forfeiting the benefits that made agents attractive in the first place &mdash; is emerging as one of the defining security challenges of the next several years.</p>
+
+					<h2>Why Governance Lags</h2>
+					<p>Adoption is being driven by incentives, not maturity. Organizations are deploying agents to reduce manual work across teams, automate workflows that span multiple systems, increase operational speed without adding headcount, and redirect human effort toward judgment and exception handling. These pressures are immediate, measurable, and tied directly to cost and productivity &mdash; which makes the decision to deploy agents easy, even when the surrounding controls are not yet in place.</p>
+
+					<p>Early deployments are typically internal-facing. Agents are introduced into IT operations, support triage, data reconciliation, reporting, and DevOps automation &mdash; areas where the productivity gains are visible and the perceived risk feels contained. Internal-facing systems are often treated as safer by default, particularly when they are not exposed directly to customers or the internet. That assumption is increasingly flawed.</p>
+
+					<p>In practice, internal-facing agents function as digital employees. To do useful work, they need access &mdash; to data, to tools, and to the ability to take action inside enterprise systems. They read from knowledge bases and inboxes, write to ticketing systems and databases, trigger downstream workflows, and in some cases make changes that would traditionally require human approval. Once that access is granted, the agent becomes an operational actor inside the environment, not just a piece of software.</p>
+
+					<p>That access is foundational to everything that follows. It determines what an agent can see, what it can change, how much damage it can cause when something goes wrong, and how difficult it will be to detect and recover from failures. Organizations are moving quickly to realize the upside of agents, but in many cases they are doing so before answering basic questions about ownership, scope, and control.</p>
+
+					<h2>Agents Are Identities</h2>
+					<p>One of the most important conceptual shifts organizations need to make is recognizing that AI agents behave less like traditional applications and more like identities. This distinction matters because it changes how risk should be understood, governed, and controlled.</p>
+
+					<p>Traditional applications are relatively predictable. Their behavior is constrained by fixed logic, and their permissions can be scoped based on known usage patterns. AI agents are different. They reason, plan, and adapt based on context. Even when their objectives are clearly defined, their behavior is not deterministic, and their paths through systems and data cannot be fully enumerated in advance.</p>
+
+					<p>To function effectively, agents are granted credentials &mdash; service accounts, API keys, or OAuth tokens &mdash; that authorize them to read data, write data, invoke tools, and trigger downstream actions. In many environments, agents are also permitted to make changes that would traditionally require human review or approval. They operate with standing privilege, sometimes significant privilege, yet are rarely subject to the same identity governance rigor applied to human users or traditional machine identities.</p>
+
+					<p>This creates a set of basic questions that organizations should be able to answer about every agent operating in their environment: What systems does this agent have access to, and why? What actions is it actually taking? Under what conditions are those actions permitted? Who is accountable for its behavior if something goes wrong? In most environments today, those questions cannot be answered with confidence. That gap is not theoretical &mdash; it is a practical security and governance failure.</p>
+
+					<h2>The Prompt Injection Threat</h2>
+					<p>When organizations assess the risks of AI agents, attention often centers on internal failure modes &mdash; excessive permissions, misconfigured workflows, or runaway automation. These are real concerns, but they represent only part of the threat picture. Agents are also being actively targeted from the outside, and the most common and effective attack vector today is prompt injection.</p>
+
+					<p>Prompt injection is an attack in which malicious instructions are introduced into an agent&rsquo;s context, causing it to behave in ways the user or organization did not intend. Direct injection involves an attacker crafting inputs that attempt to override the agent&rsquo;s instructions explicitly. Indirect injection &mdash; which is more dangerous in agentic systems &mdash; embeds malicious instructions inside data the agent consumes as part of its normal operation: emails, documents, web pages, database records, or API responses.</p>
+
+					<p>What makes this especially dangerous for agents, as opposed to simple chat interfaces, is the blast radius. An agent with read access to a knowledge base and write access to ticketing systems, email, or file storage is not just interpreting text &mdash; it is an action-capable identity. A successful injection can cause an agent to exfiltrate data, modify records, send unauthorized communications, or pivot into connected systems. In one documented demonstration, a malicious instruction embedded in an email caused an agent scanning an inbox to send a resignation letter to a user&rsquo;s CEO instead of drafting the intended out-of-office reply. The agent followed the injected instruction, not the user&rsquo;s intent.</p>
+
+					<p>This class of risk is not unfamiliar to security teams. Prompt injection plays a role similar to phishing or macro malware in earlier eras: attacks that exploit the fact that systems must process untrusted input to be useful. Like phishing, prompt injection is unlikely to be &ldquo;solved&rdquo; outright. It is persistent, adaptive, and requires layered defenses rather than a single technical control.</p>
+
+					<p>OWASP&rsquo;s 2025 Top 10 for LLM Applications places prompt injection at the top of the list, and security research indicates it appears in a significant majority of production AI deployments assessed during audits. OpenAI has acknowledged publicly that prompt injection is unlikely to ever be fully eliminated. Despite this visibility, a VentureBeat survey of technical decision-makers in late 2025 found that only about one-third of organizations had deployed dedicated prompt injection defenses; the remainder either had not, or were unsure whether such protections existed.</p>
+
+					<p>Indirect prompt injection in particular forces a shift in how defenders think about the agent&rsquo;s perimeter. The attack surface is no longer limited to a user interface. It includes every data source an agent reads, every document it retrieves, and every external system it queries. Everything an agent ingests should be treated as potentially untrusted unless it can be verified, and defensive architectures must enforce clear separation between data and instructions before actions are taken.</p>
+
+					<h2>The Shadow Agent Problem</h2>
+					<p>Before organizations can secure their AI agents, they need to know what agents they have. For many, that basic inventory does not exist.</p>
+
+					<p>The democratization of agent creation tools has made it easy for employees outside of IT and security to build and deploy agents with broad organizational access. Low-code and no-code platforms such as Microsoft Copilot Studio, Salesforce Agentforce, and similar offerings allow business users to provision agents that can read SharePoint libraries, access CRM data, query databases, and send communications &mdash; often without a formal security review, a risk assessment, or a clearly assigned owner. This is the shadow AI problem, and in important ways it is more dangerous than shadow IT ever was.</p>
+
+					<p>Shadow IT typically involved unmanaged applications or services operating at the edges of the environment. Shadow agents operate inside it. They authenticate, receive OAuth consents, inherit permissions, and act on data across core systems. Because they reason and take action rather than simply store or process data, their potential impact is broader and harder to predict. An agent created to &ldquo;help&rdquo; a team automate work can quietly accumulate access and become an operational actor long before anyone realizes it exists.</p>
+
+					<p>Evidence of this pattern is already widespread. Gartner has reported that the majority of organizations have signs of unauthorized AI tool usage, and predicts that by 2030 more than 40% of enterprises will experience security or compliance incidents directly tied to shadow AI. Microsoft&rsquo;s own telemetry from late 2025 showed shadow agents were prevalent enough across enterprise environments to justify built-in detection and quarantine capabilities in Microsoft Entra Agent ID and the Agent 365 control plane. Okta similarly introduced identity security posture management capabilities in early 2026 to discover agents created in unsanctioned platforms by identifying OAuth grants and flagging agents that have quietly obtained access to sensitive systems and data.</p>
+
+					<p>The shadow agent problem compounds the risks that already exist with sanctioned agents. Privilege creep accelerates, ownership becomes ambiguous, and observability gaps widen. Organizations cannot monitor, audit, or govern agents they do not know about. Discovery has to come before governance &mdash; and today, most organizations are behind on both.</p>
+
+					<h2>Privilege Creep</h2>
+					<p>With sanctioned agents, risk rarely appears all at once. It accumulates incrementally and with good intentions. A workflow fails because the agent lacks a required permission. Someone grants additional access to unblock progress. A new integration is added. Another credential is provisioned. Over time, the agent builds a composite permission set that no single person fully understands &mdash; with access that was never explicitly reviewed or approved as a whole.</p>
+
+					<p>This pattern mirrors familiar identity sprawl, but with higher stakes. Agents do not get tired. They do not pause to ask clarifying questions. They operate continuously, at speed, and often across multiple systems at once. Without deliberate constraints, organizations end up with agents that hold broad read and write access across critical systems, carry persistent credentials that are infrequently rotated, operate without a clearly accountable owner, and accumulate a permission footprint that would almost certainly be rejected if evaluated holistically.</p>
+
+					<p>The risk is not just excess access, but excess autonomy combined with access. An agent that can reason, plan, and act with broad permissions creates failure modes that traditional service accounts or automation scripts did not. Small configuration changes compound over time into meaningful exposure.</p>
+
+					<p>OWASP&rsquo;s LLM06:2025 identifies excessive agency as a top risk for production agentic systems, highlighting overly broad permissions, autonomy beyond task requirements, and insufficient human oversight as core contributors. Addressing this risk requires more than invoking least privilege as a principle. Least privilege must be enforced as a design constraint &mdash; through scoped access aligned to documented purpose, time-limited permissions where feasible, and regular review of what each agent actually needs versus what it has accumulated over time.</p>
+
+					<h2>Compounding Agent Risks</h2>
+					<p>The risk profile becomes significantly more complex when agents interact with other agents. Multi-agent architectures &mdash; where agents delegate tasks, share context, and trigger actions in other agents &mdash; are increasingly common in enterprise deployments. The Model Context Protocol (MCP), which became a widely adopted standard in 2025, has accelerated this by providing a consistent interface for agents to share tools and data across vendor and platform boundaries.</p>
+
+					<p>MCP is genuinely useful. It reduces the friction of building agent ecosystems that span multiple platforms and vendors. But it also introduces new attack surfaces that security teams need to understand. Recent research has documented attacks where agents are deceived into routing requests to rogue agents through falsified capability claims. A compromised MCP server can expose an entire agent ecosystem to manipulation. Vulnerabilities in MCP-based agentic IDEs have resulted in zero-click remote code execution, where a poisoned document caused an agent to fetch attacker-controlled instructions and execute a payload without any user interaction.</p>
+
+					<p>In multi-agent environments, the questions of accountability become harder to answer. If one agent triggers another, which one is responsible for the outcome? How are trust boundaries enforced between agents from different vendors or frameworks? What happens when a high-privilege agent acts on instructions passed through a chain from a lower-trust source? These are not hypothetical design questions &mdash; they are operational security questions that need answers before production deployment.</p>
+
+					<h2>The Observability Gap</h2>
+					<p>A defining characteristic of agent risk is the lack of effective observability. With human users, organizations rely on mature identity systems, access reviews, audit logs, and behavioral monitoring to understand what happened and why. With traditional machine identities, behavior is typically narrow, deterministic, and easier to reason about. AI agents occupy a more difficult category: autonomous enough to act independently, yet opaque enough that their reasoning and decision paths are often difficult to reconstruct.</p>
+
+					<p>Agents can execute dozens or even hundreds of actions between the moment something goes wrong and the moment anyone notices. When a failure occurs, it is frequently unclear whether the root cause was flawed reasoning, incomplete or corrupted context, excessive permissions, prompt injection, or an unexpected interaction with another agent or system. Logging across most agent frameworks remains inconsistent, and correlating agent-driven activity across multiple systems and timeframes is technically challenging. Distinguishing an agent acting on malicious instructions from one acting on legitimate input may require detailed forensic reconstruction of what data the agent ingested, in what sequence, and what instructions were embedded within that context.</p>
+
+					<p>This is not just a monitoring problem &mdash; it is a response and recovery problem. Organizations need to understand not only that something went wrong, but what actions an agent took, where those actions occurred, and whether the resulting changes can be contained or reversed. In many environments today, rollback of agent-driven activity is manual, partial, or undefined. As agents become faster, more autonomous, and more interconnected, that gap between action and understanding becomes increasingly costly.</p>
+
+					<h2>Agent Risk Taxonomy</h2>
+					<p>Reasoning clearly about agent risk requires breaking it into distinct categories rather than treating it as a single, monolithic problem. The following taxonomy reflects what consistently emerges in enterprise deployments and aligns with current OWASP guidance, the NIST AI Risk Management Framework, and emerging CSA work on agentic AI security.</p>
+
+					<p><strong>Privilege risk</strong> covers excessive permissions, privilege creep, persistent credentials, and the gap between what an agent has access to and what it actually needs to perform its assigned tasks. This is foundational &mdash; when privilege is unconstrained, every other category of risk is amplified.</p>
+
+					<p><strong>External attack risk</strong> covers prompt injection, indirect injection through untrusted data sources, MCP server compromise, tool poisoning, and similar techniques that allow adversaries to influence agent behavior from outside the organization. This is the external threat surface many enterprises are still underestimating or ignoring.</p>
+
+					<p><strong>Autonomy risk</strong> covers agents making decisions without appropriate human oversight, acting on flawed or incomplete context, and executing high-impact actions that were never explicitly authorized in the form they ultimately occurred.</p>
+
+					<p><strong>Observability risk</strong> covers limited visibility into what agents did, why they did it, and how their actions relate to downstream outcomes &mdash; including the forensic challenge of reconstructing events after something goes wrong.</p>
+
+					<p><strong>Interaction risk</strong> covers unintended behavior that emerges from agent-to-agent communication, failures in multi-agent trust models, cascading actions across interconnected systems, and the difficulty of attributing responsibility when multiple agents are involved in a single outcome.</p>
+
+					<p><strong>Integrity and trust risk</strong> covers actions that are technically valid but contextually wrong &mdash; agents that make correct decisions based on corrupted, manipulated, or misleading data, or that silently erode confidence in systems and records without triggering obvious failures.</p>
+
+					<p><strong>Recovery risk</strong> covers the inability to contain, reverse, or fully understand the impact of agent-driven changes, particularly when agents have acted across multiple systems faster than detection and response processes can follow.</p>
+
+					<p>These risks do not exist in isolation. They compound as agents become more autonomous, more interconnected, and more deeply embedded across the enterprise environment.</p>
+
+					<h2>A Practical Governance Modal</h2>
+					<p>The core problem with AI agents is not that they are unsafe by design. It is that governance has not caught up to capability, and deployment has not waited for governance to catch up. A practical model for agent governance focuses on seven elements.</p>
+
+					<p><strong>Agent discovery and registry.</strong> Before anything else, security teams need a complete inventory of every agent operating in the environment &mdash; sanctioned agents built by IT, agents built by business users in low-code platforms, third-party agents provisioned through SaaS tools, and shadow agents that exist outside formal approval processes. This registry should be live and continuously updated, not a point-in-time snapshot. Tools like Microsoft Entra Agent ID, Okta ISPM, and platform-native agent management capabilities are emerging specifically to solve this problem.</p>
+
+					<p><strong>Explicit identity and ownership.</strong> Every agent should have its own identity, separate from human users and other agents, with a designated business owner and technical owner who are accountable for its behavior. Shared credentials and orphaned agents &mdash; agents running without an active owner &mdash; should not exist. Lifecycle governance should include automated controls that flag or deactivate agents when owners change or depart.</p>
+
+					<p><strong>Deliberate privilege design.</strong> Access should be scoped to the minimum required for the agent&rsquo;s documented purpose, reviewed regularly, and granted based on explicit approval rather than convenience. Just-in-time access models, where permissions are granted for the duration of a specific task rather than held persistently, are worth pursuing for high-risk operations. Every privilege grant should be documented with a rationale.</p>
+
+					<p><strong>Hardening against external attack.</strong> Agent security posture should include specific defenses against prompt injection, particularly indirect injection through external data sources. This means treating ingestion surfaces &mdash; documents, emails, web content, API responses, database records &mdash; as potentially adversarial. Architectural separation between trusted instructions and untrusted data, output validation before action execution, and strict tool-call verification should be standard requirements for any agent with meaningful access to systems or data.</p>
+
+					<p><strong>Multi-agent trust governance.</strong> In environments where agents interact with other agents, explicit trust models are required. Agents should not inherit the permissions of agents they communicate with. Actions triggered through agent chains should be validated against the authorization context of the initiating request, not the executing agent. MCP server provenance and integrity should be verified before agents are permitted to consume their tooling.</p>
+
+					<p><strong>Observability and control.</strong> Agent actions should be logged in a way that is attributable, queryable, and correlated across systems. High-risk agents &mdash; those with write access to critical systems, financial authority, or access to sensitive data &mdash; should have real-time behavioral monitoring and a clear, tested disable mechanism. Logging standards should be defined explicitly, not left to individual implementation choices.</p>
+
+					<p><strong>Accountability and lifecycle management.</strong> Every agent should have a defined scope, a documented approval, an active owner, and a decommissioning plan. Governance should include periodic reviews of what each agent is actually doing versus what it was approved to do &mdash; because the two often diverge over time as agents accumulate access and workflows evolve around them.</p>
+
+					<h2>Accepting The Tradeoffs</h2>
+					<p>AI agents are delivering real productivity gains in organizations that have deployed them thoughtfully. The promise is not hype. Agents represent a genuine shift in how work gets done, and organizations that learn how to govern them well will gain advantages that are difficult to replicate &mdash; not by avoiding agents, but by integrating them responsibly.</p>
+
+					<p>At the same time, the risks are neither theoretical nor future-state. Prompt injection attacks against production agents are documented and increasing. Shadow agents with broad access are already operating in enterprise environments without centralized awareness. Multi-agent systems are creating accountability gaps that traditional security and governance models were never designed to handle. Privilege accumulation is happening quietly, at scale, in ways that no single team or individual fully understands.</p>
+
+					<p>The objective is not to slow deployment. It is to make deployment survivable &mdash; to build the controls that allow organizations to move quickly with confidence rather than quickly with exposure they cannot see or explain. That requires accepting the tradeoff honestly: agents create leverage, but they also demand explicit decisions about identity, access, trust, and accountability.</p>
+
+					<p>Organizations that approach agentic AI as an identity problem, a threat surface problem, and a governance problem at the same time will be better positioned than those that treat it as any one of these in isolation. Agents are already part of enterprise systems. The remaining question is whether the controls and clarity will be put in place deliberately &mdash; or only after something forces the issue.</p>
+				</div>
+			</div>
+		</section>`;
+
+  return (
+    <div className="page-wrapper content-page article-page article-risk-reward">
+      <Header />
+      <main dangerouslySetInnerHTML={{ __html: content }} />
+      <Footer />
+    </div>
+  );
+}

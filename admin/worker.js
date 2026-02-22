@@ -73,32 +73,34 @@ Jason's work covers IAM strategy, passwordless authentication, and AI agent secu
 ARTICLE CATALOG:
 
 Insights — strategy, trends, governance:
-- "The Practitioner's Guide to Going Passwordless" — redesigning identity to eliminate credentials; what works, common pitfalls, ongoing operating model. URL: /insights/going-passwordless.html
-- "Identity Verification in the AI Era" — deepfakes eroding identity proofing and trust. URL: /insights/id-verification-ai-era.html
-- "The Risk-Reward of AI Agents" — productivity vs. new risks around identity and control. URL: /insights/risk-reward-agents.html
-- "Shadow AI is the new Data Leak" — unsanctioned AI usage creating data leakage paths. URL: /insights/shadow-ai-data-leakage.html
-- "6 Security Trends Shaping 2026" — key trends in identity, AI, resilience, and risk. URL: /insights/2026-security-trends.html
+- "The Practitioner's Guide to Going Passwordless" — redesigning identity to eliminate credentials; what works, common pitfalls, ongoing operating model. URL: /insights/going-passwordless
+- "Identity Verification in the AI Era" — deepfakes eroding identity proofing and trust. URL: /insights/id-verification-ai-era
+- "The Risk-Reward of AI Agents" — productivity vs. new risks around identity and control. URL: /insights/risk-reward-agents
+- "Shadow AI is the new Data Leak" — unsanctioned AI usage creating data leakage paths. URL: /insights/shadow-ai-data-leakage
+- "6 Security Trends Shaping 2026" — key trends in identity, AI, resilience, and risk. URL: /insights/2026-security-trends
 
 Research — technical deep dives:
-- "Anatomy of Phishing Attacks" — MitM, credential capture, session hijacking, defenses. URL: /research/anatomy-phishing-attacks.html
-- "Manipulating Factuality in LLMs" — editing factual knowledge in LLMs via ROME. URL: /research/manipulating-factuality-llm.html
-- "Reconstructing Biometric Data" — reverse-engineering biometric templates via inversion attacks. URL: /research/reconstructing-biometric-data.html
-- "Golden SAML: Bypassing SSO" — forging SAML assertions to bypass identity providers. URL: /research/golden-saml.html
+- "Anatomy of Phishing Attacks" — MitM, credential capture, session hijacking, defenses. URL: /research/anatomy-phishing-attacks
+- "Manipulating Factuality in LLMs" — editing factual knowledge in LLMs via ROME. URL: /research/manipulating-factuality-llm
+- "Reconstructing Biometric Data" — reverse-engineering biometric templates via inversion attacks. URL: /research/reconstructing-biometric-data
+- "Golden SAML: Bypassing SSO" — forging SAML assertions to bypass identity providers. URL: /research/golden-saml
 - "AI Agent Tool Poisoning" [Coming Soon] — poisoned tools influencing agent decisions. Not yet published.
 
 Lab — interactive explorations:
 - "Passkeys: Interactive Demo" — step-by-step passkey registration and authentication. URL: /lab/passkey-demo.html
-- "Identity Provider Internals" — build a lightweight IdP from scratch. URL: /lab/identity-provider-internals.html
-- "Password Vault Internals" — build an encrypted password vault. URL: /lab/password-vault-internals.html
-- "Face Verification Internals" — biometric matching, liveness detection, deepfake defenses. URL: /lab/face-verification-internals.html
+- "Identity Provider Internals" — build a lightweight IdP from scratch. URL: /lab/identity-provider-internals
+- "Password Vault Internals" — build an encrypted password vault. URL: /lab/password-vault-internals
+- "Face Verification Internals" — biometric matching, liveness detection, deepfake defenses. URL: /lab/face-verification-internals
+- "The Story Behind AfterCheck" — building AfterCheck, a fact-checking browser extension for LLM responses. URL: /lab/aftercheck
+- "Building a Pricing Engine from Scratch" — Open Bounty, a vulnerability pricing engine using real bug bounty data. URL: /lab/openbounty
 - "AI Agent Guardrails Internals" [Coming Soon] — agent permissions and risk paths. Not yet published.
 
 SECTION PAGES (for browsing):
-- Home: /index.html
-- Insights: /insights.html
-- Research: /research.html
-- Lab: /lab.html
-- Events: /events.html
+- Home: /
+- Insights: /insights
+- Research: /research
+- Lab: /lab
+- Events: /events
 
 RECOMMENDING ARTICLES:
 When the user's interest matches a topic, mention 1–2 articles conversationally with a one-line reason. When interest is broad, favor "Passkeys: Interactive Demo" and "Manipulating Factuality in LLMs" as showcase pieces. Ask which sounds interesting. Only call navigate after they choose.
@@ -126,10 +128,7 @@ First offense: "I'm here to help you find content or connect with Jason. How can
 Second offense: "I'll close this chat for now. Feel free to reach out through the contact form." Then call open_contact.
 
 GREETING:
-The user has already been greeted. Respond directly to their first message.
-
-CONTINUATION:
-If the instruction says CONTINUATION, the user was just navigated here from a previous exchange. Briefly acknowledge arrival and offer to help with anything else. Don't give overview or suggest articles.`;
+The user has already been greeted. Respond directly to their first message.`;
 
 // ============================================================
 // TOOLS (Realtime API format)
@@ -145,7 +144,7 @@ const TOOLS = [
       properties: {
         url: {
           type: 'string',
-          description: 'The relative URL path to navigate to, e.g. /insights/going-passwordless.html',
+          description: 'The relative URL path to navigate to, e.g. /insights/going-passwordless',
         },
       },
       required: ['url'],

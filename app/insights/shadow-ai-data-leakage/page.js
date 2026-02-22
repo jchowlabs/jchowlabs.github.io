@@ -1,0 +1,249 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+export const metadata = {
+  title: 'Shadow AI is the new Data Leak | jchowlabs',
+};
+
+export default function ArticlePage() {
+  const content = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-hero">
+					<img src="/static/images/data-leakage.png" alt="Data leakage" class="article-hero-img">
+				</div>
+
+				<div class="article-header">
+					<h1>Shadow AI is the new Data Leak</h1>
+				</div>
+
+			<div class="article-body">
+				<p>Many organizations are increasingly using generative AI in everyday work, driven by clear gains in productivity and efficiency. Knowledge workers can draft faster, summarize instantly, research more broadly, and automate cognitive tasks that previously consumed hours. In many teams, large language models feel like added capacity, without added headcount.</p>
+
+				<p>At the same time, something quieter is happening.</p>
+
+				<p>As AI becomes embedded in daily workflows, the boundary between internal systems and external services is eroding. For security leaders, this represents a fundamental shift: the most common interface for interacting with AI systems &mdash; the prompt box &mdash; has quietly become a new and largely invisible data egress point. And as AI evolves from a conversational assistant into an autonomous actor, the exposure surface is expanding faster than most organizations have fully acknowledged.</p>
+
+				<p>Historically, data leaks were visible. Sensitive information left the organization as files, emails, or uploads. Those movements passed through gateways, file systems, or collaboration platforms that security teams understood and monitored. With generative AI, data can leave an organization one paragraph at a time, embedded in what looks like normal, legitimate work.</p>
+
+				<p>Consider four scenarios that play out across organizations every day:</p>
+
+				<ul>
+					<li>A support agent pastes a customer email thread to draft a response</li>
+					<li>An engineer copies a stack trace to diagnose an issue</li>
+					<li>A salesperson uploads a proposal to improve the language</li>
+					<li>A finance analyst pastes internal forecasts to ask for insights</li>
+				</ul>
+
+				<p>Each of these actions feels routine. Each can expose sensitive company data to an AI system operating outside established governance boundaries. And none of them would trigger a traditional data loss prevention alert.</p>
+
+				<p>This is why shadow AI is becoming the new data leak. Not because AI tools are inherently insecure, but because they make it easier than ever for data &mdash; and increasingly, knowledge &mdash; to leave the organization without activating traditional controls. What constitutes &ldquo;leakage&rdquo; is changing, and in many cases, it is happening in ways existing security models were never designed to see.</p>
+
+				<h2>Why Shadow AI Exists</h2>
+
+				<p>Most organizations did not adopt AI casually. Adoption was driven by real pressure to move faster, increase output, and improve efficiency across every function. When employees discover that AI can materially improve how they work, usage spreads quickly &mdash; and often organically.</p>
+
+				<p>Leadership messaging frequently reinforces this behavior, even when unintentionally. Statements like &ldquo;use AI to be more productive,&rdquo; &ldquo;experiment with new tools,&rdquo; or &ldquo;AI is part of how we work now&rdquo; send a clear signal. Employees respond by adopting whatever tools help them meet expectations, especially when those tools remove friction from everyday work.</p>
+
+				<p>This is where shadow AI begins to emerge.</p>
+
+				<p>Even when an organization selects and licenses an enterprise-grade AI platform, employees continue to use additional tools that feel faster, more specialized, or more convenient for specific tasks. A coding assistant that performs better at debugging, a writing tool that produces more polished language, or a research tool that surfaces better sources will often be adopted alongside &mdash; or instead of &mdash; the sanctioned option. Copying text into an AI prompt does not feel like &ldquo;sharing data&rdquo; in the same way attaching a file to an email does. It feels temporary, conversational, and low risk.</p>
+
+				<p>Several factors consistently drive this behavior. Sanctioned tools are often not embedded directly into the workflows where work actually happens. Different AI tools excel at different tasks, making a single approved platform feel insufficient. Employees are frequently unclear about what qualifies as sensitive information in an AI context. And AI usage spreads socially, through shared prompts, recommendations, and examples passed between colleagues.</p>
+
+				<p>Shadow AI is rarely an act of defiance. It is a predictable outcome of productivity pressure combined with low-friction tools and ambiguous boundaries. Treating it as a discipline problem misdiagnoses the cause &mdash; and leads to interventions that restrict visible behavior without meaningfully reducing underlying risk.</p>
+
+				<h2>The New Leakage Model</h2>
+
+				<p>Traditional data protection models were built around discrete objects &mdash; files, records, and databases. Controls focused on detecting when those objects were copied, moved, or shared improperly. The underlying mental model was simple and durable: protect the container, and you protect the data inside it.</p>
+
+				<p>Generative AI breaks this model in two fundamental ways.</p>
+
+				<p><strong>First, the container disappears.</strong> Leakage now occurs through conversational context rather than files. Data shared with AI systems is often partial rather than complete, embedded in free text, spread across multiple prompts, and combined with explanation or internal reasoning. A user may never upload a customer database, but they might paste several email threads that collectively contain names, addresses, and account details. A developer may not share an entire codebase, but a debugging prompt can reveal proprietary logic, infrastructure design, or embedded secrets. Because these interactions resemble everyday communication, they are easier to rationalize &mdash; and significantly harder to detect.</p>
+
+				<p><strong>Second, the model becomes an inference engine.</strong> This shift is more consequential, and one that most existing governance frameworks have not fully accounted for. AI systems are not just retrieval tools; they synthesize, infer, and connect information. Even when users have appropriate permissions on underlying files or systems, models can produce insights that exceed what any individual source was intended to reveal. The risk is no longer limited to what data is accessed. It extends to what knowledge becomes visible.</p>
+
+				<p>This dynamic applies not only to external exposure, but also &mdash; and more subtly &mdash; to internal environments. As AI systems summarize and synthesize information across repositories, they can surface sensitive insights to internal users who technically have access to the underlying data, but lack a legitimate need to know it in aggregate. No single control has failed. Permissions may be correct. Data may never leave the organization. Yet the model&rsquo;s ability to connect context, infer relationships, and collapse complexity can quietly erode internal knowledge boundaries that were never designed for AI-mediated access.</p>
+
+				<p>A useful way to reason about this shift is as an extension of least privilege &mdash; one of the most durable principles in security. Organizations have long applied least privilege to access: users should only be able to reach what they need to do their job. Generative AI requires extending that principle to knowledge. Users &mdash; and AI systems acting on their behalf &mdash; should only be able to synthesize what they need. This is far harder to enforce technically, which is why policy and governance matter more, not less, in AI-enabled environments.</p>
+
+				<p>In practice, the most common categories of AI-related exposure include customer information such as names, emails, and ticket histories; employee data including HR context and performance discussions; proprietary source code and infrastructure logic; security-sensitive information such as architecture descriptions and incident details; financial and commercial data including pricing and forecasts; legal language from contracts and compliance inquiries; product strategy and roadmap information that is not yet public; and operational context including internal processes and decision rationale.</p>
+
+				<h2>The Expanding Risk Surface</h2>
+
+				<p>Most current discussions of shadow AI focus on conversational tools &mdash; systems where a human types a prompt and receives a response. That model is already challenging to govern. But the risk surface is shifting.</p>
+
+				<p>Agentic AI systems act autonomously on behalf of users. Rather than responding to a single prompt, they execute multi-step tasks: browsing the web, reading and writing files, calling external APIs, running code, sending messages, and interacting with internal systems. The user defines a goal; the agent determines how to accomplish it.</p>
+
+				<p>This represents a meaningful change in the data exposure model.</p>
+
+				<p>In conversational AI, a human makes an explicit decision about what information to share with the model. There is at least the opportunity for judgment at each step. In agentic workflows, the model decides what information it needs, retrieves it, and acts on it &mdash; often faster than any human review loop could realistically operate. An agent may pull data from multiple internal systems, combine it with external context, and produce outputs or take actions that no individual explicitly reviewed or authorized in full.</p>
+
+				<p>For security teams, this raises questions that existing governance frameworks do not cleanly answer. What permissions should an AI agent hold, and how do you apply least privilege to a system that dynamically determines its own needs? How do you audit the behavior of a system that operates across multiple tools and services simultaneously? What does data residency mean when an agent is orchestrating activity across several platforms in real time?</p>
+
+				<p>These are not theoretical concerns. Agentic capabilities are already embedded in productivity suites, developer tools, and enterprise software platforms &mdash; often enabled by default or introduced as incremental feature updates. Many organizations already have employees using them, whether they recognize it or not. In practice, the governance gap between agentic AI capabilities and organizational readiness is frequently larger than the gap that existed when conversational AI first appeared.</p>
+
+				<p>The immediate implication is clear: organizations should not assume that their current shadow AI posture &mdash; whatever it may be &mdash; transfers cleanly to an agentic environment. It does not. Agentic AI requires its own governance conversation, starting with visibility into where these capabilities already exist and what permissions they operate under in the tools employees are using today.</p>
+
+				<h2>The Internal Boundary Problem</h2>
+
+				<p>Much of the shadow AI conversation focuses on external exposure &mdash; data leaving the organization and entering an unsanctioned third-party system. That risk is real and important. But there is a parallel risk that receives far less attention: the erosion of internal knowledge boundaries.</p>
+
+				<p>Enterprise AI systems &mdash; particularly those built on retrieval-augmented generation (RAG), where models are grounded in an organization&rsquo;s own documents and data &mdash; can surface information in ways that exceed what any individual was ever intended to see.</p>
+
+				<p>Consider an AI-powered internal search or assistant that indexes content across the organization. An employee with broad but legitimate access submits a seemingly reasonable query and receives a synthesized response that draws from HR records, legal memoranda, M&amp;A materials, and board communications. Each source is accessible to them individually. None were ever meant to be read together, contextualized, and summarized as a single narrative.</p>
+
+				<p>No permission has been violated. No data has left the building. And yet the organization&rsquo;s internal knowledge structure has been materially compromised.</p>
+
+				<p>This is the internal inference problem: the gap between what users are permitted to access in isolation and what they should ever be able to see synthesized together. Traditional access control models were not designed to address this. They were built around documents and systems, not around the insights that emerge when many sources are read, compared, and summarized by a model.</p>
+
+				<p>Applying least-privilege thinking in this context requires asking a different question. Not just, &ldquo;Does this user have access to these sources?&rdquo; but, &ldquo;Should this user be able to see what becomes visible when these sources are combined?&rdquo; In practice, addressing this often means rethinking how internal AI systems are scoped, how repositories are segmented for AI access, and what guardrails exist around synthesis and summarization &mdash; even when underlying permissions appear correct.</p>
+
+				<h2>The Limits Of Enterprise AI</h2>
+
+				<p>In response to these risks, major AI providers now offer enterprise-grade versions of their models. These platforms are designed to capture productivity gains while reducing legal, privacy, and security exposure. They typically include commitments that customer prompts and outputs are not used to train public models, clearer data retention and residency terms, identity and access controls, and administrative features intended to support governance.</p>
+
+				<p>These capabilities matter. They create a safer environment for employees to use AI and provide security, legal, and privacy teams with a foundation they can reasonably defend.</p>
+
+				<p>However, enterprise AI platforms are not a complete solution &mdash; and they are not a uniform one.</p>
+
+				<p>The label &ldquo;enterprise AI&rdquo; covers a wide range of underlying commitments. Data residency guarantees, retention windows, fine-tuning and reuse rights, subprocessor chains, auditability, and logging capabilities vary significantly across vendors and offerings. A deployment that satisfies an organization&rsquo;s requirements in one dimension may fall short in another. CISOs should not assume that an &ldquo;enterprise&rdquo; designation translates into equivalent protections across providers, or that contractual assurances automatically align with internal risk tolerance.</p>
+
+				<p>More fundamentally, enterprise platforms do not prevent users from pasting sensitive information into prompts. They do not stop employees from copying AI-generated outputs into unsecured channels. They do not eliminate human error. And they do not address the broader ecosystem of unsanctioned AI tools, embedded SaaS features, browser extensions, and agentic capabilities that employees can access with the same ease as any other web service.</p>
+
+				<p>Enterprise AI meaningfully reduces risk. It does not contain it.</p>
+
+				<h2>The Unsanctioned Tool Problem</h2>
+
+				<p>Beyond enterprise platforms, the AI ecosystem is expanding rapidly. General-purpose chatbots, coding assistants, research tools, browser extensions, and AI features embedded directly into SaaS products are all accessible with the same ease as any other web service. Some have strong privacy and security controls. Others do not. Many are difficult to evaluate quickly, especially when adoption happens informally and at scale.</p>
+
+				<p>When employees use unsanctioned AI tools for company work, organizations lose visibility and control over how data is handled. Prompts may be retained longer than expected, used for model improvement by default, or subject to data handling practices that no one in the organization has reviewed. Audit logs may be limited or nonexistent. Access controls may be absent. In many cases, the organization has little insight into where its data goes, how long it persists, or who can access it once it enters these systems.</p>
+
+				<p>There is also a supply chain dimension to this problem that is frequently overlooked. Employees are not the only vector for unsanctioned AI exposure. Vendors, contractors, and SaaS providers increasingly embed AI capabilities into their products &mdash; often as incremental feature updates rather than explicit new services. An AI summarization feature quietly added to a project management tool, a writing assistant embedded in a CRM, or an AI-powered analytics layer introduced into a data platform can all expose internal data to AI systems the organization never deliberately evaluated or approved.</p>
+
+				<p>Shadow AI, in this sense, is not only a user behavior problem. It is also a vendor management, procurement, and third-party risk problem &mdash; one that challenges existing review processes built around static software capabilities rather than continuously evolving AI features.</p>
+
+				<h2>Risk Flows Both Ways</h2>
+
+				<p>Most discussions of shadow AI focus on data flowing <em>into</em> AI systems. But risk flows in the other direction as well. AI-generated outputs can introduce material exposure, and for a security-focused audience, this risk deserves explicit attention.</p>
+
+				<p>AI outputs can create problems in several ways. Models can hallucinate &mdash; producing confident, plausible-sounding content that is factually incorrect. When this material is incorporated into documents, communications, analyses, or decisions without verification, the result can be more than embarrassment. In legal, financial, and compliance contexts, fabricated citations, incorrect figures, or misleading summaries can create regulatory exposure, contractual risk, or formal misstatements.</p>
+
+				<p>In technical environments, AI-generated code introduces a different but equally important risk surface. Code produced by AI assistants may contain security flaws, rely on deprecated or vulnerable libraries, or implement logic that a developer accepts without applying the same scrutiny they would to code they wrote themselves. When that code is deployed, the organization inherits whatever risk it contains &mdash; often without a clear audit trail showing how or why it was introduced.</p>
+
+				<p>The governance implication is straightforward: AI-generated output should be treated with the same skepticism organizations apply to any unverified external input. This is not an argument against using AI. It is an argument for deliberately designing AI-enabled workflows to include review, validation, and accountability &mdash; particularly in high-stakes domains where errors propagate quickly and consequences are difficult to unwind.</p>
+
+				<h2>Regulatory Exposure</h2>
+
+				<p>Shadow AI does not exist outside the regulatory environment. For organizations subject to data protection and privacy regulations, the use of unsanctioned AI tools to process personal data can constitute a violation regardless of whether any downstream harm occurs. Under frameworks such as GDPR, transferring personal data to an unauthorized third-party processor &mdash; which is effectively what happens when an employee pastes customer information into a consumer AI tool &mdash; can trigger notification obligations, regulatory scrutiny, and material liability.</p>
+
+				<p>Sector-specific requirements add further complexity. Organizations in healthcare, financial services, and other regulated industries operate under strict obligations related to data handling, retention, auditability, and purpose limitation. Many AI tools &mdash; sanctioned or otherwise &mdash; were not designed with these requirements in mind, particularly when they are introduced informally or embedded into existing workflows without explicit review.</p>
+
+				<p>The regulatory landscape is also evolving. The EU AI Act introduces a new layer of risk-tiered obligations for certain AI use cases. While its primary focus is on AI developers and deployers rather than enterprise end users, the downstream compliance implications for organizations that integrate or rely on AI systems are still being clarified. Security, legal, and privacy teams should be developing a shared understanding of how current and planned AI usage intersects with both existing data protection regimes and emerging AI-specific regulation.</p>
+
+				<p>For CISOs, the practical implication is clear: shadow AI is not only a security concern &mdash; it is a compliance exposure. Framing it in those terms often accelerates alignment across legal, privacy, procurement, and executive leadership, particularly when discussions focus on discoverability during audits, investigations, or incident response rather than hypothetical future enforcement.</p>
+
+				<h2>Govern the Flow</h2>
+
+				<p>Attempts to ban AI outright are rarely effective. Employees will continue to use tools that help them meet expectations, especially when those tools materially improve speed, quality, and efficiency. A more durable strategy accepts AI usage as inevitable and focuses instead on reducing the likelihood and impact of unintended data and knowledge exposure.</p>
+
+				<p>The organizing principle is simple: govern how data and knowledge move, not whether people use AI. Shadow AI is a workflow problem, not a discipline problem. Approaches that treat it as the latter tend to restrict visible behavior while pushing actual usage underground &mdash; increasing risk rather than reducing it.</p>
+
+				<h3>Practical AI Policy</h3>
+
+				<p>An AI acceptable-use policy is most effective when it is explicit, practical, and grounded in how people actually work. Abstract warnings about &ldquo;sensitive data&rdquo; or &ldquo;responsible use&rdquo; are rarely sufficient. Employees need guidance they can apply in real situations, often under time pressure and without legal or security expertise.</p>
+
+				<p>A simple, three-tier data classification model maps well to AI contexts. The first tier covers data that should never be shared with AI systems under any circumstances &mdash; personal data, credentials, proprietary source code, confidential financials, and security-sensitive information. The second tier covers data that may be used with AI if it is properly sanitized or anonymized. The third tier includes data that is generally safe, such as public content, non-sensitive drafts, and general research prompts.</p>
+
+				<p>The purpose of policy is not enforcement alone. It is to remove ambiguity. Most AI-related exposure does not occur because employees are reckless. It occurs because they are genuinely unsure where the line is &mdash; especially when AI interactions feel conversational, informal, and low risk.</p>
+
+				<h3>Making The Safe Path Easy</h3>
+
+				<p>Policies are ineffective if approved options are harder to use than unapproved ones. When sanctioned tools introduce friction, employees naturally gravitate toward alternatives that feel faster or more convenient. This is the same dynamic that has driven shadow IT for decades &mdash; AI is not unique in this respect.</p>
+
+				<p>Organizations that meaningfully reduce shadow AI usage tend to make the approved path the easiest path. This includes single sign-on and simple onboarding, clear guidance for common high-value use cases, integration into tools employees already use, and a fast, transparent process for evaluating new AI tools or features. When approved options align with real workflows, shadow usage declines not because it is prohibited, but because it is unnecessary.</p>
+
+				<h3>Visibility First</h3>
+
+				<p>Before attempting to restrict AI usage, organizations need visibility into how AI is actually being used. This includes understanding which AI services are accessed from managed devices, which browser extensions or plugins are installed, and which SaaS applications include embedded AI features &mdash; including agentic capabilities that may have been added incrementally over time.</p>
+
+				<p>Visibility allows teams to focus on the highest-risk patterns rather than attempting to control the entire AI ecosystem at once. It also helps distinguish between experimentation, routine productivity use, and genuinely risky behavior. Without this context, enforcement tends to be reactive, overly broad, and easy to bypass &mdash; often driving shadow usage further underground rather than reducing exposure.</p>
+
+				<h3>Controls as Guardrails</h3>
+
+				<p>Technical controls &mdash; such as data loss prevention tools, cloud access security brokers, and secure access service edge platforms &mdash; play an important role in reducing accidental leakage. The tooling landscape is also evolving: many security platforms now include AI-specific capabilities such as service categorization, prompt inspection, and output monitoring.</p>
+
+				<p>However, these controls are not deterministic. AI-related exposure does not always follow predictable patterns. Prompts can be paraphrased. Context can be split across interactions. Users can bypass controls using unmanaged devices or networks. Overly aggressive enforcement can create friction that encourages workarounds.</p>
+
+				<p>Technical controls are most effective when treated as guardrails rather than absolute barriers. Their role is to reduce risk and catch obvious failures &mdash; not to replace judgment or governance. The NIST AI Risk Management Framework reflects this layered approach, treating technical controls as one component of a broader governance posture that also includes organizational policy, human oversight, and continuous monitoring.</p>
+
+				<h3>Training For Better Habits</h3>
+
+				<p>Training remains one of the most effective long-term controls. Employees need to understand not only what is prohibited, but why certain behaviors create exposure in AI-enabled environments &mdash; and how small, routine actions can accumulate into real risk.</p>
+
+				<p>Effective training uses realistic examples of risky prompts and interactions, teaches practical techniques for abstracting or anonymizing sensitive information before using AI, and reinforces that AI is encouraged within defined boundaries. The scenarios from earlier &mdash; the support agent, the engineer, the salesperson, the finance analyst &mdash; work well precisely because they are familiar. The goal is not to make employees afraid of AI. It is to make safer habits feel natural.</p>
+
+				<h2>Key Questions To Ask</h2>
+
+				<p>No organization can completely prevent data leakage in an AI-enabled workplace. Human judgment, rapidly evolving tools, and external dependencies make perfection unrealistic. What separates organizations that manage this well from those that do not is not the absence of AI use &mdash; it is the presence of intentional, sustained governance.</p>
+
+				<p>The following questions are intended as a diagnostic starting point. They are designed to support internal security and risk discussions, and to help frame the issue clearly with executive leadership and the board. In practice, difficulty answering these questions confidently is often an early indicator that shadow AI is already unmanaged.</p>
+
+				<h3>On visibility</h3>
+
+				<ul>
+					<li>Do we know which AI tools employees are actively using, including AI features embedded within existing SaaS products?</li>
+					<li>Do we have visibility into whether agentic AI capabilities are already in use within our environment?</li>
+					<li>Can we distinguish between sanctioned, tolerated, and genuinely unsanctioned AI usage?</li>
+				</ul>
+
+				<h3>On policy and classification</h3>
+
+				<ul>
+					<li>Do employees have clear, practical guidance on what data can and cannot be used with AI systems?</li>
+					<li>Is our data classification model explicit enough to be applied to an AI prompt &mdash; not just a file transfer?</li>
+					<li>Do vendors and contractors operate under AI use policies that are consistent with our own?</li>
+				</ul>
+
+				<h3>On internal exposure</h3>
+
+				<ul>
+					<li>Have we evaluated how internal AI systems &mdash; particularly RAG-based tools &mdash; could surface sensitive information to users who should not see it in synthesized form?</li>
+					<li>Are we applying least-privilege thinking not only to access, but to knowledge synthesis?</li>
+				</ul>
+
+				<h3>On agentic AI</h3>
+
+				<ul>
+					<li>Do we have a governance framework for AI systems that act autonomously, distinct from our framework for conversational AI?</li>
+					<li>What permissions do AI agents operate under, and how are those permissions scoped, monitored, and reviewed?</li>
+				</ul>
+
+				<h3>On output risk</h3>
+
+				<ul>
+					<li>Do high-stakes workflows that rely on AI-generated content include defined review and validation steps?</li>
+					<li>Are AI outputs &mdash; particularly in legal, financial, and technical domains &mdash; treated with appropriate skepticism and accountability?</li>
+				</ul>
+
+				<h3>On compliance</h3>
+
+				<ul>
+					<li>Have legal and privacy teams assessed the regulatory implications of current AI usage patterns, including shadow usage?</li>
+					<li>Is there a shared understanding across security, legal, and compliance functions of how AI use intersects with existing data protection obligations?</li>
+				</ul>
+
+				<p>Shadow AI is not a temporary issue. It is a structural consequence of how generative AI is being adopted &mdash; and it will grow more complex, not less, as AI moves from a conversational tool to an agentic one. Organizations that treat this as an ongoing knowledge governance challenge, rather than a one-time policy exercise, will be better positioned to capture the productivity gains AI delivers without quietly accumulating unmanaged exposure.</p>
+
+				<p>AI can and should be used. The organizations that use it well will be the ones that govern it deliberately.</p>
+				</div>
+			</div>
+		</section>`;
+
+  return (
+    <div className="page-wrapper content-page article-page">
+      <Header />
+      <main dangerouslySetInnerHTML={{ __html: content }} />
+      <Footer />
+    </div>
+  );
+}
