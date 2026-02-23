@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export default function Header() {
   const pathname = usePathname();
+  const isHome = pathname === '/';
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -16,9 +18,35 @@ export default function Header() {
     setMenuOpen(false);
   }, []);
 
+  // On home page, observe sections to set active nav highlight
+  useEffect(() => {
+    if (!isHome) { setActiveSection(null); return; }
+    const sections = document.querySelectorAll('[data-nav-section]');
+    if (!sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.getAttribute('data-nav-section'));
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [isHome]);
+
   const isActive = (path) => {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
+  };
+
+  const scrollTo = (e, id) => {
+    e.preventDefault();
+    closeMenu();
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   const openModal = (e) => {
@@ -28,6 +56,11 @@ export default function Header() {
       window.openContactModal();
     }
   };
+
+  // Determine active state for nav items
+  const homeActive = isHome && (!activeSection || activeSection === 'home');
+  const insightsActive = isHome ? activeSection === 'insights' : isActive('/insights');
+  const labActive = isHome ? activeSection === 'labs' : isActive('/lab');
 
   return (
     <header>
@@ -46,24 +79,37 @@ export default function Header() {
       <nav className={menuOpen ? 'active' : ''}>
         <ul>
           <li>
-            <Link href="/" className={isActive('/') && pathname === '/' ? 'active' : ''} onClick={closeMenu}>
-              Home
-            </Link>
+            {isHome ? (
+              <a href="#" className={homeActive ? 'active' : ''} onClick={(e) => { e.preventDefault(); closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+                Home
+              </a>
+            ) : (
+              <Link href="/" className={homeActive ? 'active' : ''} onClick={closeMenu}>
+                Home
+              </Link>
+            )}
           </li>
           <li>
-            <Link href="/insights" className={isActive('/insights') ? 'active' : ''} onClick={closeMenu}>
-              Insights
-            </Link>
+            {isHome ? (
+              <a href="#insights" className={insightsActive ? 'active' : ''} onClick={(e) => scrollTo(e, 'insights')}>
+                Insights
+              </a>
+            ) : (
+              <Link href="/#insights" className={insightsActive ? 'active' : ''} onClick={closeMenu}>
+                Insights
+              </Link>
+            )}
           </li>
           <li>
-            <Link href="/research" className={isActive('/research') ? 'active' : ''} onClick={closeMenu}>
-              Research
-            </Link>
-          </li>
-          <li>
-            <Link href="/lab" className={isActive('/lab') ? 'active' : ''} onClick={closeMenu}>
-              Lab
-            </Link>
+            {isHome ? (
+              <a href="#labs" className={labActive ? 'active' : ''} onClick={(e) => scrollTo(e, 'labs')}>
+                Labs
+              </a>
+            ) : (
+              <Link href="/#labs" className={labActive ? 'active' : ''} onClick={closeMenu}>
+                Labs
+              </Link>
+            )}
           </li>
           <li>
             <Link href="/events" className={isActive('/events') ? 'active' : ''} onClick={closeMenu}>

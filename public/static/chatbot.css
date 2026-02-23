@@ -95,13 +95,14 @@
 /* ---------- Label ---------- */
 
 .va-pill-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   white-space: nowrap;
   overflow: hidden;
   flex: 1;
   opacity: 1;
+  text-align: center;
 }
 
 /* ---------- Close button (visible only in active state) ---------- */

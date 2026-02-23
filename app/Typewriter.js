@@ -12,10 +12,17 @@ export default function Typewriter() {
   const isPaused = useRef(false);
 
   useEffect(() => {
-    // Also wire up the CTA button to open the contact modal
+    // Also wire up the CTA buttons to open the contact modal
     const cta = document.getElementById('home-cta');
     if (cta) {
       cta.onclick = (e) => {
+        e.preventDefault();
+        if (window.openContactModal) window.openContactModal();
+      };
+    }
+    const ctaBtn = document.getElementById('cta-btn');
+    if (ctaBtn) {
+      ctaBtn.onclick = (e) => {
         e.preventDefault();
         if (window.openContactModal) window.openContactModal();
       };
