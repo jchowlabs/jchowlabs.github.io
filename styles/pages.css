@@ -421,19 +421,21 @@
     gap: 16px;
   }
   .home-labs-wrapper {
-    padding: 0 50px;
+    padding: 0;
+  }
+  .home-labs-track {
+    flex-direction: column;
+    gap: 16px;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
   .home-lab-card {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
+    flex: none;
+    width: 100%;
   }
   .home-labs-arrow {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
+    display: none;
   }
-  .home-labs-arrow.prev { left: 4px; }
-  .home-labs-arrow.next { right: 4px; }
 }
 
 /* --- Listing Pages (shared) --- */
