@@ -34,7 +34,7 @@ export default function CookieBanner() {
     <div className={`cookie-banner${visible ? ' show' : ''}`} id="cookieBanner">
       <div className="cookie-banner-content">
         <div className="cookie-banner-text">
-          <p><strong>Privacy Notice:</strong> We use analytics and AI-powered voice chat to improve your experience.</p>
+          <p><strong>Privacy notice:</strong> This site uses basic analytics and includes optional interactive features.</p>
         </div>
         <div className="cookie-banner-actions">
           <button className="cookie-btn cookie-btn-decline" onClick={() => handleConsent(false)}>
