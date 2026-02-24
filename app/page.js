@@ -182,7 +182,6 @@ export default function HomePage() {
           <CtaTypewriter />
           <span className="cursor">_</span>
         </h2>
-        <p className="home-cta-bridge">Independent advisory for accelerating AI adoption and modernizing security.</p>
         <a href="#" className="btn-main" id="cta-btn">
           Get in touch
         </a>
