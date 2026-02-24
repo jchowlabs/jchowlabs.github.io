@@ -146,17 +146,14 @@ export default function ContactModal() {
             <label htmlFor="helpWith">I need help with...</label>
             <select id="helpWith" name="helpWith" className={errors.helpWith ? 'error' : ''}>
               <option value="">Select an option</option>
-              <option value="IAM Health Check">IAM Health Check</option>
-              <option value="IAM Strategy">IAM Strategy</option>
-              <option value="Vendor Evaluation">Vendor Proof-of-Concepts</option>
-              <option value="Identity Verification">Identity Verification</option>
-              <option value="Single Sign-On">Single Sign-On</option>
-              <option value="Multi-Factor Authentication">Multi-Factor Authentication</option>
-              <option value="Passwordless Authentication">Passwordless Authentication</option>
-              <option value="Conversational AI">Conversational AI</option>
-              <option value="AI Agent Development">AI Agent Development</option>
-              <option value="AI Agent Security">AI Agent Security</option>
-              <option value="Github Repo Access">Github Repo Access</option>
+              <option value="Identity & access strategy">Identity &amp; access strategy</option>
+              <option value="Identity verification">Identity verification</option>
+              <option value="Passwordless authentication">Passwordless authentication</option>
+              <option value="Advanced authentication">Advanced authentication</option>
+              <option value="AI agents & conversational AI">AI agents &amp; conversational AI</option>
+              <option value="Securing AI systems">Securing AI systems</option>
+              <option value="Vendor evaluation">Vendor evaluation</option>
+              <option value="Exploratory conversation">Exploratory conversation</option>
             </select>
             {errors.helpWith && <div className="field-error">{errors.helpWith}</div>}
           </div>
