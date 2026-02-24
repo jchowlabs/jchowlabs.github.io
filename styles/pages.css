@@ -436,6 +436,12 @@
   .home-labs-arrow {
     display: none;
   }
+  .home-cta-heading {
+    font-size: 30px;
+  }
+  .home-cta-bridge {
+    font-size: 19px;
+  }
 }
 
 /* --- Listing Pages (shared) --- */
