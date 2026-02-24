@@ -1124,14 +1124,18 @@ footer span {
 .cookie-banner {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    min-width: 60%;
+    max-width: calc(100% - 24px);
     background: #F9F8F5;
     border-top: 1px solid #e5e5e5;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     padding: 14px;
     z-index: 1000;
     display: none;
+    border-radius: 12px 12px 0 0;
 }
 
 .cookie-banner.show {
@@ -1139,12 +1143,12 @@ footer span {
 }
 
 .cookie-banner-content {
-    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    flex-wrap: nowrap;
 }
 
 .cookie-banner-text {
@@ -1156,6 +1160,7 @@ footer span {
     color: #666;
     margin: 0;
     line-height: 1.5;
+    white-space: nowrap;
 }
 
 .cookie-banner-text strong {
@@ -1213,15 +1218,20 @@ footer span {
 @media (max-width: 768px) {
     .cookie-banner {
         padding: 12px;
+        width: calc(100% - 24px);
+        min-width: unset;
+        border-radius: 12px 12px 0 0;
     }
 
     .cookie-banner-content {
         flex-direction: column;
+        flex-wrap: wrap;
         gap: 12px;
     }
 
     .cookie-banner-text p {
         font-size: 11px;
+        white-space: normal;
     }
 
     .cookie-banner-actions {
