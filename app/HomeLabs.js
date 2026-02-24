@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 
 const labs = [
@@ -54,19 +54,100 @@ const labs = [
 
 export default function HomeLabs() {
   const trackRef = useRef(null);
+  const timerRef = useRef(null);
+  const stoppedRef = useRef(false);   // true once user clicks an arrow
 
   const scroll = (dir) => {
     const track = trackRef.current;
     if (!track) return;
     const cardWidth = track.firstElementChild?.offsetWidth ?? 360;
-    track.scrollBy({ left: dir * (cardWidth + 20), behavior: 'smooth' });
+    track.scrollBy({ left: dir * (cardWidth + 34), behavior: 'smooth' });
+  };
+
+  // Soft scroll with custom easing (easeInOutCubic, ~800ms)
+  const smoothScrollTo = useCallback((track, targetLeft) => {
+    const start = track.scrollLeft;
+    const distance = targetLeft - start;
+    const duration = 800;
+    let startTime = null;
+
+    const ease = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      track.scrollLeft = start + distance * ease(progress);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }, []);
+
+  const autoAdvance = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    // If at (or near) the end, rewind to start
+    if (track.scrollLeft >= maxScroll - 5) {
+      smoothScrollTo(track, 0);
+    } else {
+      const cardWidth = track.firstElementChild?.offsetWidth ?? 360;
+      smoothScrollTo(track, track.scrollLeft + cardWidth + 34);
+    }
+  }, [smoothScrollTo]);
+
+  const startTimer = useCallback(() => {
+    if (stoppedRef.current) return;
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(autoAdvance, 5000);
+  }, [autoAdvance]);
+
+  const pauseTimer = useCallback(() => {
+    clearInterval(timerRef.current);
+  }, []);
+
+  // Start auto-scroll when component mounts (desktop only)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    if (mq.matches) return;           // stacked on mobile, no auto-scroll
+
+    startTimer();
+
+    const track = trackRef.current;
+    if (track) {
+      track.addEventListener('mouseenter', pauseTimer);
+      track.addEventListener('mouseleave', startTimer);
+    }
+
+    const handleResize = () => {
+      if (mq.matches) pauseTimer();
+      else startTimer();
+    };
+    mq.addEventListener('change', handleResize);
+
+    return () => {
+      clearInterval(timerRef.current);
+      if (track) {
+        track.removeEventListener('mouseenter', pauseTimer);
+        track.removeEventListener('mouseleave', startTimer);
+      }
+      mq.removeEventListener('change', handleResize);
+    };
+  }, [startTimer, pauseTimer]);
+
+  const handleArrowClick = (dir) => {
+    stoppedRef.current = true;        // permanently stop auto-scroll
+    clearInterval(timerRef.current);
+    scroll(dir);
   };
 
   return (
     <div className="home-labs-wrapper">
       <button
         className="home-labs-arrow prev"
-        onClick={() => scroll(-1)}
+        onClick={() => handleArrowClick(-1)}
         aria-label="Scroll left"
       >
         &#8249;
@@ -115,7 +196,7 @@ export default function HomeLabs() {
 
       <button
         className="home-labs-arrow next"
-        onClick={() => scroll(1)}
+        onClick={() => handleArrowClick(1)}
         aria-label="Scroll right"
       >
         &#8250;
