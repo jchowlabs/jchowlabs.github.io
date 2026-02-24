@@ -144,7 +144,7 @@ export default function ContactModal() {
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="helpWith">I need help with...</label>
-            <select id="helpWith" name="helpWith" className={errors.helpWith ? 'error' : ''}>
+            <select id="helpWith" name="helpWith" className={`desktop-only ${errors.helpWith ? 'error' : ''}`}>
               <option value="">Select an option</option>
               <option value="Identity & access strategy">Identity &amp; access strategy</option>
               <option value="Identity verification">Identity verification</option>
@@ -154,6 +154,17 @@ export default function ContactModal() {
               <option value="Securing AI systems">Securing AI systems</option>
               <option value="Vendor evaluation">Vendor evaluation</option>
               <option value="Exploratory conversation">Exploratory conversation</option>
+            </select>
+            <select name="helpWith" className={`mobile-only ${errors.helpWith ? 'error' : ''}`}>
+              <option value="">Select an option</option>
+              <option value="Identity & access strategy">IAM strategy</option>
+              <option value="Identity verification">ID verification</option>
+              <option value="Passwordless authentication">Passwordless auth</option>
+              <option value="Advanced authentication">Advanced auth</option>
+              <option value="AI agents & conversational AI">Agents &amp; Convo AI</option>
+              <option value="Securing AI systems">Securing AI</option>
+              <option value="Vendor evaluation">Vendor evals</option>
+              <option value="Exploratory conversation">Exploratory convo</option>
             </select>
             {errors.helpWith && <div className="field-error">{errors.helpWith}</div>}
           </div>

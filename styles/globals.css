@@ -278,6 +278,11 @@ footer span {
     color: #333;
 }
 
+/* Desktop/mobile select toggle */
+.mobile-only {
+    display: none;
+}
+
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -1069,6 +1074,14 @@ footer span {
     
     .modal h2 {
         font-size: 20px;
+    }
+
+    /* Toggle desktop/mobile selects */
+    .desktop-only {
+        display: none !important;
+    }
+    .mobile-only {
+        display: block !important;
     }
 }
 
