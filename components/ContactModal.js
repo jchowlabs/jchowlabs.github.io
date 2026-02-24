@@ -8,6 +8,7 @@ const RECAPTCHA_SITEKEY = '6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld';
 
 export default function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [helpWith, setHelpWith] = useState('');
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef(null);
@@ -85,7 +86,6 @@ export default function ContactModal() {
 
     const name = form.name.value.trim();
     const email = form.email.value.trim();
-    const helpWith = form.helpWith.value.trim();
     const message = form.message.value.trim();
 
     if (!name) newErrors.name = 'Name is required';
@@ -122,6 +122,7 @@ export default function ContactModal() {
       });
 
       form.reset();
+      setHelpWith('');
       if (hasRecaptcha) window.grecaptcha.reset(widgetIdRef.current);
       setIsOpen(false);
     } catch (error) {
@@ -130,7 +131,7 @@ export default function ContactModal() {
     } finally {
       setSubmitting(false);
     }
-  }, []);
+  }, [helpWith]);
 
   if (!isOpen) return null;
 
@@ -144,7 +145,7 @@ export default function ContactModal() {
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="helpWith">I need help with...</label>
-            <select id="helpWith" name="helpWith" className={`desktop-only ${errors.helpWith ? 'error' : ''}`}>
+            <select id="helpWith" className={`desktop-only ${errors.helpWith ? 'error' : ''}`} value={helpWith} onChange={(e) => setHelpWith(e.target.value)}>
               <option value="">Select an option</option>
               <option value="Identity & access strategy">Identity &amp; access strategy</option>
               <option value="Identity verification">Identity verification</option>
@@ -155,7 +156,7 @@ export default function ContactModal() {
               <option value="Vendor evaluation">Vendor evaluation</option>
               <option value="Exploratory conversation">Exploratory conversation</option>
             </select>
-            <select name="helpWith" className={`mobile-only ${errors.helpWith ? 'error' : ''}`}>
+            <select className={`mobile-only ${errors.helpWith ? 'error' : ''}`} value={helpWith} onChange={(e) => setHelpWith(e.target.value)}>
               <option value="">Select an option</option>
               <option value="Identity & access strategy">IAM strategy</option>
               <option value="Identity verification">ID verification</option>
