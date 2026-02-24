@@ -180,12 +180,6 @@
              va-ring-speaking 1.2s ease-out infinite, va-shimmer 2s ease-in-out infinite;
 }
 
-/* ---------- Cookie banner offset ---------- */
-
-.cookie-banner.show ~ .va-pill {
-  bottom: 90px;
-}
-
 /* ---------- Error state ---------- */
 
 .va-pill.error .va-pill-orb {
@@ -205,7 +199,4 @@
     right: 16px;
   }
 
-  .cookie-banner.show ~ .va-pill {
-    bottom: 120px;
-  }
 }

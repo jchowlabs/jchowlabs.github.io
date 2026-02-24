@@ -21,8 +21,12 @@ export default function CookieBanner() {
     localStorage.setItem('cookieConsent', JSON.stringify(consent));
     setVisible(false);
 
-    if (accepted && typeof window.loadGoogleAnalytics === 'function') {
-      window.loadGoogleAnalytics();
+    if (accepted) {
+      if (typeof window.loadGoogleAnalytics === 'function') {
+        window.loadGoogleAnalytics();
+      }
+      // Notify chatbot.js that consent was granted
+      window.dispatchEvent(new CustomEvent('analytics-consent-granted'));
     }
   };
 
@@ -30,14 +34,14 @@ export default function CookieBanner() {
     <div className={`cookie-banner${visible ? ' show' : ''}`} id="cookieBanner">
       <div className="cookie-banner-content">
         <div className="cookie-banner-text">
-          <p><strong>Privacy Notice:</strong> We use analytics to understand how visitors use site.</p>
+          <p><strong>Privacy Notice:</strong> We use analytics and AI-powered voice chat to improve your experience.</p>
         </div>
         <div className="cookie-banner-actions">
           <button className="cookie-btn cookie-btn-decline" onClick={() => handleConsent(false)}>
             Decline
           </button>
           <button className="cookie-btn cookie-btn-accept" onClick={() => handleConsent(true)}>
-            Allow Analytics
+            Allow
           </button>
         </div>
       </div>

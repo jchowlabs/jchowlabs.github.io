@@ -59,19 +59,51 @@
   var pill, pillOrb, pillLabel, pillClose;
 
   // ============================================================
-  // BOOT
+  // BOOT (consent-gated)
   // ============================================================
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+    document.addEventListener('DOMContentLoaded', initWithConsent);
   } else {
-    boot();
+    initWithConsent();
+  }
+
+  /**
+   * Check localStorage consent and either boot immediately,
+   * wait for the CookieBanner event, or stay dormant.
+   */
+  function initWithConsent() {
+    if (!VOICE_CHAT_ENABLED) return;
+
+    var consent = null;
+    try {
+      consent = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+    } catch (_) {}
+
+    if (consent && consent.analytics === true) {
+      boot();
+    } else if (consent && consent.analytics === false) {
+      return;
+    } else {
+      // First visit — register listener, then re-check to cover race condition
+      window.addEventListener('analytics-consent-granted', function onConsent() {
+        window.removeEventListener('analytics-consent-granted', onConsent);
+        boot();
+      });
+
+      // Re-check in case CookieBanner wrote localStorage before this script loaded
+      try {
+        consent = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+      } catch (_) {}
+      if (consent && consent.analytics === true) {
+        boot();
+      }
+    }
   }
 
   function boot() {
-    if (!VOICE_CHAT_ENABLED) return; // Kill switch — pill never renders
-
-    injectDOM(false);
+    if (pill) return; // already booted
+    injectDOM();
     bindEvents();
   }
 
