@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import AudioPlayerInit from '@/components/AudioPlayerInit';
 
 export const metadata = {
-  title: 'A Practitioner\'s Guide to Going Passwordless | jchowlabs',
+  title: 'Passwordless in the Enterprise | jchowlabs',
   description: 'A practitioner\'s guide to enterprise passwordless adoption: risk, reality, and a practical framework for phased rollout, recovery, and privileged access.',
 };
 
@@ -76,7 +76,7 @@ export default function ArticlePage() {
 				</div>
 
 				<div class="article-header">
-					<h1>A Practitioner's Guide to Going Passwordless</h1>
+					<h1>Passwordless in the Enterprise</h1>
 				</div>
 
 				<div class="article-body">
