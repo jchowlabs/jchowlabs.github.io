@@ -4,11 +4,15 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0dSZvJuUNuqUUPbe_X7JyqgchIauBbAQtcz0lGdhF3cgOhK0W_tjVyPVh2g_ciaZw/exec';
 
+const RECAPTCHA_SITEKEY = '6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld';
+
 export default function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef(null);
+  const recaptchaRef = useRef(null);
+  const widgetIdRef = useRef(null);
 
   // Expose open/close globally for chatbot.js
   useEffect(() => {
@@ -32,6 +36,48 @@ export default function ContactModal() {
     }
   }, []);
 
+  // Render reCAPTCHA widget when modal opens
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const renderWidget = () => {
+      if (!recaptchaRef.current) return;
+      // If widget already rendered in this div, reset it
+      if (widgetIdRef.current !== null) {
+        try { window.grecaptcha.reset(widgetIdRef.current); } catch (e) {}
+        return;
+      }
+      try {
+        widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: RECAPTCHA_SITEKEY,
+          theme: 'light',
+        });
+      } catch (e) {
+        // Already rendered (edge case)
+      }
+    };
+
+    // grecaptcha may not be ready yet — poll briefly
+    if (window.grecaptcha && window.grecaptcha.render) {
+      renderWidget();
+    } else {
+      const poll = setInterval(() => {
+        if (window.grecaptcha && window.grecaptcha.render) {
+          clearInterval(poll);
+          renderWidget();
+        }
+      }, 200);
+      return () => clearInterval(poll);
+    }
+  }, [isOpen]);
+
+  // Reset widget id when modal closes so it re-renders next open
+  useEffect(() => {
+    if (!isOpen) {
+      widgetIdRef.current = null;
+    }
+  }, [isOpen]);
+
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const form = formRef.current;
@@ -48,8 +94,8 @@ export default function ContactModal() {
     if (!helpWith) newErrors.helpWith = 'Please select an option';
     if (!message) newErrors.message = 'Message is required';
 
-    const hasRecaptcha = typeof window.grecaptcha !== 'undefined';
-    const recaptchaResponse = hasRecaptcha ? window.grecaptcha.getResponse() : '';
+    const hasRecaptcha = typeof window.grecaptcha !== 'undefined' && widgetIdRef.current !== null;
+    const recaptchaResponse = hasRecaptcha ? window.grecaptcha.getResponse(widgetIdRef.current) : '';
     if (hasRecaptcha && !recaptchaResponse) newErrors.captcha = 'Please complete the reCAPTCHA';
 
     if (Object.keys(newErrors).length > 0) {
@@ -76,11 +122,11 @@ export default function ContactModal() {
       });
 
       form.reset();
-      if (hasRecaptcha) window.grecaptcha.reset();
+      if (hasRecaptcha) window.grecaptcha.reset(widgetIdRef.current);
       setIsOpen(false);
     } catch (error) {
       console.error('Form submission error:', error);
-      if (hasRecaptcha) window.grecaptcha.reset();
+      if (hasRecaptcha) window.grecaptcha.reset(widgetIdRef.current);
     } finally {
       setSubmitting(false);
     }
@@ -130,7 +176,7 @@ export default function ContactModal() {
             {errors.message && <div className="field-error">{errors.message}</div>}
           </div>
           <div className="captcha-container">
-            <div className="g-recaptcha" data-sitekey="6LePBVAsAAAAALJ6-5iWAx1mISKz7Rr9hwA8RSld"></div>
+            <div ref={recaptchaRef}></div>
           </div>
           {errors.captcha && <div className="field-error" style={{ textAlign: 'center', marginBottom: '12px' }}>{errors.captcha}</div>}
           <button type="submit" className="form-submit" disabled={submitting}>

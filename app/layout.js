@@ -22,12 +22,12 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <Script
-          src="https://www.google.com/recaptcha/api.js"
-          strategy="afterInteractive"
-        />
       </head>
       <body>
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+        />
         <Analytics />
         {children}
         <CookieBanner />
