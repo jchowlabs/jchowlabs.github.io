@@ -1300,3 +1300,202 @@ footer span {
         font-size: 0.7rem;
     }
 }
+
+/* ── Crypto Terminal ─────────────────────────────────────────────────── */
+
+.crypto-terminal {
+    background: #1e1e2e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 0 20px 0;
+    border: 1px solid #313244;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10), 0 6px 32px rgba(0, 0, 0, 0.06);
+}
+
+.crypto-terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: #181825;
+    border-bottom: 1px solid #313244;
+}
+
+.crypto-terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.crypto-terminal-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.crypto-terminal-dots .dot.red    { background: #f38ba8; }
+.crypto-terminal-dots .dot.yellow { background: #f9e2af; }
+.crypto-terminal-dots .dot.green  { background: #a6e3a1; }
+
+/* Phase pills */
+.crypto-terminal-phases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px 14px 7px;
+    background: #1e1e2e;
+    border-bottom: 1px solid #313244;
+}
+
+.phase-pill {
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 0.62rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid #45475a;
+    color: #585b70;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.phase-pill.done {
+    background: rgba(166, 227, 161, 0.12);
+    border-color: #a6e3a1;
+    color: #a6e3a1;
+}
+.phase-pill.active {
+    background: rgba(137, 180, 250, 0.15);
+    border-color: #89b4fa;
+    color: #89b4fa;
+}
+
+/* Terminal body */
+.crypto-terminal-body {
+    padding: 16px 20px;
+    height: 420px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.crypto-terminal-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #585b70;
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 0.82rem;
+}
+
+.term-line {
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: #cdd6f4;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+.term-line.cmd {
+    color: #89b4fa;
+    font-weight: 600;
+}
+.term-line.comment {
+    color: #6c7086;
+}
+.term-line.dim {
+    color: #7f849c;
+}
+.term-line.success {
+    color: #a6e3a1;
+}
+.term-line.error {
+    color: #f38ba8;
+}
+
+/* Controls */
+.crypto-terminal-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #181825;
+    border-top: 1px solid #313244;
+}
+
+.term-btn {
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 0.78rem;
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.term-btn.primary {
+    background: #89b4fa;
+    color: #1e1e2e;
+    font-weight: 600;
+}
+.term-btn.primary:hover:not(:disabled) {
+    background: #b4d0fb;
+}
+.term-btn.primary:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.term-btn.done {
+    background: transparent;
+    color: #6c7086;
+    border-color: #45475a;
+    opacity: 0.4;
+    cursor: default;
+}
+.term-btn.reset {
+    background: transparent;
+    color: #6c7086;
+    border-color: #45475a;
+}
+.term-btn.reset:hover {
+    color: #cdd6f4;
+    border-color: #6c7086;
+}
+.term-btn.reset.active {
+    background: #89b4fa;
+    color: #1e1e2e;
+    font-weight: 600;
+    border-color: transparent;
+}
+.term-btn.reset.active:hover {
+    background: #b4d0fb;
+}
+
+/* Scrollbar */
+.crypto-terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+.crypto-terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.crypto-terminal-body::-webkit-scrollbar-thumb {
+    background: #45475a;
+    border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+    .crypto-terminal-phases {
+        gap: 4px;
+        padding: 10px 12px 6px;
+    }
+    .phase-pill {
+        font-size: 0.62rem;
+        padding: 3px 7px;
+    }
+    .crypto-terminal-body {
+        padding: 12px 14px;
+        height: 320px;
+    }
+    .term-line {
+        font-size: 0.72rem;
+    }
+    .term-btn {
+        font-size: 0.72rem;
+        padding: 7px 14px;
+    }
+}

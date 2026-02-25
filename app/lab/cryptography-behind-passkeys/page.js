@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CryptoTerminal from '@/components/CryptoTerminal';
 
 export const metadata = {
   title: 'Cryptography Behind Passkeys | jchowlabs',
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 export default function ArticlePage() {
-  const content = `<section class="article-content-section">
+  const contentIntro = `<section class="article-content-section">
 			<div class="article-container">
 				<div class="article-hero">
 					<img src="/static/images/passkeys-cryptography.png" alt="Cryptography Behind Passkeys" class="article-hero-img">
@@ -22,9 +23,16 @@ export default function ArticlePage() {
 					<p>Let&rsquo;s start with a quick overview of what passkeys actually are. A passkey is a modern replacement for passwords, built on asymmetric (public-key) cryptography. When you register a passkey with a website, your device generates a private key inside secure hardware and shares only the corresponding public key with the server. The private key never leaves your device.</p>
 					<p>When you log in, your device doesn&rsquo;t send a secret across the network. Instead, it proves it holds the private key by signing a cryptographic challenge issued by the server. No password is typed. No shared secret is transmitted. Nothing reusable is stored server-side.</p>
 					<p>Passkeys are built on the <strong>WebAuthn / FIDO2</strong> standard. Under the hood, the core primitive is a <strong>digital signature scheme</strong>. This article walks through exactly how that works, from key generation, registration and authentication; all the way down to the underlying mathematics.</p>
+				</div>
+			</div>
+		</section>`;
+
+  const contentBody = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-body">
 
 
-					<h2>Part 1: The Cryptographic Foundation &mdash; Digital Signatures</h2>
+					<h2>Part 1: The Cryptographic Foundation</h2>
 					<p>Passkeys rely on digital signatures to prove possession of a private key without ever revealing it. A digital signature allows a device to produce a short piece of data that can only be generated with the private key, yet can be verified by anyone holding the corresponding public key.</p>
 					<p>Two signature algorithms dominate real-world passkey implementations:</p>
 					<ul>
@@ -405,7 +413,17 @@ X.x  mod  curve_order  ==  r                                     &check;
   return (
     <div className="page-wrapper content-page article-page">
       <Header />
-      <main dangerouslySetInnerHTML={{ __html: content }} />
+      <main>
+        <div dangerouslySetInnerHTML={{ __html: contentIntro }} />
+        <section className="article-content-section">
+          <div className="article-container">
+            <div className="article-body">
+              <CryptoTerminal />
+            </div>
+          </div>
+        </section>
+        <div dangerouslySetInnerHTML={{ __html: contentBody }} />
+      </main>
       <Footer />
     </div>
   );
