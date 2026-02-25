@@ -138,6 +138,11 @@ export default function Chatbot() {
         onModeChange: ({ mode }) => {
           // mode: 'speaking' (agent talking) | 'listening' (agent listening)
           setStatus(mode === 'speaking' ? 'speaking' : 'listening');
+
+          // If agent just finished speaking its farewell, end the session
+          if (mode === 'listening' && endingRef.current) {
+            endSession();
+          }
         },
 
         onStatusChange: ({ status: s }) => {
@@ -177,11 +182,13 @@ export default function Chatbot() {
           },
 
           end_session: async () => {
-            // Delay to let the agent's farewell audio finish playing
+            // Mark session as ending; actual disconnect happens in onModeChange
+            // once the agent finishes speaking its farewell
             endingRef.current = true;
+            // Safety fallback in case onModeChange never fires
             setTimeout(() => {
               if (endingRef.current) endSession();
-            }, 1500);
+            }, 8000);
             return 'Session ending';
           },
         },

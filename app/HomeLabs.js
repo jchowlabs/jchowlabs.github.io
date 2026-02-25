@@ -15,7 +15,8 @@ const labs = [
     tags: ['WebAuthn', 'Passkeys', 'Biometric Auth'],
   },
   {
-    href: null,
+    href: 'https://www.jchowlabs.me',
+    external: true,
     img: '/static/images/facial-liveness-verification.png',
     alt: 'Facial Liveness Verification',
     title: 'Facial Liveness Verification',
@@ -23,6 +24,16 @@ const labs = [
     summary:
       'An interactive lab exploring how facial verification systems distinguish a live human from a spoofed image, video, or mask. This lab covers passive and active liveness techniques, depth estimation, challenge-response prompts, and texture analysis used to defend against presentation attacks.',
     tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
+  },
+  {
+    href: null,
+    img: '/static/images/voice-concierge.png',
+    alt: 'Interactive Voice Assistant',
+    title: 'Interactive Voice Assistant',
+    status: 'live',
+    summary:
+      'Build an autonomous voice concierge that helps users understand and navigate a website through natural conversation. This lab covers real-time speech synthesis, intent recognition, contextual response generation, and seamless integration with site content and navigation.',
+    tags: ['Voice AI', 'Speech', 'Conversational UI'],
   },
   {
     href: '/lab/cryptography-behind-passkeys',
@@ -36,19 +47,9 @@ const labs = [
   },
   {
     href: null,
-    img: '/static/images/voice-concierge.png',
-    alt: 'Interactive Voice Assistant',
-    title: 'Interactive Voice Assistant',
-    status: 'coming-soon',
-    summary:
-      'Build an autonomous voice concierge that helps users understand and navigate a website through natural conversation. This lab covers real-time speech synthesis, intent recognition, contextual response generation, and seamless integration with site content and navigation.',
-    tags: ['Voice AI', 'Speech', 'Conversational UI'],
-  },
-  {
-    href: null,
     img: '/static/images/policy-guardrails.png',
-    alt: 'AI Agent Guardrail',
-    title: 'AI Agent Guardrail Internals',
+    alt: 'AI Agent Guardrails',
+    title: 'AI Agent Guardrails',
     status: 'coming-soon',
     summary:
       'Build guardrails for AI agents to understand how control and governance work in autonomous systems. This lab examines how agent instructions, tool access, and permissions translate into real capabilities, surfacing potential risk paths and unintended behavior before execution.',
@@ -186,13 +187,25 @@ export default function HomeLabs() {
           );
 
           return lab.href ? (
-            <Link
-              key={lab.title}
-              href={lab.href}
-              className="home-lab-card"
-            >
-              {inner}
-            </Link>
+            lab.external ? (
+              <a
+                key={lab.title}
+                href={lab.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="home-lab-card"
+              >
+                {inner}
+              </a>
+            ) : (
+              <Link
+                key={lab.title}
+                href={lab.href}
+                className="home-lab-card"
+              >
+                {inner}
+              </Link>
+            )
           ) : (
             <div
               key={lab.title}
