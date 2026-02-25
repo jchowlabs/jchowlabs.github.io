@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Load modal HTML from shared component
     try {
         const modalPath = window.location.pathname.includes('/insights/') || 
-                         window.location.pathname.includes('/research/') || 
                          window.location.pathname.includes('/lab/') 
                          ? '../includes/modal.html' 
                          : 'includes/modal.html';

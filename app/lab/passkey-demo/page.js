@@ -15,7 +15,6 @@ export default function PasskeyDemoPage() {
           <div className="demo-content">
             <div className="input-container">
               <h1 className="demo-title">
-                <img src="/static/images/passkey-icon.png" alt="Passkey icon" />
                 Passkey Playground
               </h1>
               <div className="form-group">

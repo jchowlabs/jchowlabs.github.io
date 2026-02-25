@@ -76,7 +76,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link className="home-card" href="/research/manipulating-factuality-llm">
+          <Link className="home-card" href="/insights/manipulating-factuality-llm">
             <div className="home-card-img">
               <img src="/static/images/rome.png" alt="ROME" />
             </div>
@@ -91,7 +91,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link className="home-card" href="/research/anatomy-phishing-attacks">
+          <Link className="home-card" href="/insights/anatomy-phishing-attacks">
             <div className="home-card-img">
               <img src="/static/images/phishing.png" alt="Phishing" />
             </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link className="home-card" href="/research/reconstructing-biometric-data">
+          <Link className="home-card" href="/insights/reconstructing-biometric-data">
             <div className="home-card-img">
               <img src="/static/images/template-inversion.png" alt="Template Inversion" />
             </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link className="home-card" href="/research/golden-saml">
+          <Link className="home-card" href="/insights/golden-saml">
             <div className="home-card-img">
               <img src="/static/images/golden-saml-icon.png" alt="Golden SAML" />
             </div>

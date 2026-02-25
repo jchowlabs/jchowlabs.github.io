@@ -1242,3 +1242,61 @@ footer span {
         flex: 1;
     }
 }
+
+/* --- Article code blocks (light background for formulas / pseudocode) --- */
+
+.page-wrapper.article-page .code-block {
+    background: #f7f7f8;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0 24px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.page-wrapper.article-page .code-block pre {
+    margin: 0;
+    padding: 0;
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: #1a1a1a;
+    white-space: pre;
+    tab-size: 4;
+}
+
+.page-wrapper.article-page .code-block sup {
+    font-size: 0.7em;
+    line-height: 0;
+    vertical-align: super;
+}
+
+.page-wrapper.article-page .code-block-wide pre {
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+.page-wrapper.article-page .article-body code {
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+    font-size: 0.88em;
+    background: #f2f2f3;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #1a1a1a;
+}
+
+@media (max-width: 600px) {
+    .page-wrapper.article-page .code-block {
+        padding: 14px 16px;
+        margin: 16px 0 20px 0;
+    }
+
+    .page-wrapper.article-page .code-block pre {
+        font-size: 0.76rem;
+    }
+
+    .page-wrapper.article-page .code-block-wide pre {
+        font-size: 0.7rem;
+    }
+}
