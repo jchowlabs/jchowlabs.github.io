@@ -70,10 +70,12 @@ Insights:
 
 Labs:
 - "Passkeys: Interactive Demo" — interactive passkey registration and login. URL: /lab/passkey-demo
-- "Identity Provider Internals" — build an IdP from scratch. URL: /lab/identity-provider-internals
-- "Password Vault Internals" — build an encrypted vault. URL: /lab/password-vault-internals
-- "Face Verification Internals" — biometric matching and liveness. URL: /lab/face-verification-internals
 - "AI Agent Guardrails Internals" [Coming Soon] — not yet published.
+
+Insights (formerly labs):
+- "Identity Provider Internals" — build an IdP from scratch. URL: /insights/identity-provider-internals
+- "Password Vault Internals" — build an encrypted vault. URL: /insights/password-vault-internals
+- "Face Verification Internals" — biometric matching and liveness. URL: /insights/face-verification-internals
 
 SECTION NAVIGATION (these are anchor links on the home page — always use the EXACT paths below, never infer a path):
 - Home: /

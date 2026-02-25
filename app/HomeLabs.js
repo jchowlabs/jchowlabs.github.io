@@ -23,33 +23,6 @@ const labs = [
     tags: ['Cryptography', 'Passkeys', 'WebAuthn'],
   },
   {
-    href: '/lab/identity-provider-internals',
-    img: '/static/images/idp.png',
-    alt: 'Identity Provider',
-    title: 'Identity Provider Internals',
-    summary:
-      'Build a lightweight identity provider from scratch to explore how modern identity systems work under the hood. This lab covers the core building blocks behind identity platforms used by large global enterprises, including directories, authentication flows, federation engines, and threat protection mechanisms.',
-    tags: ['Directory', 'SAML', 'Passkeys', 'Biometrics'],
-  },
-  {
-    href: '/lab/password-vault-internals',
-    img: '/static/images/password-vault.png',
-    alt: 'Password Manager',
-    title: 'Password Vault Internals',
-    summary:
-      'A browser extension\u2013based password management solution built from scratch, featuring end-to-end encryption, pseudo-random secret generation, and multi-factor authentication. This lab explores the architecture and security principles behind modern password vaults and how these systems operate in practice.',
-    tags: ['Encryption', 'Security', 'Password Vault'],
-  },
-  {
-    href: '/lab/face-verification-internals',
-    img: '/static/images/facial-recognition.png',
-    alt: 'Facial Recognition',
-    title: 'Face Verification Internals',
-    summary:
-      'Build a facial verification system from scratch to explore how identity verification systems work under the hood. This interactive lab examines biometric matching, liveness detection, and deepfake defenses, similar to those used in enterprise-grade identity verification platforms.',
-    tags: ['Biometrics', 'Deepfake', 'Liveness'],
-  },
-  {
     href: null,
     img: '/static/images/policy-guardrails.png',
     alt: 'AI Agent Guardrails',

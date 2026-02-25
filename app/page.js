@@ -166,6 +166,51 @@ export default function HomePage() {
             </div>
           </div>
 
+          <Link className="home-card" href="/insights/identity-provider-internals">
+            <div className="home-card-img">
+              <img src="/static/images/idp.png" alt="Identity Provider" />
+            </div>
+            <div className="home-card-content">
+              <h3>Identity Provider Internals</h3>
+              <p>Build a lightweight identity provider from scratch to explore how modern identity systems work under the hood. This lab covers the core building blocks behind identity platforms used by large global enterprises, including directories, authentication flows, federation engines, and threat protection mechanisms.</p>
+              <div className="home-card-tags">
+                <span className="home-card-tag">Directory</span>
+                <span className="home-card-tag">SAML</span>
+                <span className="home-card-tag">Passkeys</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link className="home-card" href="/insights/password-vault-internals">
+            <div className="home-card-img">
+              <img src="/static/images/password-vault.png" alt="Password Manager" />
+            </div>
+            <div className="home-card-content">
+              <h3>Password Vault Internals</h3>
+              <p>A browser extension&#8211;based password management solution built from scratch, featuring end-to-end encryption, pseudo-random secret generation, and multi-factor authentication. This lab explores the architecture and security principles behind modern password vaults and how these systems operate in practice.</p>
+              <div className="home-card-tags">
+                <span className="home-card-tag">Encryption</span>
+                <span className="home-card-tag">Security</span>
+                <span className="home-card-tag">Password Vault</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link className="home-card" href="/insights/face-verification-internals">
+            <div className="home-card-img">
+              <img src="/static/images/facial-recognition.png" alt="Facial Recognition" />
+            </div>
+            <div className="home-card-content">
+              <h3>Face Verification Internals</h3>
+              <p>Build a facial verification system from scratch to explore how identity verification systems work under the hood. This interactive lab examines biometric matching, liveness detection, and deepfake defenses, similar to those used in enterprise-grade identity verification platforms.</p>
+              <div className="home-card-tags">
+                <span className="home-card-tag">Biometrics</span>
+                <span className="home-card-tag">Deepfake</span>
+                <span className="home-card-tag">Liveness</span>
+              </div>
+            </div>
+          </Link>
+
         </div>
       </section>
 
