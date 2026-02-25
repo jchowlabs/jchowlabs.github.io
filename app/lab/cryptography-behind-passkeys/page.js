@@ -21,15 +21,15 @@ export default function ArticlePage() {
 					<p>Where does the strength in passkeys come from?</p>
 					<p>Let&rsquo;s start with a quick overview of what passkeys actually are. A passkey is a modern replacement for passwords, built on asymmetric (public-key) cryptography. When you register a passkey with a website, your device generates a private key inside secure hardware and shares only the corresponding public key with the server. The private key never leaves your device.</p>
 					<p>When you log in, your device doesn&rsquo;t send a secret across the network. Instead, it proves it holds the private key by signing a cryptographic challenge issued by the server. No password is typed. No shared secret is transmitted. Nothing reusable is stored server-side.</p>
-					<p>Passkeys are built on the <strong>WebAuthn / FIDO2</strong> standard. Under the hood, the core primitive is a <strong>digital signature scheme</strong>. This article walks through exactly how that works &mdash; from key generation to registration to authentication &mdash; all the way down to the underlying mathematics.</p>
+					<p>Passkeys are built on the <strong>WebAuthn / FIDO2</strong> standard. Under the hood, the core primitive is a <strong>digital signature scheme</strong>. This article walks through exactly how that works, from key generation, registration and authentication; all the way down to the underlying mathematics.</p>
 
 
 					<h2>Part 1: The Cryptographic Foundation &mdash; Digital Signatures</h2>
 					<p>Passkeys rely on digital signatures to prove possession of a private key without ever revealing it. A digital signature allows a device to produce a short piece of data that can only be generated with the private key, yet can be verified by anyone holding the corresponding public key.</p>
 					<p>Two signature algorithms dominate real-world passkey implementations:</p>
 					<ul>
-						<li><strong>RSA (RS256):</strong> Uses modular exponentiation. Supported broadly for compatibility, particularly on enterprise hardware tokens.</li>
-						<li><strong>ECDSA with P-256 (ES256):</strong> Uses elliptic curve cryptography. This is the default for most modern passkeys &mdash; Apple, Google, and Windows Hello all prefer this algorithm.</li>
+						<li><strong>RSA (RS256):</strong> Legacy signatures based on prime factorization.</li>
+						<li><strong>ECDSA with P-256 (ES256):</strong> Modern signatures based on elliptic-curve cryptography.</li>
 					</ul>
 					<p>Both algorithms follow the same high-level pattern: a private key signs a message, and the public key verifies that signature. The security properties of passkeys come from the fact that producing a valid signature is computationally infeasible without the private key. The underlying mathematics differ, so we will cover both.</p>
 
@@ -40,22 +40,22 @@ export default function ArticlePage() {
 					<ul>
 						<li><strong>N</strong> &mdash; the modulus, the product of two large secret primes <em>p</em> and <em>q</em></li>
 						<li><strong>e</strong> &mdash; the public exponent (almost universally 65537)</li>
-						<li><strong>d</strong> &mdash; the private exponent, computed such that <code>e &times; d &equiv; 1 (mod &lambda;(N))</code>, where &lambda;(N) is the Carmichael totient of N</li>
+						<li><strong>d</strong> &mdash; the private exponent, computed such that <code>e &times; d &equiv; 1 (mod &lambda;(N))</code>, where &lambda;(N) is the totient of N</li>
 					</ul>
 					<p>These form two keys:</p>
 					<div class="code-block">
-						<pre>Public key:   (e, N)   &mdash; shared with the server
-Private key:  (d, N)   &mdash; sealed in the secure enclave, never exported</pre>
+						<pre>Public key:  (e, N)  # shared with the server
+Private key: (d, N)  # sealed in the secure enclave, never exported</pre>
 					</div>
 
 					<p><strong>Signing and Verification</strong></p>
 					<p>In practice, we never sign the raw message &mdash; we sign its hash. This produces a fixed-size input for the modular arithmetic and ensures that changing even one byte of the original message completely invalidates the signature.</p>
 					<div class="code-block">
-						<pre># Signing   (private key operation)
-signature = Hash(message)<sup>d</sup>  mod N
+						<pre># Signing (private key operation)
+signature = Hash(message)<sup>d</sup> mod N
 
-# Verification   (public key operation)
-recovered = signature<sup>e</sup>  mod N
+# Verification (public key operation)
+recovered = signature<sup>e</sup> mod N
 
 valid  &harr;  recovered == Hash(message)</pre>
 					</div>
@@ -79,8 +79,8 @@ valid  &harr;  recovered == Hash(message)</pre>
 
 					<p><strong>Key Generation</strong></p>
 					<div class="code-block">
-						<pre>Private key:  d         &mdash; a random 256-bit integer, sealed in the secure enclave
-Public key:   Q = d &times; G &mdash; a point on the P-256 curve, shared with the server</pre>
+						<pre>Private key: d        # a random 256-bit integer, sealed in the secure enclave
+Public key:  Q = d &times; G # a point on the P-256 curve, shared with the server</pre>
 					</div>
 					<p>A 256-bit ECC key pair provides roughly the same security as a 3072-bit RSA key pair, in a much smaller package &mdash; which is why P-256 is preferred for passkeys.</p>
 
