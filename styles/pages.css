@@ -349,6 +349,11 @@
   height: 6px;
   border-radius: 50%;
   background: #2e7d32;
+  animation: live-pulse 2s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 .lab-status-badge.coming-soon {
   color: #d4736c;
