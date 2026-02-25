@@ -25,7 +25,7 @@ export default function CookieBanner() {
       if (typeof window.loadGoogleAnalytics === 'function') {
         window.loadGoogleAnalytics();
       }
-      // Notify chatbot.js that consent was granted
+      // Notify Chatbot component that consent was granted
       window.dispatchEvent(new CustomEvent('analytics-consent-granted'));
     }
   };

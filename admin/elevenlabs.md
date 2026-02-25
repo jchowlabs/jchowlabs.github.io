@@ -210,8 +210,151 @@ All of the following can be changed in the ElevenLabs dashboard without code cha
 ```
 
 **Key difference from OpenAI Realtime API:**
-- OpenAI: LLM logic, system prompt, and tool definitions all lived in client-side code
-- ElevenLabs: LLM logic, system prompt, voice, and tool definitions live on the server (dashboard). Client only handles audio I/O and tool execution.
+- OpenAI: LLM logic, system prompt, tool definitions, and API key proxy all lived in client-side code and a Cloudflare Worker
+- ElevenLabs: LLM logic, system prompt, voice, and tool definitions live on the server (dashboard). Client only handles audio I/O and tool execution. No proxy needed.
+
+---
+
+## Client-Side Implementation
+
+### Files
+
+| File | Purpose |
+|---|---|
+| `components/Chatbot.js` | React component — ElevenLabs SDK integration, UI rendering, tool handlers |
+| `styles/chatbot.css` | Orb/pill CSS — animations, states, responsive layout |
+| `app/layout.js` | Root layout — imports `chatbot.css` and renders `<Chatbot />` |
+| `package.json` | `@elevenlabs/client` dependency |
+
+### Dependencies
+
+| Package | Version | Purpose |
+|---|---|---|
+| `@elevenlabs/client` | ^0.15.0 | ElevenLabs Conversational AI SDK (WebSocket, audio, tool calls) |
+
+> **Note:** The old `@11labs/client` package is deprecated. Use `@elevenlabs/client`.
+
+### Component: `Chatbot.js`
+
+A `'use client'` React component (~275 lines) that manages the entire voice assistant lifecycle.
+
+#### State Machine
+
+```
+               click pill
+  ┌──────┐  ────────────►  ┌────────────┐
+  │ IDLE │                 │ CONNECTING │
+  └──────┘  ◄────────────  └────────────┘
+      ▲      error/              │
+      │      disconnect          │ onConnect
+      │                          ▼
+      │                   ┌────────────┐
+      │   end_session /   │  LISTENING │◄──── onModeChange('listening')
+      │   disconnect      │            │
+      │◄──────────────────│  SPEAKING  │◄──── onModeChange('speaking')
+      │                   └────────────┘
+```
+
+| State | Pill Class | Label | Close Button |
+|---|---|---|---|
+| `idle` | `va-pill` | "Voice chat" | Hidden |
+| `connecting` | `va-pill active connecting` | "Connecting…" | Hidden |
+| `listening` | `va-pill active` | "Listening…" | Visible |
+| `speaking` | `va-pill active speaking` | "Speaking…" | Visible |
+| `error` | `va-pill error` | "Unavailable" | Hidden |
+
+#### Cookie Consent Gate
+
+The pill only renders after analytics consent is granted via the `CookieBanner` component. It checks `localStorage('cookieConsent')` on mount and listens for the `analytics-consent-granted` custom event.
+
+#### SDK Integration
+
+The component dynamically imports `@elevenlabs/client` to avoid SSR issues:
+
+```js
+const { Conversation } = await import('@elevenlabs/client');
+const conversation = await Conversation.startSession({
+  agentId: AGENT_ID,
+  onConnect, onDisconnect, onModeChange, onStatusChange, onError,
+  clientTools: { navigate, open_contact, end_session },
+});
+```
+
+Key SDK methods used:
+- `Conversation.startSession(options)` — initiates WebSocket connection, mic access, and audio playback
+- `conversation.endSession()` — disconnects cleanly
+- `conversation.getOutputVolume()` — agent's current speech volume (0–1)
+- `conversation.getInputVolume()` — user's current mic volume (0–1)
+
+#### Client Tool Handlers
+
+| Tool | Handler | Behavior |
+|---|---|---|
+| `navigate` | `router.push(url)` | Uses Next.js router directly (no global bridge needed) |
+| `open_contact` | `window.openContactModal()` | Calls the function exposed by `ContactModal.js` |
+| `end_session` | `conversation.endSession()` | 1.5s delay to let farewell audio finish, then disconnects |
+
+#### Volume-Reactive Orb
+
+A `requestAnimationFrame` loop runs during active sessions:
+1. Polls `getOutputVolume()` and `getInputVolume()` each frame
+2. Computes a target scale: baseline breathing (sine wave ±3%) + volume boost (0–25%)
+3. Smoothly interpolates the current scale toward the target (lerp factor 0.18)
+4. Applies `transform: scale(...)` directly to the orb element via ref
+
+This replaces the old CSS `va-breathe` keyframe animations with real audio-reactive movement. The CSS glow, ring, and shimmer animations remain CSS-driven.
+
+#### Error Handling
+
+On error, the pill shows "Unavailable" for 4 seconds then resets to idle. Errors are caught from:
+- SDK `onError` callback (network issues, auth failures)
+- `startSession` try/catch (mic permission denied, module load failure)
+
+### CSS: `styles/chatbot.css`
+
+~205 lines of CSS for the pill/orb widget.
+
+#### Keyframe Animations (CSS-driven)
+
+| Animation | Used In | Purpose |
+|---|---|---|
+| `va-glow` | Active (listening) | Blue glow pulse, 2.5s cycle |
+| `va-glow-speaking` | Active (speaking) | Purple-shifted glow, 0.9s cycle |
+| `va-ring` | Active (listening) | Ring pulse outward, 2.5s cycle |
+| `va-ring-speaking` | Active (speaking) | Wider ring pulse, 1.2s cycle |
+| `va-shimmer` | Active (both) | Gradient position shift |
+| `va-blink` | Connecting | Opacity blink, 1.5s cycle |
+
+> **Note:** `va-breathe` and `va-breathe-speaking` keyframes still exist in the CSS but are no longer applied. The transform/scale is now driven by the JavaScript volume monitor for audio-reactive behavior.
+
+#### Responsive
+
+On viewports ≤480px, the pill shifts to `bottom: 16px; right: 16px`.
+
+### Layout Integration
+
+`app/layout.js` renders the chatbot as the last element in `<body>`:
+
+```jsx
+<Chatbot />
+```
+
+No `<Script>` tags are needed for the chatbot. The SDK is imported as an ES module by the component.
+
+---
+
+## Retired Files
+
+The following files were part of the OpenAI Realtime API implementation and have been removed:
+
+| File | Was | Status |
+|---|---|---|
+| `public/static/chatbot.js` | OpenAI WebRTC client (~575 lines) | **Deleted** |
+| `public/static/chatbot.css` | Old text chat UI styles | **Deleted** |
+| `admin/worker.js` | Cloudflare Worker proxy | **Retired** (kept for reference, marked as retired) |
+| `admin/openai.md` | OpenAI implementation docs | **Kept** (historical reference) |
+
+The Cloudflare Worker (`jchowlabs-chatbot.jchow-a27.workers.dev`) can be deleted from the Cloudflare dashboard at any time.
 
 ---
 
@@ -227,6 +370,8 @@ At an average conversation of ~1 minute, each visitor interaction costs approxim
 
 ---
 
-## Setup Date
+## Changelog
 
-Initial setup: February 24, 2026
+| Date | Change |
+|---|---|
+| February 24, 2026 | Initial setup — created agent, configured tools, voice, LLM, security. Migrated client from OpenAI Realtime API to ElevenLabs SDK. Deleted old chatbot.js/css, retired Cloudflare Worker. |

@@ -1,4 +1,11 @@
 /**
+ * [RETIRED — February 24, 2026]
+ * Replaced by ElevenLabs Conversational AI. See admin/elevenlabs.md.
+ * This file is kept for historical reference only.
+ * The Cloudflare Worker can be deleted from the Cloudflare dashboard.
+ *
+ * ---
+ * Original purpose:
  * Creates ephemeral Realtime API sessions for WebRTC voice clients.
  * Holds the API key, injects the system prompt, and enforces rate limits.
  *

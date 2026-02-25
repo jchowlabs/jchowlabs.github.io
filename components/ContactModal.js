@@ -15,7 +15,7 @@ export default function ContactModal() {
   const recaptchaRef = useRef(null);
   const widgetIdRef = useRef(null);
 
-  // Expose open/close globally for chatbot.js
+  // Expose open/close globally for Chatbot component
   useEffect(() => {
     window.openContactModal = () => setIsOpen(true);
     window.openModal = (e) => {
