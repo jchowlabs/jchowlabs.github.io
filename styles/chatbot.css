@@ -160,8 +160,9 @@
     radial-gradient(circle at 30% 25%, rgba(255,255,255,0.45) 0%, transparent 45%),
     radial-gradient(circle at 35% 35%, #7dd3fc, #38bdf8, #2563eb, #6366f1);
   background-size: 100% 100%;
-  animation: va-breathe 2.5s ease-in-out infinite, va-glow 2.5s ease-in-out infinite,
+  animation: va-glow 2.5s ease-in-out infinite,
              va-ring 2.5s ease-out infinite, va-shimmer 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* ---------- Connecting state ---------- */
@@ -176,8 +177,9 @@
   background:
     radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55) 0%, transparent 40%),
     radial-gradient(circle at 35% 35%, #93c5fd, #60a5fa, #3b82f6, #6366f1, #8b5cf6);
-  animation: va-breathe-speaking 0.9s ease-in-out infinite, va-glow-speaking 0.9s ease-in-out infinite,
+  animation: va-glow-speaking 0.9s ease-in-out infinite,
              va-ring-speaking 1.2s ease-out infinite, va-shimmer 2s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* ---------- Error state ---------- */
