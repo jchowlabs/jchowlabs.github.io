@@ -14,6 +14,15 @@ const labs = [
     tags: ['WebAuthn', 'Passkeys', 'Biometric Auth'],
   },
   {
+    href: '/lab/cryptography-behind-passkeys',
+    img: '/static/images/passkeys-cryptography.png',
+    alt: 'Cryptography Behind Passkeys',
+    title: 'Cryptography Behind Passkeys',
+    summary:
+      'A technical walkthrough of the cryptographic foundations that make passkeys work. This lab covers asymmetric key pairs, on-device key generation, WebAuthn registration and authentication flows, and why passkeys are resistant to phishing, replay attacks, and credential theft.',
+    tags: ['Cryptography', 'Passkeys', 'WebAuthn'],
+  },
+  {
     href: '/lab/identity-provider-internals',
     img: '/static/images/idp.png',
     alt: 'Identity Provider',

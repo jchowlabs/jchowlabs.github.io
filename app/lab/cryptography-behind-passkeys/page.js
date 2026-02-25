@@ -2,7 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'The Cryptography Behind Passkeys | jchowlabs',
+  title: 'Cryptography Behind Passkeys | jchowlabs',
   description: 'A deep dive into how passkeys work at the cryptographic level — RSA, ECDSA, key generation, registration, authentication, and why it\'s secure.',
 };
 
@@ -10,11 +10,11 @@ export default function ArticlePage() {
   const content = `<section class="article-content-section">
 			<div class="article-container">
 				<div class="article-hero">
-					<img src="/static/images/going-passwordless.png" alt="The Cryptography Behind Passkeys" class="article-hero-img">
+					<img src="/static/images/passkeys-cryptography.png" alt="Cryptography Behind Passkeys" class="article-hero-img">
 				</div>
 
 				<div class="article-header">
-					<h1>The Cryptography Behind Passkeys</h1>
+					<h1>Cryptography Behind Passkeys</h1>
 				</div>
 
 				<div class="article-body">
