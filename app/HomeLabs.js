@@ -9,24 +9,47 @@ const labs = [
     img: '/static/images/passkey-icon.png',
     alt: 'Passkey Authentication',
     title: 'Passkeys: Interactive Demo',
+    status: 'live',
     summary:
       'An interactive, step-by-step exploration of how passkey-based authentication works in practice. This lab visually breaks down passkey registration and authentication flows, showing on-device key generation, cryptographic challenge signing, and server-side verification as they occur.',
     tags: ['WebAuthn', 'Passkeys', 'Biometric Auth'],
+  },
+  {
+    href: null,
+    img: '/static/images/facial-liveness-verification.png',
+    alt: 'Facial Liveness Verification',
+    title: 'Facial Liveness Verification',
+    status: 'live',
+    summary:
+      'An interactive lab exploring how facial verification systems distinguish a live human from a spoofed image, video, or mask. This lab covers passive and active liveness techniques, depth estimation, challenge-response prompts, and texture analysis used to defend against presentation attacks.',
+    tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
   },
   {
     href: '/lab/cryptography-behind-passkeys',
     img: '/static/images/passkeys-cryptography.png',
     alt: 'Cryptography Behind Passkeys',
     title: 'Cryptography Behind Passkeys',
+    status: 'live',
     summary:
       'A technical walkthrough of the cryptographic foundations that make passkeys work. This lab covers asymmetric key pairs, on-device key generation, WebAuthn registration and authentication flows, and why passkeys are resistant to phishing, replay attacks, and credential theft.',
     tags: ['Cryptography', 'Passkeys', 'WebAuthn'],
   },
   {
     href: null,
+    img: '/static/images/voice-concierge.png',
+    alt: 'Interactive Voice Assistant',
+    title: 'Interactive Voice Assistant',
+    status: 'coming-soon',
+    summary:
+      'Build an autonomous voice concierge that helps users understand and navigate a website through natural conversation. This lab covers real-time speech synthesis, intent recognition, contextual response generation, and seamless integration with site content and navigation.',
+    tags: ['Voice AI', 'Speech', 'Conversational UI'],
+  },
+  {
+    href: null,
     img: '/static/images/policy-guardrails.png',
-    alt: 'AI Agent Guardrails',
-    title: 'AI Agent Guardrails Internals',
+    alt: 'AI Agent Guardrail',
+    title: 'AI Agent Guardrail Internals',
+    status: 'coming-soon',
     summary:
       'Build guardrails for AI agents to understand how control and governance work in autonomous systems. This lab examines how agent instructions, tool access, and permissions translate into real capabilities, surfacing potential risk paths and unintended behavior before execution.',
     tags: ['Governance', 'Policy Engine', 'AI Safety'],
@@ -143,6 +166,12 @@ export default function HomeLabs() {
                 <img src={lab.img} alt={lab.alt} style={lab.imgStyle || {}} />
               </div>
               <div className="home-lab-card-body">
+                {lab.status === 'live' && (
+                  <span className="lab-status-badge live">Live</span>
+                )}
+                {lab.status === 'coming-soon' && (
+                  <span className="lab-status-badge coming-soon">Coming Soon</span>
+                )}
                 <h3>{lab.title}</h3>
                 <p>{lab.summary}</p>
                 <div className="home-lab-card-tags">
