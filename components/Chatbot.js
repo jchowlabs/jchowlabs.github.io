@@ -129,10 +129,24 @@ export default function Chatbot() {
         },
 
         onDisconnect: () => {
-          // Server-side or agent-initiated disconnect
-          conversationRef.current = null;
-          stopVolumeMonitor();
-          setStatus('idle');
+          // Server-side or agent-initiated disconnect.
+          // If the agent was speaking, delay cleanup so buffered audio
+          // finishes playing instead of cutting off mid-word.
+          const wasSpeaking = conversationRef.current &&
+            (document.querySelector('.va-pill.speaking') !== null);
+
+          const cleanup = () => {
+            conversationRef.current = null;
+            stopVolumeMonitor();
+            setStatus('idle');
+          };
+
+          if (wasSpeaking) {
+            // Keep audio alive briefly so the final sentence completes
+            setTimeout(cleanup, 2500);
+          } else {
+            cleanup();
+          }
         },
 
         onModeChange: ({ mode }) => {
