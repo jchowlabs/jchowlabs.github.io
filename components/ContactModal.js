@@ -18,6 +18,7 @@ export default function ContactModal() {
   // Expose open/close globally for Chatbot component
   useEffect(() => {
     window.openContactModal = () => setIsOpen(true);
+    window.closeContactModal = () => setIsOpen(false);
     window.openModal = (e) => {
       if (e && e.preventDefault) e.preventDefault();
       setIsOpen(true);
@@ -25,6 +26,7 @@ export default function ContactModal() {
     window.closeModal = () => setIsOpen(false);
     return () => {
       delete window.openContactModal;
+      delete window.closeContactModal;
       delete window.openModal;
       delete window.closeModal;
     };

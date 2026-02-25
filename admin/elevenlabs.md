@@ -75,7 +75,12 @@ Labs:
 - "Face Verification Internals" — biometric matching and liveness. URL: /lab/face-verification-internals
 - "AI Agent Guardrails Internals" [Coming Soon] — not yet published.
 
-Navigation: Home /, Insights section /#insights, Labs section /#labs, Events /events, Get in Touch (use open_contact tool)
+SECTION NAVIGATION (these are anchor links on the home page — always use the EXACT paths below, never infer a path):
+- Home: /
+- Insights section: /#insights (NEVER use /insights or /insights/)
+- Labs section: /#labs (NEVER use /lab or /labs or /lab/)
+- Events page: /events
+- Get in Touch: use the open_contact tool
 
 RECOMMENDING CONTENT:
 - Match the user's interest to 1–2 articles. Name each article once, then ask "Want me to take you to that one?" (single match) or "Which one sounds interesting?" (multiple matches).
@@ -222,7 +227,7 @@ All three tools are **client tools** — they fire events to the browser, not to
 | Use Scribe | Off |
 | Filter background speech | Off |
 | User input audio format | PCM 16000 Hz (Recommended) |
-| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, OpenBounty, AfterCheck |
+| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, identity, deepfake |
 
 ### Conversational Behavior
 
@@ -449,5 +454,6 @@ At an average conversation of ~1 minute, each visitor interaction costs approxim
 
 | Date | Change |
 |---|---|
+| February 25, 2026 | System prompt update — removed hidden articles (AfterCheck, OpenBounty, 2026 Security Trends) from catalog. Added explicit section navigation block with warnings. Updated Keywords. Added `closeContactModal` global. Navigate handler now closes contact modal and handles hash routes via `window.location.href`. |
 | February 24, 2026 | CSS fix — widened active pill from 168px→200px, reduced active label font from 15px→13px, added text-overflow ellipsis and width transition for overflow safety. |
 | February 24, 2026 | Initial setup — created agent, configured tools, voice, LLM, security. Migrated client from OpenAI Realtime API to ElevenLabs SDK. Deleted old chatbot.js/css, retired Cloudflare Worker. |

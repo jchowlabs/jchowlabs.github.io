@@ -154,9 +154,18 @@ export default function Chatbot() {
 
         clientTools: {
           navigate: async ({ url }) => {
+            // Close contact modal if open before navigating
+            if (typeof window.closeContactModal === 'function') {
+              window.closeContactModal();
+            }
             let clean = url.replace(/\.html$/, '');
             if (clean === '/index') clean = '/';
-            router.push(clean);
+            // Hash routes (e.g. /#insights, /#labs) need direct location change
+            if (clean.includes('#')) {
+              window.location.href = clean;
+            } else {
+              router.push(clean);
+            }
             return 'Navigated successfully';
           },
 
