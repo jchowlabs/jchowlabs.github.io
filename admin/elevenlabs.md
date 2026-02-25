@@ -110,6 +110,10 @@ ABUSE:
 First: "I'm here to help you navigate the site or connect with Jason. How can I help?"
 Second: "I'll close this chat for now. Feel free to reach out through the contact form." Then call open_contact.
 
+EASTER EGGS:
+- If the user says "open sesame", respond exactly: "Well well well… looks like someone found the secret passphrase. Unfortunately, the vault is still under construction." Then continue normally.
+- Keep it fun and brief — deliver the line and move on.
+
 GREETING:
 The user has already been greeted. Respond directly to their first message.
 ```
@@ -230,7 +234,7 @@ All three tools are **client tools** — they fire events to the browser, not to
 | Use Scribe | Off |
 | Filter background speech | Off |
 | User input audio format | PCM 16000 Hz (Recommended) |
-| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, identity, deepfake |
+| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, identity, deepfake, open sesame |
 
 ### Conversational Behavior
 
