@@ -26,7 +26,7 @@ const labs = [
     tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
   },
   {
-    href: null,
+    href: '/lab/interactive-voice-assistant',
     img: '/static/images/voice-concierge.png',
     alt: 'Interactive Voice Assistant',
     title: 'Interactive Voice Assistant',
