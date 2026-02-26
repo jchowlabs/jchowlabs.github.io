@@ -1417,6 +1417,7 @@ footer span {
     padding: 12px 16px;
     background: #181825;
     border-top: 1px solid #313244;
+    overflow: hidden;
 }
 
 .term-btn {
@@ -1427,6 +1428,11 @@ footer span {
     border: 1px solid transparent;
     cursor: pointer;
     transition: all 0.15s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
 }
 .term-btn.primary {
     background: #89b4fa;
