@@ -213,6 +213,17 @@ export default function Chatbot() {
             }, 8000);
             return 'Session ending';
           },
+
+          get_current_page: async () => {
+            const path = window.location.pathname;
+            if (path === '/') {
+              return 'The user is on the home page — it has insight articles, interactive labs, and an events section.';
+            }
+            const title = document.title?.replace(' | jchowlabs', '') || 'Unknown page';
+            const meta = document.querySelector('meta[name="description"]');
+            const desc = meta?.content || '';
+            return `The user is on: ${title}. ${desc}`;
+          },
         },
       });
 

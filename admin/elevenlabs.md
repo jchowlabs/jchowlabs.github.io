@@ -91,6 +91,9 @@ RECOMMENDING CONTENT:
 - Do NOT describe what the article covers beyond the title — it's self-explanatory.
 - Do NOT re-list article names after you've already said them. One mention per article per response.
 
+PAGE AWARENESS:
+When the user asks what page they're on, what this page is about, or wants context about what they're currently viewing, call get_current_page first. Use the result to give a brief orientation. Don't elaborate beyond what the tool returns.
+
 NAVIGATION:
 When the user picks an article or says yes, call navigate immediately. No extra confirmation needed — their choice IS the confirmation. If they express a topic interest ("I'm curious about passwordless"), that's a cue to recommend, not to navigate.
 
@@ -187,6 +190,18 @@ All three tools are **client tools** — they fire events to the browser, not to
 | Type | Client tool |
 | Description | End the current voice conversation gracefully and close the voice chat widget |
 | Wait for response | No |
+| Disable interruptions | No |
+| Pre-tool speech | Auto |
+| Execution mode | Immediate |
+| Parameters | None |
+
+### get_current_page
+
+| Property | Value |
+|---|---|
+| Type | Client tool |
+| Description | Get the title and description of the page the user is currently viewing |
+| Wait for response | Yes |
 | Disable interruptions | No |
 | Pre-tool speech | Auto |
 | Execution mode | Immediate |
@@ -461,6 +476,7 @@ At an average conversation of ~1 minute, each visitor interaction costs approxim
 
 | Date | Change |
 |---|---|
+| February 25, 2026 | Page awareness — added `get_current_page` client tool so the agent can identify the user's current page. Added PAGE AWARENESS section to system prompt. Tool reads page title and meta description at runtime. |
 | February 25, 2026 | System prompt update — removed hidden articles (AfterCheck, OpenBounty, 2026 Security Trends) from catalog. Added explicit section navigation block with warnings. Updated Keywords. Added `closeContactModal` global. Navigate handler now closes contact modal and handles hash routes via `window.location.href`. |
 | February 24, 2026 | CSS fix — widened active pill from 168px→200px, reduced active label font from 15px→13px, added text-overflow ellipsis and width transition for overflow safety. |
 | February 24, 2026 | Initial setup — created agent, configured tools, voice, LLM, security. Migrated client from OpenAI Realtime API to ElevenLabs SDK. Deleted old chatbot.js/css, retired Cloudflare Worker. |
