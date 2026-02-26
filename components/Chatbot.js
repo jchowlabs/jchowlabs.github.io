@@ -219,9 +219,14 @@ export default function Chatbot() {
             if (path === '/') {
               return 'The user is on the home page — it has insight articles, interactive labs, and an events section.';
             }
-            const title = document.title?.replace(' | jchowlabs', '') || 'Unknown page';
+            const title = document.title?.replace(' | jchowlabs', '') || '';
             const meta = document.querySelector('meta[name="description"]');
             const desc = meta?.content || '';
+            // Fallback: use pathname if title is generic or missing
+            if (!title || title === 'jchowlabs') {
+              const slug = path.split('/').filter(Boolean).join(' / ');
+              return `The user is on: ${slug}. No additional description available.`;
+            }
             return `The user is on: ${title}. ${desc}`;
           },
         },
