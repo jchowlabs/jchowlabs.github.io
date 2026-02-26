@@ -75,7 +75,7 @@ Labs:
 - "Passkeys: Interactive Demo" — interactive passkey registration and login. URL: /lab/passkey-demo
 - "Facial Liveness Verification" — interactive liveness detection techniques. URL: https://www.jchowlabs.me (external link, opens in new tab)
 - "Interactive Voice Assistant" — voice concierge for site navigation. URL: /lab/interactive-voice-assistant
-- "Cryptography Behind Passkeys" — cryptographic foundations of passkeys. URL: /lab/cryptography-behind-passkeys
+- "Passkey Cryptography" — cryptographic foundations of passkeys. URL: /lab/cryptography-behind-passkeys
 - "AI Agent Guardrails" [Coming Soon] — not yet published.
 
 SECTION NAVIGATION (these are anchor links on the home page — always use the EXACT paths below, never infer a path):

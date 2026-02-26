@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import CryptoTerminal from '@/components/CryptoTerminal';
 
 export const metadata = {
-  title: 'Cryptography Behind Passkeys | jchowlabs',
+  title: 'Passkey Cryptography | jchowlabs',
   description: 'A deep dive into how passkeys work at the cryptographic level — RSA, ECDSA, key generation, registration, authentication, and why it\'s secure.',
 };
 
@@ -11,11 +11,11 @@ export default function ArticlePage() {
   const contentIntro = `<section class="article-content-section">
 			<div class="article-container">
 				<div class="article-hero">
-					<img src="/static/images/passkeys-cryptography.png" alt="Cryptography Behind Passkeys" class="article-hero-img">
+					<img src="/static/images/passkeys-cryptography.png" alt="Passkey Cryptography" class="article-hero-img">
 				</div>
 
 				<div class="article-header">
-					<h1>Cryptography Behind Passkeys</h1>
+					<h1>Passkey Cryptography</h1>
 				</div>
 
 				<div class="article-body">

@@ -38,8 +38,8 @@ const labs = [
   {
     href: '/lab/cryptography-behind-passkeys',
     img: '/static/images/passkeys-cryptography.png',
-    alt: 'Cryptography Behind Passkeys',
-    title: 'Cryptography Behind Passkeys',
+    alt: 'Passkey Cryptography',
+    title: 'Passkey Cryptography',
     status: 'live',
     summary:
       'A technical walkthrough of the cryptographic foundations that make passkeys work. This lab covers asymmetric key pairs, on-device key generation, WebAuthn registration and authentication flows, and why passkeys are resistant to phishing, replay attacks, and credential theft.',
