@@ -179,9 +179,17 @@ export default function Chatbot() {
             }
             let clean = url.replace(/\.html$/, '');
             if (clean === '/index') clean = '/';
-            // Hash routes (e.g. /#insights, /#labs) need direct location change
+            // Hash routes (e.g. /#insights, /#labs) — use client-side nav
+            // to avoid full page reload which kills the voice session
             if (clean.includes('#')) {
-              window.location.href = clean;
+              const [path, hash] = clean.split('#');
+              const target = path || '/';
+              // Navigate to the page first (client-side), then scroll to anchor
+              router.push(target);
+              setTimeout(() => {
+                const el = document.getElementById(hash);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 300);
             } else {
               router.push(clean);
             }
