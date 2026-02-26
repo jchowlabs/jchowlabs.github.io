@@ -163,6 +163,30 @@ footer span {
     color: #aaa; 
 }
 
+.footer-legal {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-legal a {
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+    color: #666;
+}
+
+.footer-legal-dot {
+    font-size: 12px;
+    color: #ccc;
+}
+
 /* Page wrapper for min-height */
 .page-wrapper {
     min-height: 100vh;
@@ -521,6 +545,71 @@ footer span {
     line-height: 1.2;
     margin: 0;
 }
+
+/* Legal pages — centered header */
+.page-wrapper.article-page.legal-page .article-header {
+    text-align: center;
+}
+
+/* Grid table (legal pages — service providers, retention, etc.) */
+.page-wrapper.article-page .grid-table {
+    display: grid;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.page-wrapper.article-page .grid-table.provider-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.page-wrapper.article-page .grid-table.retention-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+.page-wrapper.article-page .grid-table-head {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    background: #f5f5f3;
+    padding: 14px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.page-wrapper.article-page .grid-table-cell {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #333;
+    padding: 14px 20px;
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    align-items: center;
+}
+
+/* Remove bottom border from last row */
+.page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-last-child(-n+3),
+.page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+/* Alternate row shading — skip header row */
+.page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-child(6n+4),
+.page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-child(6n+5),
+.page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-child(6n+6) {
+    background: #fafaf8;
+}
+
+.page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-child(4n+3),
+.page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-child(4n+4) {
+    background: #fafaf8;
+}
+
+
 
 .page-wrapper.article-page .article-body {
     font-family: 'Inter', sans-serif;
@@ -900,6 +989,61 @@ footer span {
         width: 100%;
         padding: 0;
     }
+
+    .page-wrapper.article-page .grid-table.provider-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-head:not(:first-child) {
+        display: none;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-head:first-child {
+        grid-column: 1;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-cell {
+        padding: 10px 20px;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-child(3n+1) {
+        padding-top: 16px;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-child(3n) {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .page-wrapper.article-page .grid-table.provider-grid .grid-table-cell:nth-last-child(1) {
+        border-bottom: none;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid .grid-table-head:not(:first-child) {
+        display: none;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid .grid-table-cell {
+        padding: 10px 20px;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-child(2n+1) {
+        padding-top: 16px;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-child(2n) {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .page-wrapper.article-page .grid-table.retention-grid .grid-table-cell:nth-last-child(1) {
+        border-bottom: none;
+    }
+
     .hamburger {
         display: flex;
     }
