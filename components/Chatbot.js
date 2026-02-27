@@ -120,7 +120,21 @@ export default function Chatbot() {
       // Dynamic import avoids SSR issues with audio APIs
       const { Conversation } = await import('@elevenlabs/client');
 
-      const conversation = await Conversation.startSession({
+      // Determine page-aware first message for passkey demo
+      const path = window.location.pathname;
+      let firstMessageOverride;
+      if (path === '/lab/passkey-demo') {
+        const completedSteps = document.querySelectorAll('.info-section li.completed').length;
+        if (completedSteps === 0) {
+          firstMessageOverride = "Hey, I see you're on the Passkeys Interactive Demo. I can help you get started or walk you through the steps — just let me know.";
+        } else if (completedSteps < 5) {
+          firstMessageOverride = "Hey, looks like you're working through the Passkeys demo. Let me know if you need help with the next step.";
+        } else {
+          firstMessageOverride = "Hey, looks like you've completed the Passkeys demo — nice work. Want to try it again or explore something else?";
+        }
+      }
+
+      const sessionConfig = {
         agentId: AGENT_ID,
 
         onConnect: () => {
@@ -219,6 +233,24 @@ export default function Chatbot() {
             if (path === '/') {
               return 'The user is on the home page — it has insight articles, interactive labs, and an events section.';
             }
+
+            // Passkey demo — include step progress for guided assistance
+            if (path === '/lab/passkey-demo') {
+              const completedSteps = document.querySelectorAll('.info-section li.completed').length;
+              const title = 'Passkeys Interactive Demo';
+              if (completedSteps === 0) {
+                return `The user is on: ${title}. Demo not started. Guide: enter an email address in the field and click Register.`;
+              } else if (completedSteps <= 2) {
+                return `The user is on: ${title}. Registration in progress (${completedSteps}/5 steps done). Guide: follow the registration flow on screen.`;
+              } else if (completedSteps <= 3) {
+                return `The user is on: ${title}. Registration complete (${completedSteps}/5 steps done). Guide: click Login to authenticate with the passkey just created.`;
+              } else if (completedSteps <= 4) {
+                return `The user is on: ${title}. Login in progress (${completedSteps}/5 steps done). Guide: follow the login flow on screen.`;
+              } else {
+                return `The user is on: ${title}. Demo complete (5/5 steps done). They can refresh the page to try again or explore other content.`;
+              }
+            }
+
             const title = document.title?.replace(' | jchowlabs', '') || '';
             const meta = document.querySelector('meta[name="description"]');
             const desc = meta?.content || '';
@@ -230,7 +262,16 @@ export default function Chatbot() {
             return `The user is on: ${title}. ${desc}`;
           },
         },
-      });
+      };
+
+      // Apply dynamic first message if on a special page
+      if (firstMessageOverride) {
+        sessionConfig.overrides = {
+          agent: { firstMessage: firstMessageOverride },
+        };
+      }
+
+      const conversation = await Conversation.startSession(sessionConfig);
 
       conversationRef.current = conversation;
     } catch (err) {

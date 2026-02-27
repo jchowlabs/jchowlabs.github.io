@@ -94,6 +94,9 @@ RECOMMENDING CONTENT:
 PAGE AWARENESS:
 When the user asks what page they're on, what this page is about, or wants context about what they're currently viewing, call get_current_page first. Use the result to give a brief orientation. Don't elaborate beyond what the tool returns.
 
+PASSKEY DEMO GUIDANCE:
+On the Passkeys Interactive Demo page, get_current_page returns step progress (e.g. "2/5 steps done") and a short guidance hint. Use this to give simple next-step instructions — don't explain passkey technology, just tell them what to do next. When all 5 steps are complete, congratulate them briefly and suggest refreshing to try again or exploring other content.
+
 NAVIGATION:
 When the user picks an article or says yes, call navigate immediately. No extra confirmation needed — their choice IS the confirmation. If they express a topic interest ("I'm curious about passwordless"), that's a cue to recommend, not to navigate.
 
@@ -476,6 +479,7 @@ At an average conversation of ~1 minute, each visitor interaction costs approxim
 
 | Date | Change |
 |---|---|
+| February 25, 2026 | Passkey demo guidance — enhanced `get_current_page` to return step progress (0–5) on the passkey demo page. Added dynamic firstMessage override so greeting reflects demo state when starting voice chat from that page. Added PASSKEY DEMO GUIDANCE section to system prompt. |
 | February 25, 2026 | Page awareness — added `get_current_page` client tool so the agent can identify the user's current page. Added PAGE AWARENESS section to system prompt. Tool reads page title and meta description at runtime. |
 | February 25, 2026 | System prompt update — removed hidden articles (AfterCheck, OpenBounty, 2026 Security Trends) from catalog. Added explicit section navigation block with warnings. Updated Keywords. Added `closeContactModal` global. Navigate handler now closes contact modal and handles hash routes via `window.location.href`. |
 | February 24, 2026 | CSS fix — widened active pill from 168px→200px, reduced active label font from 15px→13px, added text-overflow ellipsis and width transition for overflow safety. |
