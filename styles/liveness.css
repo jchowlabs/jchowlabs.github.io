@@ -354,24 +354,51 @@
 
 @media (max-width: 600px) {
   .liveness-demo-card {
-    padding: 24px 18px;
+    padding: 20px 16px;
     border-radius: 12px;
+    min-height: auto;
+    gap: 12px;
+  }
+
+  .liveness-demo-title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .liveness-idle {
+    gap: 12px;
   }
 
   .liveness-viewport {
     border-radius: 10px;
   }
 
-  .liveness-idle-desc {
-    font-size: 0.8rem;
+  .liveness-viewport-placeholder {
+    border-radius: 10px;
+  }
+
+  .liveness-camera-section {
+    gap: 10px;
+  }
+
+  .liveness-result {
+    gap: 12px;
+  }
+
+  .liveness-steps {
+    margin-bottom: 0;
   }
 
   .liveness-step-label {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
   }
 
   .liveness-step-line {
     width: 20px;
     margin: 0 6px;
+  }
+
+  .liveness-demo-notice {
+    padding: 10px 14px;
   }
 }
