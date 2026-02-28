@@ -155,6 +155,11 @@
   margin-bottom: 4px;
 }
 
+.liveness-step-group {
+  display: flex;
+  align-items: center;
+}
+
 .liveness-step {
   display: flex;
   align-items: center;
@@ -263,9 +268,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   flex: 1;
-  justify-content: center;
 }
 
 .liveness-result-box {
@@ -274,11 +278,13 @@
   border-style: solid;
   border-color: #e5e5e5;
   border-width: 1px;
+  padding: 36px 32px;
+  justify-content: center;
 }
 
 .liveness-result-icon {
-  width: 88px;
-  height: 88px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -296,10 +302,102 @@
 }
 
 .liveness-result-title {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
   margin: 0;
+}
+
+/* ---------- Challenge breakdown ---------- */
+
+.liveness-breakdown {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.liveness-breakdown-row {
+  display: grid;
+  grid-template-columns: 24px 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  padding: 5px 0;
+}
+
+.liveness-breakdown-icon {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.liveness-breakdown-icon.pass {
+  color: #16a34a;
+}
+
+.liveness-breakdown-icon.fail {
+  color: #dc2626;
+}
+
+.liveness-breakdown-label {
+  color: #374151;
+  font-weight: 500;
+}
+
+.liveness-breakdown-strength {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 72px;
+}
+
+.liveness-breakdown-strength.strong {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.liveness-breakdown-strength.moderate {
+  background: #fffbeb;
+  color: #a16207;
+}
+
+.liveness-breakdown-strength.weak {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.liveness-breakdown-strength.normal {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.liveness-breakdown-strength.low {
+  background: #fffbeb;
+  color: #a16207;
+}
+
+.liveness-breakdown-strength.suspicious {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.liveness-breakdown-time {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-align: right;
+  min-width: 34px;
+}
+
+.liveness-breakdown-sep {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed #e5e5e5;
+  margin: 6px 0;
 }
 
 /* ---------- Info notice (bottom) ---------- */
@@ -385,17 +483,61 @@
     gap: 12px;
   }
 
+  .liveness-result-box {
+    padding: 20px 16px;
+  }
+
+  .liveness-result-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .liveness-result-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .liveness-result-title {
+    font-size: 1rem;
+  }
+
+  .liveness-confidence {
+    font-size: 1.1rem;
+  }
+
+  .liveness-breakdown {
+    max-width: 100%;
+  }
+
+  .liveness-breakdown-row {
+    grid-template-columns: 20px 1fr auto auto;
+    gap: 6px;
+    font-size: 0.78rem;
+  }
+
+  .liveness-breakdown-strength {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    min-width: 56px;
+  }
+
   .liveness-steps {
     margin-bottom: 0;
   }
 
   .liveness-step-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  .liveness-step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.72rem;
   }
 
   .liveness-step-line {
-    width: 20px;
-    margin: 0 6px;
+    width: 16px;
+    margin: 0 4px;
   }
 
   .liveness-demo-notice {

@@ -4,10 +4,12 @@
  * LivenessDetection — Client-side face liveness verification demo
  *
  * Uses MediaPipe Face Landmarker (WASM, runs entirely in the browser)
- * to detect head pose (yaw) and guide the user through turn-left /
- * turn-right challenges. No data is stored or transmitted.
+ * with blendshapes and transformation matrices to run randomized
+ * multi-step liveness challenges: turn-left, turn-right, blink, smile, nod.
+ * Produces a confidence score based on challenge performance, response
+ * time, and passive micro-expression variance.
  *
- * States: idle → initializing → ready → challenge-left → challenge-right → result
+ * States: idle → initializing → ready → challenge → result
  */
 
 import { useState, useRef, useCallback, useEffect } from 'react';
@@ -19,41 +21,99 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 const WASM_CDN = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm';
 const MODEL_URL = 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task';
 
-// Yaw thresholds (degrees) — positive = turned right, negative = turned left
 const YAW_THRESHOLD = 18;
-// How many consecutive frames the pose must be held
+const PITCH_THRESHOLD = 12;
+const BLINK_THRESHOLD = 0.4;
+const BLINK_OPEN_THRESHOLD = 0.2;
+const SMILE_THRESHOLD = 0.45;
 const HOLD_FRAMES = 8;
-// Depth variance threshold to reject flat images (photo attack)
-const DEPTH_VARIANCE_MIN = 0.0004;
+const CHALLENGE_TIMEOUT_MS = 8000;
+
+const CHALLENGE_POOL = [
+  { id: 'turn-left', label: 'Turn Left', group: 'turn' },
+  { id: 'turn-right', label: 'Turn Right', group: 'turn' },
+  { id: 'blink', label: 'Blink', group: 'expression' },
+  { id: 'smile', label: 'Smile', group: 'expression' },
+  { id: 'nod', label: 'Nod', group: 'head' },
+];
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
 /* ------------------------------------------------------------------ */
 
-/** Estimate yaw from face landmarks using nose-tip vs cheek midpoints. */
 function estimateYaw(landmarks) {
-  // Landmark indices (MediaPipe Face Landmarker canonical):
-  // 1 = nose tip, 234 = right cheek, 454 = left cheek
   const nose = landmarks[1];
   const rightCheek = landmarks[234];
   const leftCheek = landmarks[454];
-
   const midX = (rightCheek.x + leftCheek.x) / 2;
   const offset = nose.x - midX;
   const cheekDist = Math.abs(leftCheek.x - rightCheek.x);
   if (cheekDist < 0.001) return 0;
-
-  // Normalise and convert to approximate degrees (empirical scaling)
-  const yawRatio = offset / cheekDist;
-  return yawRatio * 90; // rough mapping — 0.5 ratio ≈ 45°
+  return (offset / cheekDist) * 90;
 }
 
-/** Compute variance of z-coordinates to distinguish 3D face from flat photo. */
-function zDepthVariance(landmarks) {
-  const zValues = landmarks.map((l) => l.z);
-  const mean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
-  const variance = zValues.reduce((a, z) => a + (z - mean) ** 2, 0) / zValues.length;
-  return variance;
+function estimatePitch(landmarks) {
+  const nose = landmarks[1];
+  const forehead = landmarks[10];
+  const chin = landmarks[152];
+  const faceHeight = Math.abs(chin.y - forehead.y);
+  if (faceHeight < 0.001) return 0;
+  const midY = (forehead.y + chin.y) / 2;
+  const offset = nose.y - midY;
+  return (offset / faceHeight) * 120;
+}
+
+function getBlendshape(blendshapes, name) {
+  if (!blendshapes || !blendshapes[0]) return 0;
+  const cat = blendshapes[0].categories.find((c) => c.categoryName === name);
+  return cat ? cat.score : 0;
+}
+
+function pickRandomChallenges() {
+  const pool = [...CHALLENGE_POOL];
+  const picked = [];
+  const usedGroups = new Set();
+  // Shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  for (const c of pool) {
+    if (picked.length >= 3) break;
+    // Allow max 1 from 'turn' group, but others can repeat group
+    if (c.group === 'turn' && usedGroups.has('turn')) continue;
+    picked.push(c);
+    usedGroups.add(c.group);
+  }
+  return picked;
+}
+
+function strengthLabel(score) {
+  if (score >= 0.8) return 'Strong';
+  if (score >= 0.5) return 'Moderate';
+  return 'Weak';
+}
+
+function strengthClass(score) {
+  if (score >= 0.8) return 'strong';
+  if (score >= 0.5) return 'moderate';
+  return 'weak';
+}
+
+function microLabel(variance) {
+  if (variance >= 0.015) return 'Normal';
+  if (variance >= 0.005) return 'Low';
+  return 'Suspicious';
+}
+
+function microClass(variance) {
+  if (variance >= 0.015) return 'normal';
+  if (variance >= 0.005) return 'low';
+  return 'suspicious';
+}
+
+function clamp(v, min, max) {
+  return Math.max(min, Math.min(max, v));
 }
 
 /* ------------------------------------------------------------------ */
@@ -67,39 +127,44 @@ export default function LivenessDetection() {
   const faceLandmarkerRef = useRef(null);
   const streamRef = useRef(null);
   const rafRef = useRef(null);
-  const holdCountRef = useRef(0);
-  const depthSamplesRef = useRef([]);
 
   const [phase, setPhase] = useState('idle');
-  // idle | initializing | ready | challenge-left | challenge-right | result
-  const [result, setResult] = useState(null); // 'live' | 'not-live'
+  const [result, setResult] = useState(null);
   const [feedback, setFeedback] = useState('');
-  const [faceDetected, setFaceDetected] = useState(false);
-  const phaseRef = useRef(phase);
+  const [challenges, setChallenges] = useState([]);
+  const [challengeIndex, setChallengeIndex] = useState(0);
+  const [challengeResults, setChallengeResults] = useState([]);
+  const [confidence, setConfidence] = useState(0);
+  const [microExpr, setMicroExpr] = useState(0);
 
-  useEffect(() => {
-    phaseRef.current = phase;
-  }, [phase]);
+  const phaseRef = useRef(phase);
+  const challengeIndexRef = useRef(0);
+  const challengesRef = useRef([]);
+  const holdCountRef = useRef(0);
+  const challengeStartRef = useRef(0);
+  const peakScoreRef = useRef(0);
+  const blinkStateRef = useRef('open'); // open | closed
+  const nodStateRef = useRef('neutral'); // neutral | down
+  const blendshapeSamplesRef = useRef([]);
+  const challengeResultsRef = useRef([]);
+
+  useEffect(() => { phaseRef.current = phase; }, [phase]);
+  useEffect(() => { challengeIndexRef.current = challengeIndex; }, [challengeIndex]);
+  useEffect(() => { challengesRef.current = challenges; }, [challenges]);
 
   /* ---------------------------------------------------------- */
   /* Cleanup                                                     */
   /* ---------------------------------------------------------- */
 
   const cleanup = useCallback(() => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-    }
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((t) => t.stop());
-      streamRef.current = null;
-    }
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    if (streamRef.current) { streamRef.current.getTracks().forEach((t) => t.stop()); streamRef.current = null; }
   }, []);
 
   useEffect(() => cleanup, [cleanup]);
 
   /* ---------------------------------------------------------- */
-  /* Draw oval guide + landmarks on overlay canvas               */
+  /* Draw overlay                                                */
   /* ---------------------------------------------------------- */
 
   const drawOverlay = useCallback((landmarks, width, height) => {
@@ -110,7 +175,6 @@ export default function LivenessDetection() {
     canvas.height = height;
     ctx.clearRect(0, 0, width, height);
 
-    // Semi-transparent dark mask with oval cutout
     ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
     ctx.fillRect(0, 0, width, height);
 
@@ -126,14 +190,12 @@ export default function LivenessDetection() {
     ctx.fill();
     ctx.restore();
 
-    // Oval border
     ctx.beginPath();
     ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
     ctx.strokeStyle = landmarks ? 'rgba(74, 222, 128, 0.7)' : 'rgba(255, 255, 255, 0.5)';
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
-    // Draw small landmark dots when face is detected
     if (landmarks) {
       ctx.fillStyle = 'rgba(74, 222, 128, 0.35)';
       const subset = [1, 4, 5, 6, 10, 33, 61, 133, 152, 159, 195, 234, 263, 291, 362, 386, 454];
@@ -146,6 +208,75 @@ export default function LivenessDetection() {
       }
     }
   }, []);
+
+  /* ---------------------------------------------------------- */
+  /* Compute final scores                                        */
+  /* ---------------------------------------------------------- */
+
+  const computeResults = useCallback((results) => {
+    // Per-challenge score average
+    const avgChallenge = results.reduce((s, r) => s + r.score, 0) / results.length;
+
+    // Response time score: 0.5s–5s window, faster = better
+    const avgTime = results.reduce((s, r) => {
+      const t = clamp(1 - (r.responseMs - 500) / 4500, 0, 1);
+      return s + t;
+    }, 0) / results.length;
+
+    // Micro-expression: std deviation of blendshape samples
+    const samples = blendshapeSamplesRef.current;
+    let microVar = 0;
+    if (samples.length > 10) {
+      const mean = samples.reduce((a, b) => a + b, 0) / samples.length;
+      microVar = Math.sqrt(samples.reduce((a, v) => a + (v - mean) ** 2, 0) / samples.length);
+    }
+    const passiveLiveness = clamp((microVar - 0.003) / 0.04, 0, 1);
+
+    const totalConfidence = Math.round(
+      (avgChallenge * 0.50 + avgTime * 0.20 + passiveLiveness * 0.30) * 100
+    );
+
+    const isLive = totalConfidence >= 50 && results.every((r) => r.passed);
+
+    setMicroExpr(microVar);
+    setConfidence(totalConfidence);
+    setChallengeResults(results);
+    setResult(isLive ? 'live' : 'not-live');
+    setPhase('result');
+    cleanup();
+  }, [cleanup]);
+
+  /* ---------------------------------------------------------- */
+  /* Advance to next challenge or finish                         */
+  /* ---------------------------------------------------------- */
+
+  const advanceChallenge = useCallback((passed, peakScore, responseMs) => {
+    const cList = challengesRef.current;
+    const idx = challengeIndexRef.current;
+    const entry = {
+      id: cList[idx].id,
+      label: cList[idx].label,
+      passed,
+      score: clamp(peakScore, 0, 1),
+      responseMs,
+    };
+    const updated = [...challengeResultsRef.current, entry];
+    challengeResultsRef.current = updated;
+
+    if (idx + 1 >= cList.length) {
+      computeResults(updated);
+    } else {
+      const next = idx + 1;
+      challengeIndexRef.current = next;
+      setChallengeIndex(next);
+      holdCountRef.current = 0;
+      peakScoreRef.current = 0;
+      blinkStateRef.current = 'open';
+      nodStateRef.current = 'neutral';
+      challengeStartRef.current = performance.now();
+      setPhase('challenge');
+    }
+  }, [computeResults]);
 
   /* ---------------------------------------------------------- */
   /* Detection loop                                              */
@@ -163,7 +294,6 @@ export default function LivenessDetection() {
     const width = video.videoWidth;
     const height = video.videoHeight;
 
-    // Draw mirrored video to canvas
     const canvas = canvasRef.current;
     if (canvas) {
       canvas.width = width;
@@ -177,20 +307,23 @@ export default function LivenessDetection() {
 
     const now = performance.now();
     let landmarks = null;
+    let blendshapes = null;
 
     try {
       const results = fl.detectForVideo(video, now);
       if (results.faceLandmarks && results.faceLandmarks.length > 0) {
         landmarks = results.faceLandmarks[0];
       }
+      if (results.faceBlendshapes && results.faceBlendshapes.length > 0) {
+        blendshapes = results.faceBlendshapes;
+      }
     } catch {
-      // Occasional frame timing errors — skip
+      // skip frame
     }
 
     const currentPhase = phaseRef.current;
 
     if (!landmarks) {
-      setFaceDetected(false);
       drawOverlay(null, width, height);
       if (currentPhase === 'ready') {
         setFeedback('Position your face in the oval');
@@ -200,80 +333,137 @@ export default function LivenessDetection() {
       return;
     }
 
-    setFaceDetected(true);
     drawOverlay(landmarks, width, height);
 
-    const yaw = estimateYaw(landmarks);
-    const depthVar = zDepthVariance(landmarks);
-
-    // Collect depth samples for final analysis
-    depthSamplesRef.current.push(depthVar);
+    // Passive micro-expression sampling — track blendshape activity
+    if (blendshapes && blendshapes[0]) {
+      const tracked = ['eyeBlinkLeft', 'eyeBlinkRight', 'mouthSmileLeft', 'mouthSmileRight', 'browInnerUp', 'cheekSquintLeft'];
+      let sum = 0;
+      for (const name of tracked) {
+        sum += getBlendshape(blendshapes, name);
+      }
+      blendshapeSamplesRef.current.push(sum / tracked.length);
+    }
 
     if (currentPhase === 'ready') {
-      // Waiting for face — auto-advance to first challenge
-      setFeedback('Face detected — starting challenge');
+      setFeedback('Face detected — starting challenges');
       holdCountRef.current = 0;
+      challengeStartRef.current = now + 800;
       setTimeout(() => {
-        setPhase('challenge-left');
-        setFeedback('Turn your head to the LEFT');
+        setPhase('challenge');
       }, 800);
       rafRef.current = requestAnimationFrame(runDetectionLoop);
       return;
     }
 
-    if (currentPhase === 'challenge-left') {
-      // yaw negative = head turned to their left (mirrored)
-      if (yaw > YAW_THRESHOLD) {
-        holdCountRef.current++;
-        setFeedback('Hold…');
-        if (holdCountRef.current >= HOLD_FRAMES) {
-          holdCountRef.current = 0;
-          setPhase('challenge-right');
-          setFeedback('Now turn your head to the RIGHT');
-        }
-      } else {
-        holdCountRef.current = Math.max(0, holdCountRef.current - 1);
-        setFeedback('Turn your head to the LEFT');
+    if (currentPhase === 'challenge') {
+      const cList = challengesRef.current;
+      const idx = challengeIndexRef.current;
+      if (!cList[idx]) {
+        rafRef.current = requestAnimationFrame(runDetectionLoop);
+        return;
       }
-    }
 
-    if (currentPhase === 'challenge-right') {
-      if (yaw < -YAW_THRESHOLD) {
-        holdCountRef.current++;
-        setFeedback('Hold…');
-        if (holdCountRef.current >= HOLD_FRAMES) {
-          // Evaluate liveness
-          const avgDepth =
-            depthSamplesRef.current.reduce((a, b) => a + b, 0) /
-            depthSamplesRef.current.length;
-          const isLive = avgDepth > DEPTH_VARIANCE_MIN;
-          setResult(isLive ? 'live' : 'not-live');
-          setPhase('result');
-          setFeedback('');
-          cleanup();
+      const elapsed = now - challengeStartRef.current;
+      const challengeId = cList[idx].id;
+
+      // Timeout
+      if (elapsed > CHALLENGE_TIMEOUT_MS) {
+        advanceChallenge(false, peakScoreRef.current, CHALLENGE_TIMEOUT_MS);
+        rafRef.current = requestAnimationFrame(runDetectionLoop);
+        return;
+      }
+
+      const yaw = estimateYaw(landmarks);
+      const pitch = estimatePitch(landmarks);
+      const blinkL = getBlendshape(blendshapes, 'eyeBlinkLeft');
+      const blinkR = getBlendshape(blendshapes, 'eyeBlinkRight');
+      const smileL = getBlendshape(blendshapes, 'mouthSmileLeft');
+      const smileR = getBlendshape(blendshapes, 'mouthSmileRight');
+
+      let detected = false;
+
+      if (challengeId === 'turn-left') {
+        const score = Math.abs(yaw) / 45;
+        if (yaw > YAW_THRESHOLD) {
+          peakScoreRef.current = Math.max(peakScoreRef.current, score);
+          holdCountRef.current++;
+          detected = holdCountRef.current >= HOLD_FRAMES;
+        } else {
+          holdCountRef.current = Math.max(0, holdCountRef.current - 1);
         }
-      } else {
-        holdCountRef.current = Math.max(0, holdCountRef.current - 1);
-        setFeedback('Turn your head to the RIGHT');
+      } else if (challengeId === 'turn-right') {
+        const score = Math.abs(yaw) / 45;
+        if (yaw < -YAW_THRESHOLD) {
+          peakScoreRef.current = Math.max(peakScoreRef.current, score);
+          holdCountRef.current++;
+          detected = holdCountRef.current >= HOLD_FRAMES;
+        } else {
+          holdCountRef.current = Math.max(0, holdCountRef.current - 1);
+        }
+      } else if (challengeId === 'blink') {
+        const avgBlink = (blinkL + blinkR) / 2;
+        if (blinkStateRef.current === 'open' && avgBlink > BLINK_THRESHOLD) {
+          blinkStateRef.current = 'closed';
+          peakScoreRef.current = Math.max(peakScoreRef.current, avgBlink);
+        } else if (blinkStateRef.current === 'closed' && avgBlink < BLINK_OPEN_THRESHOLD) {
+          detected = true;
+          peakScoreRef.current = Math.max(peakScoreRef.current, 1.0);
+        }
+      } else if (challengeId === 'smile') {
+        const avgSmile = (smileL + smileR) / 2;
+        peakScoreRef.current = Math.max(peakScoreRef.current, avgSmile / 0.8);
+        if (avgSmile > SMILE_THRESHOLD) {
+          holdCountRef.current++;
+          detected = holdCountRef.current >= HOLD_FRAMES;
+        } else {
+          holdCountRef.current = Math.max(0, holdCountRef.current - 1);
+        }
+      } else if (challengeId === 'nod') {
+        const score = Math.abs(pitch) / 30;
+        if (nodStateRef.current === 'neutral' && pitch > PITCH_THRESHOLD) {
+          nodStateRef.current = 'down';
+          peakScoreRef.current = Math.max(peakScoreRef.current, score);
+        } else if (nodStateRef.current === 'down' && pitch < 4) {
+          detected = true;
+          peakScoreRef.current = Math.max(peakScoreRef.current, 1.0);
+        }
+      }
+
+      if (detected) {
+        const responseMs = elapsed;
+        advanceChallenge(true, peakScoreRef.current, responseMs);
       }
     }
 
     rafRef.current = requestAnimationFrame(runDetectionLoop);
-  }, [drawOverlay, cleanup]);
+  }, [drawOverlay, advanceChallenge]);
 
   /* ---------------------------------------------------------- */
   /* Start                                                       */
   /* ---------------------------------------------------------- */
 
   const handleStart = useCallback(async () => {
+    const picked = pickRandomChallenges();
+    setChallenges(picked);
+    challengesRef.current = picked;
+    setChallengeIndex(0);
+    challengeIndexRef.current = 0;
+    setChallengeResults([]);
+    challengeResultsRef.current = [];
+    setConfidence(0);
+    setMicroExpr(0);
+    holdCountRef.current = 0;
+    peakScoreRef.current = 0;
+    blinkStateRef.current = 'open';
+    nodStateRef.current = 'neutral';
+    blendshapeSamplesRef.current = [];
+
     setPhase('initializing');
     setResult(null);
     setFeedback('Loading face detection model…');
-    holdCountRef.current = 0;
-    depthSamplesRef.current = [];
 
     try {
-      // Dynamic import keeps the WASM out of the main bundle
       const vision = await import('@mediapipe/tasks-vision');
       const { FaceLandmarker, FilesetResolver } = vision;
 
@@ -286,8 +476,8 @@ export default function LivenessDetection() {
         },
         runningMode: 'VIDEO',
         numFaces: 1,
-        outputFaceBlendshapes: false,
-        outputFacialTransformationMatrixes: false,
+        outputFaceBlendshapes: true,
+        outputFacialTransformationMatrixes: true,
       });
 
       faceLandmarkerRef.current = faceLandmarker;
@@ -304,10 +494,11 @@ export default function LivenessDetection() {
       video.srcObject = stream;
       await video.play();
 
+      challengeStartRef.current = performance.now();
+
       setPhase('ready');
       setFeedback('Position your face in the oval');
 
-      // Start detection loop
       runDetectionLoop();
     } catch (err) {
       console.error('Liveness detection init failed:', err);
@@ -325,22 +516,21 @@ export default function LivenessDetection() {
     setPhase('idle');
     setResult(null);
     setFeedback('');
+    setChallenges([]);
+    setChallengeIndex(0);
+    setChallengeResults([]);
+    setConfidence(0);
+    setMicroExpr(0);
     holdCountRef.current = 0;
-    depthSamplesRef.current = [];
+    blendshapeSamplesRef.current = [];
+    challengeResultsRef.current = [];
   }, [cleanup]);
 
   /* ---------------------------------------------------------- */
   /* Render                                                      */
   /* ---------------------------------------------------------- */
 
-  const isActive = phase !== 'idle' && phase !== 'result';
-  const showCamera = phase === 'initializing' || phase === 'ready' || phase === 'challenge-left' || phase === 'challenge-right';
-
-  // Progress indicator
-  const stepIndex =
-    phase === 'challenge-left' ? 1 :
-    phase === 'challenge-right' ? 2 :
-    phase === 'result' ? 3 : 0;
+  const showCamera = phase === 'initializing' || phase === 'ready' || phase === 'challenge';
 
   return (
     <div className="liveness-demo">
@@ -361,24 +551,23 @@ export default function LivenessDetection() {
           </div>
         )}
 
-
-
         {showCamera && (
           <div className="liveness-camera-section">
-            {/* Progress steps */}
+            {/* Dynamic step indicators */}
             <div className="liveness-steps">
-              <div className={`liveness-step ${stepIndex >= 1 ? 'active' : ''} ${stepIndex > 1 ? 'done' : ''}`}>
-                <span className="liveness-step-num">{stepIndex > 1 ? '✓' : '1'}</span>
-                <span className="liveness-step-label">Turn Left</span>
-              </div>
-              <div className="liveness-step-line" />
-              <div className={`liveness-step ${stepIndex >= 2 ? 'active' : ''} ${stepIndex > 2 ? 'done' : ''}`}>
-                <span className="liveness-step-num">{stepIndex > 2 ? '✓' : '2'}</span>
-                <span className="liveness-step-label">Turn Right</span>
-              </div>
+              {challenges.map((c, i) => (
+                <div key={c.id} className="liveness-step-group">
+                  {i > 0 && <div className="liveness-step-line" />}
+                  <div className={`liveness-step ${challengeIndex >= i && phase === 'challenge' ? 'active' : ''} ${challengeIndex > i ? 'done' : ''}`}>
+                    <span className="liveness-step-num">
+                      {challengeIndex > i ? '✓' : i + 1}
+                    </span>
+                    <span className="liveness-step-label">{c.label}</span>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Camera viewport */}
             <div className="liveness-viewport">
               {phase === 'initializing' && (
                 <div className="liveness-loading-overlay">
@@ -399,14 +588,15 @@ export default function LivenessDetection() {
         {phase === 'result' && (
           <div className="liveness-result">
             <div className="liveness-viewport-placeholder liveness-result-box">
+              {/* Icon + title */}
               <div className={`liveness-result-icon ${result === 'live' ? 'success' : 'fail'}`}>
                 {result === 'live' ? (
-                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                     <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                 ) : (
-                  <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="15" y1="9" x2="9" y2="15" />
                     <line x1="9" y1="9" x2="15" y2="15" />
@@ -414,9 +604,41 @@ export default function LivenessDetection() {
                 )}
               </div>
               <h4 className="liveness-result-title">
-                {result === 'live' ? 'Liveness Confirmed' : 'Liveness Not Detected'}
+                {result === 'live' ? `Liveness Confidence: ${confidence}%` : `Liveness Failed: ${confidence}%`}
               </h4>
+
+              {/* Challenge breakdown */}
+              <div className="liveness-breakdown">
+                {challengeResults.map((cr) => (
+                  <div key={cr.id} className="liveness-breakdown-row">
+                    <span className={`liveness-breakdown-icon ${cr.passed ? 'pass' : 'fail'}`}>
+                      {cr.passed ? '✓' : '✗'}
+                    </span>
+                    <span className="liveness-breakdown-label">{cr.label}</span>
+                    <span className={`liveness-breakdown-strength ${strengthClass(cr.score)}`}>
+                      {cr.passed ? strengthLabel(cr.score) : (cr.responseMs >= CHALLENGE_TIMEOUT_MS ? 'Timeout' : 'Weak')}
+                    </span>
+                    <span className="liveness-breakdown-time">
+                      {(cr.responseMs / 1000).toFixed(1)}s
+                    </span>
+                  </div>
+                ))}
+
+                <div className="liveness-breakdown-sep" />
+
+                <div className="liveness-breakdown-row">
+                  <span className={`liveness-breakdown-icon ${microClass(microExpr) === 'suspicious' ? 'fail' : 'pass'}`}>
+                    {microClass(microExpr) === 'suspicious' ? '✗' : '✓'}
+                  </span>
+                  <span className="liveness-breakdown-label">Micro-expression</span>
+                  <span className={`liveness-breakdown-strength ${microClass(microExpr)}`}>
+                    {microLabel(microExpr)}
+                  </span>
+                  <span className="liveness-breakdown-time" />
+                </div>
+              </div>
             </div>
+
             <button className="liveness-btn liveness-btn-start" onClick={handleReset}>
               Done
             </button>
@@ -427,8 +649,6 @@ export default function LivenessDetection() {
           <div className="liveness-notice-icon">i</div>
           <p>This liveness demo runs entirely in your browser. No images, video, or biometric data are stored or sent to any server. Refer to <a href="/privacy-policy" className="liveness-notice-link">Privacy Policy</a> for additional details.</p>
         </div>
-
-
       </div>
     </div>
   );
