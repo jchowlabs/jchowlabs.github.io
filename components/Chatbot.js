@@ -335,7 +335,7 @@ export default function Chatbot() {
   ].filter(Boolean).join(' ');
 
   const label = {
-    idle: 'Voice chat',
+    idle: 'Voice Assistant',
     connecting: 'Connecting…',
     listening: 'Listening…',
     speaking: 'Speaking…',
