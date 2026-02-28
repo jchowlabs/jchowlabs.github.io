@@ -15,8 +15,7 @@ const labs = [
     tags: ['WebAuthn', 'Passkeys', 'Biometric Auth'],
   },
   {
-    href: 'https://www.jchowlabs.me',
-    external: true,
+    href: '/lab/facial-liveness-verification',
     img: '/static/images/facial-liveness-verification.png',
     alt: 'Facial Liveness Verification',
     title: 'Facial Liveness Verification',

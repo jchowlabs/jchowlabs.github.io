@@ -12,12 +12,13 @@ export default function ArticlePage() {
 					<img src="/static/images/facial-recognition.png" alt="Build Face Verification" class="article-hero-img">
 				</div>
 
-				<a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; display: block;">
+				<a href="/lab/facial-liveness-verification" style="text-decoration: none; display: block;">
                     <div class="try-yourself-cta" style="background: #f0f7ff; border: 1px solid #2563eb; padding: 24px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); display: flex; align-items: center; gap: 16px;">
                         <h3 style="color: #2563eb; margin: 0; font-size: 1.125rem; font-weight: 600; white-space: nowrap;">Try yourself:</h3>
                         <p style="color: #1e40af; margin: 0; line-height: 1.6;">
-                            <span class="try-yourself-copy">Register a face and try liveness verification at</span>
-							<span class="try-yourself-url" style="font-weight: 600;">www.jchowlabs.me.</span>
+                            <span class="try-yourself-copy">Try the interactive liveness detection demo in the</span>
+							<span class="try-yourself-url" style="font-weight: 600;">Facial Liveness Verification</span>
+							<span class="try-yourself-copy">lab.</span>
                         </p>
                     </div>
                 </a>

@@ -1,0 +1,377 @@
+/* ================================================================ */
+/* Liveness Detection Interactive Demo                               */
+/* ================================================================ */
+
+.liveness-demo {
+  max-width: 580px;
+  margin: 0 auto 2rem;
+}
+
+.liveness-demo-card {
+  background:
+    linear-gradient(to right, rgba(180, 185, 190, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180, 185, 190, 0.04) 1px, transparent 1px),
+    #ffffff;
+  background-size: 5px 5px, 5px 5px, auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 32px 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.liveness-demo-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+  text-align: center;
+}
+
+/* ---------- Idle state ---------- */
+
+.liveness-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.liveness-viewport-placeholder {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed #d4d4d4;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  color: #a3a3a3;
+}
+
+/* ---------- Buttons ---------- */
+
+.liveness-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.liveness-btn:active {
+  transform: scale(0.97);
+}
+
+.liveness-btn-start {
+  background: #1a1a1a;
+  color: #ffffff;
+  width: 100%;
+  max-width: 280px;
+}
+
+.liveness-btn-start:hover {
+  background: #333333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.liveness-btn-cancel {
+  background: transparent;
+  color: #737373;
+  font-size: 0.8rem;
+  padding: 8px 20px;
+}
+
+.liveness-btn-cancel:hover {
+  color: #525252;
+  background: #f5f5f5;
+}
+
+/* ---------- Loading / initializing ---------- */
+
+.liveness-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 0;
+}
+
+.liveness-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e5e5;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: liveness-spin 0.8s linear infinite;
+}
+
+@keyframes liveness-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Loading overlay (inside viewport) ---------- */
+
+.liveness-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #0a0a0a;
+}
+
+/* ---------- Camera section ---------- */
+
+.liveness-camera-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Progress steps */
+.liveness-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 4px;
+}
+
+.liveness-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.liveness-step.active {
+  opacity: 1;
+}
+
+.liveness-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  color: #737373;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.liveness-step.active .liveness-step-num {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.liveness-step.done .liveness-step-num {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.liveness-step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #525252;
+}
+
+.liveness-step-line {
+  width: 40px;
+  height: 2px;
+  background: #e5e5e5;
+  margin: 0 12px;
+}
+
+/* Camera viewport */
+.liveness-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.liveness-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Hidden — we draw mirrored to canvas instead */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.liveness-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.liveness-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- Feedback text ---------- */
+
+.liveness-feedback {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0;
+  min-height: 1.4em;
+  transition: color 0.2s ease;
+}
+
+/* ---------- Result screen ---------- */
+
+.liveness-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+}
+
+.liveness-result-box {
+  flex-direction: column;
+  gap: 16px;
+  border-style: solid;
+  border-color: #e5e5e5;
+  border-width: 1px;
+}
+
+.liveness-result-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.liveness-result-icon.success {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.liveness-result-icon.fail {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.liveness-result-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* ---------- Info notice (bottom) ---------- */
+
+.liveness-demo-notice {
+  margin-top: auto;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 400px;
+  align-self: center;
+  padding-top: 16px;
+}
+
+.liveness-notice-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background: #6b8cae;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.liveness-demo-notice p {
+  font-size: 0.75rem;
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+.liveness-notice-link {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.liveness-notice-link:hover {
+  color: #1d4ed8;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+  .liveness-demo-card {
+    padding: 24px 18px;
+    border-radius: 12px;
+  }
+
+  .liveness-viewport {
+    border-radius: 10px;
+  }
+
+  .liveness-idle-desc {
+    font-size: 0.8rem;
+  }
+
+  .liveness-step-label {
+    font-size: 0.68rem;
+  }
+
+  .liveness-step-line {
+    width: 20px;
+    margin: 0 6px;
+  }
+}
