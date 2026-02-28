@@ -1322,19 +1322,18 @@ footer span {
 }
 
 .cookie-banner-text .cookie-privacy-link {
-    color: #1a1a1a;
-    text-decoration: none;
+    color: #1a6bc4;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(26, 107, 196, 0.4);
+    font-weight: 600;
 }
 
 .cookie-banner-text .cookie-privacy-link:hover {
+    color: #1558a3;
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: #ccc;
-}
-
-.cookie-banner-text .cookie-privacy-link strong {
-    font-weight: 700;
-    color: #1a1a1a;
+    text-decoration-color: rgba(21, 88, 163, 0.8);
 }
 
 .cookie-banner-actions {
