@@ -1,13 +1,14 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import InlineVoiceDemo from '@/components/InlineVoiceDemo';
 
 export const metadata = {
   title: 'Interactive Voice Assistant | jchowlabs',
-  description: 'How the jchowlabs voice concierge was built — from selecting conversational AI platforms to tuning interruptions, audio handling, and session management.',
+  description: 'Explore what a voice assistant can really do — page awareness, configuration awareness, and free-text understanding — with interactive demos you can try as you read.',
 };
 
 export default function ArticlePage() {
-  const content = `<section class="article-content-section">
+  const contentIntro = `<section class="article-content-section">
 			<div class="article-container">
 				<div class="article-hero">
 					<img src="/static/images/voice-concierge.png" alt="Interactive Voice Assistant" class="article-hero-img">
@@ -18,41 +19,79 @@ export default function ArticlePage() {
 				</div>
 
 				<div class="article-body">
-					<p>If you&rsquo;re reading this article, there&rsquo;s a good chance you&rsquo;ve already tried the voice chat feature on this site. Maybe you clicked on it out of curiosity and found yourself having an actual conversation with the website.</p>
-					<p>If you&rsquo;re curious about how the voice chat feature works, why it exists, or how it was built, this article is for you.</p>
-					<p>Voice agents are showing up everywhere. In my own experience, I&rsquo;ve interacted with them across customer support, fast food restaurants, and travel services. What stands out is how natural these systems feel. They handle interruptions well, maintain context, and sound increasingly human, imperfections and all. At times, it genuinely feels like you&rsquo;re interacting with another person.</p>
+					<p>If you&rsquo;ve spent any time on this site, you may have noticed the voice assistant in the bottom-right corner. It&rsquo;s not a chatbot. It&rsquo;s a conversational voice concierge that can help you explore the site, find articles, navigate between pages, and get in touch with me, all through natural speech.</p>
+					<p>But this article isn&rsquo;t just about how that voice assistant was built. It&rsquo;s about what voice assistants like this one can actually <em>do</em>, and it&rsquo;s designed to let you try those capabilities yourself as you read.</p>
+					<p>Voice agents are showing up everywhere: customer support, healthcare, fast food, travel. What stands out is how natural these interactions feel. They handle interruptions, maintain context, and respond in ways that increasingly feel human. But the real value isn&rsquo;t just conversation. It&rsquo;s awareness.</p>
+					<p>A well-built voice assistant doesn&rsquo;t just talk to you. It knows where you are, what&rsquo;s on the screen, and what you&rsquo;ve done. That turns a voice interface from a novelty into something genuinely useful.</p>
+					<p>Let&rsquo;s explore three capabilities that make this possible. To follow along, activate the voice assistant by clicking the pill in the bottom-right corner of the screen.</p>
 
-					<h2>Why I Built a Voice Assistant for This Site</h2>
-					<p>I came across a website that used a voice-based concierge, and it was designed incredibly well. I was able to interact with the assistant to learn about the site, ask questions, and even navigate between pages using voice commands alone.</p>
-					<p>I loved the experience and decided to try to replicate that same functionality on my own website, both as a learning exercise and to recreate the user experience I had with that site.</p>
-					<p>What follows is my journey building it.</p>
+					<h2>Page Awareness</h2>
+					<p>The most basic form of context is knowing what page the user is on. When you ask this site&rsquo;s voice assistant a question, it checks your current location before responding. It knows whether you&rsquo;re on the home page, reading an article, or working through an interactive lab.</p>
+					<p>This matters because it changes how the assistant responds. On the home page, it gives you an overview. On the passkeys demo, it tracks your progress and offers step-by-step guidance. Here, it knows you&rsquo;re reading about voice capabilities.</p>
+					<p>Try it now. Activate the voice assistant and ask:</p>
+					<div class="voice-prompt">
+						<p>Try asking the assistant:</p>
+						<p class="voice-prompt-question">&ldquo;What page am I on?&rdquo;</p>
+					</div>
+					<p>The assistant will tell you exactly where you are. Simple, but foundational. Every other capability builds on this awareness.</p>
+				</div>
+			</div>
+		</section>`;
 
-					<h2>What It Took to Build This</h2>
-					<p>When I started building the voice concierge for this site, I was already familiar with a number of voice and conversational AI products. I had seen different approaches, different demos, and different claims about what these systems could do. So the first thing I did was start experimenting.</p>
-					<p>I tried a variety of conversational AI and real-time voice solutions to understand how they actually behaved. It became clear pretty quickly that not all conversational systems are built for the same purpose.</p>
-					<p>Some systems are designed to operate within a defined scope. They rely on knowledge bases, predefined flows, and strict guardrails. They work well when the goal is to guide users through known paths and produce predictable outcomes.</p>
-					<p>Other systems are more open-ended. You can talk to them freely, much like typing into a large language model and receiving responses back. They are flexible and expressive, but they are not necessarily designed to take action or guide a user through a structured experience.</p>
-					<p>A website voice concierge sits somewhere in between.</p>
-					<p>It needs to feel conversational. It should greet you naturally, handle unexpected input, and respond professionally, even when the question has nothing to do with the site. At the same time, it has to be purposeful. It cannot lead users nowhere. It needs to understand the structure of the site, know what actions it can take, and guide visitors toward something concrete, like opening an article or navigating to a contact page.</p>
-					<p>Getting that balance right was one of the more interesting parts of the build.</p>
-					<p>Once the core conversational behavior was working, tuning became the real focus.</p>
-					<p>Interrupt handling was one of the first challenges. If the assistant is speaking and the user starts talking, what should happen? Should it stop immediately? Finish the sentence? Restart? Small decisions like this have a noticeable impact on how natural the interaction feels.</p>
-					<p>Audio adds another layer of complexity. The system speaks while the microphone is open and listening. Without careful tuning, it can hear itself, interrupt itself, or get stuck in loops where it struggles to detect real user input. This is even more noticeable on mobile devices, where background noise and microphone quality vary significantly.</p>
-					<p>Device differences matter. What works well on a quiet desktop setup may struggle on a phone in a noisy environment. Making the experience feel consistent across devices required careful adjustment.</p>
-					<p>There is also session management. A voice session should not run indefinitely. If there is no activity, it needs to end cleanly. If the user is finished, it should close gracefully. This is important for user experience, but also for practical reasons like resource usage and cost control.</p>
-					<p>In the end, the biggest takeaway was that the difference between an experience that feels okay and one that feels great comes down to the details. Timing, interruption handling, audio tuning, and clear boundaries all matter more than you initially expect.</p>
+  const contentToggleIntro = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-body">
+					<h2>Configuration Awareness</h2>
+					<p>Now let&rsquo;s go further. Imagine a dashboard with settings, toggles, and controls. A voice assistant that understands the page can also understand the state of interactive elements: whether a setting is enabled or disabled, what options are selected, what&rsquo;s changed since the last time it checked.</p>
+					<p>This is what makes voice useful in complex interfaces. Think of a security console, an admin panel, or a deployment workflow. Instead of hunting through menus, a user can simply ask and get an immediate, accurate answer.</p>
+					<p>Below is a simple toggle. Flip it to either position, then ask the voice assistant about it.</p>
+				</div>
+			</div>
+		</section>`;
 
-					<h2>How Voice Changed the Website Experience</h2>
-					<p>Most websites rely heavily on content and visual design to communicate what they are about and how visitors should navigate them. That still matters. Thoughtful layout, clear writing, and good information architecture are important.</p>
-					<p>Voice changes the dynamic.</p>
-					<p>Instead of asking visitors to figure out where to click or what to read first, voice allows them to simply say what they are looking for. The experience becomes more personal and more direct. The site responds to intent instead of forcing users to adapt to its structure.</p>
-					<p>What I found interesting is that people often ask questions they would never try to answer by scanning a page. Voice lowers that barrier. It invites exploration in a way that feels natural and lightweight, especially for visitors who are not quite sure where to start.</p>
-					<p>At the same time, voice is not a solution for everything. Not everyone wants to speak out loud. Sometimes reading is faster. Sometimes silence is better. In my experience, voice works best when it complements existing design rather than trying to replace it. It adds another way in, one that feels more conversational and more human.</p>
+  const contentAfterToggle = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-body">
+					<p>The voice assistant reads the live state of that toggle every time you ask. Flip it again and ask once more. The answer changes because the assistant sees the current state, not a cached snapshot.</p>
+					<p>In real-world applications, this pattern extends to any interactive element: dropdown selections, radio buttons, checkbox groups, slider positions. The assistant doesn&rsquo;t need to watch every change in real time. It checks the current state when asked, which is exactly how a human helper would work — they look at the screen when you ask them a question.</p>
+				</div>
+			</div>
+		</section>`;
 
-					<h2>Looking Ahead</h2>
-					<p>Voice-based interfaces are still evolving quickly. They are getting faster, more reliable, and better at understanding context. As that continues, I expect to see more sites experimenting with conversational experiences that feel less like tools and more like interactions.</p>
-					<p>This voice concierge will continue to change as well. I plan to keep experimenting, tuning behaviors, and exploring what feels useful versus what feels unnecessary. The goal is not novelty. The goal is to make interacting with a site feel easier and more intuitive.</p>
-					<p>If you are thinking about building something similar, whether for a personal site or a product, and want to compare notes or talk through trade-offs, feel free to get in touch. I am always happy to share what I have learned.</p>
+  const contentTextIntro = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-body">
+					<h2>Free-Text Awareness</h2>
+					<p>Toggles and dropdowns have a fixed set of states. Text input is different. When a user types into a form field, the value is arbitrary. A voice assistant that can read and relay free-text input demonstrates a deeper level of screen awareness.</p>
+					<p>This is useful for guided workflows where a user fills out forms and wants confirmation that they entered the right thing, or for accessibility scenarios where a user wants to hear back what they typed.</p>
+					<p>Type your name below, then ask the voice assistant what you entered.</p>
+				</div>
+			</div>
+		</section>`;
+
+  const contentAfterText = `<section class="article-content-section">
+			<div class="article-container">
+				<div class="article-body">
+					<p>The assistant reads back exactly what you typed. Change it, ask again, and it reflects the update. The input is intentionally simple here, a name field, but the pattern works for any text-based form element: search queries, configuration values, addresses, policy names.</p>
+
+					<h2>Why This Matters</h2>
+					<p>These three capabilities — page awareness, configuration awareness, and text-input awareness — are the building blocks for voice-assisted interfaces that are actually useful in professional settings.</p>
+					<p>Consider a security operations center where an analyst sees an alert and asks the voice assistant what triggered it. Or an identity management console where an admin asks whether MFA enforcement is enabled. Or a deployment workflow where someone is setting up a new service and wants guidance on what to fill in next.</p>
+					<p>In each case, the assistant doesn&rsquo;t just chat. It sees the screen, understands the current state, and provides relevant answers. That&rsquo;s the difference between a voice interface and a voice <em>assistant</em>.</p>
+
+					<h2>How It Was Built</h2>
+					<p>The voice assistant on this site is powered by ElevenLabs Conversational AI. The conversational logic, system prompt, voice settings, and tool definitions all live on the ElevenLabs platform. The client handles audio input and output and executes tool calls.</p>
+					<p>The key mechanism behind screen awareness is a client tool called <em>get_current_page</em>. Each time the assistant needs context, it calls this tool, which reads the current page URL and any interactive state exposed by the page&rsquo;s components. The response gives the assistant a structured snapshot of what the user is looking at.</p>
+					<p>Interactive elements on the page, like the toggle and text field above, sync their state to a shared JavaScript object. The tool reads from that object when called. No server is involved. No data is stored. The state lives in-browser for the duration of the session.</p>
+					<p>Tuning the experience involved balancing conversational fluidity with accuracy. The assistant needs to check state before answering, not guess from a previous call. It needs to describe what it sees naturally, not read raw data. And it needs to know when the question is about the page and when it&rsquo;s a general query that doesn&rsquo;t require screen context.</p>
+
+					<h2>Getting in Touch</h2>
+					<p>If you&rsquo;re interested in adding voice capabilities to your own website or product, I&rsquo;d love to hear from you. Try it right now:</p>
+					<div class="voice-prompt">
+						<p>Try asking the assistant:</p>
+						<p class="voice-prompt-question">&ldquo;Help me get in touch with Jason&rdquo;</p>
+					</div>
+					<p>Whether you&rsquo;re exploring voice for customer support, internal tools, or public-facing websites, the patterns in this article are a starting point. The technology is ready. The interesting work is in designing how it fits into the experience you want to create.</p>
 					<p>And if you&rsquo;ve made it this far, say &ldquo;<strong>open sesame</strong>&rdquo; to the voice assistant and see what happens.</p>
 				</div>
 			</div>
@@ -62,7 +101,29 @@ export default function ArticlePage() {
     <div className="page-wrapper content-page article-page">
       <Header />
       <main>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: contentIntro }} />
+        <div dangerouslySetInnerHTML={{ __html: contentToggleIntro }} />
+
+        <section className="article-content-section">
+          <div className="article-container">
+            <div className="article-body">
+              <InlineVoiceDemo variant="toggle" />
+            </div>
+          </div>
+        </section>
+
+        <div dangerouslySetInnerHTML={{ __html: contentAfterToggle }} />
+        <div dangerouslySetInnerHTML={{ __html: contentTextIntro }} />
+
+        <section className="article-content-section">
+          <div className="article-container">
+            <div className="article-body">
+              <InlineVoiceDemo variant="text" />
+            </div>
+          </div>
+        </section>
+
+        <div dangerouslySetInnerHTML={{ __html: contentAfterText }} />
       </main>
       <Footer />
     </div>

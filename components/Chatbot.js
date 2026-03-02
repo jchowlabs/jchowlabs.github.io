@@ -234,6 +234,22 @@ export default function Chatbot() {
               return 'The user is on the home page — it has insight articles, interactive labs, and an events section.';
             }
 
+            // Voice assistant article — include inline demo state
+            if (path === '/lab/interactive-voice-assistant') {
+              const demos = window.__voiceDemo || null;
+              if (demos) {
+                return JSON.stringify({
+                  page: 'Interactive Voice Assistant',
+                  description: 'Article about voice assistant capabilities with inline interactive demos the user can try.',
+                  demos: {
+                    notificationsToggle: demos.notificationsToggle || 'off',
+                    textInput: demos.textInput || '(empty — nothing typed yet)',
+                  },
+                });
+              }
+              return 'The user is on the Interactive Voice Assistant article. It describes voice assistant capabilities including page awareness, configuration awareness, and text input awareness.';
+            }
+
             // Passkey demo — include step progress for guided assistance
             if (path === '/lab/passkey-demo') {
               const completedSteps = document.querySelectorAll('.info-section li.completed').length;

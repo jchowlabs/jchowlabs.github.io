@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import '@/styles/chatbot.css';
 import '@/styles/pages.css';
 import '@/styles/liveness.css';
+import '@/styles/inline-voice-demo.css';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
 import CookieBanner from '@/components/CookieBanner';
