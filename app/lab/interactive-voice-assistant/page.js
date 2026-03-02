@@ -44,7 +44,7 @@ export default function ArticlePage() {
 					<h2>Configuration Awareness</h2>
 					<p>Now let&rsquo;s go further. Imagine a dashboard with settings, toggles, and controls. A voice assistant that understands the page can also understand the state of interactive elements: whether a setting is enabled or disabled, what options are selected, what&rsquo;s changed since the last time it checked.</p>
 					<p>This is what makes voice useful in complex interfaces. Think of a security console, an admin panel, or a deployment workflow. Instead of hunting through menus, a user can simply ask and get an immediate, accurate answer.</p>
-					<p>Below is a simple toggle. Flip it to either position, then ask the voice assistant about it.</p>
+					<p>Below is a simple toggle. Flip it yourself, or ask the voice assistant to change it for you.</p>
 				</div>
 			</div>
 		</section>`;
@@ -52,7 +52,7 @@ export default function ArticlePage() {
   const contentAfterToggle = `<section class="article-content-section">
 			<div class="article-container">
 				<div class="article-body">
-					<p>The voice assistant reads the live state of that toggle every time you ask. Flip it again and ask once more. The answer changes because the assistant sees the current state, not a cached snapshot.</p>
+					<p>The voice assistant reads the live state of that toggle every time you ask, and it can change it too. Ask it to turn the toggle on or off. The assistant sees the current state, decides whether an action is needed, and confirms the result.</p>
 					<p>In real-world applications, this pattern extends to any interactive element: dropdown selections, radio buttons, checkbox groups, slider positions. The assistant doesn&rsquo;t need to watch every change in real time. It checks the current state when asked, which is exactly how a human helper would work — they look at the screen when you ask them a question.</p>
 				</div>
 			</div>

@@ -228,6 +228,18 @@ export default function Chatbot() {
             return 'Session ending';
           },
 
+          set_toggle: async ({ state }) => {
+            const action = window.__voiceDemoActions?.setToggle;
+            if (!action) {
+              return 'The toggle demo is not on the current page. Navigate to the Interactive Voice Assistant article first.';
+            }
+            const result = action(state);
+            if (result.success) {
+              return `Done — the toggle is now ${result.newState}.`;
+            }
+            return `Could not set the toggle: ${result.reason}`;
+          },
+
           get_current_page: async () => {
             const path = window.location.pathname;
             if (path === '/') {

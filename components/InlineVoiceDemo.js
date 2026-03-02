@@ -10,7 +10,7 @@
  * assistant can read live values via the get_current_page client tool.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const NAME_MAX_LENGTH = 50;
 
@@ -24,6 +24,32 @@ export default function InlineVoiceDemo({ variant }) {
     const cleaned = raw.replace(/[^a-zA-Z\s\-']/g, '').slice(0, NAME_MAX_LENGTH);
     setNameValue(cleaned);
   };
+
+  /* ---- expose toggle control for voice assistant ---- */
+  const flipToggle = useCallback(
+    (desired) => {
+      if (variant !== 'toggle') return { success: false, reason: 'not a toggle instance' };
+      const next =
+        desired === 'on' ? true : desired === 'off' ? false : !toggleOn;
+      setToggleOn(next);
+      return { success: true, newState: next ? 'on' : 'off' };
+    },
+    [variant, toggleOn],
+  );
+
+  useEffect(() => {
+    if (variant !== 'toggle') return;
+    if (!window.__voiceDemoActions) window.__voiceDemoActions = {};
+    window.__voiceDemoActions.setToggle = flipToggle;
+    return () => {
+      if (window.__voiceDemoActions) {
+        delete window.__voiceDemoActions.setToggle;
+        if (Object.keys(window.__voiceDemoActions).length === 0) {
+          delete window.__voiceDemoActions;
+        }
+      }
+    };
+  }, [variant, flipToggle]);
 
   /* ---- sync own slice to window.__voiceDemo ---- */
   useEffect(() => {
@@ -68,7 +94,7 @@ export default function InlineVoiceDemo({ variant }) {
           </button>
         </div>
         <p className="ivd-prompt">
-          Try asking the assistant: <em>&ldquo;Is the toggle on or off?&rdquo;</em>
+          Try asking the assistant: <em>&ldquo;Turn the toggle on&rdquo;</em> or <em>&ldquo;Is it on or off?&rdquo;</em>
         </p>
       </div>
     );
