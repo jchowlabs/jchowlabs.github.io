@@ -438,6 +438,17 @@
 
 /* --- Home: Responsive --- */
 
+@media (max-width: 1200px) {
+  .home-lab-card {
+    flex: 0 0 calc((100% - 34px) / 2);
+  }
+  .home-labs-wrapper {
+    padding: 0 50px;
+  }
+  .home-labs-arrow.prev { left: 2px; }
+  .home-labs-arrow.next { right: 2px; }
+}
+
 @media (max-width: 1024px) {
   .home-section {
     padding: 60px 40px;
@@ -446,11 +457,6 @@
     grid-template-columns: repeat(2, 1fr);
     max-width: 800px;
   }
-  .home-lab-card {
-    flex: 0 0 calc((100% - 20px) / 2);
-  }
-  .home-labs-arrow.prev { left: 2px; }
-  .home-labs-arrow.next { right: 2px; }
 }
 
 @media (max-width: 768px) {
