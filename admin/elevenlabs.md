@@ -76,7 +76,7 @@ Labs:
 - "Facial Liveness Verification" — interactive liveness detection techniques. URL: /lab/facial-liveness-verification
 - "Interactive Voice Assistant" — voice concierge for site navigation. URL: /lab/interactive-voice-assistant
 - "Passkey Cryptography" — cryptographic foundations of passkeys. URL: /lab/cryptography-behind-passkeys
-- "AI Agent Guardrails" [Coming Soon] — not yet published.
+- "Securing AI Chatbots" — interactive lab with a vulnerable and secured AI chatbot. URL: /lab/securing-chatbots
 
 SECTION NAVIGATION (these are anchor links on the home page — always use the EXACT paths below, never infer a path):
 - Home: /
