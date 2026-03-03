@@ -46,6 +46,16 @@ const labs = [
     tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
   },
   {
+    href: null,
+    img: '/static/images/caep.png',
+    alt: 'CAEP Interactive Demo',
+    title: 'CAEP: Interactive Demo',
+    status: 'coming-soon',
+    summary:
+      'An interactive introduction to the Continuous Access Evaluation Protocol (CAEP) and how it enables real-time session revocation across applications. This lab walks through CAEP event flows and lets you trigger a live credential-change event that instantly terminates an active session on a paired application.',
+    tags: ['CAEP', 'Session Security', 'Zero Trust'],
+  },
+  {
     href: '/lab/cryptography-behind-passkeys',
     img: '/static/images/passkeys-cryptography.png',
     alt: 'Passkey Cryptography',
