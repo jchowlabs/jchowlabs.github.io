@@ -15,14 +15,15 @@ const labs = [
     tags: ['WebAuthn', 'Passkeys', 'Biometric Auth'],
   },
   {
-    href: '/lab/facial-liveness-verification',
-    img: '/static/images/facial-liveness-verification.png',
-    alt: 'Facial Liveness Verification',
-    title: 'Facial Liveness Verification',
+    href: '/lab/securing-chatbots',
+    img: '/static/images/policy-guardrails.png',
+    alt: 'Securing AI Chatbots',
+    title: 'Securing AI Chatbots',
     status: 'live',
     summary:
-      'An interactive lab exploring how facial verification systems distinguish a live human from a spoofed image, video, or mask. This lab covers passive and active liveness techniques, depth estimation, challenge-response prompts, and texture analysis used to defend against presentation attacks.',
-    tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
+      'An interactive lab featuring a vulnerable and a secured AI support chatbot. Explore how LLM-powered agents can be manipulated through enumeration, social engineering, and cross-account attacks — then see how backend guardrails like input scanning, tool-level authorization, and output filtering defend against the same exploits.',
+    tags: ['AI Safety', 'LLM Security', 'Guardrails'],
+    imgStyle: { maxWidth: '110px', maxHeight: '110px' },
   },
   {
     href: '/lab/interactive-voice-assistant',
@@ -35,6 +36,16 @@ const labs = [
     tags: ['Voice AI', 'Speech', 'Conversational UI'],
   },
   {
+    href: '/lab/facial-liveness-verification',
+    img: '/static/images/facial-liveness-verification.png',
+    alt: 'Facial Liveness Verification',
+    title: 'Facial Liveness Verification',
+    status: 'live',
+    summary:
+      'An interactive lab exploring how facial verification systems distinguish a live human from a spoofed image, video, or mask. This lab covers passive and active liveness techniques, depth estimation, challenge-response prompts, and texture analysis used to defend against presentation attacks.',
+    tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
+  },
+  {
     href: '/lab/cryptography-behind-passkeys',
     img: '/static/images/passkeys-cryptography.png',
     alt: 'Passkey Cryptography',
@@ -43,17 +54,6 @@ const labs = [
     summary:
       'A technical walkthrough of the cryptographic foundations that make passkeys work. This lab covers asymmetric key pairs, on-device key generation, WebAuthn registration and authentication flows, and why passkeys are resistant to phishing, replay attacks, and credential theft.',
     tags: ['Cryptography', 'Passkeys', 'WebAuthn'],
-  },
-  {
-    href: null,
-    img: '/static/images/policy-guardrails.png',
-    alt: 'AI Agent Guardrails',
-    title: 'AI Agent Guardrails',
-    status: 'coming-soon',
-    summary:
-      'Build guardrails for AI agents to understand how control and governance work in autonomous systems. This lab examines how agent instructions, tool access, and permissions translate into real capabilities, surfacing potential risk paths and unintended behavior before execution.',
-    tags: ['Governance', 'Policy Engine', 'AI Safety'],
-    imgStyle: { maxWidth: '110px', maxHeight: '110px' },
   },
 ];
 

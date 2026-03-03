@@ -11,9 +11,13 @@ out/
 .DS_Store
 *.pem
 .env*.local
+.dev.vars
 
 # debug
 npm-debug.log*
 
 # vercel
 .vercel
+
+# wrangler local dev state
+worker/.wrangler/

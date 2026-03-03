@@ -19,7 +19,7 @@ export default function ArticlePage() {
 				</div>
 
 				<div class="article-body">
-					<p>If you&rsquo;ve spent any time on this site, you may have noticed the voice assistant in the bottom-right corner. It&rsquo;s not a chatbot. It&rsquo;s a conversational voice concierge that can help you explore the site, find articles, navigate between pages, and get in touch with me, all through natural speech.</p>
+					<p>If you&rsquo;ve spent some time on this site, you may have noticed the voice assistant in the bottom-right corner. It&rsquo;s not a chatbot. It&rsquo;s a conversational voice concierge that can help you explore the site, find articles, navigate between pages, and get in touch with me, all through natural speech.</p>
 					<p>But this article isn&rsquo;t just about how that voice assistant was built. It&rsquo;s about what voice assistants like this one can actually <em>do</em>, and it&rsquo;s designed to let you try those capabilities yourself as you read.</p>
 					<p>Voice agents are showing up everywhere: customer support, healthcare, fast food, travel. What stands out is how natural these interactions feel. They handle interruptions, maintain context, and respond in ways that increasingly feel human. But the real value isn&rsquo;t just conversation. It&rsquo;s awareness.</p>
 					<p>A well-built voice assistant doesn&rsquo;t just talk to you. It knows where you are, what&rsquo;s on the screen, and what you&rsquo;ve done. That turns a voice interface from a novelty into something genuinely useful.</p>
@@ -28,10 +28,16 @@ export default function ArticlePage() {
 					<h2>Page Awareness</h2>
 					<p>The most basic form of context is knowing what page the user is on. When you ask this site&rsquo;s voice assistant a question, it checks your current location before responding. It knows whether you&rsquo;re on the home page, reading an article, or working through an interactive lab.</p>
 					<p>This matters because it changes how the assistant responds. On the home page, it gives you an overview. On the passkeys demo, it tracks your progress and offers step-by-step guidance. Here, it knows you&rsquo;re reading about voice capabilities.</p>
-					<p>Try it now. Activate the voice assistant and ask:</p>
-					<div class="voice-prompt">
-						<p>Try asking the assistant:</p>
-						<p class="voice-prompt-question">&ldquo;What page am I on?&rdquo;</p>
+					<p><strong>Try it now:</strong></p>
+					<div class="voice-steps">
+						<div class="voice-step">
+							<span class="voice-step-num">1</span>
+							<span class="voice-step-label">Enable <span class="voice-step-pill"><span class="voice-step-pill-orb"></span><span class="voice-step-pill-text">Voice Assistant</span></span></span>
+						</div>
+						<div class="voice-step">
+							<span class="voice-step-num">2</span>
+							<span class="voice-step-label">Ask the assistant: <em>&ldquo;What page am I on?&rdquo;</em></span>
+						</div>
 					</div>
 					<p>The assistant will tell you exactly where you are. Simple, but foundational. Every other capability builds on this awareness.</p>
 				</div>
@@ -44,7 +50,7 @@ export default function ArticlePage() {
 					<h2>Configuration Awareness</h2>
 					<p>Now let&rsquo;s go further. Imagine a dashboard with settings, toggles, and controls. A voice assistant that understands the page can also understand the state of interactive elements: whether a setting is enabled or disabled, what options are selected, what&rsquo;s changed since the last time it checked.</p>
 					<p>This is what makes voice useful in complex interfaces. Think of a security console, an admin panel, or a deployment workflow. Instead of hunting through menus, a user can simply ask and get an immediate, accurate answer.</p>
-					<p>Below is a simple toggle. Flip it yourself, or ask the voice assistant to change it for you.</p>
+					<p><strong>Try it now:</strong></p>
 				</div>
 			</div>
 		</section>`;
@@ -64,7 +70,7 @@ export default function ArticlePage() {
 					<h2>Free-Text Awareness</h2>
 					<p>Toggles and dropdowns have a fixed set of states. Text input is different. When a user types into a form field, the value is arbitrary. A voice assistant that can read and relay free-text input demonstrates a deeper level of screen awareness.</p>
 					<p>This is useful for guided workflows where a user fills out forms and wants confirmation that they entered the right thing, or for accessibility scenarios where a user wants to hear back what they typed.</p>
-					<p>Type your name below, then ask the voice assistant what you entered.</p>
+					<p><strong>Try it now:</strong></p>
 				</div>
 			</div>
 		</section>`;
@@ -87,9 +93,15 @@ export default function ArticlePage() {
 
 					<h2>Getting in Touch</h2>
 					<p>If you&rsquo;re interested in adding voice capabilities to your own website or product, I&rsquo;d love to hear from you. Try it right now:</p>
-					<div class="voice-prompt">
-						<p>Try asking the assistant:</p>
-						<p class="voice-prompt-question">&ldquo;Help me get in touch with Jason&rdquo;</p>
+					<div class="voice-steps">
+						<div class="voice-step">
+							<span class="voice-step-num">1</span>
+							<span class="voice-step-label">Ask to get in touch with Jason</span>
+						</div>
+						<div class="voice-step">
+							<span class="voice-step-num">2</span>
+							<span class="voice-step-label">Say <em>&ldquo;goodbye&rdquo;</em> to end the session</span>
+						</div>
 					</div>
 					<p>Whether you&rsquo;re exploring voice for customer support, internal tools, or public-facing websites, the patterns in this article are a starting point. The technology is ready. The interesting work is in designing how it fits into the experience you want to create.</p>
 					<p>And if you&rsquo;ve made it this far, say &ldquo;<strong>open sesame</strong>&rdquo; to the voice assistant and see what happens.</p>
@@ -104,7 +116,7 @@ export default function ArticlePage() {
         <div dangerouslySetInnerHTML={{ __html: contentIntro }} />
         <div dangerouslySetInnerHTML={{ __html: contentToggleIntro }} />
 
-        <section className="article-content-section">
+        <section className="article-content-section" style={{ paddingTop: 0 }}>
           <div className="article-container">
             <div className="article-body">
               <InlineVoiceDemo variant="toggle" />
@@ -115,7 +127,7 @@ export default function ArticlePage() {
         <div dangerouslySetInnerHTML={{ __html: contentAfterToggle }} />
         <div dangerouslySetInnerHTML={{ __html: contentTextIntro }} />
 
-        <section className="article-content-section">
+        <section className="article-content-section" style={{ paddingTop: 0 }}>
           <div className="article-container">
             <div className="article-body">
               <InlineVoiceDemo variant="text" />

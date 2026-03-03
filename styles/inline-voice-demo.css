@@ -5,11 +5,26 @@
   border: 0.5px solid #ddd;
   border-radius: 8px;
   padding: 0;
-  margin: 2rem auto;
+  margin: 0 auto 1rem;
   max-width: 520px;
   background: #F9F8F5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.055);
   overflow: hidden;
+}
+
+/* ── Inline steps inside ivd-card ── */
+
+.voice-steps-inline {
+  margin: 0;
+  max-width: none;
+  border: none;
+  border-top: 0.5px solid #ddd;
+  border-radius: 0;
+  background:
+    linear-gradient(to right, rgba(180,185,190,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,185,190,0.04) 1px, transparent 1px);
+  background-size: 6px 6px;
+  padding: 6px 0;
 }
 
 /* ── Settings row (toggle variant) ── */
@@ -196,6 +211,109 @@
   color: #111827;
   font-style: italic;
   border-bottom: none;
+}
+
+/* ── Voice steps (thin stacked step list) ── */
+
+.voice-steps {
+  margin: 1.5rem auto;
+  max-width: 500px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background:
+    linear-gradient(to right, rgba(180,185,190,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,185,190,0.04) 1px, transparent 1px);
+  background-size: 6px 6px;
+  overflow: visible;
+  padding: 10px 0;
+}
+
+.voice-step {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 28px;
+  position: relative;
+}
+
+/* Connecting line between step numbers */
+.voice-step + .voice-step::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: #ddd;
+  left: 46px;
+  bottom: calc(50% + 18px);
+  top: -14px;
+}
+
+.voice-step:first-child {
+  padding-bottom: 8px;
+}
+
+.voice-step + .voice-step {
+  padding-top: 8px;
+}
+
+.voice-step-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eeede9;
+  color: #555;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.voice-step-label {
+  font-size: 1.08rem;
+  color: #333;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.voice-step-label em {
+  color: #111;
+  font-weight: 500;
+}
+
+/* Inline pill replica (matches the real .va-pill) */
+.voice-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: #f5f3ef;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  vertical-align: middle;
+}
+
+.voice-step-pill-orb {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #7dd3fc, #38bdf8, #2563eb, #6366f1);
+  flex-shrink: 0;
+}
+
+.voice-step-pill-text {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 /* ── Responsive ── */

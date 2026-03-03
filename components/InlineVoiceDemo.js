@@ -93,9 +93,20 @@ export default function InlineVoiceDemo({ variant }) {
             <span className="ivd-toggle-knob" />
           </button>
         </div>
-        <p className="ivd-prompt">
-          Try asking the assistant: <em>&ldquo;Turn the toggle on&rdquo;</em> or <em>&ldquo;Is it on or off?&rdquo;</em>
-        </p>
+        <div className="voice-steps voice-steps-inline">
+          <div className="voice-step">
+            <span className="voice-step-num">1</span>
+            <span className="voice-step-label">Ask what position the toggle is in</span>
+          </div>
+          <div className="voice-step">
+            <span className="voice-step-num">2</span>
+            <span className="voice-step-label">Flip the toggle, then ask again</span>
+          </div>
+          <div className="voice-step">
+            <span className="voice-step-num">3</span>
+            <span className="voice-step-label">Ask the assistant to turn the toggle on</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -116,9 +127,16 @@ export default function InlineVoiceDemo({ variant }) {
             autoComplete="off"
           />
         </div>
-        <p className="ivd-prompt">
-          Try asking the assistant: <em>&ldquo;What did I type?&rdquo;</em>
-        </p>
+        <div className="voice-steps voice-steps-inline">
+          <div className="voice-step">
+            <span className="voice-step-num">1</span>
+            <span className="voice-step-label">Type your name in the field above</span>
+          </div>
+          <div className="voice-step">
+            <span className="voice-step-num">2</span>
+            <span className="voice-step-label">Ask the assistant what you typed</span>
+          </div>
+        </div>
       </div>
     );
   }

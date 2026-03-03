@@ -20,20 +20,61 @@ export default function FacialLivenessVerificationPage() {
         </div>
 
         <div class="article-body">
-          <p>Facial verification systems are increasingly common, from unlocking phones to verifying identity for financial services. But how do these systems know they&rsquo;re looking at a real person and not a printed photo, a video replay, or a sophisticated mask?</p>
+          <p>Facial verification systems are now part of everyday digital life. We use them to unlock phones, login to applications, and approve financial transactions.</p>
 
-          <p>The answer is <strong>liveness detection</strong> — a set of techniques designed to confirm that the face presented to a camera belongs to a live human who is physically present. Without liveness checks, facial verification is vulnerable to <strong>presentation attacks</strong>: an adversary could hold up a photo, play a video on a screen, or wear a 3D-printed mask to impersonate someone else.</p>
+          <p><strong>But here is an important question.</strong></p>
 
-          <p>Liveness detection generally falls into two categories:</p>
+          <p>How do you know the person behind the camera is real, and not a printed photo, video replay or a well-constructed mask?</p>
 
-          <p><strong>Passive liveness</strong> analyzes properties of the captured image or video without requiring the user to do anything specific. This might include examining texture patterns (skin vs. paper), checking for micro-movements like blinking or subtle muscle contractions, or analyzing 3D depth characteristics that distinguish a real face from a flat surface.</p>
+          <p>That is where liveness detection comes in.</p>
 
-          <p><strong>Active liveness</strong> asks the user to perform specific actions — turn their head, blink, smile, or follow an on-screen prompt. By verifying that the face responds to randomized challenges in real time, the system can confirm that a live, cooperative person is present.</p>
+          <p>Liveness detection is a set of techniques designed to confirm that the face presented to a camera belongs to a live human being who is physically present and interacting in real time. Without it, facial verification systems are vulnerable to what&rsquo;s known as presentation attacks. An attacker could simply hold up a photo, replay a video, or use a high quality mask to impersonate someone else.</p>
 
-          <p>The interactive demo below implements a simplified <strong>active liveness check</strong> using randomized challenges. It runs entirely in your browser via WebAssembly — no images or data leave your device. Each session picks three challenges at random from a pool of head turns, blinks, smiles, and nods, then evaluates your responses to produce a confidence score.</p>
+          <p>As AI-generated media becomes more accessible, so does the importance of strong liveness verification techniques.</p>
+
+          <h2>Two Approaches to Liveness</h2>
+
+          <p>There are generally two categories of liveness detection.</p>
+
+          <p><strong>Passive liveness</strong> analyzes images or video feed without requiring the user to do anything specific. The system might look at texture differences between skin and paper, detect subtle micro-movements like blinking or muscle activity, or analyze depth characteristics that distinguish a real face from a flat surface.</p>
+
+          <p><strong>Active liveness</strong> requires the user to respond to specific prompts. The system might ask you to turn your head, blink, smile, or nod. Because the actions are randomized and verified in real time, it becomes much harder to rely on pre-recorded content.</p>
+
+          <p>Most production systems, including the demo, combine both elements.</p>
 
           <h2>Try It Yourself</h2>
-          <p>Click the button below to start the liveness check. You&rsquo;ll be guided through three randomized challenges using your device&rsquo;s camera. The system tracks your face, measures how quickly and accurately you respond, and analyzes passive micro-expression activity to produce an overall liveness confidence score.</p>
+        </div>
+      </div>
+    </section>`;
+
+  const afterHtml = `<section class="article-content-section">
+      <div class="article-container">
+        <div class="article-body">
+          <h2>How It Works</h2>
+
+          <p>When you start the session, several things happen:</p>
+
+          <p><strong>1. Face Detection and Tracking</strong></p>
+          <p>A face detection model loads and begins tracking facial landmarks and blendshape coefficients from your camera feed. An oval overlay helps the user correctly position their head for this detection model.</p>
+
+          <p><strong>2. Randomized Challenges</strong></p>
+          <p>Three random challenges are selected from a pool of challenges: turn left, turn right, blink, smile, head nod and others. Each challenge monitors a specific signal. Head pose angles are used for turns and nods. Eye-blink blendshapes are used for blinks. Mouth-smile coefficients are used for smiles. A challenge is passed only when the signal exceeds its threshold and remains stable for a minimum number of frames.</p>
+
+          <p><strong>3. Micro-Expression Sampling</strong></p>
+          <p>Throughout the session, the system samples blink, cheek, and brow-related blendshape coefficients and computes variance. A live face produces natural, low-level motion. Static images and simple replays tend to produce near-zero variance.</p>
+
+          <p><strong>4. Confidence Scoring</strong></p>
+          <p>After all three challenges complete, a combined confidence score is calculated. The weighting is distributed across challenge peak accuracy, response time, and passive micro-movement variance. Liveness is confirmed when both the individual challenges and the overall score meet defined thresholds.</p>
+
+          <p>The demo illustrates the layered logic behind real-world systems.</p>
+
+          <h2>A Practical Takeaway</h2>
+
+          <p>Liveness detection shifts facial verification from simple matching to real-time assurance.</p>
+
+          <p>It adds an important layer of confidence in environments where automated systems are making identity decisions without human oversight.</p>
+
+          <p>If your organization relies on facial verification for onboarding, authentication, or transaction approval, understanding how liveness works is no longer optional. It is part of building durable digital trust.</p>
         </div>
       </div>
     </section>`;
@@ -48,24 +89,10 @@ export default function FacialLivenessVerificationPage() {
         <section className="article-content-section">
           <div className="article-container">
             <LivenessDetection />
-
-            <div className="article-body" style={{ marginTop: '3rem' }}>
-              <h2>How It Works</h2>
-              <p>When you start the liveness check, the following happens entirely in your browser:</p>
-
-              <p><strong>1. Face Detection &amp; Tracking</strong> — A face detection model loads via WebAssembly, begins tracking facial landmarks and blendshape coefficients in real time from your camera feed, and renders an oval guide overlay.</p>
-
-              <p><strong>2. Randomized Challenges</strong> — Three challenges are selected at random from a pool of five: turn left, turn right, blink, smile, and nod. Each challenge monitors the relevant signal — head pose angles for turns and nods, eye-blink blendshapes for blinks, and mouth-smile blendshapes for smiles. A challenge is passed when the signal exceeds its threshold and is held for a minimum number of frames.</p>
-
-              <p><strong>3. Micro-expression Analysis</strong> — Throughout the session, the system passively samples a set of facial blendshape coefficients (eye blinks, cheek squints, brow raises) and computes their variance. A live face produces natural micro-movements; a static image or replay produces near-zero variance.</p>
-
-              <p><strong>4. Confidence Scoring</strong> — After all three challenges complete, the system produces a combined confidence score weighted across three factors: challenge peak accuracy (50%), response time (20%), and passive micro-expression variance (30%). Liveness is confirmed when the confidence score meets the threshold and all individual challenges have passed.</p>
-
-              <h2>Limitations</h2>
-              <p>This is an educational demonstration, not a production-grade biometric system. It provides basic protection against printed photo attacks and static screen replays, but it is not designed to defeat sophisticated attacks like high-quality deepfake video or 3D masks. Production systems typically combine multiple signals — infrared depth sensors, texture analysis, additional challenge randomization, and server-side ML models — to achieve higher assurance levels.</p>
-            </div>
           </div>
         </section>
+
+        <div dangerouslySetInnerHTML={{ __html: afterHtml }} />
       </main>
       <Footer />
     </div>
