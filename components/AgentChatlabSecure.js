@@ -320,6 +320,12 @@ export default function AgentChatlabSecure() {
       {/* Side panel (inside browser chrome) */}
       {modalOpen && (
         <div className={`acl-panel${panelOpen ? '' : ' acl-panel-collapsed'}`}>
+          <div className="acl-panel-close-bar">
+            <button className="acl-panel-close-btn" onClick={() => setPanelOpen(false)}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              Back to Chat
+            </button>
+          </div>
           <div className="acl-panel-header">Getting Started</div>
           <div className="acl-panel-content">
             <div className="acl-panel-briefing">
