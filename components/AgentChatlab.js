@@ -23,7 +23,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
     ? 'http://localhost:8787'
-    : 'https://agent-guardrails-lab.jchow.workers.dev';
+    : 'https://agent-guardrails-lab.jchow-a27.workers.dev';
 
 /* Simple markdown-ish renderer: bullet lists, bold, line breaks */
 function formatMessage(text) {
