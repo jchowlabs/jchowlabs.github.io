@@ -16,6 +16,10 @@ export default function AgentGuardrailsPage() {
           <img src="/static/images/policy-guardrails.png" alt="Securing AI Chatbots" class="article-hero-img">
         </div>
 
+        <div class="try-yourself-cta" style="background: #f0f7ff; border: 1px solid #2563eb; padding: 24px 36px; margin: 35px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); display: flex; align-items: center; gap: 16px;">
+          <p style="color: #1e40af; margin: 0; line-height: 1.6;"><span style="color: #2563eb; font-weight: 600;">Recommendation:</span> View this article on desktop for the best experience.</p>
+        </div>
+
         <div class="article-header">
           <h1>Securing AI Chatbots</h1>
         </div>
