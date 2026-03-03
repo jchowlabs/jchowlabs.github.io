@@ -36,7 +36,7 @@ export default function ArticlePage() {
 						</div>
 						<div class="voice-step">
 							<span class="voice-step-num">2</span>
-							<span class="voice-step-label">Ask the assistant: <em>&ldquo;What page am I on?&rdquo;</em></span>
+							<span class="voice-step-label">Ask what page your on.</span>
 						</div>
 					</div>
 					<p>The assistant will tell you exactly where you are. Simple, but foundational. Every other capability builds on this awareness.</p>
@@ -100,7 +100,7 @@ export default function ArticlePage() {
 						</div>
 						<div class="voice-step">
 							<span class="voice-step-num">2</span>
-							<span class="voice-step-label">Say <em>&ldquo;goodbye&rdquo;</em> to end the session</span>
+							<span class="voice-step-label">Say goodbye to end session.</span>
 						</div>
 					</div>
 					<p>Whether you&rsquo;re exploring voice for customer support, internal tools, or public-facing websites, the patterns in this article are a starting point. The technology is ready. The interesting work is in designing how it fits into the experience you want to create.</p>

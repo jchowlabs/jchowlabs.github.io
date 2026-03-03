@@ -96,7 +96,7 @@ export default function InlineVoiceDemo({ variant }) {
         <div className="voice-steps voice-steps-inline">
           <div className="voice-step">
             <span className="voice-step-num">1</span>
-            <span className="voice-step-label">Ask what position the toggle is in</span>
+            <span className="voice-step-label">Ask position of toggle.</span>
           </div>
           <div className="voice-step">
             <span className="voice-step-num">2</span>
@@ -104,7 +104,7 @@ export default function InlineVoiceDemo({ variant }) {
           </div>
           <div className="voice-step">
             <span className="voice-step-num">3</span>
-            <span className="voice-step-label">Ask the assistant to turn the toggle on</span>
+            <span className="voice-step-label">Ask to switch toggle.</span>
           </div>
         </div>
       </div>
@@ -130,11 +130,11 @@ export default function InlineVoiceDemo({ variant }) {
         <div className="voice-steps voice-steps-inline">
           <div className="voice-step">
             <span className="voice-step-num">1</span>
-            <span className="voice-step-label">Type your name in the field above</span>
+            <span className="voice-step-label">Type your name above.</span>
           </div>
           <div className="voice-step">
             <span className="voice-step-num">2</span>
-            <span className="voice-step-label">Ask the assistant what you typed</span>
+            <span className="voice-step-label">Ask what you typed.</span>
           </div>
         </div>
       </div>
