@@ -14,11 +14,7 @@ export default function ArticlePage() {
 
 				<a href="https://www.jchowlabs.me" target="_blank" style="text-decoration: none; display: block;">
                     <div class="try-yourself-cta" style="background: #f0f7ff; border: 1px solid #2563eb; padding: 24px 36px; margin: 35px 0; border-radius: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); display: flex; align-items: center; gap: 16px;">
-                        <h3 style="color: #2563eb; margin: 0; font-size: 1.125rem; font-weight: 600; white-space: nowrap;">Try yourself:</h3>
-                        <p style="color: #1e40af; margin: 0; line-height: 1.6;">
-                            <span class="try-yourself-copy">Create an account and login to an IdP at </span>
-							<span class="try-yourself-url" style="font-weight: 600;">www.jchowlabs.me.</span>
-                        </p>
+                        <p style="color: #1e40af; margin: 0; line-height: 1.6;"><span style="color: #2563eb; font-weight: 600;">Try yourself:</span> Create an account and login to an IdP at <span style="font-weight: 600;">www.jchowlabs.me.</span></p>
                     </div>
                 </a>
 
