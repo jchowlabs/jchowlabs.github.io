@@ -915,10 +915,16 @@
     padding: 8px 10px;
   }
 
+  /* Prevent iOS auto-zoom on input focus (requires >= 16px) */
+  .acl-input {
+    font-size: 16px;
+  }
+
   /* ---- Modal: float above page with visible border ---- */
   .acl-modal-overlay {
     padding: 24px 14px;
     align-items: center;
+    touch-action: manipulation;
   }
 
   .acl-modal {
@@ -953,6 +959,8 @@
     box-shadow: none;
     border-radius: 0;
     border-left: none;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
   }
 
   .acl-panel-collapsed {
@@ -1046,7 +1054,7 @@
   .acl-panel-close-bar {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 8px 12px;
     border-bottom: 1px solid #e0e0e0;
     background: #fafaf9;
