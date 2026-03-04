@@ -27,24 +27,31 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === '/ip' && request.method === 'GET') {
-      const cf = request.cf || {};
-      const data = {
-        ip: request.headers.get('CF-Connecting-IP') || null,
-        city: cf.city || null,
-        region: cf.region || null,
-        country: cf.country || null,
-        latitude: cf.latitude || null,
-        longitude: cf.longitude || null,
-        timezone: cf.timezone || null,
-        isp: cf.asOrganization || null,
-        tlsVersion: cf.tlsVersion || null,
-        httpProtocol: cf.httpProtocol || null,
-        acceptLanguage: request.headers.get('Accept-Language') || null,
-        acceptEncoding: request.headers.get('Accept-Encoding') || null,
-      };
-      return new Response(JSON.stringify(data), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      try {
+        const cf = request.cf || {};
+        const data = {
+          ip: request.headers.get('CF-Connecting-IP') || null,
+          city: cf.city || null,
+          region: cf.region || null,
+          country: cf.country || null,
+          latitude: cf.latitude || null,
+          longitude: cf.longitude || null,
+          timezone: cf.timezone || null,
+          isp: cf.asOrganization || null,
+          tlsVersion: cf.tlsVersion || null,
+          httpProtocol: cf.httpProtocol || null,
+          acceptLanguage: request.headers.get('Accept-Language') || null,
+          acceptEncoding: request.headers.get('Accept-Encoding') || null,
+        };
+        return new Response(JSON.stringify(data), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
     }
 
     return new Response('Not found', { status: 404, headers: corsHeaders });
