@@ -67,6 +67,7 @@ function getMediaPreferences() {
   return {
     darkMode: mq('(prefers-color-scheme: dark)'),
     reducedMotion: mq('(prefers-reduced-motion: reduce)'),
+    highContrast: mq('(prefers-contrast: more)'),
     hdr: mq('(dynamic-range: high)'),
     p3Gamut: mq('(color-gamut: p3)'),
   };
@@ -137,9 +138,13 @@ function getWebGLInfo() {
     return {
       vendor: debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : null,
       renderer: debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : null,
+      version: gl.getParameter(gl.VERSION) || null,
+      shadingLanguage: gl.getParameter(gl.SHADING_LANGUAGE_VERSION) || null,
       extensions: gl.getSupportedExtensions()?.length || 0,
       maxTextureSize: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+      maxRenderbufferSize: gl.getParameter(gl.MAX_RENDERBUFFER_SIZE),
       maxViewportDims: gl.getParameter(gl.MAX_VIEWPORT_DIMS)?.join('\u00d7') || null,
+      antialiasing: gl.getContextAttributes()?.antialias ?? null,
     };
   } catch {
     return null;
@@ -243,7 +248,7 @@ async function getMediaDeviceCount() {
 }
 
 async function getPermissionStates() {
-  const names = ['notifications', 'geolocation', 'camera', 'microphone'];
+  const names = ['notifications', 'geolocation', 'camera', 'microphone', 'clipboard-read'];
   const results = {};
   for (const name of names) {
     try {
@@ -254,6 +259,21 @@ async function getPermissionStates() {
     }
   }
   return results;
+}
+
+async function getBatteryInfo() {
+  try {
+    if (!navigator.getBattery) return null;
+    const battery = await navigator.getBattery();
+    return {
+      charging: battery.charging,
+      level: Math.round(battery.level * 100),
+      chargingTime: battery.chargingTime,
+      dischargingTime: battery.dischargingTime,
+    };
+  } catch {
+    return null;
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -268,6 +288,8 @@ function calculateScore(report) {
   if (report.navigator?.languages?.length > 1)    bits += 1.5;
   if (report.canvas)                              bits += 5;
   if (report.webgl?.renderer)                     bits += 4;
+  if (report.webgl?.version)                      bits += 0.5;
+  if (report.webgl?.shadingLanguage)              bits += 0.5;
   if (report.audio)                               bits += 3;
   if (report.fonts?.detected?.length > 5)         bits += 3.5;
   if (report.navigator?.hardwareConcurrency)      bits += 1.5;
@@ -278,6 +300,7 @@ function calculateScore(report) {
   if (report.mediaDevices)                        bits += 1;
   if (report.mathFingerprint)                     bits += 1;
   if (report.mediaPreferences)                    bits += 1;
+  if (report.battery)                             bits += 0.5;
   return Math.round(bits * 10) / 10;
 }
 
@@ -315,6 +338,7 @@ export default function BrowserFingerprint() {
     const voices           = await getSpeechVoices();
     const mediaDevices     = await getMediaDeviceCount();
     const permissions      = await getPermissionStates();
+    const battery          = await getBatteryInfo();
 
     let network = null;
     try {
@@ -325,7 +349,7 @@ export default function BrowserFingerprint() {
     const full = {
       navigator: nav, screen: scr, timezone: tz, mediaPreferences, mathFingerprint,
       connection: conn, storage, canvas, webgl, audio, fonts, adBlocker,
-      voices, mediaDevices, permissions, network,
+      voices, mediaDevices, permissions, battery, network,
     };
     full.score = calculateScore(full);
     full.scoreLabel = getScoreLabel(full.score);
@@ -413,6 +437,7 @@ export default function BrowserFingerprint() {
               <tr><td>Timezone</td><td>{r ? `${r.timezone.timezone} (UTC${r.timezone.offset > 0 ? '\u2212' : '+'}${Math.abs(r.timezone.offset / 60)})` : empty}</td></tr>
               <tr><td>Dark Mode</td><td>{r ? (r.mediaPreferences.darkMode ? 'Enabled' : 'Disabled') : empty}</td></tr>
               <tr><td>Reduced Motion</td><td>{r ? (r.mediaPreferences.reducedMotion ? 'Enabled' : 'Disabled') : empty}</td></tr>
+              <tr><td>High Contrast</td><td>{r ? (r.mediaPreferences.highContrast ? 'Enabled' : 'Disabled') : empty}</td></tr>
               <tr><td>HDR Display</td><td>{r ? (r.mediaPreferences.hdr ? 'Yes' : 'No') : empty}</td></tr>
               <tr><td>P3 Color Gamut</td><td>{r ? (r.mediaPreferences.p3Gamut ? 'Yes' : 'No') : empty}</td></tr>
               <tr><td>Do Not Track</td><td>{r ? (r.navigator.doNotTrack === '1' ? 'Enabled' : 'Disabled') : empty}</td></tr>
@@ -430,7 +455,22 @@ export default function BrowserFingerprint() {
               <tr><td>Audio</td><td>{r ? <code>{r.audio || 'N/A'}</code> : empty}</td></tr>
               <tr><td>Math</td><td>{r ? <code>{r.mathFingerprint || 'N/A'}</code> : empty}</td></tr>
               <tr><td>Fonts Detected</td><td>{r ? `${r.fonts.detected.length} / ${r.fonts.tested} tested` : empty}</td></tr>
-              <tr><td>WebGL Extensions</td><td>{r ? (r.webgl?.extensions || 'N/A') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* WebGL Details */}
+          <div className="bf-section">
+            <h3>WebGL Details</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>GPU Vendor</td><td>{r ? (r.webgl?.vendor || 'N/A') : empty}</td></tr>
+              <tr><td>GPU Renderer</td><td className="bf-ua">{r ? (r.webgl?.renderer || 'N/A') : empty}</td></tr>
+              <tr><td>WebGL Version</td><td>{r ? (r.webgl?.version || 'N/A') : empty}</td></tr>
+              <tr><td>Shading Language</td><td>{r ? (r.webgl?.shadingLanguage || 'N/A') : empty}</td></tr>
+              <tr><td>Extensions</td><td>{r ? (r.webgl?.extensions || 'N/A') : empty}</td></tr>
+              <tr><td>Max Texture</td><td>{r ? (r.webgl?.maxTextureSize?.toLocaleString() || 'N/A') : empty}</td></tr>
+              <tr><td>Max Renderbuffer</td><td>{r ? (r.webgl?.maxRenderbufferSize?.toLocaleString() || 'N/A') : empty}</td></tr>
+              <tr><td>Max Viewport</td><td>{r ? (r.webgl?.maxViewportDims || 'N/A') : empty}</td></tr>
+              <tr><td>Antialiasing</td><td>{r ? (r.webgl?.antialiasing === null ? 'N/A' : r.webgl.antialiasing ? 'Enabled' : 'Disabled') : empty}</td></tr>
             </tbody></table>
           </div>
 
@@ -455,6 +495,16 @@ export default function BrowserFingerprint() {
               <tr><td>Geolocation</td><td>{r ? (r.permissions?.geolocation || 'N/A') : empty}</td></tr>
               <tr><td>Camera</td><td>{r ? (r.permissions?.camera || 'N/A') : empty}</td></tr>
               <tr><td>Microphone</td><td>{r ? (r.permissions?.microphone || 'N/A') : empty}</td></tr>
+              <tr><td>Clipboard Read</td><td>{r ? (r.permissions?.['clipboard-read'] || 'N/A') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* Battery */}
+          <div className="bf-section">
+            <h3>Battery</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>Status</td><td>{r ? (r.battery ? (r.battery.charging ? 'Charging' : 'Discharging') : 'Not available') : empty}</td></tr>
+              <tr><td>Level</td><td>{r ? (r.battery ? `${r.battery.level}%` : 'N/A') : empty}</td></tr>
             </tbody></table>
           </div>
 
