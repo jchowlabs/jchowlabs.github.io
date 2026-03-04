@@ -76,7 +76,7 @@ Labs:
 - "Facial Liveness Verification" — interactive liveness detection techniques. URL: /lab/facial-liveness-verification
 - "Interactive Voice Assistant" — voice concierge for site navigation. URL: /lab/interactive-voice-assistant
 - "Securing AI Chatbots" — interactive lab with a vulnerable and secured AI chatbot. URL: /lab/securing-chatbots
-- "Browser Exposure Report" — instant audit of your browser fingerprint, network identity, and tracking surface. URL: /lab/browser-exposure
+- "Browser Fingerprinting" — instant audit of your browser fingerprint, network identity, and tracking surface. URL: /lab/browser-fingerprinting
 - "CAEP: Interactive Demo" [Coming Soon] — interactive demo of Continuous Access Evaluation Protocol for real-time session revocation. Not yet published.
 
 SECTION NAVIGATION (these are anchor links on the home page — always use the EXACT paths below, never infer a path):
@@ -88,7 +88,7 @@ SECTION NAVIGATION (these are anchor links on the home page — always use the E
 
 RECOMMENDING CONTENT:
 - Match the user's interest to 1–2 articles. Name each article once, then ask "Want me to take you to that one?" (single match) or "Which one sounds interesting?" (multiple matches).
-- When interest is broad, favor "Passkeys: Interactive Demo", "Browser Exposure Report", and "Securing AI Chatbots" as showcase pieces.
+- When interest is broad, favor "Passkeys: Interactive Demo", "Browser Fingerprinting", and "Securing AI Chatbots" as showcase pieces.
 - Do NOT describe what the article covers beyond the title — it's self-explanatory.
 - Do NOT re-list article names after you've already said them. One mention per article per response.
 
@@ -262,7 +262,7 @@ All three tools are **client tools** — they fire events to the browser, not to
 | Use Scribe | Off |
 | Filter background speech | Off |
 | User input audio format | PCM 16000 Hz (Recommended) |
-| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, identity, deepfake, fingerprint, browser exposure, CAEP, open sesame |
+| Keywords | jchowlabs, Jason Chow, passkey, SAML, phishing, LLM, biometric, SSO, identity, deepfake, fingerprint, browser fingerprinting, CAEP, open sesame |
 
 ### Conversational Behavior
 
@@ -489,7 +489,7 @@ At an average conversation of ~1 minute, each visitor interaction costs approxim
 
 | Date | Change |
 |---|---|
-| March 3, 2026 | Article catalog update — removed "Passkey Cryptography" from Labs catalog (hidden from UI). Added "Browser Exposure Report" (live, `/lab/browser-exposure`) and "CAEP: Interactive Demo" (coming soon). Updated showcase pieces to feature Browser Exposure Report and Securing AI Chatbots. Added `fingerprint`, `browser exposure`, `CAEP` to ASR keywords. |
+| March 3, 2026 | Article catalog update — removed "Passkey Cryptography" from Labs catalog (hidden from UI). Added "Browser Fingerprinting" (live, `/lab/browser-fingerprinting`) and "CAEP: Interactive Demo" (coming soon). Updated showcase pieces to feature Browser Fingerprinting and Securing AI Chatbots. Added `fingerprint`, `browser fingerprinting`, `CAEP` to ASR keywords. |
 | March 1, 2026 | Toggle control — added `set_toggle` client tool so the voice assistant can change the notifications toggle on the Interactive Voice Assistant article page. Exposed `window.__voiceDemoActions.setToggle` from `InlineVoiceDemo`. Updated article text and prompt to reflect voice-controlled toggle. Added Toggle Control subsection to system prompt. |
 | March 1, 2026 | Interactive voice assistant article demos — added `InlineVoiceDemo` component with toggle and text input demos. Enhanced `get_current_page` to return demo state (`notificationsToggle`, `textInput`) on the voice assistant article page. Added INTERACTIVE VOICE ASSISTANT ARTICLE section to system prompt. Added `inline-voice-demo.css` stylesheet. Rewrote article to weave interactive demos into narrative. |
 | February 25, 2026 | Passkey demo guidance — enhanced `get_current_page` to return step progress (0–5) on the passkey demo page. Added dynamic firstMessage override so greeting reflects demo state when starting voice chat from that page. Added PASSKEY DEMO GUIDANCE section to system prompt. |

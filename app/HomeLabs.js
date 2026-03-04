@@ -46,10 +46,10 @@ const labs = [
     tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
   },
   {
-    href: '/lab/browser-exposure',
+    href: '/lab/browser-fingerprinting',
     img: '/static/images/finger-printing.png',
-    alt: 'Browser Exposure Report',
-    title: 'Browser Exposure Report',
+    alt: 'Browser Fingerprinting',
+    title: 'Browser Fingerprinting',
     status: 'live',
     summary:
       'See what your browser silently reveals to every website you visit. Run an instant audit of your digital fingerprint, network identity, and tracking surface — covering canvas and audio fingerprints, installed fonts, GPU details, permissions, and more. Adjust your settings and run it again to see what changed.',

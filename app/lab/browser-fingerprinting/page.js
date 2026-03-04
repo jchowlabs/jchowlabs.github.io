@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import BrowserFingerprint from '@/components/BrowserFingerprint';
 
 export const metadata = {
-  title: 'Browser Exposure Report | jchowlabs',
+  title: 'Browser Fingerprinting | jchowlabs',
   description:
     'See what your browser silently reveals to every website you visit. Run an instant audit of your digital fingerprint, network identity, and tracking surface.',
 };
@@ -12,11 +12,11 @@ export default function BrowserExposurePage() {
   const introHtml = `<section class="article-content-section">
       <div class="article-container">
         <div class="article-hero">
-          <img src="/static/images/finger-printing.png" alt="Browser Exposure Report" class="article-hero-img">
+          <img src="/static/images/finger-printing.png" alt="Browser Fingerprinting" class="article-hero-img">
         </div>
 
         <div class="article-header">
-          <h1>Browser Exposure Report</h1>
+          <h1>Browser Fingerprinting</h1>
         </div>
 
         <div class="article-body">
