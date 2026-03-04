@@ -26,6 +26,9 @@ const PITCH_THRESHOLD = 12;
 const BLINK_THRESHOLD = 0.4;
 const BLINK_OPEN_THRESHOLD = 0.2;
 const SMILE_THRESHOLD = 0.45;
+const MOUTH_OPEN_THRESHOLD = 0.45;
+const NOD_DOWN_BLEND = 0.25;
+const NOD_NEUTRAL_BLEND = 0.10;
 const HOLD_FRAMES = 8;
 const CHALLENGE_TIMEOUT_MS = 8000;
 
@@ -35,6 +38,7 @@ const CHALLENGE_POOL = [
   { id: 'blink', label: 'Blink', group: 'expression' },
   { id: 'smile', label: 'Smile', group: 'expression' },
   { id: 'nod', label: 'Nod', group: 'head' },
+  { id: 'mouth-open', label: 'Open Mouth', group: 'mouth' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -420,13 +424,36 @@ export default function LivenessDetection() {
           holdCountRef.current = Math.max(0, holdCountRef.current - 1);
         }
       } else if (challengeId === 'nod') {
-        const score = Math.abs(pitch) / 30;
-        if (nodStateRef.current === 'neutral' && pitch > PITCH_THRESHOLD) {
-          nodStateRef.current = 'down';
-          peakScoreRef.current = Math.max(peakScoreRef.current, score);
-        } else if (nodStateRef.current === 'down' && pitch < 4) {
-          detected = true;
-          peakScoreRef.current = Math.max(peakScoreRef.current, 1.0);
+        // Use multiple signals: blendshape headNodDown + landmark pitch for robustness
+        const nodBlend = Math.max(
+          getBlendshape(blendshapes, 'headDown'),
+          getBlendshape(blendshapes, 'headNodDown')
+        );
+        // Combine blendshape signal with landmark pitch
+        const pitchSignal = Math.abs(pitch) / 30;
+        const combinedSignal = nodBlend > 0.01 ? (nodBlend + pitchSignal) / 2 : pitchSignal;
+
+        if (nodStateRef.current === 'neutral') {
+          // Detect downward nod via blendshape or pitch
+          if (nodBlend > NOD_DOWN_BLEND || pitch > PITCH_THRESHOLD) {
+            nodStateRef.current = 'down';
+            peakScoreRef.current = Math.max(peakScoreRef.current, combinedSignal);
+          }
+        } else if (nodStateRef.current === 'down') {
+          // Return to neutral: blendshape drops and pitch returns
+          if ((nodBlend < NOD_NEUTRAL_BLEND) && pitch < 4) {
+            detected = true;
+            peakScoreRef.current = Math.max(peakScoreRef.current, 1.0);
+          }
+        }
+      } else if (challengeId === 'mouth-open') {
+        const jawOpen = getBlendshape(blendshapes, 'jawOpen');
+        peakScoreRef.current = Math.max(peakScoreRef.current, jawOpen / 0.8);
+        if (jawOpen > MOUTH_OPEN_THRESHOLD) {
+          holdCountRef.current++;
+          detected = holdCountRef.current >= HOLD_FRAMES;
+        } else {
+          holdCountRef.current = Math.max(0, holdCountRef.current - 1);
         }
       }
 
