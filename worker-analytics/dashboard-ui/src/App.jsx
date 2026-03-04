@@ -192,14 +192,6 @@ export default function App() {
   }, [fetchData]);
 
   /* ---- Navigation ---- */
-  const handleRangeChange = (e) => {
-    const newRange = e.target.value;
-    setRange(newRange);
-    if (newRange === 'day') setAnchor(startOfDay(new Date()));
-    else if (newRange === 'week') setAnchor(startOfWeek(new Date()));
-    else if (newRange === 'month') setAnchor(startOfMonth(new Date()));
-  };
-
   const handlePrev = () => setAnchor((a) => stepAnchor(range, a, -1));
   const handleNext = () => {
     if (canGoForward(range, anchor)) setAnchor((a) => stepAnchor(range, a, 1));
@@ -253,41 +245,43 @@ export default function App() {
       {/* Header */}
       <header className="dashboard-header">
         <a href="https://jchowlabs.com" className="dashboard-header-brand" target="_blank" rel="noreferrer">
-          <img src="https://jchowlabs.com/static/images/favicon.png" alt="" />
-          jchowlabs
+          <img src="https://jchowlabs.com/static/images/jchowlabs-logo.png" alt="jchowlabs" />
         </a>
-        <nav className="dashboard-header-nav">
-          <a href="https://jchowlabs.com" target="_blank" rel="noreferrer">Home</a>
-          <a href="https://jchowlabs.com/events" target="_blank" rel="noreferrer">Events</a>
-        </nav>
+        <div className="time-selector">
+          <div className="time-pills">
+            {RANGE_OPTIONS.map((o) => (
+              <button
+                key={o.value}
+                className={`time-pill${range === o.value ? ' active' : ''}`}
+                onClick={() => {
+                  setRange(o.value);
+                  if (o.value === 'day') setAnchor(startOfDay(new Date()));
+                  else if (o.value === 'week') setAnchor(startOfWeek(new Date()));
+                  else if (o.value === 'month') setAnchor(startOfMonth(new Date()));
+                }}
+              >{o.label}</button>
+            ))}
+          </div>
+          {range !== 'all' && (
+            <div className="time-nav">
+              <button className="time-nav-btn" onClick={handlePrev}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <span className="time-label">{dateLabel}</span>
+              <button
+                className="time-nav-btn"
+                onClick={handleNext}
+                disabled={!canGoForward(range, anchor)}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Main */}
       <main className="dashboard-main" style={{ flex: 1 }}>
-
-        {/* Title + time selector */}
-        <div className="dashboard-title-row">
-          <h1 className="dashboard-title">Analytics</h1>
-          <div className="time-selector">
-            <select className="time-select" value={range} onChange={handleRangeChange}>
-              {RANGE_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>{o.label}</option>
-              ))}
-            </select>
-            {range !== 'all' && (
-              <>
-                <button className="time-nav-btn" onClick={handlePrev}>◀</button>
-                <span className="time-label">{dateLabel}</span>
-                <button
-                  className="time-nav-btn"
-                  onClick={handleNext}
-                  disabled={!canGoForward(range, anchor)}
-                >▶</button>
-              </>
-            )}
-            {range === 'all' && <span className="time-label">{dateLabel}</span>}
-          </div>
-        </div>
 
         {loading ? (
           <div className="loading-spinner">Loading dashboard…</div>
@@ -403,6 +397,7 @@ export default function App() {
               {/* Page analytics */}
               <div className="tile">
                 <div className="tile-header">Page Analytics</div>
+                <div className="analytics-table-scroll">
                 {pages.length > 0 ? (
                   <table className="analytics-table">
                     <thead>
@@ -434,6 +429,7 @@ export default function App() {
                     No page data for this period
                   </div>
                 )}
+                </div>
               </div>
 
               {/* Content management */}

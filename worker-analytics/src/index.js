@@ -273,7 +273,14 @@ async function handlePages(env, params, corsHeaders) {
        ${joinWhere}
      WHERE tc.content_type = 'page'
      GROUP BY tc.slug
-     ORDER BY views DESC`,
+     ORDER BY
+       CASE
+         WHEN tc.slug = '/' THEN 0
+         WHEN tc.slug = '/events' THEN 1
+         WHEN tc.slug LIKE '/lab/%' THEN 2
+         ELSE 3
+       END,
+       views DESC`,
     bind
   );
 
