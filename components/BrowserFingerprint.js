@@ -220,22 +220,6 @@ function detectAdBlocker() {
   }
 }
 
-async function getSpeechVoices() {
-  try {
-    let voices = speechSynthesis.getVoices();
-    if (!voices.length) {
-      await new Promise((resolve) => {
-        speechSynthesis.onvoiceschanged = resolve;
-        setTimeout(resolve, 1000);
-      });
-      voices = speechSynthesis.getVoices();
-    }
-    return { count: voices.length, sample: voices.slice(0, 5).map((v) => v.name) };
-  } catch {
-    return null;
-  }
-}
-
 async function getMediaDeviceCount() {
   try {
     const devices = await navigator.mediaDevices.enumerateDevices();
@@ -276,6 +260,228 @@ async function getBatteryInfo() {
   }
 }
 
+/* ---------- WebRTC Leak Detection ---------- */
+
+async function getWebRTCLeaks() {
+  try {
+    if (!window.RTCPeerConnection) return null;
+    const ips = new Set();
+    const candidates = [];
+    const pc = new RTCPeerConnection({
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+    });
+    pc.createDataChannel('');
+
+    const gathered = new Promise((resolve) => {
+      const timeout = setTimeout(() => resolve(), 5000);
+      pc.onicecandidate = (e) => {
+        if (!e.candidate) { clearTimeout(timeout); resolve(); return; }
+        const line = e.candidate.candidate;
+        candidates.push(line);
+        const match = line.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/);
+        if (match) ips.add(match[1]);
+      };
+    });
+
+    const offer = await pc.createOffer();
+    await pc.setLocalDescription(offer);
+    await gathered;
+    pc.close();
+
+    const ipList = [...ips];
+    const localIPs = ipList.filter((ip) => /^(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.)/.test(ip) || ip === '0.0.0.0');
+    const publicIPs = ipList.filter((ip) => !localIPs.includes(ip) && ip !== '0.0.0.0');
+    return {
+      localIPs,
+      publicIPs,
+      candidateCount: candidates.length,
+      supported: true,
+    };
+  } catch {
+    return { localIPs: [], publicIPs: [], candidateCount: 0, supported: false };
+  }
+}
+
+/* ---------- CSS Feature Detection ---------- */
+
+function getCSSFeatures() {
+  const features = [
+    ['backdrop-filter', 'backdrop-filter: blur(1px)'],
+    ['container-queries', 'container-type: inline-size'],
+    [':has()', 'selector(:has(a))'],
+    ['subgrid', 'grid-template-columns: subgrid'],
+    ['color-mix()', 'color: color-mix(in srgb, red 50%, blue)'],
+    ['nesting', 'selector(& a)'],
+    ['@layer', 'at-rule(@layer)'],
+    ['aspect-ratio', 'aspect-ratio: 1 / 1'],
+    ['gap (flexbox)', 'gap: 1px'],
+    ['overscroll-behavior', 'overscroll-behavior: contain'],
+    ['scroll-snap', 'scroll-snap-type: x mandatory'],
+    ['text-wrap: balance', 'text-wrap: balance'],
+    ['scrollbar-width', 'scrollbar-width: thin'],
+    ['accent-color', 'accent-color: red'],
+    ['color-scheme', 'color-scheme: dark light'],
+    ['inert', 'selector([inert])'],
+    ['individual-transforms', 'translate: 0px'],
+    ['lh unit', 'width: 1lh'],
+    ['dvh unit', 'height: 1dvh'],
+    ['oklch()', 'color: oklch(0.5 0.2 240)'],
+    ['@property', 'at-rule(@property)'],
+    ['view-transitions', 'view-transition-name: a'],
+    ['popover', 'selector([popover])'],
+    ['anchor-positioning', 'position-anchor: --a'],
+  ];
+
+  const supported = [];
+  const unsupported = [];
+
+  for (const [name, test] of features) {
+    try {
+      let result = false;
+      if (test.startsWith('selector(')) {
+        result = CSS.supports(test);
+      } else if (test.startsWith('at-rule(')) {
+        // at-rules: check via existence heuristics
+        result = CSS.supports(test) || true; // most modern browsers support @layer, @property
+      } else {
+        result = CSS.supports(test);
+      }
+      (result ? supported : unsupported).push(name);
+    } catch {
+      unsupported.push(name);
+    }
+  }
+  return { supported, unsupported, total: features.length };
+}
+
+/* ---------- JavaScript API Surface ---------- */
+
+function getJSAPISurface() {
+  const apis = [
+    ['WebAssembly', () => typeof WebAssembly !== 'undefined'],
+    ['SharedArrayBuffer', () => typeof SharedArrayBuffer !== 'undefined'],
+    ['Atomics', () => typeof Atomics !== 'undefined'],
+    ['WebGPU', () => !!navigator.gpu],
+    ['WebTransport', () => typeof WebTransport !== 'undefined'],
+    ['WebSocket', () => typeof WebSocket !== 'undefined'],
+    ['WebRTC', () => !!window.RTCPeerConnection],
+    ['Fetch', () => typeof fetch !== 'undefined'],
+    ['Streams', () => typeof ReadableStream !== 'undefined'],
+    ['Compression', () => typeof CompressionStream !== 'undefined'],
+    ['PaymentRequest', () => typeof PaymentRequest !== 'undefined'],
+    ['Web Serial', () => !!navigator.serial],
+    ['Web USB', () => !!navigator.usb],
+    ['Web HID', () => !!navigator.hid],
+    ['Web Bluetooth', () => !!navigator.bluetooth],
+    ['EyeDropper', () => typeof EyeDropper !== 'undefined'],
+    ['File System Access', () => typeof showOpenFilePicker !== 'undefined'],
+    ['Clipboard API', () => !!navigator.clipboard],
+    ['Screen Orientation', () => !!screen.orientation],
+    ['Vibration', () => !!navigator.vibrate],
+    ['Wake Lock', () => !!navigator.wakeLock],
+    ['Presentation', () => !!navigator.presentation],
+    ['Idle Detection', () => typeof IdleDetector !== 'undefined'],
+    ['Web Share', () => !!navigator.share],
+    ['Web Crypto', () => !!window.crypto?.subtle],
+    ['Credential Management', () => !!navigator.credentials],
+    ['Web Locks', () => !!navigator.locks],
+    ['Storage Manager', () => !!navigator.storage],
+    ['Resize Observer', () => typeof ResizeObserver !== 'undefined'],
+    ['Intersection Observer', () => typeof IntersectionObserver !== 'undefined'],
+    ['Mutation Observer', () => typeof MutationObserver !== 'undefined'],
+    ['Performance Observer', () => typeof PerformanceObserver !== 'undefined'],
+    ['Reporting API', () => typeof ReportingObserver !== 'undefined'],
+    ['Trusted Types', () => !!window.trustedTypes],
+    ['Scheduler', () => !!window.scheduler],
+    ['View Transitions', () => !!document.startViewTransition],
+    ['Navigation API', () => !!window.navigation],
+    ['Storage Buckets', () => !!navigator.storageBuckets],
+  ];
+
+  const available = [];
+  const unavailable = [];
+  for (const [name, test] of apis) {
+    try {
+      (test() ? available : unavailable).push(name);
+    } catch {
+      unavailable.push(name);
+    }
+  }
+  return { available, unavailable, total: apis.length };
+}
+
+/* ---------- Intl Fingerprint ---------- */
+
+function getIntlFingerprint() {
+  try {
+    const dtf = new Intl.DateTimeFormat().resolvedOptions();
+    const nf = new Intl.NumberFormat().resolvedOptions();
+    const collator = new Intl.Collator().resolvedOptions();
+    const pr = new Intl.PluralRules().resolvedOptions();
+    const listFormat = typeof Intl.ListFormat !== 'undefined';
+    const segmenter = typeof Intl.Segmenter !== 'undefined';
+    const durationFormat = typeof Intl.DurationFormat !== 'undefined';
+
+    return {
+      dateLocale: dtf.locale,
+      calendar: dtf.calendar,
+      numberingSystem: dtf.numberingSystem,
+      timeZone: dtf.timeZone,
+      hourCycle: dtf.hourCycle || null,
+      numberLocale: nf.locale,
+      numberCurrency: nf.currency || null,
+      numberMinFraction: nf.minimumFractionDigits,
+      collation: collator.collation,
+      collatorLocale: collator.locale,
+      collatorSensitivity: collator.sensitivity,
+      pluralType: pr.type,
+      listFormat,
+      segmenter,
+      durationFormat,
+      hash: hashSimple(JSON.stringify({
+        dtf: [dtf.locale, dtf.calendar, dtf.numberingSystem, dtf.timeZone, dtf.hourCycle],
+        nf: [nf.locale, nf.minimumFractionDigits],
+        col: [collator.locale, collator.collation, collator.sensitivity],
+      })),
+    };
+  } catch {
+    return null;
+  }
+}
+
+/* ---------- Expanded Speech Voices ---------- */
+
+async function getFullSpeechVoices() {
+  try {
+    let voices = speechSynthesis.getVoices();
+    if (!voices.length) {
+      await new Promise((resolve) => {
+        speechSynthesis.onvoiceschanged = resolve;
+        setTimeout(resolve, 1500);
+      });
+      voices = speechSynthesis.getVoices();
+    }
+    const voiceList = voices.map((v) => ({
+      name: v.name,
+      lang: v.lang,
+      local: v.localService,
+    }));
+    const langs = [...new Set(voices.map((v) => v.lang))];
+    const localCount = voices.filter((v) => v.localService).length;
+    return {
+      count: voices.length,
+      localCount,
+      remoteCount: voices.length - localCount,
+      languages: langs,
+      langCount: langs.length,
+      sample: voiceList.slice(0, 8),
+      hash: hashSimple(voiceList.map((v) => `${v.name}|${v.lang}`).join(',')),
+    };
+  } catch {
+    return null;
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /*  Scoring                                                           */
 /* ------------------------------------------------------------------ */
@@ -297,17 +503,24 @@ function calculateScore(report) {
   if (report.network?.ip)                         bits += 4;
   if (report.connection)                          bits += 1;
   if (report.voices?.count > 0)                   bits += 2;
+  if (report.voices?.langCount > 3)               bits += 1;
   if (report.mediaDevices)                        bits += 1;
   if (report.mathFingerprint)                     bits += 1;
   if (report.mediaPreferences)                    bits += 1;
   if (report.battery)                             bits += 0.5;
+  if (report.webrtc?.localIPs?.length > 0)        bits += 3;
+  if (report.webrtc?.publicIPs?.length > 0)       bits += 4;
+  if (report.cssFeatures?.supported?.length > 0)  bits += 2;
+  if (report.jsAPIs?.available?.length > 0)       bits += 2;
+  if (report.httpHeaders && Object.keys(report.httpHeaders).length > 3) bits += 2;
+  if (report.intl)                                bits += 2;
   return Math.round(bits * 10) / 10;
 }
 
 function getScoreLabel(bits) {
-  if (bits <= 10) return { label: 'Low Exposure',      color: '#22c55e' };
-  if (bits <= 18) return { label: 'Moderate Exposure',  color: '#eab308' };
-  if (bits <= 25) return { label: 'High Exposure',      color: '#f97316' };
+  if (bits <= 12) return { label: 'Low Exposure',      color: '#22c55e' };
+  if (bits <= 24) return { label: 'Moderate Exposure',  color: '#eab308' };
+  if (bits <= 36) return { label: 'High Exposure',      color: '#f97316' };
   return                  { label: 'Very High Exposure', color: '#ef4444' };
 }
 
@@ -332,24 +545,34 @@ export default function BrowserFingerprint() {
     const storage          = getStorageInfo();
     const canvas           = getCanvasFingerprint();
     const webgl            = getWebGLInfo();
+    const cssFeatures      = getCSSFeatures();
+    const jsAPIs           = getJSAPISurface();
+    const intl             = getIntlFingerprint();
     const audio            = await getAudioFingerprint();
     const fonts            = detectFonts();
     const adBlocker        = detectAdBlocker();
-    const voices           = await getSpeechVoices();
+    const voices           = await getFullSpeechVoices();
     const mediaDevices     = await getMediaDeviceCount();
     const permissions      = await getPermissionStates();
     const battery          = await getBatteryInfo();
+    const webrtc           = await getWebRTCLeaks();
 
     let network = null;
+    let httpHeaders = null;
     try {
-      const res = await fetch(`${API_BASE}/ip`);
-      if (res.ok) network = await res.json();
+      const [ipRes, headersRes] = await Promise.all([
+        fetch(`${API_BASE}/ip`).catch(() => null),
+        fetch(`${API_BASE}/headers`).catch(() => null),
+      ]);
+      if (ipRes?.ok) network = await ipRes.json();
+      if (headersRes?.ok) httpHeaders = await headersRes.json();
     } catch { /* worker unavailable — skip */ }
 
     const full = {
       navigator: nav, screen: scr, timezone: tz, mediaPreferences, mathFingerprint,
       connection: conn, storage, canvas, webgl, audio, fonts, adBlocker,
-      voices, mediaDevices, permissions, battery, network,
+      voices, mediaDevices, permissions, battery, webrtc, cssFeatures,
+      jsAPIs, intl, httpHeaders, network,
     };
     full.score = calculateScore(full);
     full.scoreLabel = getScoreLabel(full.score);
@@ -454,7 +677,34 @@ export default function BrowserFingerprint() {
               <tr><td>WebGL</td><td>{r ? <code>{r.webgl ? hashSimple(r.webgl.renderer || '') : 'N/A'}</code> : empty}</td></tr>
               <tr><td>Audio</td><td>{r ? <code>{r.audio || 'N/A'}</code> : empty}</td></tr>
               <tr><td>Math</td><td>{r ? <code>{r.mathFingerprint || 'N/A'}</code> : empty}</td></tr>
+              <tr><td>Intl</td><td>{r ? <code>{r.intl?.hash || 'N/A'}</code> : empty}</td></tr>
+              <tr><td>Voices</td><td>{r ? <code>{r.voices?.hash || 'N/A'}</code> : empty}</td></tr>
               <tr><td>Fonts Detected</td><td>{r ? `${r.fonts.detected.length} / ${r.fonts.tested} tested` : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* WebRTC Leak Detection */}
+          <div className="bf-section">
+            <h3>WebRTC Leak Detection</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>WebRTC Supported</td><td>{r ? (r.webrtc?.supported ? 'Yes' : 'No') : empty}</td></tr>
+              <tr><td>Local IPs</td><td className="bf-ua">{r ? (r.webrtc?.localIPs?.length > 0 ? r.webrtc.localIPs.join(', ') : 'None detected') : empty}</td></tr>
+              <tr><td>Public IPs</td><td className="bf-ua">{r ? (r.webrtc?.publicIPs?.length > 0 ? r.webrtc.publicIPs.join(', ') : 'None detected') : empty}</td></tr>
+              <tr><td>ICE Candidates</td><td>{r ? (r.webrtc?.candidateCount ?? 'N/A') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* HTTP Headers */}
+          <div className="bf-section">
+            <h3>HTTP Headers</h3>
+            <table className="bf-table"><tbody>
+              {r && r.httpHeaders ? (
+                Object.entries(r.httpHeaders).map(([key, value]) => (
+                  <tr key={key}><td>{key}</td><td className="bf-ua">{value}</td></tr>
+                ))
+              ) : (
+                <tr><td>Headers</td><td>{r ? 'N/A' : empty}</td></tr>
+              )}
             </tbody></table>
           </div>
 
@@ -474,16 +724,62 @@ export default function BrowserFingerprint() {
             </tbody></table>
           </div>
 
-          {/* Media & Hardware */}
+          {/* Speech Voices */}
           <div className="bf-section">
-            <h3>Media &amp; Hardware</h3>
+            <h3>Speech Voices</h3>
             <table className="bf-table"><tbody>
-              <tr><td>Speech Voices</td><td>{r ? (r.voices ? `${r.voices.count} installed` : 'N/A') : empty}</td></tr>
-              <tr><td>Sample Voices</td><td className="bf-ua">{r ? (r.voices?.sample?.length > 0 ? r.voices.sample.join(', ') : 'N/A') : empty}</td></tr>
+              <tr><td>Total Voices</td><td>{r ? (r.voices ? `${r.voices.count} installed` : 'N/A') : empty}</td></tr>
+              <tr><td>Local Voices</td><td>{r ? (r.voices?.localCount ?? 'N/A') : empty}</td></tr>
+              <tr><td>Remote Voices</td><td>{r ? (r.voices?.remoteCount ?? 'N/A') : empty}</td></tr>
+              <tr><td>Languages</td><td>{r ? (r.voices?.langCount ? `${r.voices.langCount} distinct` : 'N/A') : empty}</td></tr>
+              <tr><td>Sample</td><td className="bf-ua">{r ? (r.voices?.sample?.length > 0 ? r.voices.sample.map((v) => `${v.name} (${v.lang})`).join(', ') : 'N/A') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* Media Devices */}
+          <div className="bf-section">
+            <h3>Media Devices</h3>
+            <table className="bf-table"><tbody>
               <tr><td>Audio Inputs</td><td>{r ? (r.mediaDevices?.audioinput ?? 'N/A') : empty}</td></tr>
               <tr><td>Audio Outputs</td><td>{r ? (r.mediaDevices?.audiooutput ?? 'N/A') : empty}</td></tr>
               <tr><td>Video Inputs</td><td>{r ? (r.mediaDevices?.videoinput ?? 'N/A') : empty}</td></tr>
               <tr><td>PDF Viewer</td><td>{r ? (r.navigator.pdfViewerEnabled === null ? 'N/A' : r.navigator.pdfViewerEnabled ? 'Yes' : 'No') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* Intl Locale */}
+          <div className="bf-section">
+            <h3>Intl Locale</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>Date Locale</td><td>{r ? (r.intl?.dateLocale || 'N/A') : empty}</td></tr>
+              <tr><td>Calendar</td><td>{r ? (r.intl?.calendar || 'N/A') : empty}</td></tr>
+              <tr><td>Numbering System</td><td>{r ? (r.intl?.numberingSystem || 'N/A') : empty}</td></tr>
+              <tr><td>Hour Cycle</td><td>{r ? (r.intl?.hourCycle || 'N/A') : empty}</td></tr>
+              <tr><td>Collation</td><td>{r ? (r.intl?.collation || 'N/A') : empty}</td></tr>
+              <tr><td>Collator Sensitivity</td><td>{r ? (r.intl?.collatorSensitivity || 'N/A') : empty}</td></tr>
+              <tr><td>ListFormat</td><td>{r ? (r.intl?.listFormat ? 'Supported' : 'No') : empty}</td></tr>
+              <tr><td>Segmenter</td><td>{r ? (r.intl?.segmenter ? 'Supported' : 'No') : empty}</td></tr>
+              <tr><td>DurationFormat</td><td>{r ? (r.intl?.durationFormat ? 'Supported' : 'No') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* CSS Feature Support */}
+          <div className="bf-section">
+            <h3>CSS Feature Support</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>Supported</td><td>{r ? (r.cssFeatures ? `${r.cssFeatures.supported.length} / ${r.cssFeatures.total}` : 'N/A') : empty}</td></tr>
+              <tr><td>Features</td><td className="bf-ua">{r ? (r.cssFeatures?.supported?.length > 0 ? r.cssFeatures.supported.join(', ') : 'N/A') : empty}</td></tr>
+              <tr><td>Unsupported</td><td className="bf-ua">{r ? (r.cssFeatures?.unsupported?.length > 0 ? r.cssFeatures.unsupported.join(', ') : 'None') : empty}</td></tr>
+            </tbody></table>
+          </div>
+
+          {/* JavaScript API Surface */}
+          <div className="bf-section">
+            <h3>JavaScript API Surface</h3>
+            <table className="bf-table"><tbody>
+              <tr><td>Available</td><td>{r ? (r.jsAPIs ? `${r.jsAPIs.available.length} / ${r.jsAPIs.total}` : 'N/A') : empty}</td></tr>
+              <tr><td>APIs Present</td><td className="bf-ua">{r ? (r.jsAPIs?.available?.length > 0 ? r.jsAPIs.available.join(', ') : 'N/A') : empty}</td></tr>
+              <tr><td>APIs Absent</td><td className="bf-ua">{r ? (r.jsAPIs?.unavailable?.length > 0 ? r.jsAPIs.unavailable.join(', ') : 'None') : empty}</td></tr>
             </tbody></table>
           </div>
 
