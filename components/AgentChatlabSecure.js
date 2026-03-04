@@ -8,6 +8,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
@@ -110,6 +111,7 @@ export default function AgentChatlabSecure() {
       setInput('');
       setModalOpen(true);
       setPanelOpen(window.innerWidth > 700);
+      trackLabUsage('secured-chatbot');
     } catch (err) {
       console.error('Failed to start secure session:', err);
     } finally {

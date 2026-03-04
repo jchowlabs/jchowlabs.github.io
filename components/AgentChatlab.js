@@ -19,6 +19,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
@@ -121,6 +122,7 @@ export default function AgentChatlab() {
       setInput('');
       setModalOpen(true);
       setPanelOpen(window.innerWidth > 700);
+      trackLabUsage('vulnerable-chatbot');
     } catch (err) {
       console.error('Failed to start session:', err);
     } finally {

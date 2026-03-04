@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useCallback } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -387,6 +388,7 @@ export default function CryptoTerminal() {
   const handleNext = async () => {
     if (phase >= handlers.length || running) return;
     setRunning(true);
+    if (phase === 0) trackLabUsage('cryptography-behind-passkeys');
     try {
       await handlers[phase]();
       setPhase((p) => p + 1);

@@ -1,5 +1,6 @@
 'use client';
 import { useEffect } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 export default function PasskeyDemoInit() {
   useEffect(() => {
@@ -273,6 +274,7 @@ export default function PasskeyDemoInit() {
           };
 
           showStatus(`Successfully registered for ${email}!`, 'success');
+          trackLabUsage('passkey-demo');
 
           if (window.innerWidth <= 768) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -385,6 +387,7 @@ export default function PasskeyDemoInit() {
           await new Promise(resolve => setTimeout(resolve, 1200));
 
           showStatus(`Successfully signed in as ${email}!`, 'success');
+          trackLabUsage('passkey-demo');
 
           if (window.innerWidth <= 768) {
             window.scrollTo({ top: 0, behavior: 'smooth' });

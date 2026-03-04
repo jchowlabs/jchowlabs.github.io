@@ -1,0 +1,17 @@
+name = "dashboard"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Serve the built dashboard SPA as static assets
+# After building dashboard-ui, the dist/ folder is served
+[assets]
+directory = "./dashboard-ui/dist"
+
+# D1 database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "jchowlabs-analytics"
+database_id = "2c5b7837-5bb3-4525-8ee1-1285531c9f0c"
+
+[vars]
+ALLOWED_ORIGIN = "https://jchowlabs.com"

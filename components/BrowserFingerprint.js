@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
@@ -535,6 +536,7 @@ export default function BrowserFingerprint() {
   async function runAudit() {
     setLoading(true);
     setReport(null);
+    trackLabUsage('browser-fingerprinting');
 
     const nav              = getNavigatorInfo();
     const scr              = getScreenInfo();

@@ -7,6 +7,7 @@ import '@/styles/agent-chatlab.css';
 import '@/styles/browser-fingerprint.css';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
+import AnalyticsTracker from '@/components/AnalyticsTracker';
 import CookieBanner from '@/components/CookieBanner';
 import ContactModal from '@/components/ContactModal';
 import Chatbot from '@/components/Chatbot';
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
         />
         <Analytics />
+        <AnalyticsTracker />
         {children}
         <CookieBanner />
         <ContactModal />

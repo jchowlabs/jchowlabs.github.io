@@ -13,6 +13,7 @@
  */
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { trackLabUsage } from '@/lib/analytics';
 
 /* ------------------------------------------------------------------ */
 /* Constants                                                           */
@@ -489,6 +490,7 @@ export default function LivenessDetection() {
     setPhase('initializing');
     setResult(null);
     setFeedback('Loading face detection model…');
+    trackLabUsage('facial-liveness-verification');
 
     try {
       const vision = await import('@mediapipe/tasks-vision');

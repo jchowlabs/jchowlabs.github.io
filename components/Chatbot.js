@@ -13,6 +13,7 @@
 
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { trackLabUsage } from '@/lib/analytics';
 
 const AGENT_ID = 'agent_9901kj9dzjy3esqvjfs4z9xm5dfv';
 
@@ -140,6 +141,7 @@ export default function Chatbot() {
         onConnect: () => {
           setStatus('listening');
           startVolumeMonitor();
+          trackLabUsage('interactive-voice-assistant');
         },
 
         onDisconnect: () => {
