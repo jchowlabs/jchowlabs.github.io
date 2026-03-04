@@ -22,9 +22,6 @@ export default function CookieBanner() {
     setVisible(false);
 
     if (accepted) {
-      if (typeof window.loadGoogleAnalytics === 'function') {
-        window.loadGoogleAnalytics();
-      }
       // Notify Chatbot component that consent was granted
       window.dispatchEvent(new CustomEvent('analytics-consent-granted'));
     }

@@ -6,7 +6,6 @@ import '@/styles/inline-voice-demo.css';
 import '@/styles/agent-chatlab.css';
 import '@/styles/browser-fingerprint.css';
 import Script from 'next/script';
-import Analytics from '@/components/Analytics';
 import AnalyticsTracker from '@/components/AnalyticsTracker';
 import CookieBanner from '@/components/CookieBanner';
 import ContactModal from '@/components/ContactModal';
@@ -40,7 +39,6 @@ export default function RootLayout({ children }) {
           src="https://www.google.com/recaptcha/api.js?render=explicit"
           strategy="afterInteractive"
         />
-        <Analytics />
         <AnalyticsTracker />
         {children}
         <CookieBanner />
