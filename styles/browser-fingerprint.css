@@ -1,0 +1,176 @@
+/* ==========================================================
+   Browser Fingerprint / Exposure Report
+   ========================================================== */
+
+.bf-container {
+  margin: 2rem 0;
+}
+
+/* ---- Run button ---- */
+
+.bf-run-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.bf-run-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.bf-run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Single dashboard container ---- */
+
+.bf-dashboard {
+  background:
+    linear-gradient(to right, rgba(180,185,190,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,185,190,0.035) 1px, transparent 1px);
+  background-size: 6px 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+}
+
+/* ---- Score section (top of container) ---- */
+
+.bf-score-section {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.bf-score-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.bf-score-bar {
+  width: 100%;
+  max-width: 400px;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 5px;
+  margin: 0.75rem auto;
+  overflow: hidden;
+}
+
+.bf-score-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+
+.bf-score-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.bf-score-section .bf-run-btn {
+  margin-top: 1rem;
+}
+
+.bf-score-desc {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ---- Divider ---- */
+
+.bf-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Sections grid ---- */
+
+.bf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* ---- Individual section ---- */
+
+.bf-section h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+/* ---- Data tables ---- */
+
+.bf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.bf-table td {
+  padding: 5px 0;
+  vertical-align: top;
+}
+
+.bf-table td:first-child {
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+  padding-right: 1rem;
+  width: 40%;
+}
+
+.bf-table td:last-child {
+  color: #4b5563;
+  word-break: break-word;
+}
+
+.bf-table code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.8rem;
+  background: #e5e7eb;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.bf-ua {
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+  .bf-dashboard {
+    padding: 1.25rem;
+  }
+
+  .bf-score-value {
+    font-size: 2rem;
+  }
+
+  .bf-table td:first-child {
+    width: auto;
+  }
+
+  .bf-run-btn {
+    width: 100%;
+  }
+}

@@ -46,6 +46,16 @@ const labs = [
     tags: ['Biometrics', 'Liveness', 'Anti-Spoofing'],
   },
   {
+    href: '/lab/browser-exposure',
+    img: '/static/images/finger-printing.png',
+    alt: 'Browser Exposure Report',
+    title: 'Browser Exposure Report',
+    status: 'live',
+    summary:
+      'See what your browser silently reveals to every website you visit. Run an instant audit of your digital fingerprint, network identity, and tracking surface — covering canvas and audio fingerprints, installed fonts, GPU details, permissions, and more. Adjust your settings and run it again to see what changed.',
+    tags: ['Fingerprinting', 'Privacy', 'Client Security'],
+  },
+  {
     href: null,
     img: '/static/images/caep.png',
     alt: 'CAEP Interactive Demo',
@@ -54,16 +64,6 @@ const labs = [
     summary:
       'An interactive introduction to the Continuous Access Evaluation Protocol (CAEP) and how it enables real-time session revocation across applications. This lab walks through CAEP event flows and lets you trigger a live credential-change event that instantly terminates an active session on a paired application.',
     tags: ['CAEP', 'Session Security', 'Zero Trust'],
-  },
-  {
-    href: '/lab/cryptography-behind-passkeys',
-    img: '/static/images/passkeys-cryptography.png',
-    alt: 'Passkey Cryptography',
-    title: 'Passkey Cryptography',
-    status: 'live',
-    summary:
-      'A technical walkthrough of the cryptographic foundations that make passkeys work. This lab covers asymmetric key pairs, on-device key generation, WebAuthn registration and authentication flows, and why passkeys are resistant to phishing, replay attacks, and credential theft.',
-    tags: ['Cryptography', 'Passkeys', 'WebAuthn'],
   },
 ];
 
